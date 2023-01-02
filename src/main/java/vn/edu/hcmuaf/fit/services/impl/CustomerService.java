@@ -5,6 +5,7 @@ import vn.edu.hcmuaf.fit.model.CustomerModel;
 import vn.edu.hcmuaf.fit.services.ICustomerService;
 
 import javax.inject.Inject;
+import java.util.List;
 
 public class CustomerService implements ICustomerService {
 
@@ -13,5 +14,15 @@ public class CustomerService implements ICustomerService {
     @Override
     public CustomerModel findByUsernameAndPasswordAndStatus(String email, String password, int status) {
         return customerDAO.findByUsernameAndPasswordAndStatus(email, password, status);
+    }
+
+    @Override
+    public int totalCustomer() {
+        return customerDAO.totalCustomer();
+    }
+
+    @Override
+    public List<CustomerModel> newCustomer() {
+        return customerDAO.newCustomer();
     }
 }
