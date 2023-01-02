@@ -47,7 +47,7 @@
       <i class="fa-solid fa-circle-xmark"></i>
       <small>Error</small>
     </div>
-    <a href="forgotPassword.html" class="forgotPassword-link">Quên mật khẩu?</a>
+    <a href="/forgotPassword?action=forgotPassword" class="forgotPassword-link">Quên mật khẩu?</a>
     <input type="hidden" name="action" value="login" >
     <button type="submit" class="btn-login">Đăng nhập</button>
     <a href="#" class="social-button" id="facebook-login">
@@ -59,7 +59,7 @@
       <i class="fa-brands fa-google-plus-g" style="margin-left: 5px;"></i>
     </a>
     <p style="margin-top: 50px; margin-bottom: 20px; padding-bottom: 20px; color: #aaaaaa; text-align: center;">
-      Bạn chưa có tài khoản? <a href="signup.html" class="signUp-link">Đăng ký ngay</a></p>
+      Bạn chưa có tài khoản? <a href="/signup?action=signup" class="signUp-link">Đăng ký ngay</a></p>
   </form>
 </div>
 <!-----end login---->

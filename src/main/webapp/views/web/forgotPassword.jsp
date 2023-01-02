@@ -24,7 +24,7 @@
 <!--------- forgotPassword form---------- -->
 <div class="forgotPassword">
   <div class="forgotPassword-title">Quên mật khẩu</div>
-  <form class="form_forgotPassword" id="form_forgotPassword">
+  <form action="/forgotPassword?action=forgotPassword" class="form_forgotPassword" id="form_forgotPassword">
     <div class="input ">
       <label>Email</label>
       <input type="text" placeholder="Nhập vào email của bạn" id="email">

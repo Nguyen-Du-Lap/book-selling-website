@@ -7,4 +7,7 @@ import java.util.List;
 
 public interface ICustomerDAO {
     CustomerModel findByUsernameAndPasswordAndStatus(String email, String password, int status);
+    int totalCustomer();
+
+    List<CustomerModel> newCustomer();
 }
