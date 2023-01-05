@@ -19,7 +19,7 @@ public class CustomerDAO implements ICustomerDAO {
     public CustomerModel findByUsernameAndPasswordAndStatus(String email, String password, int status) {
         List<CustomerModel> users = new ArrayList<>();
         Connection connection = JDBCConnector.getConnection();
-        String sql = new String("SELECT * FROM customer WHERE email=? AND password=?");
+        String sql = new String("SELECT * FROM customer WHERE email=? AND password=? AND status = ?");
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         if(connection != null) {
@@ -27,6 +27,7 @@ public class CustomerDAO implements ICustomerDAO {
                 statement = connection.prepareStatement(sql.toString());
                 statement.setString(1, email);
                 statement.setString(2, password);
+                statement.setInt(3, status);
                 resultSet = statement.executeQuery();
                 while (resultSet.next()) {
                     CustomerModel customerModel = new CustomerModel();

@@ -12,7 +12,6 @@ public class PageCalendarController extends HttpServlet {
         // title dung de active aside
         request.setAttribute("title", "Lịch công tác");
         request.getRequestDispatcher("views/admin/page-calendar.jsp").forward(request, response);
-
     }
 
     @Override

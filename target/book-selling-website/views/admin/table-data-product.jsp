@@ -31,8 +31,10 @@
   <div class="app-title">
     <ul class="app-breadcrumb breadcrumb side">
       <li class="breadcrumb-item active"><a href="#"><b>Danh sách sản phẩm</b></a></li>
+
     </ul>
     <div id="clock"></div>
+
   </div>
   <div class="row">
     <div class="col-md-12">
@@ -41,7 +43,7 @@
           <div class="row element-button">
             <div class="col-sm-2">
 
-              <a class="btn btn-add btn-sm" href="form-add-san-pham.html" title="Thêm"><i class="fas fa-plus"></i>
+              <a class="btn btn-add btn-sm" href="/admin-add-san-pham" title="Thêm"><i class="fas fa-plus"></i>
                 Tạo mới sản phẩm</a>
             </div>
             <div class="col-sm-2">
@@ -88,23 +90,25 @@
             <c:forEach var="product" items="${listProduct}">
               <tr>
                 <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                <td>${item.id}</td>
-                <td>${item.name}</td>
+                <td>${product.id}</td>
+                <td>${product.name}</td>
                 <td><img src="/img-sanpham/toi-ve-phuong-phap-ve.webp" alt="" width="100px;"></td>
-                <td>${item.quantity}</td>
-                <td><span class="badge bg-success">${item.status}</span></td>
-                <td>${item.price} đ</td>
-                <td>${item.category}</td>
-                <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
-                            onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
-                </button>
-                  <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
-                          data-target="#ModalUP"><i class="fas fa-edit"></i></button>
+                <td>${product.quantity}</td>
+                <td><span class="badge bg-success">${product.status}</span></td>
+                <td>${product.price} đ</td>
+                <td>${product.category}</td>
+                <td>
+                    <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
+                            onclick="deleteProduct(${product.id})"><i class="fas fa-trash-alt"></i>
+                    </button>
+                    <a href="/findProduct?id=${product.id}">
+                      <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"
+                              ><i class="fas fa-edit"></i></button>
+                    </a>
 
                 </td>
               </tr>
             </c:forEach>
-
 
             </tbody>
           </table>
@@ -171,13 +175,10 @@
           </div>
         </div>
         <BR>
-        <a href="#" style="    float: right;
-    font-weight: 600;
-    color: #ea0000;">Chỉnh sửa sản phẩm nâng cao</a>
         <BR>
         <BR>
-        <button class="btn btn-save" type="button">Lưu lại</button>
-        <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
+        <button href="/ad" class="btn btn-save" type="button">Lưu lại</button>
+        <a class="btn btn-cancel" data-dismiss="modal" href="/admin-table-product">Hủy bỏ</a>
         <BR>
       </div>
       <div class="modal-footer">
@@ -203,6 +204,7 @@ MODAL
 <!-- Data table plugin-->
 <script type="text/javascript" src="/templates/admin/doc/js/plugins/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="/templates/admin/doc/js/plugins/dataTables.bootstrap.min.js"></script>
+<script src="/templates/scripts/crud.js"></script>
 <script type="text/javascript">
   $('#sampleTable').DataTable();
   //Thời Gian
@@ -247,31 +249,31 @@ MODAL
   }
 </script>
 <script>
-  function deleteRow(r) {
-    var i = r.parentNode.parentNode.rowIndex;
-    document.getElementById("myTable").deleteRow(i);
-  }
-  jQuery(function () {
-    jQuery(".trash").click(function () {
-      swal({
-        title: "Cảnh báo",
-        text: "Bạn có chắc chắn là muốn xóa sản phẩm này?",
-        buttons: ["Hủy bỏ", "Đồng ý"],
-      })
-              .then((willDelete) => {
-                if (willDelete) {
-                  swal("Đã xóa thành công.!", {
-
-                  });
-                }
-              });
-    });
-  });
-  oTable = $('#sampleTable').dataTable();
-  $('#all').click(function (e) {
-    $('#sampleTable tbody :checkbox').prop('checked', $(this).is(':checked'));
-    e.stopImmediatePropagation();
-  });
+  // function deleteRow(r) {
+  //   var i = r.parentNode.parentNode.rowIndex;
+  //   document.getElementById("myTable").deleteRow(i);
+  // }
+  // jQuery(function () {
+  //   jQuery(".trash").click(function () {
+  //     swal({
+  //       title: "Cảnh báo",
+  //       text: "Bạn có chắc chắn là muốn xóa sản phẩm này?",
+  //       buttons: ["Hủy bỏ", "Đồng ý"],
+  //     })
+  //             .then((willDelete) => {
+  //               if (willDelete) {
+  //                 swal("Đã xóa thành công.!", {
+  //
+  //                 });
+  //               }
+  //             });
+  //   });
+  // });
+  // oTable = $('#sampleTable').dataTable();
+  // $('#all').click(function (e) {
+  //   $('#sampleTable tbody :checkbox').prop('checked', $(this).is(':checked'));
+  //   e.stopImmediatePropagation();
+  // });
 </script>
 </body>
 

@@ -23,4 +23,5 @@ public class MessageProperties {
     public static String getNot_permission() {
         return prop.get("not_permission").toString();
     }
+    public static String getDelete_success() {return prop.get("delete-success").toString();}
 }

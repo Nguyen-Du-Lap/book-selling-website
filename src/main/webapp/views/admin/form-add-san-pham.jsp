@@ -240,23 +240,18 @@
               <label for="exampleSelect1" class="control-label">Danh mục</label>
               <select class="form-control" id="exampleSelect1">
                 <option>-- Chọn danh mục --</option>
-                <option>Sách văn học nước ngoài</option>
-                <option>Sách văn học trong nước</option>
-                <option>Sách tâm lý - kỹ năng sống</option>
-                <option>Sách thiếu nhi</option>
-                <option>Truyện tranh</option>
+                <c:forEach items="${listCatalog}" var="catalog">
+                  <option>${catalog}</option>
+                </c:forEach>
               </select>
             </div>
             <div class="form-group col-md-3 ">
               <label for="exampleSelect1" class="control-label">Nhà cung cấp</label>
-              <select class="form-control" id="exampleSelect1">
+              <select class="form-control" id="exampleSelect2">
                 <option>-- Chọn nhà xuất bản --</option>
-                <option>Nhà xuất bản Tuổi Trẻ</option>
-                <option>NXB Sự thật</option>
-                <option>NXB Giáo dục Việt Nam</option>
-                <option>NXB Văn học</option>
-                <option>NXB Phụ nữ Việt Nam</option>
-                <option>NXB Thông Tấn</option>
+                <c:forEach items="${listPublisherCompany}" var="publisher">
+                  <option>${publisher}</option>
+                </c:forEach>
               </select>
             </div>
             <div class="form-group col-md-3">
@@ -353,15 +348,9 @@ MODAL DANH MỤC
           <div class="form-group col-md-12">
             <label class="control-label">Danh mục sản phẩm hiện đang có</label>
             <ul style="padding-left: 20px;">
-              <li>Sách văn học trong nước</li>
-              <li>Sách thiếu nhi</li>
-              <li>Sách kinh tế</li>
-              <li>Sách tâm lý - kỹ năng sống</li>
-              <li>Sách văn học nước ngoài</li>
-              <li>Truyện tranh</li>
-              <li>Khoa học kỹ thuật</li>
-              <li>Lịch sử - địa lý - tôn giáo</li>
-              <li>Tạp chí - Báo</li>
+              <c:forEach items="${listCatalog}" var="catalog">
+                <li>${catalog}</li>
+              </c:forEach>
             </ul>
           </div>
         </div>

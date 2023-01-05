@@ -14,4 +14,19 @@ public class BookManagementService implements IBookManagementService {
     public List<BookManagementModel> findAll() {
         return iBookManagementDAO.findAllBook();
     }
+
+    @Override
+    public void deleteById(String id) {
+        iBookManagementDAO.deleteById(id);
+    }
+
+    @Override
+    public BookManagementModel findById(String id) {
+        return iBookManagementDAO.findById(id);
+    }
+
+    @Override
+    public int update(String id, String name, int quantity, double price) {
+        return iBookManagementDAO.update(id, name, quantity, price);
+    }
 }
