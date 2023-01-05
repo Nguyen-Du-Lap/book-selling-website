@@ -46,17 +46,6 @@
               class="app-menu__label">Quản lý đơn hàng</span></a></li>
     </c:if>
 
-    <c:if test="${title.equals('Báo Cáo Doanh Thu')}">
-      <li><a class="app-menu__item active" href="<c:url value="/admin-report-management" />"><i
-              class='app-menu__icon bx bx-pie-chart-alt-2'></i><span class="app-menu__label">Báo cáo doanh thu</span></a>
-      </li>
-    </c:if>
-    <c:if test="${!title.equals('Báo Cáo Doanh Thu')}">
-      <li><a class="app-menu__item" href="<c:url value="/admin-report-management" />"><i
-              class='app-menu__icon bx bx-pie-chart-alt-2'></i><span class="app-menu__label">Báo cáo doanh thu</span></a>
-      </li>
-    </c:if>
-
     <c:if test="${title.equals('Quản lý tài khoản')}">
       <li><a class="app-menu__item active" href="<c:url value="/admin-management-user"/>">
         <i class="app-menu__icon  fa-regular fa-user"></i><span class="app-menu__label">Quản lý tài khoản</span></a>
@@ -77,16 +66,5 @@
               class="app-menu__label">Quản lý contact</span></a></li>
     </c:if>
 
-    <c:if test="${title.equals('Lịch công tác')}">
-      <li><a class="app-menu__item active" href="<c:url value="/admin-page-calendar" />"><i class='app-menu__icon bx bx-calendar-check'></i><span
-              class="app-menu__label">Lịch công tác </span></a></li>
-    </c:if>
-    <c:if test="${!title.equals('Lịch công tác')}">
-      <li><a class="app-menu__item" href="<c:url value="/admin-page-calendar" />"><i class='app-menu__icon bx bx-calendar-check'></i><span
-              class="app-menu__label">Lịch công tác </span></a></li>
-    </c:if>
-
-    <li><a class="app-menu__item" href="#"><i class='app-menu__icon bx bx-cog'></i><span class="app-menu__label">Cài
-                đặt hệ thống</span></a></li>
   </ul>
 </aside>
