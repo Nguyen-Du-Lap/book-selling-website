@@ -1,10 +1,9 @@
 package vn.edu.hcmuaf.fit.dao.impl;
 
+import org.w3c.dom.Entity;
 import vn.edu.hcmuaf.fit.dao.ICustomerDAO;
 import vn.edu.hcmuaf.fit.db.JDBCConnector;
-import vn.edu.hcmuaf.fit.model.AuthorModel;
 import vn.edu.hcmuaf.fit.model.CustomerModel;
-import vn.edu.hcmuaf.fit.model.ShippingInfoModel;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -57,6 +56,56 @@ public class CustomerDAO implements ICustomerDAO {
             }
         }
         return null;
+    }
+
+    @Override
+    public CustomerModel checkAccountExist(String email) {
+        List<CustomerModel> users = new ArrayList<>();
+        String sql = new String("SELECT * FROM customer WHERE email = ?");
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+            try {
+                Connection connection = JDBCConnector.getConnection();
+                statement = connection.prepareStatement(sql.toString());
+                statement.setString(1, email);
+                resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    CustomerModel customerModel = new CustomerModel();
+                    customerModel.setIdUser(resultSet.getString("id_user"));
+                    customerModel.setFirstName(resultSet.getString("first_name"));
+                    customerModel.setLastName(resultSet.getString("last_name"));
+                    customerModel.setEmail(resultSet.getString("email"));
+                    customerModel.setPassword(resultSet.getString("password"));
+                    customerModel.setAddress(resultSet.getString("address"));
+                    customerModel.setPhone(resultSet.getString("phone"));
+                    customerModel.setRole(resultSet.getString("role"));
+                    customerModel.setStatus(resultSet.getInt("status"));
+                    customerModel.setCreatedTime(resultSet.getTimestamp("created_time"));
+                    users.add(customerModel);
+                }
+                return users.isEmpty() ? null : users.get(0);
+            } catch (SQLException e) {
+                return null;
+            }
+
+    }
+    public void signup(String email, String password, String firstname, String lastname, String phone, String address) {
+        String sql = new String("INSERT INTO customer (first_name, last_name, email, password, address, phone, role)\n" +
+                "VALUES (?, ?, ?, ?, ?, ?, 'user')");
+        PreparedStatement statement = null;
+            try {
+                Connection connection = JDBCConnector.getConnection();
+                statement = connection.prepareStatement(sql.toString());
+                statement.setString(1, firstname);
+                statement.setString(2, lastname);
+                statement.setString(3, email);
+                statement.setString(4, password);
+                statement.setString(5, address);
+                statement.setString(6, phone);
+                statement.executeUpdate();
+
+            } catch (SQLException e) {
+            }
     }
 
     @Override
@@ -126,4 +175,5 @@ public class CustomerDAO implements ICustomerDAO {
         }
         return null;
     }
+
 }

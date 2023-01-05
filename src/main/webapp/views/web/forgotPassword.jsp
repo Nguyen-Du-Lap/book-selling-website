@@ -1,4 +1,4 @@
-
+<%@ include file="/common/taglib.jsp" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,15 +24,20 @@
 <!--------- forgotPassword form---------- -->
 <div class="forgotPassword">
   <div class="forgotPassword-title">Quên mật khẩu</div>
-  <form action="/forgotPassword?action=forgotPassword" class="form_forgotPassword" id="form_forgotPassword">
+  <c:if test="${not empty message}">
+    <div class="alert alert-${alert}" role="alert">
+        ${message}
+    </div>
+  </c:if>
+  <form action="/forgotPassword" class="form_forgotPassword" id="form_forgotPassword" method="post">
     <div class="input ">
       <label>Email</label>
-      <input type="text" placeholder="Nhập vào email của bạn" id="email">
+      <input type="text" placeholder="Nhập vào email của bạn" id="email" name="email">
       <i class="fa-solid fa-circle-check"></i>
       <i class="fa-solid fa-circle-xmark"></i>
       <small>Error</small>
     </div>
-    <button class="btn-forgotPassword">Gửi yêu cầu</button>
+    <button type="submit" class="btn-forgotPassword">Gửi yêu cầu</button>
   </form>
 </div>
 <!-----footer------>
@@ -50,7 +55,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
         crossorigin="anonymous"></script>
-<script src="/templates/scripts/forgotPassword.js"></script>
+<!--<script src="/templates/scripts/forgotPassword.js"></script>-->
 <script src="/templates/scripts/header.js"></script>
 </body>
 
