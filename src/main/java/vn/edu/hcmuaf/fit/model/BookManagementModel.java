@@ -10,7 +10,10 @@ public class BookManagementModel {
     private double price;
     private String category;
 
-    public BookManagementModel(String id, String name, String image, int quantity, String status, double price, String category) {
+    private double discount;
+
+    public BookManagementModel(String id, String name, String image, int quantity,
+                               String status, double price, String category, double discount) {
         this.id = id;
         this.name = name;
         this.image = image;
@@ -18,6 +21,7 @@ public class BookManagementModel {
         this.status = status;
         this.price = price;
         this.category = category;
+        this.discount = discount;
     }
     public BookManagementModel() {}
 
@@ -77,6 +81,14 @@ public class BookManagementModel {
         this.category = category;
     }
 
+    public double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(double discount) {
+        this.discount = discount;
+    }
+
     @Override
     public String toString() {
         return "BookManagementModel{" +
@@ -87,6 +99,7 @@ public class BookManagementModel {
                 ", status='" + status + '\'' +
                 ", price=" + price +
                 ", category='" + category + '\'' +
+                ", discount=" + discount +
                 '}';
     }
 }
