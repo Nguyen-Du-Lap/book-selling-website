@@ -18,6 +18,8 @@ public class FindProductController extends HttpServlet {
     IBookManagementService iBookManagementService;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
         String id = request.getParameter("id");
 
         if(id != null) {

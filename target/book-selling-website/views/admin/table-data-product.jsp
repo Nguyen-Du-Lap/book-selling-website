@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -71,6 +71,13 @@
               <a class="btn btn-delete btn-sm" type="button" title="Xóa" onclick="myFunction(this)"><i
                       class="fas fa-trash-alt"></i> Xóa tất cả </a>
             </div>
+            <div class="col-sm-6">
+              <c:if test="${not empty message}">
+                <div class="alert alert-${alert}" role="alert">
+                    ${message}
+                </div>
+              </c:if>
+            </div>
           </div>
           <table class="table table-hover table-bordered" id="sampleTable">
             <thead>
@@ -118,9 +125,6 @@
   </div>
 </main>
 
-<!--
-  MODAL
--->
 <div class="modal fade" id="ModalUP" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static"
      data-keyboard="false">
   <div class="modal-dialog modal-dialog-centered" role="document">
