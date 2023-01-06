@@ -2,7 +2,7 @@ package vn.edu.hcmuaf.fit.model;
 
 public class BookManagementModel {
 
-    private String id;
+    private int id;
     private String name;
     private String image;
     private int quantity;
@@ -12,7 +12,7 @@ public class BookManagementModel {
 
     private double discount;
 
-    public BookManagementModel(String id, String name, String image, int quantity,
+    public BookManagementModel(int id, String name, String image, int quantity,
                                String status, double price, String category, double discount) {
         this.id = id;
         this.name = name;
@@ -25,11 +25,11 @@ public class BookManagementModel {
     }
     public BookManagementModel() {}
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
