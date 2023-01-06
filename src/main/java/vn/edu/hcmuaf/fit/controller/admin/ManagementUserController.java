@@ -10,7 +10,7 @@ public class ManagementUserController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // title dung de active aside
-        request.setAttribute("title", "Quản lý tài khoản");
+        request.setAttribute("title", "Quản lý nhân viên");
         request.getRequestDispatcher("views/admin/management-user.jsp").forward(request, response);
     }
 

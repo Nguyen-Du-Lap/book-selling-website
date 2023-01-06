@@ -19,31 +19,45 @@
       <li><a class="app-menu__item" href="<c:url value="/admin-home" />"><i class='app-menu__icon bx bx-tachometer'></i><span
               class="app-menu__label">Bảng điều khiển</span></a></li>
     </c:if>
+
     <c:if test="${title.equals('Danh Sách Nhân Viên')}">
-      <li><a class="app-menu__item active" href="<c:url value="/admin-table-customer" />"><i class='app-menu__icon bx bx-user-voice'></i><span
+      <li><a class="app-menu__item active" href="<c:url value="/admin-table-user" />"><i class='app-menu__icon bx bx-user-voice'></i><span
               class="app-menu__label">Quản lý nhân viên</span></a></li>
     </c:if>
     <c:if test="${!title.equals('Danh Sách Nhân Viên')}">
-      <li><a class="app-menu__item" href="<c:url value="/admin-table-customer" />"><i class='app-menu__icon bx bx-user-voice'></i><span
+      <li><a class="app-menu__item" href="<c:url value="/admin-table-user" />"><i class='app-menu__icon bx bx-user-voice'></i><span
               class="app-menu__label">Quản lý nhân viên</span></a></li>
     </c:if>
+
     <c:if test="${title.equals('Danh Sách Đối Tác')}">
-      <li><a class="app-menu__item active" href="<c:url value="/admin-table-product" />"><i
+      <li><a class="app-menu__item active" href="<c:url value="/admin-table-partner" />"><i
               class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý đối tác</span></a>
       </li>
     </c:if>
     <c:if test="${!title.equals('Danh Sách Đối Tác')}">
-      <li><a class="app-menu__item" href="<c:url value="/admin-table-product" />"><i
+      <li><a class="app-menu__item" href="<c:url value="/admin-table-partner" />"><i
               class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý đối tác</span></a>
       </li>
     </c:if>
+
     <c:if test="${title.equals('Danh Sách Khuyến Mãi')}">
-      <li><a class="app-menu__item active" href="<c:url value="/admin-table-order" />"><i class='app-menu__icon bx bx-task'></i><span
+      <li><a class="app-menu__item active" href="<c:url value="/admin-table-sales" />"><i class='app-menu__icon bx bx-task'></i><span
               class="app-menu__label">Quản lý khuyến mãi</span></a></li>
     </c:if>
     <c:if test="${!title.equals('Danh Sách Khuyến Mãi')}">
-      <li><a class="app-menu__item" href="<c:url value="/admin-table-order" />"><i class='app-menu__icon bx bx-task'></i><span
+      <li><a class="app-menu__item" href="<c:url value="/admin-table-sales" />"><i class='app-menu__icon bx bx-task'></i><span
               class="app-menu__label">Quản lý khuyến mãi</span></a></li>
+    </c:if>
+
+    <c:if test="${title.equals('Giới Thiệu Về Doraemon')}">
+      <li><a class="app-menu__item active" href="<c:url value="/admin-management-web"/>">
+        <i class="app-menu__icon  fa-regular fa-user"></i><span class="app-menu__label">Quản lý trang web</span></a>
+      </li>
+    </c:if>
+    <c:if test="${!title.equals('Giới Thiệu Về Doraemon')}">
+      <li><a class="app-menu__item" href="<c:url value="/admin-management-web" />">
+        <i class="app-menu__icon  fa-regular fa-user"></i><span class="app-menu__label">Quản lý trang web</span></a>
+      </li>
     </c:if>
 
     <c:if test="${title.equals('Báo Cáo Doanh Thu')}">
@@ -54,17 +68,6 @@
     <c:if test="${!title.equals('Báo Cáo Doanh Thu')}">
       <li><a class="app-menu__item" href="<c:url value="/admin-report-management" />"><i
               class='app-menu__icon bx bx-pie-chart-alt-2'></i><span class="app-menu__label">Báo cáo doanh thu</span></a>
-      </li>
-    </c:if>
-
-    <c:if test="${title.equals('Giới Thiệu Về Doraemon')}">
-      <li><a class="app-menu__item active" href="<c:url value="/admin-management-user"/>">
-        <i class="app-menu__icon  fa-regular fa-user"></i><span class="app-menu__label">Quản lý trang web</span></a>
-      </li>
-    </c:if>
-    <c:if test="${!title.equals('Giới Thiệu Về Doraemon')}">
-      <li><a class="app-menu__item" href="<c:url value="/admin-management-user" />">
-          <i class="app-menu__icon  fa-regular fa-user"></i><span class="app-menu__label">Quản lý trang web</span></a>
       </li>
     </c:if>
 
