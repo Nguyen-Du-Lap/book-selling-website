@@ -14,6 +14,15 @@ public class CustomerModel  extends AbstractModel<CustomerModel>  {
     private String role;
     private int status;
     private Timestamp createdTime;
+    private int totalBill;
+
+    public int getTotalBill() {
+        return totalBill;
+    }
+
+    public void setTotalBill(int totalBill) {
+        this.totalBill = totalBill;
+    }
 
     public String getIdUser() {
         return idUser;

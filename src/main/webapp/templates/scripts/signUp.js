@@ -6,10 +6,10 @@ const fname = document.getElementById('fname');
 const lname = document.getElementById('lname');
 const phoneNumber = document.getElementById('phoneNumber');
  
-form_signUp.addEventListener('submit', (e) => {
-    e.preventDefault();
-    checkInputs();
-});
+//form_signUp.addEventListener('submit', (e) => {
+//    e.preventDefault();
+//    checkInputs();
+//});
 
 //handle onchane
 function emailOnChange(value) {

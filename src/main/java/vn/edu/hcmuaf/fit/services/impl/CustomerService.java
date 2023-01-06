@@ -25,4 +25,12 @@ public class CustomerService implements ICustomerService {
     public List<CustomerModel> newCustomer() {
         return customerDAO.newCustomer();
     }
+    @Override
+    public CustomerModel findById(String idUser) {
+        return customerDAO.findById(idUser);
+    }
+    @Override
+    public List<CustomerModel> findAllCustomer() {
+        return customerDAO.findAllCustomer();
+    }
 }
