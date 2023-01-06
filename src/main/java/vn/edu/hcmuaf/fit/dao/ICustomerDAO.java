@@ -14,4 +14,7 @@ public interface ICustomerDAO {
 
     List<CustomerModel> newCustomer();
 
+    CustomerModel findById(String idUser);
+
+    List<CustomerModel> findAllCustomer();
 }

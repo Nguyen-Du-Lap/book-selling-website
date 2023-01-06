@@ -1,6 +1,5 @@
 package vn.edu.hcmuaf.fit.dao.impl;
 
-import org.w3c.dom.Entity;
 import vn.edu.hcmuaf.fit.dao.ICustomerDAO;
 import vn.edu.hcmuaf.fit.db.JDBCConnector;
 import vn.edu.hcmuaf.fit.model.CustomerModel;
@@ -21,7 +20,7 @@ public class CustomerDAO implements ICustomerDAO {
         String sql = new String("SELECT * FROM customer WHERE email=? AND password=?");
         PreparedStatement statement = null;
         ResultSet resultSet = null;
-        if(connection != null) {
+        if (connection != null) {
             try {
                 statement = connection.prepareStatement(sql.toString());
                 statement.setString(1, email);
@@ -47,9 +46,9 @@ public class CustomerDAO implements ICustomerDAO {
                 return null;
             } finally {
                 try {
-                    if(connection != null) connection.close();
-                    if(statement != null) statement.close();
-                    if(resultSet != null) resultSet.close();
+                    if (connection != null) connection.close();
+                    if (statement != null) statement.close();
+                    if (resultSet != null) resultSet.close();
                 } catch (SQLException e) {
                     return null;
                 }
@@ -64,48 +63,65 @@ public class CustomerDAO implements ICustomerDAO {
         String sql = new String("SELECT * FROM customer WHERE email = ?");
         PreparedStatement statement = null;
         ResultSet resultSet = null;
-            try {
-                Connection connection = JDBCConnector.getConnection();
-                statement = connection.prepareStatement(sql.toString());
-                statement.setString(1, email);
-                resultSet = statement.executeQuery();
-                while (resultSet.next()) {
-                    CustomerModel customerModel = new CustomerModel();
-                    customerModel.setIdUser(resultSet.getString("id_user"));
-                    customerModel.setFirstName(resultSet.getString("first_name"));
-                    customerModel.setLastName(resultSet.getString("last_name"));
-                    customerModel.setEmail(resultSet.getString("email"));
-                    customerModel.setPassword(resultSet.getString("password"));
-                    customerModel.setAddress(resultSet.getString("address"));
-                    customerModel.setPhone(resultSet.getString("phone"));
-                    customerModel.setRole(resultSet.getString("role"));
-                    customerModel.setStatus(resultSet.getInt("status"));
-                    customerModel.setCreatedTime(resultSet.getTimestamp("created_time"));
-                    users.add(customerModel);
-                }
-                return users.isEmpty() ? null : users.get(0);
-            } catch (SQLException e) {
-                return null;
+        try {
+            Connection connection = JDBCConnector.getConnection();
+            statement = connection.prepareStatement(sql.toString());
+            statement.setString(1, email);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                CustomerModel customerModel = new CustomerModel();
+                customerModel.setIdUser(resultSet.getString("id_user"));
+                customerModel.setFirstName(resultSet.getString("first_name"));
+                customerModel.setLastName(resultSet.getString("last_name"));
+                customerModel.setEmail(resultSet.getString("email"));
+                customerModel.setPassword(resultSet.getString("password"));
+                customerModel.setAddress(resultSet.getString("address"));
+                customerModel.setPhone(resultSet.getString("phone"));
+                customerModel.setRole(resultSet.getString("role"));
+                customerModel.setStatus(resultSet.getInt("status"));
+                customerModel.setCreatedTime(resultSet.getTimestamp("created_time"));
+                users.add(customerModel);
             }
+            return users.isEmpty() ? null : users.get(0);
+        } catch (SQLException e) {
+            return null;
+        }
 
     }
+
     public void signup(String email, String password, String firstname, String lastname, String phone, String address) {
         String sql = new String("INSERT INTO customer (first_name, last_name, email, password, address, phone, role)\n" +
                 "VALUES (?, ?, ?, ?, ?, ?, 'user')");
         PreparedStatement statement = null;
-            try {
-                Connection connection = JDBCConnector.getConnection();
-                statement = connection.prepareStatement(sql.toString());
-                statement.setString(1, firstname);
-                statement.setString(2, lastname);
-                statement.setString(3, email);
-                statement.setString(4, password);
-                statement.setString(5, address);
-                statement.setString(6, phone);
-                statement.executeUpdate();
+        try {
+            Connection connection = JDBCConnector.getConnection();
+            statement = connection.prepareStatement(sql.toString());
+            statement.setString(1, firstname);
+            statement.setString(2, lastname);
+            statement.setString(3, email);
+            statement.setString(4, password);
+            statement.setString(5, address);
+            statement.setString(6, phone);
+            statement.executeUpdate();
 
-            } catch (SQLException e) {
-            }
+        } catch (SQLException e) {
+        }
+    }
+
+    public void changePassword(String email, String oldPass, String newPass) {
+        String sql = new String("UPDATE customer \n" +
+                "SET password = ?\n" +
+                "WHERE email = ?");
+        PreparedStatement statement = null;
+        try {
+            Connection connection = JDBCConnector.getConnection();
+            statement = connection.prepareStatement(sql.toString());
+            statement.setString(1, email);
+            statement.setString(2, oldPass);
+            statement.setString(3, newPass);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+        }
     }
 
     @Override
@@ -114,8 +130,8 @@ public class CustomerDAO implements ICustomerDAO {
         String sql = new String("SELECT Count(*) FROM customer WHERE role = 'user'");
         PreparedStatement statement = null;
         ResultSet resultSet = null;
-        int result=0;
-        if(connection != null) {
+        int result = 0;
+        if (connection != null) {
             try {
                 statement = connection.prepareStatement(sql.toString());
                 resultSet = statement.executeQuery();
@@ -128,9 +144,9 @@ public class CustomerDAO implements ICustomerDAO {
                 return 0;
             } finally {
                 try {
-                    if(connection != null) connection.close();
-                    if(statement != null) statement.close();
-                    if(resultSet != null) resultSet.close();
+                    if (connection != null) connection.close();
+                    if (statement != null) statement.close();
+                    if (resultSet != null) resultSet.close();
                 } catch (SQLException e) {
                     return 0;
                 }
@@ -148,7 +164,7 @@ public class CustomerDAO implements ICustomerDAO {
                 "LIMIT 0,10"; //lấy ra 10 khách hàng đăng kí gần nhất
         PreparedStatement statement = null;
         ResultSet resultSet = null;
-        if(connection != null) {
+        if (connection != null) {
             try {
                 statement = connection.prepareStatement(sql);
                 resultSet = statement.executeQuery();
@@ -165,9 +181,9 @@ public class CustomerDAO implements ICustomerDAO {
                 return null;
             } finally {
                 try {
-                    if(connection != null) connection.close();
-                    if(statement != null) statement.close();
-                    if(resultSet != null) resultSet.close();
+                    if (connection != null) connection.close();
+                    if (statement != null) statement.close();
+                    if (resultSet != null) resultSet.close();
                 } catch (SQLException e) {
                     return null;
                 }
@@ -176,4 +192,56 @@ public class CustomerDAO implements ICustomerDAO {
         return null;
     }
 
+    @Override
+    public List<CustomerModel> findAllCustomer() {
+        List<CustomerModel> users = new ArrayList<>();
+        Connection connection = JDBCConnector.getConnection();
+        String sql = new String("SELECT c.id_user, CONCAT(c.first_name,' ',c.last_name), c.phone, c.address, COUNT(b.id_user) " +
+                "FROM customer c JOIN bill b ON c.id_user = b.id_user\n" +
+                "GROUP BY c.id_user, CONCAT(c.first_name,' ',c.last_name), c.phone, c.address, b.id_user");
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        try {
+            statement = connection.prepareStatement(sql.toString());
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                CustomerModel customerModel = new CustomerModel();
+                customerModel.setIdUser(resultSet.getString(1));
+                customerModel.setFirstName(resultSet.getString(2));
+                customerModel.setLastName(resultSet.getString(3));
+                customerModel.setPhone(resultSet.getString(4));
+                customerModel.setAddress(resultSet.getString(5));
+                users.add(customerModel);
+            }
+            return users.isEmpty() ? null : (List<CustomerModel>) users.get(0);
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+
+    @Override
+    public CustomerModel findById(String idUser) {
+        List<CustomerModel> users = new ArrayList<>();
+        Connection connection = JDBCConnector.getConnection();
+        String sql = new String("");
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        try {
+            statement = connection.prepareStatement(sql.toString());
+            statement.setString(1, idUser);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                CustomerModel customerModel = new CustomerModel();
+                customerModel.setIdUser(resultSet.getString(1));
+                customerModel.setFullName(resultSet.getString(2));
+                customerModel.setPhone(resultSet.getString(3));
+                customerModel.setAddress(resultSet.getString(4));
+                customerModel.setTotalBill(resultSet.getInt(5));
+                users.add(customerModel);
+            }
+        } catch (SQLException e) {
+            return null;
+        }
+        return null;
+    }
 }
