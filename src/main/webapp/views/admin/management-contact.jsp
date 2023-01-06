@@ -11,7 +11,7 @@
 <html lang="en">
 
 <head>
-  <title>Danh sách sản phẩm | Quản trị Admin</title>
+  <title>Danh sách liên hệ | Quản trị Admin</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -50,7 +50,7 @@
 <main class="app-content">
   <div class="app-title">
     <ul class="app-breadcrumb breadcrumb side">
-      <li class="breadcrumb-item active"><a href="#"><b>Danh sách sản phẩm</b></a></li>
+      <li class="breadcrumb-item active"><a href="#"><b>Danh sách liên hệ</b></a></li>
     </ul>
     <div id="clock"></div>
   </div>

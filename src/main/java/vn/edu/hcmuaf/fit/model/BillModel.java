@@ -8,8 +8,12 @@ public class BillModel extends AbstractModel<BillModel> {
     private String idUser;
     private String shippingInfo;
     private String idDiscount;
+    private String address;
+    private String paymentMethod;
+    private double total;
     private Date shipTime;
     private Timestamp create_order_time;
+    private Date receiveTime;
 
     public String getIdOrder() {
         return idOrder;
@@ -43,6 +47,30 @@ public class BillModel extends AbstractModel<BillModel> {
         this.idDiscount = idDiscount;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
     public Date getShipTime() {
         return shipTime;
     }
@@ -59,6 +87,14 @@ public class BillModel extends AbstractModel<BillModel> {
         this.create_order_time = create_order_time;
     }
 
+    public Date getReceiveTime() {
+        return receiveTime;
+    }
+
+    public void setReceiveTime(Date receiveTime) {
+        this.receiveTime = receiveTime;
+    }
+
     @Override
     public String toString() {
         return "BillModel{" +
@@ -66,8 +102,11 @@ public class BillModel extends AbstractModel<BillModel> {
                 ", idUser='" + idUser + '\'' +
                 ", shippingInfo='" + shippingInfo + '\'' +
                 ", idDiscount='" + idDiscount + '\'' +
+                ", address='" + address + '\'' +
+                ", paymentMethod='" + paymentMethod + '\'' +
                 ", shipTime=" + shipTime +
                 ", create_order_time=" + create_order_time +
+                ", receiveTime=" + receiveTime +
                 '}';
     }
 }

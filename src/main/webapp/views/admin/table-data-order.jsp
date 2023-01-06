@@ -73,11 +73,12 @@
             <tr>
               <th width="10"><input type="checkbox" id="all"></th>
               <th>ID đơn hàng</th>
-              <th>Khách hàng</th>
-              <th>Đơn hàng</th>
-              <th>Số lượng</th>
-              <th>Tổng tiền</th>
-              <th>Tình trạng</th>
+              <th>Tên Khách hàng</th>
+              <th>Địa chỉ</th>
+              <th>Số lượng sản phẩm</th>
+              <th>Thành tiền</th>
+              <th>Phương thức thanh toán</th>
+              <th>Tình trạng đơn hàng</th>
               <th>Tính năng</th>
             </tr>
             </thead>
@@ -86,66 +87,12 @@
               <td width="10"><input type="checkbox" name="check1" value="1"></td>
               <td>MD0837</td>
               <td>Triệu Thanh Phú</td>
-              <td>Tôi vẽ - Phương pháp tự học vẽ truyện tranh, Storytelling with data - Kể chuyện thông qua dữ liệu</td>
+              <td>Đông Hòa -Dĩ An - Bình Dương</td>
               <td>2</td>
               <td>360.000 đ</td>
-              <td><span class="badge bg-success">Hoàn thành</span></td>
-              <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"><i class="fas fa-trash-alt"></i> </button>
-                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"><i class="fa fa-edit"></i></button></td>
-            </tr>
-            <tr>
-              <td width="10"><input type="checkbox" name="check1" value="1"></td>
-              <td>MĐ8265</td>
-              <td>Nguyễn Thị Ngọc Cẩm</td>
-              <td>25++ Hoạt Động Rèn Luyện Trí Sáng Tạo Và Tư Duy Cho Trẻ (Cuốn Lẻ Và Combo)</td>
               <td>1</td>
-              <td>80.000 đ</td>
               <td><span class="badge bg-success">Hoàn thành</span></td>
-              <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"><i class="fas fa-trash-alt"></i> </button>
-                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"><i class="fa fa-edit"></i></button></td>
-            </tr>
-            <tr>
-              <td width="10"><input type="checkbox" name="check1" value="1"></td>
-              <td>MT9835</td>
-              <td>Đặng Hoàng Phúc</td>
-              <td>Án mạng mười một chữ, Ấn ức trắng, 81 án Tây Du - Tây Vực Liệt Vương ký - tập 3</td>
-              <td>3 </td>
-              <td>650.000 đ</td>
-              <td><span class="badge bg-success">Hoàn thành</span></td>
-              <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"><i class="fas fa-trash-alt"></i> </button>
-                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"><i class="fa fa-edit"></i></button></td>
-            </tr>
-            <tr>
-              <td width="10"><input type="checkbox" name="check1" value="1"></td>
-              <td>ER3835</td>
-              <td>Nguyễn Thị Mỹ Yến</td>
-              <td>Khỏi bệnh không cần thuốc</td>
-              <td>1 </td>
-              <td>190.000 đ</td>
-              <td><span class="badge bg-info">Chờ thanh toán</span></td>
-              <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"><i class="fas fa-trash-alt"></i> </button>
-                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"><i class="fa fa-edit"></i></button></td>
-            </tr>
-            <tr>
-              <td width="10"><input type="checkbox" name="check1" value="1"></td>
-              <td>AL3947</td>
-              <td>Phạm Thị Ngọc</td>
-              <td>Infographics - Bách khoa tri thức bằng đồ họa cho trẻ em, Vườn ươm trí tuệ (Bộ 4 cuốn)</td>
-              <td>2 </td>
-              <td>170.000 đ</td>
-              <td><span class="badge bg-warning">Đang giao hàng</span></td>
-              <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"><i class="fas fa-trash-alt"></i> </button>
-                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"><i class="fa fa-edit"></i></button></td>
-            </tr>
-            <tr>
-              <td width="10"><input type="checkbox" name="check1" value="1"></td>
-              <td>QY8723</td>
-              <td>Ngô Thái An</td>
-              <td>Hãy nhắm mắt khi anh đến</td>
-              <td>1 </td>
-              <td>500.000 đ</td>
-              <td><span class="badge bg-danger">Đã hủy</span></td>
-              <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"><i class="fas fa-trash-alt"></i> </button>
+              <td>
                 <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"><i class="fa fa-edit"></i></button></td>
             </tr>
             </tbody>
@@ -155,6 +102,71 @@
     </div>
   </div>
 </main>
+
+<!--
+  MODAL
+-->
+<div class="modal fade" id="ModalUP" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static"
+     data-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="row">
+          <div class="form-group  col-md-12">
+          <span class="thong-tin-thanh-toan">
+            <h5>Chỉnh sửa thông tin đơn hàng cơ bản</h5>
+          </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label class="control-label">Mã đơn hàng </label>
+            <input class="form-control" type="number" value="8936071672704" disabled>
+          </div>
+          <div class="form-group col-md-6">
+            <label class="control-label">Tên khách hàng</label>
+            <input class="form-control" type="text" required value="Triệu Anh Phú" disabled>
+          </div>
+          <div class="form-group  col-md-6">
+            <label class="control-label">Số lượng sản phẩm</label>
+            <input class="form-control" type="number" required value="20" disabled>
+          </div>
+          <div class="form-group col-md-6 ">
+            <label for="exampleSelect1" class="control-label">Tình trạng sản phẩm</label>
+            <select class="form-control" id="exampleSelect1">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+            </select>
+          </div>
+          <div class="form-group col-md-6">
+            <label class="control-label">Thành tiền</label>
+            <input class="form-control" type="text" value="80.000" disabled>
+          </div>
+          <div class="form-group col-md-6">
+            <label class="control-label">Phương thức thanh toán</label>
+            <input class="form-control" type="text" value="80.000" disabled>
+          </div>
+        </div>
+        <BR>
+        <a href="#" style="    float: right;
+    font-weight: 600;
+    color: #ea0000;">Chỉnh sửa đơn hàng nâng cao</a>
+        <BR>
+        <BR>
+        <button class="btn btn-save" type="button">Lưu lại</button>
+        <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
+        <BR>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+<!--
+MODAL
+-->
 <!-- Essential javascripts for application to work-->
 <script src="/templates/admin/doc/js/jquery-3.2.1.min.js"></script>
 <script src="/templates/admin/doc/js/popper.min.js"></script>
