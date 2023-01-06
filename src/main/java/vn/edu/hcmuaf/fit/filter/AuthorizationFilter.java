@@ -23,13 +23,13 @@ public class AuthorizationFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         String url = request.getRequestURI();
-        if(url.startsWith("/admin")) {
-            CustomerModel cus = (CustomerModel) SessionUtil.getInstance().getValue(request, "USERMODEL");
+        CustomerModel cus = (CustomerModel) SessionUtil.getInstance().getValue(request, "USERMODEL");
+        if(url.startsWith("/admin-root")) {
             if(cus != null) {
-                if(cus.getRole().equalsIgnoreCase("admin") || cus.getRole().equalsIgnoreCase("mod")) {
+                if(cus.getRole().equalsIgnoreCase("admin")) {
                     filterChain.doFilter(servletRequest, servletResponse);
-                }else if(cus.getRole().equalsIgnoreCase("user")){
-                    request.setAttribute("message", MessageProperties.getNot_permission());
+                }else {
+                    request.setAttribute("message", MessageProperties.getNot_login());
                     request.setAttribute("alert", "danger");
                     request.getRequestDispatcher("/views/login.jsp").forward(request, response);
                 }
@@ -38,7 +38,22 @@ public class AuthorizationFilter implements Filter {
                 request.setAttribute("alert", "danger");
                 request.getRequestDispatcher("/views/login.jsp").forward(request, response);
             }
-        }else {
+        }else if(url.startsWith("/admin")) {
+            if(cus != null) {
+                if(cus.getRole().equalsIgnoreCase("mod")) {
+                    filterChain.doFilter(servletRequest, servletResponse);
+                }else {
+                    request.setAttribute("message", MessageProperties.getNot_login());
+                    request.setAttribute("alert", "danger");
+                    request.getRequestDispatcher("/views/login.jsp").forward(request, response);
+                }
+            }else {
+                request.setAttribute("message", MessageProperties.getNot_login());
+                request.setAttribute("alert", "danger");
+                request.getRequestDispatcher("/views/login.jsp").forward(request, response);
+            }
+        }
+        else {
             filterChain.doFilter(servletRequest, servletResponse);
         }
     }

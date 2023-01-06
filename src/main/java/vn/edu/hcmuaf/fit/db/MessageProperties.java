@@ -38,4 +38,5 @@ public class MessageProperties {
 
     public static String getMissing_mail() { return prop.get("missing_mail").toString();
     }
+
 }

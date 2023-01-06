@@ -59,7 +59,7 @@ public class HomeController extends HttpServlet {
                         resp.sendRedirect(req.getContextPath()+ "/home");
 //                        req.getRequestDispatcher("/views/web/home.jsp").forward(req, resp);
                     } else if(customer.getRole().equalsIgnoreCase("admin")) {
-                        resp.sendRedirect(req.getContextPath()+ "/admin-home");
+                        resp.sendRedirect(req.getContextPath()+ "/admin-root-management-user");
                     } else if(customer.getRole().equalsIgnoreCase("mod")) {
                         resp.sendRedirect(req.getContextPath()+ "/admin-home");
                     }

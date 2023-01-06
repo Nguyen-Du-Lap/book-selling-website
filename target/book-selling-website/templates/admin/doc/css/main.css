@@ -15497,16 +15497,6 @@ be a descendant of the grid when it is being dragged.
  
  color: rgb(0, 28, 64) ;
 }
-.alert {
-      padding: 10px;
-      background-color: #b1ffb5;
-      color: #006906;
-      border-radius: .357rem;
-      text-align: center;
-      font-weight: 500;
-      font-size: 15px;
-}
-
 .closebtn {
   margin-left: 15px;
   color: white;
