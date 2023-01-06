@@ -18,6 +18,13 @@ public class TableProductController extends HttpServlet {
         request.setAttribute("title", "Danh Sách Sản Phẩm");
 
         request.setAttribute("listProduct", iBookManagementService.findAll());
+        String message = request.getParameter("message");
+        String alert = request.getParameter("alert");
+
+        if(message != null & alert != null) {
+            request.setAttribute("message", message);
+            request.setAttribute("alert", alert);
+        }
         request.getRequestDispatcher("views/admin/table-data-product.jsp").forward(request, response);
     }
 

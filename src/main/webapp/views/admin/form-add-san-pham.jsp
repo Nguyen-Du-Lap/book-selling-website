@@ -71,10 +71,6 @@
 
                     <form action="/admin-add-san-pham" enctype="multipart/form-data" method="post" class="row">
                         <div class="form-group col-md-3">
-                            <label class="control-label">Mã sản phẩm </label>
-                            <input name="id" class="form-control" type="text" placeholder="">
-                        </div>
-                        <div class="form-group col-md-3">
                             <label class="control-label">Tên sản phẩm</label>
                             <input name="name" class="form-control" type="text">
                         </div>
