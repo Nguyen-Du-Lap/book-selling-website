@@ -48,9 +48,10 @@ public class BillDAO implements IBillDAO {
     @Override
     public List<ShippingInfoModel> shippingInfo() {
         List<ShippingInfoModel> results = new ArrayList<>();
-        String sql = "SELECT bi.id_order, CONCAT(c.first_name,' ',c.last_name), bd.quantity*bo.price, " +
-                "bi.shipping_info  FROM bill bi JOIN customer c ON bi.id_user = c.id_user " +
-                "JOIN bill_details bd ON bi.id_order = bd.id_order JOIN book bo ON bd.id_book = bo.id_book ";
+        String sql = "SELECT bi.id_order, CONCAT(c.first_name,' ',c.last_name), SUM(bd.quantity*bo.price), \n" +
+                "bi.shipping_info  FROM bill bi JOIN customer c ON bi.id_user = c.id_user\n" +
+                "JOIN bill_details bd ON bi.id_order = bd.id_order JOIN book bo ON bd.id_book = bo.id_book \n" +
+                "GROUP BY bi.id_order, c.first_name, c.last_name";
         Connection connection = JDBCConnector.getConnection();
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -60,10 +61,10 @@ public class BillDAO implements IBillDAO {
                 resultSet = statement.executeQuery();
                 while (resultSet.next()) {
                     ShippingInfoModel shippingInfoModel = new ShippingInfoModel();
-                    shippingInfoModel.setIdOrder(resultSet.getString(1));
+                    shippingInfoModel.setIdOrder(resultSet.getInt(1));
                     shippingInfoModel.setFullName(resultSet.getString(2));
                     shippingInfoModel.setPrice(resultSet.getLong(3));
-                    shippingInfoModel.setShippingInfo(resultSet.getString(4));
+                    shippingInfoModel.setShippingInfo(resultSet.getInt(4));
                     results.add(shippingInfoModel);
                 }
 

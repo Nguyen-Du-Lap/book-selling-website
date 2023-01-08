@@ -1,4 +1,4 @@
-package vn.edu.hcmuaf.fit.controller.admin;
+package vn.edu.hcmuaf.fit.controller.admin.managementCustomer;
 
 import vn.edu.hcmuaf.fit.model.CustomerModel;
 import vn.edu.hcmuaf.fit.services.ICustomerService;
@@ -21,8 +21,8 @@ public class FindCustomerController extends HttpServlet {
 
         if (idUser != null) {
             List<CustomerModel> list = new ArrayList<>();
-            list.add(iCustomerService.findById(idUser));
-            request.setAttribute("customer", list);
+            list.add(iCustomerService.findById(Integer.parseInt(idUser)));
+            request.setAttribute("customerUpdate", list);
             request.getRequestDispatcher("/views/admin/table-data-customer-update.jsp").forward(request, response);
         }
     }

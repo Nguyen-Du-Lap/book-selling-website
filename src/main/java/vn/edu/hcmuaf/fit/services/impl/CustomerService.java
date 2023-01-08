@@ -26,11 +26,16 @@ public class CustomerService implements ICustomerService {
         return customerDAO.newCustomer();
     }
     @Override
-    public CustomerModel findById(String idUser) {
+    public CustomerModel findById(int idUser) {
         return customerDAO.findById(idUser);
     }
     @Override
     public List<CustomerModel> findAllCustomer() {
         return customerDAO.findAllCustomer();
+    }
+
+    @Override
+    public int update(int idUser, String firstName, String lastName, String phone, String address) {
+        return customerDAO.update(idUser, firstName, lastName, phone, address);
     }
 }

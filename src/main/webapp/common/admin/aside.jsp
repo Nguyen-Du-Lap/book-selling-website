@@ -21,11 +21,11 @@
     </c:if>
 
     <c:if test="${title.equals('Danh Sách Khách Hàng')}">
-      <li><a class="app-menu__item active" href="<c:url value="/admin-table-staff" />"><i class='app-menu__icon bx bx-user-voice'></i><span
+      <li><a class="app-menu__item active" href="<c:url value="/admin-table-customer" />"><i class='app-menu__icon bx bx-user-voice'></i><span
               class="app-menu__label">Quản lý khách hàng</span></a></li>
     </c:if>
     <c:if test="${!title.equals('Danh Sách Khách Hàng')}">
-      <li><a class="app-menu__item" href="<c:url value="/admin-table-staff" />"><i class='app-menu__icon bx bx-user-voice'></i><span
+      <li><a class="app-menu__item" href="<c:url value="/admin-table-customer" />"><i class='app-menu__icon bx bx-user-voice'></i><span
               class="app-menu__label">Quản lý khách hàng</span></a></li>
     </c:if>
 

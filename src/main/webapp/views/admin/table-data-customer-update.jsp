@@ -107,21 +107,25 @@ MODAL
                     </div>
                     <div class="row">
                         <c:forEach var="customer" items="${customerUpdate}">
-                            <div class="form-group col-md-6">
-                                <label class="control-label">Mã khách hàng </label>
-                                <input class="form-control" type="number" value="${customer.idUser}">
+                            <div class="form-group col-md-4">
+                                <label class="control-label">Mã khách hàng</label>
+                                <input name="idUser" class="form-control" type="number" value="${customer.idUser}">
                             </div>
-                            <div class="form-group col-md-6">
-                                <label class="control-label">Tên khách hàng</label>
-                                <input class="form-control" type="text" required value="${customer.fullName}">
+                            <div class="form-group col-md-4">
+                                <label class="control-label">Họ</label>
+                                <input name="firstName" class="form-control" type="text" required value="${customer.firstName}">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label class="control-label">Tên</label>
+                                <input name="lastName" class="form-control" type="text" required value="${customer.lastName}">
                             </div>
                             <div class="form-group col-md-6">
                                 <label class="control-label">Số điện thoại</label>
-                                <input class="form-control" type="number" required value="${customer.phone}">
+                                <input name="phone" class="form-control" type="number" required value="${customer.phone}">
                             </div>
                             <div class="form-group col-md-6">
                                 <label class="control-label">Địa chỉ</label>
-                                <input class="form-control" type="text" value="${customer.address}">
+                                <input name="address" class="form-control" type="text" value="${customer.address}">
                             </div>
                         </c:forEach>
                     </div>
@@ -199,30 +203,30 @@ MODAL
     }
 </script>
 <script>
-    function deleteRow(r) {
-        var i = r.parentNode.parentNode.rowIndex;
-        document.getElementById("myTable").deleteRow(i);
-    }
-
-    jQuery(function () {
-        jQuery(".trash").click(function () {
-            swal({
-                title: "Cảnh báo",
-                text: "Bạn có chắc chắn là muốn xóa sản phẩm này?",
-                buttons: ["Hủy bỏ", "Đồng ý"],
-            })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        swal("Đã xóa thành công.!", {});
-                    }
-                });
-        });
-    });
-    oTable = $('#sampleTable').dataTable();
-    $('#all').click(function (e) {
-        $('#sampleTable tbody :checkbox').prop('checked', $(this).is(':checked'));
-        e.stopImmediatePropagation();
-    });
+    // function deleteRow(r) {
+    //     var i = r.parentNode.parentNode.rowIndex;
+    //     document.getElementById("myTable").deleteRow(i);
+    // }
+    //
+    // jQuery(function () {
+    //     jQuery(".trash").click(function () {
+    //         swal({
+    //             title: "Cảnh báo",
+    //             text: "Bạn có chắc chắn là muốn xóa sản phẩm này?",
+    //             buttons: ["Hủy bỏ", "Đồng ý"],
+    //         })
+    //             .then((willDelete) => {
+    //                 if (willDelete) {
+    //                     swal("Đã xóa thành công.!", {});
+    //                 }
+    //             });
+    //     });
+    // });
+    // oTable = $('#sampleTable').dataTable();
+    // $('#all').click(function (e) {
+    //     $('#sampleTable tbody :checkbox').prop('checked', $(this).is(':checked'));
+    //     e.stopImmediatePropagation();
+    // });
 </script>
 </body>
 
