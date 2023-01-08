@@ -1,12 +1,17 @@
 package vn.edu.hcmuaf.fit.controller.web;
 
 import vn.edu.hcmuaf.fit.constant.SystemConstant;
+import vn.edu.hcmuaf.fit.dao.IBookDAO;
+import vn.edu.hcmuaf.fit.dao.ISlidePr;
+import vn.edu.hcmuaf.fit.dao.impl.BookDAO;
+import vn.edu.hcmuaf.fit.dao.impl.SlidePrDAO;
 import vn.edu.hcmuaf.fit.db.MessageProperties;
 import vn.edu.hcmuaf.fit.model.AuthorModel;
 import vn.edu.hcmuaf.fit.model.CustomerModel;
 import vn.edu.hcmuaf.fit.services.IAuthorService;
 import vn.edu.hcmuaf.fit.services.ICatalogService;
 import vn.edu.hcmuaf.fit.services.ICustomerService;
+import vn.edu.hcmuaf.fit.services.impl.AuthorService;
 import vn.edu.hcmuaf.fit.utils.SessionUtil;
 
 import javax.inject.Inject;
@@ -23,6 +28,10 @@ import java.util.Properties;
 public class HomeController extends HttpServlet {
     @Inject
     private ICustomerService customerService;
+    ISlidePr slidePr = new SlidePrDAO();
+    IBookDAO iBookDAO = new BookDAO();
+
+    IAuthorService authorService = new AuthorService();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html; charset=UTF-8");
@@ -36,12 +45,13 @@ public class HomeController extends HttpServlet {
             SessionUtil.getInstance().removeValue(req,"USERMODEL");
             resp.sendRedirect(req.getContextPath()+"/home");
         } else {
+            req.setAttribute("listSlide", slidePr.findAll());
+            req.setAttribute("listBookPayTop", iBookDAO.listBookPayTop());
+            req.setAttribute("listBookMoiPhatHanh", iBookDAO.listBookNewReissue());
+            req.setAttribute("listBookSachPhatHanh", iBookDAO.listBookReissue());
+            req.setAttribute("listAuthor", authorService.find10Author());
             req.getRequestDispatcher("/views/web/home.jsp").forward(req, resp);
         }
-
-
-
-//        resp.sendRedirect("views/web/home.jsp");
     }
 
     @Override

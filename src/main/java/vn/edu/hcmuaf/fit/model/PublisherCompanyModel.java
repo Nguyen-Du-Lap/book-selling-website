@@ -1,14 +1,14 @@
 package vn.edu.hcmuaf.fit.model;
 
 public class PublisherCompanyModel  extends AbstractModel<PublisherCompanyModel>  {
-    private String idPc;
+    private int idPc;
     private String name;
 
-    public String getIdPc() {
+    public int getIdPc() {
         return idPc;
     }
 
-    public void setIdPc(String idPc) {
+    public void setIdPc(int idPc) {
         this.idPc = idPc;
     }
 

@@ -21,10 +21,69 @@
     <link rel="stylesheet" href="<c:url value='/templates/styles/Product.css'/> "/>
     <link rel="stylesheet" href="<c:url value='/templates/styles/HeaderProduct.css'/> "/>
     <link rel="stylesheet" href="<c:url value='/templates/styles/Footer.css'/> "/>
+    <style>
+        .paginationA {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 200px;
+        }
+        .pages {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+        }
+        .page {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .page:hover {
+            background-color: #3992e5;;
+            color: #fff;
+        }
+
+        .activePage {
+            background-color: #3992e5;;
+            color: #fff;
+        }
+
+        .btn {
+            background-color: #fff;
+            border: 1px solid #3992e5;;
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn:hover {
+            background-color: #3992e5;;
+        }
+        .btn--icon {
+            height: 24px;
+            width: 24px;
+            stroke: #3992e5;
+        }
+        .btn--icon:hover {
+            stroke: #fff;
+        }
+
+    </style>
 </head>
 <body>
 <!----------------------------------------HEADER--------------------------------------->
-<%@include file="/common/web/header.jsp"%>
+<%@include file="/common/web/header.jsp" %>
 <!--------- end header---------- -->
 
 <!-- ----------breadcrumb ------------ -->
@@ -102,54 +161,139 @@
                     <!-- Cac san pham-->
                     <div class="items">
                         <div id="data-content" class="row">
-                            <%--                                <div class="col-lg-3 col-md-4 col-xs-6 item victo-hugo">--%>
-                            <%--                                    <div class="card">--%>
-                            <%--                                        <a href="Product_detail.html" class="motsanpham"--%>
-                            <%--                                           data-toggle="tooltip" data-placement="bottom" title="Những người khốn khổ">--%>
-                            <%--                                            <img class="card-img-top anh"--%>
-                            <%--                                                 src="/templates/images/vanhocnuocngoai/nhungnguoikhonkho1.jpeg"--%>
-                            <%--                                                 alt="Những người khốn khổ">--%>
-                            <%--                                            <div class="card-body noidungsp mt-3">--%>
-                            <%--                                                <h6 class="card-title ten">Những người khốn khổ</h6>--%>
-                            <%--                                                <small class="tacgia text-muted" style="font-weight: bold">Victo--%>
-                            <%--                                                    Hugo</small>--%>
-                            <%--                                                <div class="card-price d-flex align-items-baseline">--%>
-                            <%--                                                    <div class="giamoi">273.000đ <br></div>--%>
-                            <%--                                                    <div class="giacu text-muted"> 390.000đ</div>--%>
-                            <%--                                                </div>--%>
-                            <%--                                            </div>--%>
-                            <%--                                            <div class="danhgia">--%>
-                            <%--                                                <ul class="d-flex" style="list-style: none">--%>
-                            <%--                                                    <li class="active"><i class="fa fa-star"></i></li>--%>
-                            <%--                                                    <li class="active"><i class="fa fa-star"></i></li>--%>
-                            <%--                                                    <li class="active"><i class="fa fa-star"></i></li>--%>
-                            <%--                                                    <li class="active"><i class="fa fa-star"></i></li>--%>
-                            <%--                                                    <li class="active"><i class="fa fa-star"></i></li>--%>
-                            <%--                                                    <li><span class="text-muted">  20 nhận xét</span></li>--%>
-                            <%--                                                </ul>--%>
-                            <%--                                            </div>--%>
-                            <%--                                        </a>--%>
-                            <%--                                    </div>--%>
-                            <%--                                </div>--%>
+                            <c:if test="${not empty list12Book }">
+                                <c:forEach var="book" items="${list12Book}">
+                                    <div class="col-lg-3 col-md-4 col-xs-6 item victo-hugo">
+                                        <div class="card">
+                                            <a href="/products/product-detail?id=${book.idBook}" class="motsanpham"
+                                               data-toggle="tooltip" data-placement="bottom"
+                                               title="Những người khốn khổ">
+                                                <img class="card-img-top anh"
+                                                     src="${book.image}"
+                                                     alt="${book.name}">
+                                                <div class="card-body noidungsp mt-3">
+                                                    <h6 class="card-title ten">${book.name}</h6>
+                                                    <small class="tacgia text-muted"
+                                                           style="font-weight: bold">${book.nameAuthor}</small>
+                                                    <div class="card-price d-flex align-items-baseline">
+                                                        <div class="giamoi">${book.priceDiscount}đ <br></div>
+                                                        <div class="giacu text-muted">${book.price}đ</div>
+                                                    </div>
+                                                </div>
+                                                <div class="danhgia">
+                                                    <ul class="d-flex" style="list-style: none">
+                                                        <c:if test="${book.quantityStart == 5}">
+                                                            <li class="active"><i class="fa fa-star"></i></li>
+                                                            <li class="active"><i class="fa fa-star"></i></li>
+                                                            <li class="active"><i class="fa fa-star"></i></li>
+                                                            <li class="active"><i class="fa fa-star"></i></li>
+                                                            <li class="active"><i class="fa fa-star"></i></li>
+                                                        </c:if>
+                                                        <c:if test="${book.quantityStart == 4}">
+                                                            <li class="active"><i class="fa fa-star"></i></li>
+                                                            <li class="active"><i class="fa fa-star"></i></li>
+                                                            <li class="active"><i class="fa fa-star"></i></li>
+                                                            <li class="active"><i class="fa fa-star"></i></li>
+                                                            <li class=""><i class="fa fa-star"></i></li>
+                                                        </c:if>
+
+                                                        <c:if test="${book.quantityStart == 3}">
+                                                            <li class="active"><i class="fa fa-star"></i></li>
+                                                            <li class="active"><i class="fa fa-star"></i></li>
+                                                            <li class="active"><i class="fa fa-star"></i></li>
+                                                            <li class=""><i class="fa fa-star"></i></li>
+                                                            <li class=""><i class="fa fa-star"></i></li>
+                                                        </c:if>
+
+                                                        <c:if test="${book.quantityStart == 2}">
+                                                            <li class="active"><i class="fa fa-star"></i></li>
+                                                            <li class="active"><i class="fa fa-star"></i></li>
+                                                            <li class=""><i class="fa fa-star"></i></li>
+                                                            <li class=""><i class="fa fa-star"></i></li>
+                                                            <li class=""><i class="fa fa-star"></i></li>
+                                                        </c:if>
+
+                                                        <c:if test="${book.quantityStart == 1}">
+                                                            <li class="active"><i class="fa fa-star"></i></li>
+                                                            <li class=""><i class="fa fa-star"></i></li>
+                                                            <li class=""><i class="fa fa-star"></i></li>
+                                                            <li class=""><i class="fa fa-star"></i></li>
+                                                            <li class=""><i class="fa fa-star"></i></li>
+                                                        </c:if>
+                                                        <c:if test="${book.quantityStart == 0}">
+                                                            <li class=""><i class="fa fa-star"></i></li>
+                                                            <li class=""><i class="fa fa-star"></i></li>
+                                                            <li class=""><i class="fa fa-star"></i></li>
+                                                            <li class=""><i class="fa fa-star"></i></li>
+                                                            <li class=""><i class="fa fa-star"></i></li>
+                                                        </c:if>
+                                                    </ul>
+                                                    <span class="text-muted">${book.quantityComment} nhận xét</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                </c:forEach>
+                            </c:if>
 
 
+                        </div>
+                        <div class="paginationA">
+                            <button class="btn">
+                                <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="btn--icon"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                >
+                                    <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            d="M15 19l-7-7 7-7"
+                                    />
+                                </svg>
+                            </button>
+                            <div class="pages">
+                                <c:forEach var="i" begin="1" end="${totalPage}">
+                                    <c:if test="${i == currentPage}">
+                                        <a href="/products?page=${i}" class="page activePage">${i}</a>
+                                    </c:if>
+                                    <c:if test="${i != currentPage}">
+                                        <a href="/products?page=${i}" class="page">${i}</a>
+                                    </c:if>
+                                </c:forEach>
+
+                            </div>
+                            <button class="btn">
+                                <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="btn--icon"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                >
+                                    <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            d="M9 5l7 7-7 7"
+                                    />
+                                </svg>
+                            </button>
                         </div>
                     </div>
 
                 </div>
             </div>
-            <div style="position: absolute; bottom: -100px; width: 100%;">
-                <nav aria-label="Page navigation">
-                    <ul style="margin-left: 20%; text-align: center"  class="pagination" id="pagination"></ul>
-                </nav>
-            </div>
         </section>
-    <%--navigation--%>
     </div>
 </section>
 <!--</div>-->
 
-<%@include file="/common/web/footer.jsp"%>
+<%@include file="/common/web/footer.jsp" %>
 
 <!--    footer-->
 
@@ -175,43 +319,7 @@
 <script src="/templates/scripts/product_type.js"></script>
 
 <script>
-    //số lượng thẻ card
-    let limit = 3;
-    let currentPage = 1;
-    $(function () {
-        window.pagObj = $('#pagination').twbsPagination({
-            totalPages: 5,
-            visiblePages: 3,
-            startPage: 1,
-            onPageClick: function (event, page) {
-                currentPage = page;
-                $.ajax({
-                    url: "/paging-load",
-                    type: 'get',
-                    dataType: 'html',
-                    data: {
-                        page: page,
-                        limit: limit
-                    },
-                    success: function (data) {
-                        var dataContent = document.getElementById("data-content");
-                        dataContent.innerHTML = data;
-                    }
-                });
-            }
-        });
-    });
-    // xu ly sap xep
-    const sort = document.getElementById("sortList");
-    console.log(sort)
-    sort.addEventListener("change", function () {
-        console.log('Changed option value ' + this.value);
-        $(document).ready(function () {
-            // $('#data-content').load('/sort-load')
-            console.log("hi")
-            $('#data-content').load('/sort-load', {"valueSort": this.value}, {"limit": 3}, {"page": 2})
-        })
-    });
+
 </script>
 </body>
 </html>

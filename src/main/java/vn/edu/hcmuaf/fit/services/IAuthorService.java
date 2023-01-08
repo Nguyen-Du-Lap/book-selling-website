@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface IAuthorService {
     List<AuthorModel> findAll();
+    List<AuthorModel> find10Author();
 }

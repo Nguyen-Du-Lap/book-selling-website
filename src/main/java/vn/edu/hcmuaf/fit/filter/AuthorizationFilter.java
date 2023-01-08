@@ -40,7 +40,7 @@ public class AuthorizationFilter implements Filter {
             }
         }else if(url.startsWith("/admin")) {
             if(cus != null) {
-                if(cus.getRole().equalsIgnoreCase("mod")) {
+                if(cus.getRole().equalsIgnoreCase("mod") || cus.getRole().equalsIgnoreCase("admin")) {
                     filterChain.doFilter(servletRequest, servletResponse);
                 }else {
                     request.setAttribute("message", MessageProperties.getNot_login());
