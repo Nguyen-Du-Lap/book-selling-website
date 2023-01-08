@@ -14,7 +14,9 @@ public interface ICustomerDAO {
 
     List<CustomerModel> newCustomer();
 
-    CustomerModel findById(String idUser);
-
     List<CustomerModel> findAllCustomer();
+
+    CustomerModel findById(int idUser);
+
+    int update(int idUser, String firstName, String lastName, String phone, String address);
 }

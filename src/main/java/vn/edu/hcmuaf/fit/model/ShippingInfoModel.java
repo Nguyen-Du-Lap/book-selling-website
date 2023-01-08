@@ -1,16 +1,16 @@
 package vn.edu.hcmuaf.fit.model;
 
 public class ShippingInfoModel extends AbstractModel<BillModel> {
-    private String idOrder;
+    private int idOrder;
     private String fullName;
     private long price;
-    private String shippingInfo;
+    private int shippingInfo;
 
-    public String getIdOrder() {
+    public int getIdOrder() {
         return idOrder;
     }
 
-    public void setIdOrder(String idOrder) {
+    public void setIdOrder(int idOrder) {
         this.idOrder = idOrder;
     }
 
@@ -30,11 +30,11 @@ public class ShippingInfoModel extends AbstractModel<BillModel> {
         this.price = price;
     }
 
-    public String getShippingInfo() {
+    public int getShippingInfo() {
         return shippingInfo;
     }
 
-    public void setShippingInfo(String shippingInfo) {
+    public void setShippingInfo(int shippingInfo) {
         this.shippingInfo = shippingInfo;
     }
     @Override

@@ -29,7 +29,7 @@ public class CustomerDAO implements ICustomerDAO {
                 resultSet = statement.executeQuery();
                 while (resultSet.next()) {
                     CustomerModel customerModel = new CustomerModel();
-                    customerModel.setIdUser(resultSet.getString("id_user"));
+                    customerModel.setIdUser(resultSet.getInt("id_user"));
                     customerModel.setFirstName(resultSet.getString("first_name"));
                     customerModel.setLastName(resultSet.getString("last_name"));
                     customerModel.setEmail(resultSet.getString("email"));
@@ -71,7 +71,7 @@ public class CustomerDAO implements ICustomerDAO {
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 CustomerModel customerModel = new CustomerModel();
-                customerModel.setIdUser(resultSet.getString("id_user"));
+                customerModel.setIdUser(resultSet.getInt("id_user"));
                 customerModel.setFirstName(resultSet.getString("first_name"));
                 customerModel.setLastName(resultSet.getString("last_name"));
                 customerModel.setEmail(resultSet.getString("email"));
@@ -160,7 +160,7 @@ public class CustomerDAO implements ICustomerDAO {
     public List<CustomerModel> newCustomer() {
         List<CustomerModel> results = new ArrayList<>();
         Connection connection = JDBCConnector.getConnection();
-        String sql = "SELECT id_user, CONCAT(first_name,' ',last_name),phone FROM customer " +
+        String sql = "SELECT id_user, CONCAT(first_name,' ',last_name), phone FROM customer WHERE role = 'user' " +
                 "ORDER BY created_time DESC " +
                 "LIMIT 0,10"; //lấy ra 10 khách hàng đăng kí gần nhất
         PreparedStatement statement = null;
@@ -171,7 +171,7 @@ public class CustomerDAO implements ICustomerDAO {
                 resultSet = statement.executeQuery();
                 while (resultSet.next()) {
                     CustomerModel customerModel = new CustomerModel();
-                    customerModel.setIdUser(resultSet.getString(1));
+                    customerModel.setIdUser(resultSet.getInt(1));
                     customerModel.setFullName(resultSet.getString(2));
                     customerModel.setPhone(resultSet.getString(3));
                     results.add(customerModel);
@@ -207,42 +207,67 @@ public class CustomerDAO implements ICustomerDAO {
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 CustomerModel customerModel = new CustomerModel();
-                customerModel.setIdUser(resultSet.getString(1));
-                customerModel.setFirstName(resultSet.getString(2));
-                customerModel.setLastName(resultSet.getString(3));
-                customerModel.setPhone(resultSet.getString(4));
-                customerModel.setAddress(resultSet.getString(5));
-                users.add(customerModel);
-            }
-            return users.isEmpty() ? null : (List<CustomerModel>) users.get(0);
-        } catch (SQLException e) {
-            return null;
-        }
-    }
-
-    @Override
-    public CustomerModel findById(String idUser) {
-        List<CustomerModel> users = new ArrayList<>();
-        Connection connection = JDBCConnector.getConnection();
-        String sql = new String("");
-        PreparedStatement statement = null;
-        ResultSet resultSet = null;
-        try {
-            statement = connection.prepareStatement(sql.toString());
-            statement.setString(1, idUser);
-            resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                CustomerModel customerModel = new CustomerModel();
-                customerModel.setIdUser(resultSet.getString(1));
+                customerModel.setIdUser(resultSet.getInt(1));
                 customerModel.setFullName(resultSet.getString(2));
                 customerModel.setPhone(resultSet.getString(3));
                 customerModel.setAddress(resultSet.getString(4));
                 customerModel.setTotalBill(resultSet.getInt(5));
                 users.add(customerModel);
             }
+            return users;
         } catch (SQLException e) {
             return null;
         }
-        return null;
+    }
+
+    @Override
+    public CustomerModel findById(int idUser) {
+        List<CustomerModel> users = new ArrayList<>();
+        Connection connection = JDBCConnector.getConnection();
+        String sql = new String("SELECT id_user, first_name, last_name, phone, address FROM customer " +
+                "WHERE id_user = ?");
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        try {
+            statement = connection.prepareStatement(sql.toString());
+            statement.setInt(1, idUser);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                CustomerModel customerModel = new CustomerModel();
+                customerModel.setIdUser(resultSet.getInt(1));
+                customerModel.setFirstName(resultSet.getString(2));
+                customerModel.setLastName(resultSet.getString(3));
+                customerModel.setPhone(resultSet.getString(4));
+                customerModel.setAddress(resultSet.getString(5));
+                users.add(customerModel);
+            }
+            return users.isEmpty() ? null : users.get(0);
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+
+    @Override
+    public int update(int idUser, String firstName, String lastName, String phone, String address) {
+        Connection connection = JDBCConnector.getConnection();
+        String sql = new String("UPDATE customer\n" +
+                "SET first_name = ?,\n" +
+                "last_name = ?,\n" +
+                "phone = ?, \n" +
+                "address = ?\n" +
+                "WHERE id_user = ?");
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(sql.toString());
+            statement.setInt(5, idUser);
+            statement.setString(1, firstName);
+            statement.setString(2, lastName);
+            statement.setString(3, phone);
+            statement.setString(4, address);
+            return statement.executeUpdate();
+        } catch (SQLException e) {
+            return 0;
+        }
     }
 }
+

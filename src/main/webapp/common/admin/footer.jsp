@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/templates/admin/doc/js/jquery-3.2.1.min.js"></script>
 <script src="/templates/admin/doc/js/popper.min.js"></script>
@@ -12,24 +11,19 @@
 <script type="text/javascript" src="/templates/admin/doc/js/plugins/fullcalendar.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-
         $('#external-events .fc-event').each(function() {
-
             // store data so the calendar knows to render an event upon drop
             $(this).data('event', {
                 title: $.trim($(this).text()), // use the element's text as the event title
                 stick: true // maintain when user navigates (see docs on the renderEvent method)
             });
-
             // make the event draggable using jQuery UI
             $(this).draggable({
                 zIndex: 999,
                 revert: true,      // will cause the event to go back to its
                 revertDuration: 0  //  original position after the drag
             });
-
         });
-
         $('#calendar').fullCalendar({
             header: {
                 left: 'prev,next today',
@@ -46,8 +40,6 @@
                 }
             }
         });
-
-
     });
 </script>
 <script type="text/javascript">
@@ -83,7 +75,6 @@
             '</span>';
         document.getElementById("clock").innerHTML = tmp;
         clocktime = setTimeout("time()", "1000", "Javascript");
-
         function checkTime(i) {
             if (i < 10) {
                 i = "0" + i;

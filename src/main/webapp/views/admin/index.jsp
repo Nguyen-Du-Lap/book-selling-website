@@ -102,17 +102,17 @@
                                         <td>
                                                 ${shippingInfo.price}đ
                                         </td>
-                                        <c:if test="${shippingInfo.shippingInfo == 'Chờ xử lý'}">
-                                        <td><span class="badge bg-info">${shippingInfo.shippingInfo}</span></td>
+                                        <c:if test="${shippingInfo.shippingInfo == 1}">
+                                        <td><span class="badge bg-info">Chờ xử lý</span></td>
                                         </c:if>
-                                        <c:if test="${shippingInfo.shippingInfo == 'Đang vận chuyển'}">
-                                            <td><span class="badge bg-warning">${shippingInfo.shippingInfo}</span></td>
+                                        <c:if test="${shippingInfo.shippingInfo == 2}">
+                                            <td><span class="badge bg-warning">Đang vận chuyển</span></td>
                                         </c:if>
-                                        <c:if test="${shippingInfo.shippingInfo == 'Đã hoàn thành'}">
-                                            <td><span class="badge bg-success">${shippingInfo.shippingInfo}</span></td>
+                                        <c:if test="${shippingInfo.shippingInfo == 3}">
+                                            <td><span class="badge bg-success">Đã giao</span></td>
                                         </c:if>
-                                        <c:if test="${shippingInfo.shippingInfo == 'Đã hủy'}">
-                                            <td><span class="badge bg-danger">${shippingInfo.shippingInfo}</span></td>
+                                        <c:if test="${shippingInfo.shippingInfo == 4}">
+                                            <td><span class="badge bg-danger">Đã hủy</span></td>
                                         </c:if>
                                     </tr>
                                 </c:forEach>
