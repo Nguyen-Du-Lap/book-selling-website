@@ -9,4 +9,5 @@ public interface IProductDAO {
     List<BookModel> find12Book();
 
     List<BookModel> findAllLimitOffset(int limit, int offset);
+
 }

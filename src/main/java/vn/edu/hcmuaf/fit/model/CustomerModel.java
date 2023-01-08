@@ -3,9 +3,10 @@ package vn.edu.hcmuaf.fit.model;
 import java.sql.Timestamp;
 
 public class CustomerModel  extends AbstractModel<CustomerModel>  {
-    private String idUser;
+    private int idUser;
     private String firstName;
     private String lastName;
+    private String fullName;
     private String email;
     private String password;
     private String address;
@@ -13,12 +14,21 @@ public class CustomerModel  extends AbstractModel<CustomerModel>  {
     private String role;
     private int status;
     private Timestamp createdTime;
+    private int totalBill;
 
-    public String getIdUser() {
+    public int getTotalBill() {
+        return totalBill;
+    }
+
+    public void setTotalBill(int totalBill) {
+        this.totalBill = totalBill;
+    }
+
+    public int getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(String idUser) {
+    public void setIdUser(int idUser) {
         this.idUser = idUser;
     }
 
@@ -36,6 +46,14 @@ public class CustomerModel  extends AbstractModel<CustomerModel>  {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getEmail() {

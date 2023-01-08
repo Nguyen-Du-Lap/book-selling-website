@@ -5,12 +5,13 @@
   Time: 11:28 PM
   To change this template use File | Settings | File Templates.
 --%>
+<%@ include file="/common/taglib.jsp" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <title>Sign In</title>
+  <title>Sign Up</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
@@ -29,25 +30,30 @@
 <!--------- sign up form---------- -->
 <div class="signUp">
   <div class="signUp-title">Đăng ký</div>
-  <form class="form_signUp" id="form_signUp">
+  <c:if test="${not empty message}">
+    <div class="alert alert-${alert}" role="alert">
+        ${message}
+    </div>
+  </c:if>
+  <form action="/signup" class="form_signUp" id="form_signUp" method="post">
     <div class="info-title">*Thông tin đăng nhập:</div>
     <div class="input ">
       <label>Email</label>
-      <input type="text" placeholder="Nhập vào email" id="email" onchange="emailOnChange(this.value)">
+      <input type="text" placeholder="Nhập vào email" id="email" name="email" onchange="emailOnChange(this.value)">
       <i class="fa-solid fa-circle-check"></i>
       <i class="fa-solid fa-circle-xmark"></i>
       <small>Error</small>
     </div>
     <div class="input ">
       <label>Mật khẩu</label>
-      <input type="password" placeholder="Nhập vào mật khẩu" id="password" onchange="passwordOnChange(this.value)">
+      <input type="password" placeholder="Nhập vào mật khẩu" id="password" name="password" onchange="passwordOnChange(this.value)">
       <i class="fa-solid fa-circle-check"></i>
       <i class="fa-solid fa-circle-xmark"></i>
       <small>Error</small>
     </div>
     <div class="input ">
       <label>Xác nhận mật khẩu</label>
-      <input type="password" placeholder="Nhập lại mật khẩu" id="password2" onchange="passwordAOnChange(this.value)">
+      <input type="password" placeholder="Nhập lại mật khẩu" id="password2" name="password2" onchange="passwordAOnChange(this.value)">
       <i class="fa-solid fa-circle-check"></i>
       <i class="fa-solid fa-circle-xmark"></i>
       <small>Error</small>
@@ -56,14 +62,14 @@
     <div class="compul-info">
       <div class="input fname">
         <label>Họ</label>
-        <input placeholder="Họ" type="text" id="fname" onchange="namefOnChange(this.value)">
+        <input placeholder="Họ" type="text" id="fname" name="fname" onchange="namefOnChange(this.value)">
         <i class="fa-solid fa-circle-check"></i>
         <i class="fa-solid fa-circle-xmark"></i>
         <small>Error</small>
       </div>
       <div class="input lname">
         <label>Tên</label>
-        <input placeholder="Tên" type="text" id="lname" onchange="namelOnChange(this.value)">
+        <input placeholder="Tên" type="text" id="lname" name="lname" onchange="namelOnChange(this.value)">
         <i class="fa-solid fa-circle-check"></i>
         <i class="fa-solid fa-circle-xmark"></i>
         <small>Error</small>
@@ -71,19 +77,19 @@
     </div>
     <div class="input ">
       <label>Số điện thoại</label>
-      <input placeholder="SĐT" type="tel" id="phoneNumber" onchange="phoneOnChange(this.value)">
+      <input placeholder="SĐT" type="tel" id="phoneNumber" name="phoneNumber" onchange="phoneOnChange(this.value)">
       <i class="fa-solid fa-circle-check"></i>
       <i class="fa-solid fa-circle-xmark"></i>
       <small>Error</small>
     </div>
     <div class="input ">
       <label>Địa chỉ</label>
-      <input placeholder="Số nhà, tên đường, tỉnh/ thành phố ..." type="text" id="address">
+      <input placeholder="Số nhà, tên đường, tỉnh/ thành phố ..." type="text" id="address" name="address">
       <i class="fa-solid fa-circle-check"></i>
       <i class="fa-solid fa-circle-xmark"></i>
       <small>Error</small>
     </div>
-    <button class="btn-signUp">Đăng ký</button>
+    <button type="submit" class="btn-signUp">Đăng ký</button>
     <p style="margin-top: 30px; padding-bottom: 20px; color: #aaaaaa; text-align: center; font-size: 14px;">
       Bằng việc đăng kí, bạn đã đồng ý với <a href="#" class="red-link">Điều khoản dịch vụ</a> & <a href="#" class="red-link">
       Chính sách bảo mật</a> của chúng tôi</p>
