@@ -1,16 +1,16 @@
 package vn.edu.hcmuaf.fit.model;
 
 public class AuthorModel extends AbstractModel<AuthorModel>{
-    private String idAuthor;
+    private int idAuthor;
     private String name;
     private String img;
     private String information;
 
-    public String getIdAuthor() {
+    public int getIdAuthor() {
         return idAuthor;
     }
 
-    public void setIdAuthor(String idAuthor) {
+    public void setIdAuthor(int idAuthor) {
         this.idAuthor = idAuthor;
     }
 

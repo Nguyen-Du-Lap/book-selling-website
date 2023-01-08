@@ -1,5 +1,13 @@
+<%@ page import="vn.edu.hcmuaf.fit.model.CatalogModel" %>
+<%@ page import="vn.edu.hcmuaf.fit.dao.ICatalogDAO" %>
+<%@ page import="vn.edu.hcmuaf.fit.dao.impl.CatalogDAO" %>
+<%@ page import="java.util.List" %>
+<%@ page import="vn.edu.hcmuaf.fit.dao.IPublisherCompany" %>
+<%@ page import="vn.edu.hcmuaf.fit.dao.impl.PublisherCompanyDAO" %>
+<%@ page import="vn.edu.hcmuaf.fit.model.PublisherCompanyModel" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!-- -----------phần header----------------  -->
+
 <header>
     <div id="header">
         <div class="top-header">
@@ -79,29 +87,30 @@
                                         <i class="fa-solid fa-chevron-right"></i>
                                     </span>
                                 <ul class="type_hot-child">
-                                    <li><a href="">
+                                    <li><a href="/products?hot=1">
                                         <p>Sách bán chạy</p>
                                     </a></li>
-                                    <li><a href="">
+                                    <li><a href="/products?hot=2">
                                         <p>Sách mới</p>
                                     </a></li>
-                                    <li><a href="">
+                                    <li><a href="/products?hot=3">
                                         <p>Sắp phát hành</p>
                                     </a></li>
-                                    <li><a href="">
+                                    <li><a href="/products?hot=4">
                                         <p>Sách giảm giá</p>
                                     </a></li>
                                 </ul>
                             </li>
-                            <li class="type_products-item"><a href="vanhocnuocngoai.html"><span>Sách Văn Học Nước Ngoài</span></a></li>
-                            <li class="type_products-item"><a href="vanhocnuocngoai.html"><span>Sách Văn Học Trong Nước</span></a></li>
-                            <li class="type_products-item"><a href="vanhocnuocngoai.html"><span>Sách Tâm Lý Kĩ Năng Sống</span></a></li>
-                            <li class="type_products-item"><a href="vanhocnuocngoai.html"><span>Sách Thiếu Nhi</span></a></li>
-                            <li class="type_products-item"><a href="vanhocnuocngoai.html"><span>Sách Kinh Tế</span></a></li>
-                            <li class="type_products-item"><a href="vanhocnuocngoai.html"><span>Lịch Sử - Địa Lý - Tôn Giáo</span></a></li>
-                            <li class="type_products-item"><a href="vanhocnuocngoai.html"><span>Khoa Học Kỹ Thuật</span></a></li>
-                            <li class="type_products-item"><a href="vanhocnuocngoai.html"><span>Truyện Tranh</span></a></li>
-                            <li class="type_products-item"><a href="vanhocnuocngoai.html"><span>Tập Chí - Báo</span></a></li>
+                            <%
+                                ICatalogDAO catalogDAO = new CatalogDAO();
+                                List<CatalogModel> listCatalog = catalogDAO.findAll();
+                            %>
+                                <c:forEach var="catalog" items="<%=listCatalog%>">
+                                    <li class="type_products-item"><a href="/products?catalog=<c:out value ="${catalog.idCatalog}"/>">
+                                        <span><c:out value ="${catalog.name}"/></span></a>
+                                    </li>
+                                </c:forEach>
+
                             <li class="type_products-item type_companys">
                                 <a href="">
                                         <span class="container_type-arrow">
@@ -109,20 +118,17 @@
                                         </span>
                                 </a>
                                 <ul class="type_companys-child">
-                                    <li><a href="">
-                                        <p>Công ty cổ phần zgroup</p>
-                                    </a></li>
-                                    <li><a href="">
-                                        <p>Skybooks</p>
-                                    </a></li>
-                                    <li><a href="">
-                                        <p>Chilbooks</p>
-                                    </a></li>
-                                    <li><a href="">
-                                        <p>Thái Hà</p>
-                                    </a></li>
-                                    <li><a class="type_company-all" href="">
-                                        <p>Tất cả công ty phát hành</p>
+                                    <%
+                                        IPublisherCompany iPublisherCompany = new PublisherCompanyDAO();
+                                        List<PublisherCompanyModel> listPublisherCompany = iPublisherCompany.findAll();
+                                    %>
+                                    <c:forEach var="publisherCompany" items="<%=listPublisherCompany%>">
+                                        <li><a href="/products?publisherCompany=<c:out value ="${publisherCompany.idPc}"/>">
+                                            <p><c:out value ="${publisherCompany.name}"/></p>
+                                        </a></li>
+                                    </c:forEach>
+                                    <li><a class="type_company-all" href="/products?publisherCompany=0">
+                                        <p style="font-width: 600;">Tất cả công ty phát hành</p>
                                     </a></li>
                                 </ul>
                             </li>

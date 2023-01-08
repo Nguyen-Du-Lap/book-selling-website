@@ -60,7 +60,7 @@ public class BookManagementDAO implements IBookManagementDAO {
         return null;
     }
 
-    private String findImageById(int id) {
+    public String findImageById(int id) {
         List<String> images = new ArrayList<>();
         Connection connection = JDBCConnector.getConnection();
         String sql = new String("SELECT image FROM image_book WHERE id_book = ?");

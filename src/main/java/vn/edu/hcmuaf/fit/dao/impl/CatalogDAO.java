@@ -22,9 +22,9 @@ public class CatalogDAO implements ICatalogDAO {
                 resultSet = statement.executeQuery();
                 while (resultSet.next()) {
                     CatalogModel catalogModel = new CatalogModel();
-                    catalogModel.setIdCatalog(resultSet.getString("id_catalog"));
+                    catalogModel.setIdCatalog(resultSet.getInt("id_catalog"));
                     catalogModel.setName(resultSet.getString("name"));
-                    catalogModel.setParentId(resultSet.getString("parent_id"));
+                    catalogModel.setParentId(resultSet.getInt("parent_id"));
                     results.add(catalogModel);
                 }
 
@@ -59,9 +59,9 @@ public class CatalogDAO implements ICatalogDAO {
                 resultSet = statement.executeQuery();
                 while (resultSet.next()) {
                     CatalogModel catalogModel = new CatalogModel();
-                    catalogModel.setIdCatalog(resultSet.getString("id_catalog"));
+                    catalogModel.setIdCatalog(resultSet.getInt("id_catalog"));
                     catalogModel.setName(resultSet.getString("name"));
-                    catalogModel.setParentId(resultSet.getString("parent_id"));
+                    catalogModel.setParentId(resultSet.getInt("parent_id"));
                     results.add(catalogModel);
                 }
                 return results;
@@ -97,9 +97,9 @@ public class CatalogDAO implements ICatalogDAO {
                 resultSet = statement.executeQuery();
                 while (resultSet.next()) {
                     CatalogModel catalogModel = new CatalogModel();
-                    catalogModel.setIdCatalog(resultSet.getString("id_catalog"));
+                    catalogModel.setIdCatalog(resultSet.getInt("id_catalog"));
                     catalogModel.setName(resultSet.getString("name"));
-                    catalogModel.setParentId(resultSet.getString("parent_id"));
+                    catalogModel.setParentId(resultSet.getInt("parent_id"));
                     results.add(catalogModel);
                 }
 
@@ -129,9 +129,9 @@ public class CatalogDAO implements ICatalogDAO {
             connection = JDBCConnector.getConnection();
             connection.setAutoCommit(false);
             statement = connection.prepareStatement(sql);
-            statement.setString(1, catalogModel.getIdCatalog());
+            statement.setInt(1, catalogModel.getIdCatalog());
             statement.setString(2, catalogModel.getName());
-            statement.setString(3, catalogModel.getParentId());
+            statement.setInt(3, catalogModel.getParentId());
             statement.executeUpdate();
 
             connection.commit();

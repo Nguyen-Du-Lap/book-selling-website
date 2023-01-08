@@ -1,15 +1,15 @@
 package vn.edu.hcmuaf.fit.model;
 
 public class CatalogModel extends AbstractModel<CatalogModel>  {
-    private String idCatalog;
+    private int idCatalog;
     private String name;
-    private String parentId;
+    private int parentId;
 
-    public String getIdCatalog() {
+    public int getIdCatalog() {
         return idCatalog;
     }
 
-    public void setIdCatalog(String idCatalog) {
+    public void setIdCatalog(int idCatalog) {
         this.idCatalog = idCatalog;
     }
 
@@ -21,11 +21,11 @@ public class CatalogModel extends AbstractModel<CatalogModel>  {
         this.name = name;
     }
 
-    public String getParentId() {
+    public int getParentId() {
         return parentId;
     }
 
-    public void setParentId(String parentId) {
+    public void setParentId(int parentId) {
         this.parentId = parentId;
     }
 

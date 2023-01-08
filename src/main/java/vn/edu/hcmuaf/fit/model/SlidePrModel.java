@@ -4,7 +4,7 @@ import java.sql.Date;
 import java.sql.Timestamp;
 
 public class SlidePrModel  extends AbstractModel<SlidePrModel>  {
-    private String idPr;
+    private int idPr;
     private String namePr;
     private String img;
     private String link;
@@ -12,11 +12,11 @@ public class SlidePrModel  extends AbstractModel<SlidePrModel>  {
     private Date finishTime;
     private Timestamp createTime;
 
-    public String getIdPr() {
+    public int getIdPr() {
         return idPr;
     }
 
-    public void setIdPr(String idPr) {
+    public void setIdPr(int idPr) {
         this.idPr = idPr;
     }
 

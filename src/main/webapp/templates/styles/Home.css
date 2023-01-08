@@ -64,7 +64,8 @@ ul, li {
 #section1 .type_hot-child p ,#section1 .type_companys-child p{
     padding: 6px 12px;
     color: #000;
-    font-style: 10px;
+    font-size: 10px;
+    background-color: #f2f2f2;
 }
 
 #section1 .type_hot-child li:hover p ,#section1 .type_companys-child li:hover p {

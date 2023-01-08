@@ -4,24 +4,37 @@ import java.sql.Date;
 import java.sql.Timestamp;
 
 public class BookModel  extends AbstractModel<BookModel> {
-    private String idBook;
+    private int idBook;
     private String name;
-    private String idAuthor;
-    private String idCatalog;
-    private int quantity;
-    private double priceCost;
-    private boolean isNew;
-    private boolean isActive;
-    private String idPc;
-    private String idP;
-    private Date publishedTime;
-    private Timestamp created;
+    private String nameAuthor;
+    private double priceDiscount;
+    private double price;
+    private int discount;
+    private int quantityStart;
+    private int quantityComment;
 
-    public String getIdBook() {
+    private String image;
+
+    public BookModel() {
+    }
+
+    public BookModel(int idBook, String name, String nameAuthor, double priceDiscount, double price, int discount, int quantityStart, int quantityComment, String image) {
+        this.idBook = idBook;
+        this.name = name;
+        this.nameAuthor = nameAuthor;
+        this.priceDiscount = priceDiscount;
+        this.price = price;
+        this.discount = discount;
+        this.quantityStart = quantityStart;
+        this.quantityComment = quantityComment;
+        this.image = image;
+    }
+
+    public int getIdBook() {
         return idBook;
     }
 
-    public void setIdBook(String idBook) {
+    public void setIdBook(int idBook) {
         this.idBook = idBook;
     }
 
@@ -33,101 +46,74 @@ public class BookModel  extends AbstractModel<BookModel> {
         this.name = name;
     }
 
-    public String getIdAuthor() {
-        return idAuthor;
+    public String getNameAuthor() {
+        return nameAuthor;
     }
 
-    public void setIdAuthor(String idAuthor) {
-        this.idAuthor = idAuthor;
+    public void setNameAuthor(String nameAuthor) {
+        this.nameAuthor = nameAuthor;
     }
 
-    public String getIdCatalog() {
-        return idCatalog;
+    public double getPriceDiscount() {
+        return priceDiscount;
     }
 
-    public void setIdCatalog(String idCatalog) {
-        this.idCatalog = idCatalog;
+    public void setPriceDiscount(double priceDiscount) {
+        this.priceDiscount = priceDiscount;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public double getPrice() {
+        return price;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setPrice(double price) {
+        this.price = price;
     }
 
-    public double getPriceCost() {
-        return priceCost;
+    public int getDiscount() {
+        return discount;
     }
 
-    public void setPriceCost(double priceCost) {
-        this.priceCost = priceCost;
+    public void setDiscount(int discount) {
+        this.discount = discount;
     }
 
-    public boolean isNew() {
-        return isNew;
+    public int getQuantityStart() {
+        return quantityStart;
     }
 
-    public void setNew(boolean aNew) {
-        isNew = aNew;
+    public void setQuantityStart(int quantityStart) {
+        this.quantityStart = quantityStart;
     }
 
-    public boolean isActive() {
-        return isActive;
+    public int getQuantityComment() {
+        return quantityComment;
     }
 
-    public void setActive(boolean active) {
-        isActive = active;
+    public void setQuantityComment(int quantityComment) {
+        this.quantityComment = quantityComment;
     }
 
-    public String getIdPc() {
-        return idPc;
+    public String getImage() {
+        return image;
     }
 
-    public void setIdPc(String idPc) {
-        this.idPc = idPc;
-    }
-
-    public String getIdP() {
-        return idP;
-    }
-
-    public void setIdP(String idP) {
-        this.idP = idP;
-    }
-
-    public Date getPublishedTime() {
-        return publishedTime;
-    }
-
-    public void setPublishedTime(Date publishedTime) {
-        this.publishedTime = publishedTime;
-    }
-
-    public Timestamp getCreated() {
-        return created;
-    }
-
-    public void setCreated(Timestamp created) {
-        this.created = created;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     @Override
     public String toString() {
         return "BookModel{" +
-                "idBook='" + idBook + '\'' +
+                "idBook=" + idBook +
                 ", name='" + name + '\'' +
-                ", idAuthor='" + idAuthor + '\'' +
-                ", idCatalog='" + idCatalog + '\'' +
-                ", quantity=" + quantity +
-                ", priceCost=" + priceCost +
-                ", isNew=" + isNew +
-                ", isActive=" + isActive +
-                ", idPc='" + idPc + '\'' +
-                ", idP='" + idP + '\'' +
-                ", publishedTime=" + publishedTime +
-                ", created=" + created +
+                ", nameAuthor='" + nameAuthor + '\'' +
+                ", priceDiscount=" + priceDiscount +
+                ", price=" + price +
+                ", discount=" + discount +
+                ", quantityStart=" + quantityStart +
+                ", quantityComment=" + quantityComment +
+                ", image='" + image + '\'' +
                 '}';
     }
 }
