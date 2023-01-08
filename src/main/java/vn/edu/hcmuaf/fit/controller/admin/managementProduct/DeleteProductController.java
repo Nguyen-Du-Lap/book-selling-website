@@ -15,10 +15,11 @@ public class DeleteProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String id = request.getParameter("id");
-            if(id != null) {
-               bookManagement.deleteById(id);
-               response.sendRedirect(request.getContextPath()+"/admin-table-product");
-            }
+        if(id != null) {
+            int idInt = Integer.parseInt(id);
+            bookManagement.deleteById(idInt);
+            response.sendRedirect(request.getContextPath()+"/admin-table-product");
+        }
     }
 
     @Override

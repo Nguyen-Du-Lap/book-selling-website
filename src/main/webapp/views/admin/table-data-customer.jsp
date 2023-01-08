@@ -89,8 +89,8 @@
               <td>${customer.totalBill}</td>
               <td>
                 <a href="/findCustomer?idUser=${customer.idUser}">
-                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
-                        data-target="#ModalUP"><i class="fas fa-edit"></i></button>
+                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"
+                       ><i class="fas fa-edit"></i></button>
                 </a>
 
               </td>

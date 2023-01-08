@@ -23,33 +23,27 @@ public class BookManagementService implements IBookManagementService {
     }
 
     @Override
-    public boolean deleteById(String id) {
+    public boolean deleteById(int id) {
         return iBookManagementDAO.deleteById(id) >= 1 ;
     }
 
     @Override
-    public BookManagementModel findById(String id) {
+    public BookManagementModel findById(int id) {
         return iBookManagementDAO.findById(id);
     }
 
     @Override
-    public int update(String id, String name, int quantity, double price, double discount) {
+    public int update(int id, String name, int quantity, double price, double discount) {
         return iBookManagementDAO.update(id, name, quantity, price, discount);
     }
 
     @Override
-    public boolean checkIdInsert(String id) {
-
-        return iBookManagementDAO.listById(id).size() == 0;
-    }
-
-    @Override
-    public boolean addBook(String id, String name, int quantityInt, String status, String isNew, String catalog
+    public boolean addBook( String name, int quantityInt, String status, String isNew, String catalog
             , String publisherCompany, double priceDouble, double primeCostDouble, String isbn, int year
             , double weight, String size, int page, String language, String description, String publisher) {
-        String idCatalog = iBookManagementDAO.findIdCatalogByName(catalog);
-        String id_pc = iBookManagementDAO.findIdPCByName(publisherCompany);
-        String id_p = iBookManagementDAO.findIdPByName(publisher);
+        int idCatalog = iBookManagementDAO.findIdCatalogByName(catalog);
+        int id_pc = iBookManagementDAO.findIdPCByName(publisherCompany);
+        int id_p = iBookManagementDAO.findIdPByName(publisher);
         int isNewAfter = 0;
         int isActiveAfter = 0;
         if (isNew.equalsIgnoreCase("Sách mới")) {
@@ -58,10 +52,12 @@ public class BookManagementService implements IBookManagementService {
         if (status.equalsIgnoreCase("Mở bán")) {
             isActiveAfter = 1;
         }
-        int insertBook = iBookManagementDAO.insertBook(id, name, idCatalog, quantityInt, primeCostDouble, priceDouble
+        int insertBook = iBookManagementDAO.insertBook(name, idCatalog, quantityInt, primeCostDouble, priceDouble
                 , isNewAfter, isActiveAfter, id_pc, id_p, year);
+        int id = iBookManagementDAO.findIdByName(name);
+
         int inserBookDetail = iBookManagementDAO.insertBookDetail(id, isbn, year, weight, size, page, language, description);
-        return insertBook+inserBookDetail >=2 ;
+        return insertBook + inserBookDetail >= 2 ;
     }
 
     @Override
@@ -70,7 +66,12 @@ public class BookManagementService implements IBookManagementService {
     }
 
     @Override
-    public void addImage(HttpServletRequest request, HttpServletResponse response, Part part, String id) {
+    public boolean insertPublisher(String publisher) {
+        return iBookManagementDAO.insertPublisher(publisher) >= 1 ;
+    }
+
+    @Override
+    public void addImage(HttpServletRequest request, HttpServletResponse response, Part part, int id) {
         try {
             String realPath = request.getServletContext().getRealPath("/templates/images/sachUpload");
             String filename = Path.of(part.getSubmittedFileName()).getFileName().toString();
@@ -78,13 +79,25 @@ public class BookManagementService implements IBookManagementService {
             if(!Files.exists(Path.of(realPath))) {
                 Files.createDirectory(Path.of(realPath));
             }
-            //luu vao thu muc
-            String pathF = realPath +"\\"+id+"-"+filename;
-            part.write(pathF);
-            //luu vao database
-            iBookManagementDAO.saveImage(id, "/templates/images/sachUpload/"+id+"-"+filename);
+            if( !filename.equals("")) {
+                //luu vao thu muc
+                String pathF = realPath +"\\"+id+"-"+filename;
+                part.write(pathF);
+                //luu vao database
+                iBookManagementDAO.saveImage(id, "/templates/images/sachUpload/"+id+"-"+filename);
+            }
         }catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public boolean insertCatalog(String catalog) {
+        return iBookManagementDAO.insertCatalog(catalog) >= 1 ;
+    }
+
+    @Override
+    public boolean checkNameBook(String name) {
+        return iBookManagementDAO.findListNameByName(name) >= 1;
     }
 }

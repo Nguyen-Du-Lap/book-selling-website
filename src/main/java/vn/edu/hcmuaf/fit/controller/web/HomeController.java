@@ -29,7 +29,6 @@ public class HomeController extends HttpServlet {
         String action = req.getParameter("action");
         // neu url :/login?action=login thi toi trang login
         if(action != null && action.equals("login")) {
-
             req.getRequestDispatcher("/views/login.jsp").forward(req, resp);
             // neu url :login?action=login thi toi trang logout
         }else if(action != null && action.equals("logout")) {
@@ -69,7 +68,7 @@ public class HomeController extends HttpServlet {
                     req.getRequestDispatcher("/views/login.jsp").forward(req, resp);
 //                    resp.sendRedirect(req.getContextPath()+"/login?action=login&message=username_password_invalid&alert=danger");
                 }
-             }
+            }
         }
     }
 

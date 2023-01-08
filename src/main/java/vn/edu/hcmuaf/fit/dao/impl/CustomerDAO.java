@@ -117,9 +117,8 @@ public class CustomerDAO implements ICustomerDAO {
         try {
             Connection connection = JDBCConnector.getConnection();
             statement = connection.prepareStatement(sql.toString());
-            statement.setString(1, email);
-            statement.setString(2, oldPass);
-            statement.setString(3, newPass);
+            statement.setString(2, email);
+            statement.setString(1, newPass);
             statement.executeUpdate();
         } catch (SQLException e) {
         }
@@ -267,6 +266,32 @@ public class CustomerDAO implements ICustomerDAO {
             return statement.executeUpdate();
         } catch (SQLException e) {
             return 0;
+        }
+    }
+    @Override
+    public CustomerModel findByEmail(String email) {
+        List<CustomerModel> users = new ArrayList<>();
+        Connection connection = JDBCConnector.getConnection();
+        String sql = new String("SELECT email, first_name, last_name, phone, address FROM customer " +
+                "WHERE email = ?");
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        try {
+            statement = connection.prepareStatement(sql.toString());
+            statement.setString(1, email);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                CustomerModel customerModel = new CustomerModel();
+                customerModel.setEmail(resultSet.getString(1));
+                customerModel.setFirstName(resultSet.getString(2));
+                customerModel.setLastName(resultSet.getString(3));
+                customerModel.setPhone(resultSet.getString(4));
+                customerModel.setAddress(resultSet.getString(5));
+                users.add(customerModel);
+            }
+            return users.isEmpty() ? null : users.get(0);
+        } catch (SQLException e) {
+            return null;
         }
     }
 }

@@ -14,11 +14,15 @@ import java.io.IOException;
 public class SignupController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
         request.getRequestDispatcher("/views/web/signup.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
         response.setContentType("text/html; charset=UTF-8");
         String email = request.getParameter("email");
         String pass = request.getParameter("password");
@@ -30,7 +34,7 @@ public class SignupController extends HttpServlet {
         //String idUser = request.getParameter("id_user");
         if (!email.equals("") && !pass.equals("") && !re_pass.equals("") && !fname.equals("") && !lname.equals("")) {
             if (!pass.equals(re_pass)) {
-                response.sendRedirect("/login");
+                response.sendRedirect("/signup");
             } else {
                 CustomerDAO customerDAO = new CustomerDAO();
                 CustomerModel account = customerDAO.checkAccountExist(email);

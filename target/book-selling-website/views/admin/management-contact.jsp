@@ -50,7 +50,7 @@
 <main class="app-content">
   <div class="app-title">
     <ul class="app-breadcrumb breadcrumb side">
-      <li class="breadcrumb-item active"><a href="#"><b>Danh sách sản phẩm</b></a></li>
+      <li class="breadcrumb-item active"><a href="#"><b>Danh sách liên hệ</b></a></li>
     </ul>
     <div id="clock"></div>
   </div>
@@ -58,11 +58,11 @@
     <div class="col-md-12">
       <div class="tile">
         <div class="tile-body">
-          <h1>Liên Hệ Người Dùng</h1>
           <table class="table table-hover table-bordered" id="sampleTable">
             <thead>
             <tr>
               <th width="10"><input type="checkbox" id="all"></th>
+              <th>Mã liên hệ</th>
               <th>Họ và tên</th>
               <th>Địa chỉ email</th>
               <th>Số điện thoại</th>
@@ -72,38 +72,28 @@
             </tr>
             </thead>
             <tbody>
+            <c:forEach var="contact" items="${listContact}">
             <tr>
               <td width="10"><input type="checkbox" name="check1" value="1"></td>
-              <td>Nguyễn</td>
-              <td>Uyên Thư</td>
-              <td>uyenthu@gmail.com</td>
-              <td>12345678</td>
-              <td>Chưa đọc</td>
-              <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
-                          onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
-              </button>
-                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
-                        data-target="#ModalUP"><i class="fas fa-edit"></i></button>
+              <td>${contact.id}</td>
+              <td>${contact.fullName}</td>
+              <td>${contact.email}</td>
+              <td>${contact.phone}</td>
+              <td>${contact.content}</td>
+              <c:if test="${contact.status == 1}">
+                <td><span class="badge bg-success">Đã đọc</span></td>
+              </c:if>
+              <c:if test="${contact.status == 0}">
+                <td><span class="badge bg-danger">Chưa đọc</span></td>
+              </c:if>
+              <td>
+                <a href="/findContact?id=${contact.id}">
+                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"
+                       ><i class="fas fa-edit"></i></button></a>
 
               </td>
             </tr>
-            <tr>
-              <td width="10"><input type="checkbox" name="check1" value="1"></td>
-              <td>Lâm</td>
-              <td>Tố Mỹ</td>
-              <td>tomy@gmail.com</td>
-              <td>12345678</td>
-              <td>Đã đọc</td>
-              <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
-                          onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
-              </button>
-                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
-                        data-target="#ModalUP"><i class="fas fa-edit"></i></button>
-
-              </td>
-            </tr>
-
-
+            </c:forEach>
             </tbody>
           </table>
         </div>
@@ -155,7 +145,7 @@
           </div>
           <div class="form-group col-md-6">
             <label for="exampleSelect1" class="control-label">Danh mục</label>
-            <select class="form-control" id="exampleSelect1">
+            <select class="form-control" id="exampleSelect2">
               <option>Sách Văn học văn ngoài</option>
               <option>Sách Thiếu nhi</option>
               <option>Sách Kinh tế</option>
@@ -202,74 +192,74 @@ MODAL
 <script type="text/javascript" src="/templates/admin/doc/js/plugins/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="/templates/admin/doc/js/plugins/dataTables.bootstrap.min.js"></script>
 <script type="text/javascript">
-  $('#sampleTable').DataTable();
-  //Thời Gian
-  function time() {
-    var today = new Date();
-    var weekday = new Array(7);
-    weekday[0] = "Chủ Nhật";
-    weekday[1] = "Thứ Hai";
-    weekday[2] = "Thứ Ba";
-    weekday[3] = "Thứ Tư";
-    weekday[4] = "Thứ Năm";
-    weekday[5] = "Thứ Sáu";
-    weekday[6] = "Thứ Bảy";
-    var day = weekday[today.getDay()];
-    var dd = today.getDate();
-    var mm = today.getMonth() + 1;
-    var yyyy = today.getFullYear();
-    var h = today.getHours();
-    var m = today.getMinutes();
-    var s = today.getSeconds();
-    m = checkTime(m);
-    s = checkTime(s);
-    nowTime = h + " giờ " + m + " phút " + s + " giây";
-    if (dd < 10) {
-      dd = '0' + dd
-    }
-    if (mm < 10) {
-      mm = '0' + mm
-    }
-    today = day + ', ' + dd + '/' + mm + '/' + yyyy;
-    tmp = '<span class="date"> ' + today + ' - ' + nowTime +
-            '</span>';
-    document.getElementById("clock").innerHTML = tmp;
-    clocktime = setTimeout("time()", "1000", "Javascript");
+<%--  $('#sampleTable').DataTable();--%>
+<%--  //Thời Gian--%>
+<%--  function time() {--%>
+<%--    var today = new Date();--%>
+<%--    var weekday = new Array(7);--%>
+<%--    weekday[0] = "Chủ Nhật";--%>
+<%--    weekday[1] = "Thứ Hai";--%>
+<%--    weekday[2] = "Thứ Ba";--%>
+<%--    weekday[3] = "Thứ Tư";--%>
+<%--    weekday[4] = "Thứ Năm";--%>
+<%--    weekday[5] = "Thứ Sáu";--%>
+<%--    weekday[6] = "Thứ Bảy";--%>
+<%--    var day = weekday[today.getDay()];--%>
+<%--    var dd = today.getDate();--%>
+<%--    var mm = today.getMonth() + 1;--%>
+<%--    var yyyy = today.getFullYear();--%>
+<%--    var h = today.getHours();--%>
+<%--    var m = today.getMinutes();--%>
+<%--    var s = today.getSeconds();--%>
+<%--    m = checkTime(m);--%>
+<%--    s = checkTime(s);--%>
+<%--    nowTime = h + " giờ " + m + " phút " + s + " giây";--%>
+<%--    if (dd < 10) {--%>
+<%--      dd = '0' + dd--%>
+<%--    }--%>
+<%--    if (mm < 10) {--%>
+<%--      mm = '0' + mm--%>
+<%--    }--%>
+<%--    today = day + ', ' + dd + '/' + mm + '/' + yyyy;--%>
+<%--    tmp = '<span class="date"> ' + today + ' - ' + nowTime +--%>
+<%--            '</span>';--%>
+<%--    document.getElementById("clock").innerHTML = tmp;--%>
+<%--    clocktime = setTimeout("time()", "1000", "Javascript");--%>
 
-    function checkTime(i) {
-      if (i < 10) {
-        i = "0" + i;
-      }
-      return i;
-    }
-  }
-</script>
-<script>
-  function deleteRow(r) {
-    var i = r.parentNode.parentNode.rowIndex;
-    document.getElementById("myTable").deleteRow(i);
-  }
-  jQuery(function () {
-    jQuery(".trash").click(function () {
-      swal({
-        title: "Cảnh báo",
-        text: "Bạn có chắc chắn là muốn xóa sản phẩm này?",
-        buttons: ["Hủy bỏ", "Đồng ý"],
-      })
-              .then((willDelete) => {
-                if (willDelete) {
-                  swal("Đã xóa thành công.!", {
+<%--    function checkTime(i) {--%>
+<%--      if (i < 10) {--%>
+<%--        i = "0" + i;--%>
+<%--      }--%>
+<%--      return i;--%>
+<%--    }--%>
+<%--  }--%>
+<%--</script>--%>
+<%--<script>--%>
+<%--  function deleteRow(r) {--%>
+<%--    var i = r.parentNode.parentNode.rowIndex;--%>
+<%--    document.getElementById("myTable").deleteRow(i);--%>
+<%--  }--%>
+<%--  jQuery(function () {--%>
+<%--    jQuery(".trash").click(function () {--%>
+<%--      swal({--%>
+<%--        title: "Cảnh báo",--%>
+<%--        text: "Bạn có chắc chắn là muốn xóa sản phẩm này?",--%>
+<%--        buttons: ["Hủy bỏ", "Đồng ý"],--%>
+<%--      })--%>
+<%--              .then((willDelete) => {--%>
+<%--                if (willDelete) {--%>
+<%--                  swal("Đã xóa thành công.!", {--%>
 
-                  });
-                }
-              });
-    });
-  });
-  oTable = $('#sampleTable').dataTable();
-  $('#all').click(function (e) {
-    $('#sampleTable tbody :checkbox').prop('checked', $(this).is(':checked'));
-    e.stopImmediatePropagation();
-  });
+<%--                  });--%>
+<%--                }--%>
+<%--              });--%>
+<%--    });--%>
+<%--  });--%>
+<%--  oTable = $('#sampleTable').dataTable();--%>
+<%--  $('#all').click(function (e) {--%>
+<%--    $('#sampleTable tbody :checkbox').prop('checked', $(this).is(':checked'));--%>
+<%--    e.stopImmediatePropagation();--%>
+<%--  });--%>
 </script>
 </body>
 

@@ -36,11 +36,11 @@
             <li class="first">
               <a id="account" title="Thông tin tài khoản" href="/account?action=account">Thông tin tài
                 khoản</a></li>
-            <li class="first active">
+            <li class="first">
               <a id="changePassword" title="Đổi mật khẩu" href="/account?action=changePassword">Đổi
                 mật khẩu</a></li>
             <li class="first">
-              <a id="reviewOrders" title="Xem lại đơn hàng" href="/account?action=reviewOrders">Xem
+              <a id="reviewOrders active" title="Xem lại đơn hàng" href="/account?action=reviewOrders">Xem
                 lại đơn hàng</a></li>
             <li class="first">
               <a id="logout" title="Đăng xuất" href="/logout?action=logout">Đăng xuất</a>

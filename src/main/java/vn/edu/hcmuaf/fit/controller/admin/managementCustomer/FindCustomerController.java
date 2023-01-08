@@ -17,6 +17,8 @@ public class FindCustomerController extends HttpServlet {
     ICustomerService iCustomerService;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
         String idUser = request.getParameter("idUser");
 
         if (idUser != null) {

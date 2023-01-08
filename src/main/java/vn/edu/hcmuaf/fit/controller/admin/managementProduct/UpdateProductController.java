@@ -14,23 +14,34 @@ public class UpdateProductController extends HttpServlet {
     IBookManagementService iBookManagementService;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
+        String message = request.getParameter("message");
+        String alert = request.getParameter("alert");
+        if(message != null && alert!= null) {
+            request.setAttribute("message", message);
+            request.setAttribute("alert", alert);
+        }
+        request.getRequestDispatcher("views/admin/table-data-product.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
         String id = request.getParameter("id");
+        int idInt = Integer.parseInt(id);
         String name = request.getParameter("name");
         int quantity = Integer.parseInt(request.getParameter("quantity"));
         double price = Double.parseDouble(request.getParameter("price"));
-
+        double discount = Double.parseDouble(request.getParameter("discount"));
         try {
-            int i = iBookManagementService.update(id, name, quantity, price);
+            int i = iBookManagementService.update(idInt, name, quantity, price, discount);
             if(i >= 1) {
-                response.sendRedirect("/admin-table-product");
+                response.sendRedirect("/admin-table-product?message=Upload success&alert=success");
             }else {
-                request.getRequestDispatcher("/views/admin/table-data-product.jsp").forward(request, response);
+                response.sendRedirect("/admin-table-product?message=Upload success&alert=success");
             }
         }catch (Exception e) {
             request.getRequestDispatcher("/views/admin/table-data-product.jsp").forward(request, response);

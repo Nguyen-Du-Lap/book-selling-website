@@ -165,7 +165,7 @@
           </div>
           <div class="form-group col-md-6">
             <label for="exampleSelect1" class="control-label">Danh mục</label>
-            <select class="form-control" id="exampleSelect1">
+            <select class="form-control" id="exampleSelect2">
               <option>Sách Văn học văn ngoài</option>
               <option>Sách Thiếu nhi</option>
               <option>Sách Kinh tế</option>

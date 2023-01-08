@@ -33,7 +33,7 @@
                                 <a href="<c:url value="/login?action=login"/> " class="account--item_center"><span>Đăng nhập</span></a>
                                 <div class="account--item_bottom">
                                     <span>Khách hàng mới?</span>
-                                    <a class="register" href="signup.html">Tạo tài khoản</a>
+                                    <a class="register" href="/signup">Tạo tài khoản</a>
                                 </div>
                             </div>
                         </div>

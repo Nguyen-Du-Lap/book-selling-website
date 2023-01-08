@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Account</title>
+  <title>Thông tin tài khoản</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
@@ -35,10 +35,10 @@
           Tài khoản</h2>
         <div class="list_ctrl">
           <ul>
-            <li class="first">
+            <li class="first active">
               <a id="account" title="Thông tin tài khoản" href="/account?action=account">Thông tin tài
                 khoản</a></li>
-            <li class="first active">
+            <li class="first">
               <a id="changePassword" title="Đổi mật khẩu" href="/account?action=changePassword">Đổi
                 mật khẩu</a></li>
             <li class="first">
@@ -56,12 +56,12 @@
           <h2>
             Cập nhật thông tin tài khoản
           </h2>
-          <form id="form">
+          <form action="/account" id="form">
             <div class="input ">
               <label>
                 <span class="req">*</span>Email của bạn:
               </label>
-              <input name="email" type="text" value="" maxlength="150" id="acc_email">
+              <input name="email" type="text" value="${user.email}" maxlength="150" id="acc_email">
               <small>error</small>
             </div>
             <div class="input ">

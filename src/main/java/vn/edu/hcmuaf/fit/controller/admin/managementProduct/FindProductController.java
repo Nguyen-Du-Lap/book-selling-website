@@ -23,8 +23,9 @@ public class FindProductController extends HttpServlet {
         String id = request.getParameter("id");
 
         if(id != null) {
+            int idInt = Integer.parseInt(id);
             List<BookManagementModel> list = new ArrayList<>();
-            list.add(iBookManagementService.findById(id));
+            list.add(iBookManagementService.findById(idInt));
             request.setAttribute("bookUpdate", list);
             request.getRequestDispatcher("/views/admin/table-data-product-update.jsp").forward(request, response);
         }

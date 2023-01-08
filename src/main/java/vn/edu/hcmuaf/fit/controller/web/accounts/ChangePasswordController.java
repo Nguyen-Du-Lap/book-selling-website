@@ -15,35 +15,44 @@ import java.io.IOException;
 public class ChangePasswordController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String account = (String) SessionUtil.getInstance().getValue(request, "USERMODEL");
-        if (account == null) {
-            request.setAttribute("message", MessageProperties.getRe_login());
-            request.setAttribute("alert", "danger");
-            request.getRequestDispatcher("/views/login.jsp").forward(request, response);
-            return;
-        }
-        request.setAttribute("account", account);
+//        String account = (String) SessionUtil.getInstance().getValue(request, "USERMODEL");
+//        if (account == null) {
+//            request.setAttribute("message", MessageProperties.getRe_login());
+//            request.setAttribute("alert", "danger");
+//            request.getRequestDispatcher("/views/login.jsp").forward(request, response);
+//            return;
+//        }
+//        request.setAttribute("account", account);
+        request.getRequestDispatcher("views/web/changePassword.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String oldPass = request.getParameter("oldPass");
+        String newPass = request.getParameter("newPass");
+        String confirmpass = request.getParameter("confirmpass");
         try {
             String account = (String) SessionUtil.getInstance().getValue(request, "USERMODEL");
 
             ChangePasswordModel changePassword = new ChangePasswordModel();
             BeanUtils.populate(changePassword, request.getParameterMap());
             request.setAttribute("account", account);
-
-            if (!changePassword.getConfirmPass().equals(changePassword.getNewPass())) {
-                request.setAttribute("message", MessageProperties.getNot_login());
-                request.setAttribute("alert", "danger");
-                request.getRequestDispatcher("/views/web/changePassword.jsp").forward(request, response);
+            if (!oldPass.equals("") && !newPass.equals("") && !confirmpass.equals("")) {
+                if (!changePassword.getConfirmPass().equals(changePassword.getNewPass())) {
+                    request.setAttribute("message", MessageProperties.getNot_login());
+                    request.setAttribute("alert", "danger");
+                    request.getRequestDispatcher("/views/web/changePassword.jsp").forward(request, response);
+                } else {
+                    CustomerDAO user = new CustomerDAO();
+                    user.changePassword(changePassword.getEmail(), changePassword.getOldPass(), changePassword.getNewPass());
+                    request.setAttribute("message", MessageProperties.getMissing_mail());
+                    request.setAttribute("alert", "success");
+                    request.getRequestDispatcher("/views/web/changePassword.jsp").forward(request, response);
+                }
             } else {
-                CustomerDAO user = new CustomerDAO();
-                user.changePassword(changePassword.getEmail(), changePassword.getOldPass(), changePassword.getNewPass());
-                request.setAttribute("message", MessageProperties.getMissing_mail());
-                request.setAttribute("alert", "success");
-                request.getRequestDispatcher("/views/web/changePassword.jsp").forward(request, response);
+                request.setAttribute("message", MessageProperties.getMissing_data());
+                request.setAttribute("alert", "danger");
+                response.sendRedirect("/changePassword");
             }
         } catch (Exception e) {
             e.printStackTrace();

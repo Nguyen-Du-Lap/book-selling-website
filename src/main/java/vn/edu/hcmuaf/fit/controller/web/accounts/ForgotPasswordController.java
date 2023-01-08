@@ -15,16 +15,18 @@ import java.io.IOException;
 public class ForgotPasswordController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
         request.getRequestDispatcher("/views/web/forgotPassword.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
         response.setContentType("text/html; charset=UTF-8");
         try {
             String emailAddress = request.getParameter("email");
-            //String fname = request.getParameter("fname");
-            //String lname = request.getParameter("lname");
             if (!emailAddress.equals("")) {
                 CustomerDAO customerDAO = new CustomerDAO();
                 CustomerModel account = customerDAO.checkAccountExist(emailAddress);
@@ -35,15 +37,15 @@ public class ForgotPasswordController extends HttpServlet {
                 } else {
                     EmailModel email = new EmailModel();
                     email.setFrom("anminh868@gmail.com");
-                    email.setFromPassword("password");
+                    email.setFromPassword("cqtdqfwzmalyrwrk");
                     email.setTo(emailAddress);
-                    email.setSubject("Forgot Password Function");
+                    email.setSubject("Reset Password");
                     StringBuilder sb = new StringBuilder();
-                    sb.append("Dear ").append("<br>");
-                    sb.append("You are used the forgot password function. <br>");
-                    sb.append("Your new password is <b>").append(account.getPassword()).append("</b>");
-                    sb.append("Regards<br>");
-                    sb.append("Administrator");
+                    sb.append("Chào anh/chị,").append("<br>");
+                    sb.append("Anh/chị đã yêu cầu cấp lại mật khẩu. <br>");
+                    sb.append("Mật khẩu mới của anh/chị là <b>").append(account.getPassword()).append("</b>").append("<br>");
+                    sb.append("Thân mến<br>");
+                    sb.append("Quản trị viên");
 
                     email.setContent(sb.toString());
                     EmailUtil.send(email);

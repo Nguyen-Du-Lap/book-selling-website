@@ -47,4 +47,14 @@ public class ChangePasswordModel extends AbstractModel<ChangePasswordModel> {
     public void setConfirmPass(String confirmPass) {
         this.confirmPass = confirmPass;
     }
+
+    @Override
+    public String toString() {
+        return "ChangePasswordModel{" +
+                "email='" + email + '\'' +
+                ", oldPass='" + oldPass + '\'' +
+                ", newPass='" + newPass + '\'' +
+                ", confirmPass='" + confirmPass + '\'' +
+                '}';
+    }
 }
