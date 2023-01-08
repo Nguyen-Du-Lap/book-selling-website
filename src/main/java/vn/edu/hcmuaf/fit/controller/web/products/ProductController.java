@@ -15,27 +15,18 @@ import java.io.IOException;
 
 @WebServlet(name = "product", value = "/products")
 public class ProductController extends HttpServlet {
-    @Inject
-    ICatalogService catalogService;
 
     IProductService iProductService = new ProductService();
+    int pageCurrent = 1;
     @Override
         protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         String page = request.getParameter("page");
         if(page != null) {
             int pageInt = Integer.parseInt(page);
-            int first = (pageInt-1) * 12;
-            int last = 0;
-            if (iProductService.findAll().size() - first >= 12)
-            {
-                last = 12;
-            }else
-            {
-                last = iProductService.findAll().size() % 12;
-            }
+            pageCurrent = pageInt;
+
             request.setAttribute("currentPage", pageInt);
-            request.setAttribute("list12Book", iProductService.findAllLimitOffset(first, last));
+            request.setAttribute("list12Book", iProductService.findAllLimitOffsetService(pageInt));
         }else {
             request.setAttribute("currentPage", 1);
             request.setAttribute("list12Book", iProductService.find12Product());

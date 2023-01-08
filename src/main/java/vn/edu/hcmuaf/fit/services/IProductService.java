@@ -16,4 +16,9 @@ public interface IProductService {
     BookModel findBookDetailById(int id);
     BookDetails findBookDetail1ById(int id);
 
+    List<String> findAllImage(int id);
+
+    List<BookModel> findAllLimitOffsetService(int page);
+
+    List<BookModel> find12BookSearch(String key);
 }

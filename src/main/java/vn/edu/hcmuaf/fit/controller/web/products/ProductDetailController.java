@@ -18,6 +18,7 @@ public class ProductDetailController extends HttpServlet {
             int idInt = Integer.parseInt(id);
             request.setAttribute("bookModel" , iProductService.findBookDetailById(idInt));
             request.setAttribute("bookDetail", iProductService.findBookDetail1ById(idInt));
+            request.setAttribute("listImage", iProductService.findAllImage(idInt));
         }
         request.getRequestDispatcher("/views/web/product_detail.jsp").forward(request, response);
     }

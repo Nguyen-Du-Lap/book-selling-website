@@ -42,4 +42,30 @@ public class ProductService implements IProductService {
     public BookDetails findBookDetail1ById(int id) {
         return iProductDAO.findBookDetail1ById(id);
     }
+
+    @Override
+    public List<String> findAllImage(int id) {
+        return iProductDAO.findAddImage(id);
+    }
+
+    @Override
+    public List<BookModel> findAllLimitOffsetService(int page) {
+        int first = (page-1) * 12;
+        int last = 0;
+        if (findAll().size() - first >= 12)
+        {
+            last = 12;
+        }else
+        {
+            last = findAll().size() % 12;
+        }
+        return findAllLimitOffset(first, last);
+    }
+
+    @Override
+    public List<BookModel> find12BookSearch(String key) {
+        return iProductDAO.find12BookSearch(key);
+    }
+
+
 }

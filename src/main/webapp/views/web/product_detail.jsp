@@ -55,11 +55,9 @@
           <img src="${bookModel.image}" alt="">
         </div>
         <div class="product-content-left-small-img d-flex">
-          <img src="/templates/images/vanhocnuocngoai/nhungnguoikhonkho1.jpeg" alt="" style="margin-top: 10px">
-          <img src="/templates/images/vanhocnuocngoai/nhungnguoikhonkho3.jpeg" alt="" style="margin-top: 10px">
-          <img src="/templates/images/vanhocnuocngoai/nhungnguoikhonkho4.jpeg" alt="" style="margin-top: 10px">
-          <img src="/templates/images/vanhocnuocngoai/nnkk6.jpeg" alt="" style="margin-top: 10px">
-
+          <c:forEach var="img" items="${listImage}">
+            <img src="${img}" alt="" style="margin-top: 10px">
+          </c:forEach>
         </div>
       </div>
       <div class="product-content-right">

@@ -4,6 +4,7 @@ import vn.edu.hcmuaf.fit.dao.IProductDAO;
 import vn.edu.hcmuaf.fit.db.JDBCConnector;
 import vn.edu.hcmuaf.fit.model.BookDetails;
 import vn.edu.hcmuaf.fit.model.BookModel;
+import vn.edu.hcmuaf.fit.model.ImageBookModel;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -280,6 +281,100 @@ public class ProductDAO implements IProductDAO {
                 }
 
                 return listBook.isEmpty() ? null : listBook.get(0);
+            } catch (SQLException e) {
+                return null;
+            } finally {
+                try {
+                    if(connection != null) connection.close();
+                    if(statement != null) statement.close();
+                    if(resultSet != null) resultSet.close();
+                } catch (SQLException e) {
+                    return null;
+                }
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public List<String> findAddImage(int id) {
+        List<String> listImage = new ArrayList<>();
+        Connection connection = JDBCConnector.getConnection();
+        String sql = new String("SELECT image\n" +
+                "FROM image_book\n" +
+                "WHERE id_book = ?");
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        if(connection != null) {
+            try {
+                statement = connection.prepareStatement(sql.toString());
+                statement.setInt(1, id);
+                resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    listImage.add(resultSet.getString(3));
+                }
+
+                return listImage;
+            } catch (SQLException e) {
+                return null;
+            } finally {
+                try {
+                    if(connection != null) connection.close();
+                    if(statement != null) statement.close();
+                    if(resultSet != null) resultSet.close();
+                } catch (SQLException e) {
+                    return null;
+                }
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public List<BookModel> find12BookSearch(String key) {
+        List<BookModel> listBook = new ArrayList<>();
+        Connection connection = JDBCConnector.getConnection();
+        String sql = new String("SELECT b.id_book, b.name, a.name, b.price * b.discount_price + b.price AS giagiam \n" +
+                ", b.price, b.discount_price*100 AS giam, IF(v_rate.`start` is null, 0, v_rate.`start`) AS `start`\n" +
+                ", IF(v_comment.sl_comment is null, 0, v_comment.sl_comment) AS sl_comment\n" +
+                "FROM book b LEFT JOIN author a ON b.id_author = a.id_author\n" +
+                "LEFT JOIN v_rate ON b.id_book = v_rate.id_book \n" +
+                "LEFT JOIN v_comment ON b.id_book = v_comment.id_book\n" +
+                "JOIN publisher ON b.id_p = publisher.id_p\n" +
+                "JOIN publisher_company ON b.id_pc = publisher_company.id_pc\n" +
+                "WHERE b.name LIKE ? OR a.name LIKE ? \n" +
+                "OR publisher.name LIKE ? OR publisher_company.name LIKE ?\n" +
+                "LIMIT 12;");
+
+
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        if(connection != null) {
+            try {
+                statement = connection.prepareStatement(sql.toString());
+                statement.setString(1, "%"+key+"%");
+                statement.setString(2, "%"+key+"%");
+                statement.setString(3, "%"+key+"%");
+                statement.setString(4, "%"+key+"%");
+
+                resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    BookModel bookModel = new BookModel();
+                    bookModel.setIdBook(resultSet.getInt(1));
+                    bookModel.setName(resultSet.getString(2));
+                    bookModel.setNameAuthor(resultSet.getString(3));
+                    bookModel.setPriceDiscount(resultSet.getDouble(4));
+                    bookModel.setPrice(resultSet.getDouble(5));
+                    bookModel.setDiscount(resultSet.getInt(6));
+                    bookModel.setQuantityStart(resultSet.getInt(7));
+                    bookModel.setQuantityComment(resultSet.getInt(8));
+
+                    String image = findImageById(resultSet.getInt(1));
+                    bookModel.setImage(image);
+                    listBook.add(bookModel);
+                }
+
+                return listBook;
             } catch (SQLException e) {
                 return null;
             } finally {

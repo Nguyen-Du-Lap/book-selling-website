@@ -29,11 +29,13 @@
             gap: 16px;
             margin-top: 200px;
         }
+
         .pages {
             display: flex;
             flex-direction: row;
             gap: 20px;
         }
+
         .page {
             height: 40px;
             width: 40px;
@@ -45,6 +47,7 @@
             justify-content: center;
             gap: 10px;
         }
+
         .page:hover {
             background-color: #3992e5;;
             color: #fff;
@@ -67,14 +70,17 @@
             align-items: center;
             justify-content: center;
         }
+
         .btn:hover {
             background-color: #3992e5;;
         }
+
         .btn--icon {
             height: 24px;
             width: 24px;
             stroke: #3992e5;
         }
+
         .btn--icon:hover {
             stroke: #fff;
         }
@@ -119,12 +125,13 @@
                         <label><input type="checkbox" class="giaban" value="4">Trên 300.000đ</label>
                     </div>
                     <div class="cap">Nhà xuất bản</div>
-                    <div class="ct">
-                        <label><input type="checkbox" class="nxb" value="1">NXB Phụ nữ Việt Nam</label>
-                        <label><input type="checkbox" class="nxb" value="2">NXB Thông Tấn</label>
-                        <label><input type="checkbox" class="nxb" value="3">Nhà xuất bản Hà Nôi</label>
-                        <label><input type="checkbox" class="nxb" value="4">NXB Văn Học</label>
-                    </div>
+                        <div class="ct">
+                            <label><input name="NXB" type="checkbox" class="nxb" value="1">NXB Phụ nữ Việt Nam</label>
+                            <label><input name="NXB" type="checkbox" class="nxb" value="2">NXB Thông Tấn</label>
+                            <label><input name="NXB" type="checkbox" class="nxb" value="3">Nhà xuất bản Hà Nôi</label>
+                            <label><input name="NXB" type="checkbox" class="nxb" value="4">NXB Văn Học</label>
+                        </div>
+
                     <div class="cap">Phát Hành</div>
                     <div class="ct">
                         <label><input type="checkbox" class="phathanh" value="1">Nhã Nam</label>

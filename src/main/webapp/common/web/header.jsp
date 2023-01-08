@@ -13,10 +13,12 @@
         <div class="top-header">
             <div class="container top-header-content">
                 <a class="logo" href="/home">DORAEMON</a>
-                <div class="top-header_search">
-                    <input type="text" placeholder="Tìm kiếm">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </div>
+                <form action="/products/search" method="post">
+                    <div class="top-header_search">
+                        <input type="text" name="key" placeholder="Tìm kiếm">
+                        <button style="border: none"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </div>
+                </form>
                 <div class="top-header-left">
                     <div class="top-header_cart">Giỏ hàng
                         <span class="top-header_cart-quantity">(0)</span>

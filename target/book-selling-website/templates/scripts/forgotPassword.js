@@ -1,10 +1,10 @@
 const form_forgotPassword = document.getElementById('form_forgotPassword');
 const email = document.getElementById('email');
 
-form_forgotPassword.addEventListener('submit', (e) => {
-    e.preventDefault();
-    checkInputs();
-});
+//form_forgotPassword.addEventListener('submit', (e) => {
+//    e.preventDefault();
+//    checkInputs();
+//});
 
 function checkInputs() {
     const emailValue = email.value.trim();
