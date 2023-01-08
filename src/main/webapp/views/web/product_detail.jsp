@@ -29,6 +29,12 @@
   <link rel="stylesheet" href="<c:url value='/templates/styles/Header.css'/> " />
   <link rel="stylesheet" href="<c:url value='/templates/styles/ProductDetail.css'/> " />
   <link rel="stylesheet" href="<c:url value='/templates/styles/Footer.css'/> " />
+
+  <style>
+    .sao .active {
+      color: #F5A623;
+    }
+  </style>
 </head>
 <body>
 
@@ -39,14 +45,14 @@
     <nav id="breadcrumbbar">
       <ul class="breadcrumb">
         <li class="breadcrumb-item"><a class="chang_font" href="/home">Trang chủ</a></li>
-        <li class="breadcrumb-item"><a href="vanhocnuocngoai.html">Văn học nước ngoài</a></li>
-        <li class="breadcrumb-item active"><a href="Product_detail.html">Những người khốn khổ</a></li>
+        <li class="breadcrumb-item"><a href="#">SACH Kinh Te</a></li>
+        <li class="breadcrumb-item active">${bookModel.name}</li>
       </ul>
     </nav>
     <div class="product-content row">
       <div class="product-content-left">
         <div class="product-content-left-big-img">
-          <img src="/templates/images/vanhocnuocngoai/nhungnguoikhonkho1.jpeg" alt="">
+          <img src="${bookModel.image}" alt="">
         </div>
         <div class="product-content-left-small-img d-flex">
           <img src="/templates/images/vanhocnuocngoai/nhungnguoikhonkho1.jpeg" alt="" style="margin-top: 10px">
@@ -58,20 +64,60 @@
       </div>
       <div class="product-content-right">
         <div class="product-content-right-product-name">
-          <h1>NHỮNG NGƯỜI KHỐN KHỔ (TRỌN BỘ 3 TẬP)</h1>
-          <p>MSP: 8935095623938</p>
+          <h1>${bookModel.name}</h1>
+          <p>MSP: ${bookModel.idBook}</p>
         </div>
         <div class="product-content-right-product-rate">
-          <i class="fa fa-star active"></i>
-          <i class="fa fa-star active"></i>
-          <i class="fa fa-star active"></i>
-          <i class="fa fa-star active"></i>
-          <i class="fa fa-star "></i>
+          <c:if test="${bookModel.quantityStart == 5}">
+            <i class="fa fa-star active"></i>
+            <i class="fa fa-star active"></i>
+            <i class="fa fa-star active"></i>
+            <i class="fa fa-star active"></i>
+            <i class="fa fa-star active"></i>
+          </c:if>
+          <c:if test="${bookModel.quantityStart == 4}">
+            <i class="fa fa-star active"></i>
+            <i class="fa fa-star active"></i>
+            <i class="fa fa-star active"></i>
+            <i class="fa fa-star active"></i>
+            <i class="fa fa-star"></i>
+          </c:if>
+
+          <c:if test="${bookModel.quantityStart == 3}">
+            <i class="fa fa-star active"></i>
+            <i class="fa fa-star active"></i>
+            <i class="fa fa-star active"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+          </c:if>
+
+          <c:if test="${bookModel.quantityStart == 2}">
+            <i class="fa fa-star active"></i>
+            <i class="fa fa-star active"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+          </c:if>
+
+          <c:if test="${bookModel.quantityStart == 1}">
+            <i class="fa fa-star active"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+          </c:if>
+          <c:if test="${bookModel.quantityStart == 0}">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+          </c:if>
         </div>
         <hr>
         <div class="product-content-right-product-price">
-          <div class="giabia">Giá:<span class="giacu ml-2">390.000 ₫</span></div>
-          <div class="giaban">Giá bán tại Doraemon: <span class="giamoi font-weight-bold">370.000 đ</span></div>
+          <div class="giabia">Giá:<span class="giacu ml-2">${bookModel.price} ₫</span></div>
+          <div class="giaban">Giá bán tại Doraemon: <span class="giamoi font-weight-bold">${bookModel.priceDiscount} đ</span></div>
           <div class="tietkiem">Tiết kiệm: <b>20.000 ₫</b>
           </div>
         </div>
@@ -136,38 +182,45 @@
                     <tbody>
                     <tr>
                       <td class="themmau">Mã hàng</td>
-                      <td>8935095623938</td>
+                      <td>${bookDetail.id}</td>
+                    </tr>
+                    <tr>
+                      <td class="themmau">Mã ISBN</td>
+                      <td>${bookDetail.isbn}</td>
+                    </tr>
+                    <tr>
+                      <td class="themmau">Ngôn ngữ</td>
+                      <td>${bookDetail.language}</td>
                     </tr>
                     <tr>
                       <td class="themmau">Tác giả</td>
-                      <td>Victor Hugo</td>
+                      <td>${bookDetail.nameAuthor}</td>
                     </tr>
                     <tr>
                       <td class="themmau">NXB</td>
-                      <td>NXB Văn Học</td>
+                      <td>${bookDetail.name}</td>
                     </tr>
                     <tr>
                       <td class="themmau">Năm XB</td>
-                      <td>2017</td>
+                      <td>${bookDetail.year}</td>
                     </tr>
                     <tr>
                       <td class="themmau">Trọng Lượng (gr)</td>
-                      <td>2220</td>
+                      <td>${bookDetail.weight}</td>
                     </tr>
                     <tr>
                       <td class="themmau">Kích Thước Bao Bì</td>
-                      <td>21 x 14 x 10.5 cm</td>
+                      <td>${bookDetail.size} cm</td>
                     </tr>
                     <tr>
                       <td class="themmau">Số trang</td>
-                      <td>2054</td>
+                      <td>${bookDetail.page}</td>
                     </tr>
                     </tbody>
                   </table>
                 </div>
                 <div class="product-content-right-product-bottom-content-chitiet">
-                  Trong tác phẩm NHỮNG NGƯỜI KHỐN KHỔ (Les Misérables), cuộc sống cao đẹp của Giăng Văngiăng (Jean Valjean) - người phải ngồi tù suốt 19 năm chỉ vì một chiếc bánh mỳ, tình nhân ái bao dung và tấm lòng độ lượng của đức cha Mirien, sự đeo bám dai dẳng của mật thám Giave (Javert), những mưu đồ đen tối và độc ác của vợ chồng Tênácđiê (Thenardier), sự ngây thơ trong trắng của Côdét (Cosette), cậu bé lang thang Ga-vơ-rốt (Gavroche). sự nhiệt tình hăng hái của Mariuýt (Marius)...
-                  Tất cả đều được khắc họa một cách sinh động. NHỮNG NGƯỜI KHỐN KHỔ là bài hát ca ngợi tình yêu và tự do của Giăng Văngiăng - một con người tái sinh trong đau khổ và tuyệt vọng.
+                  ${bookDetail.description}
                 </div>
               </div>
 
@@ -175,15 +228,55 @@
                 <div class="product-content-right-product-bottom-content-rate d-fex">
                   <div class="text-center danhgia">
                     <p class="tieude">Đánh giá trung bình</p>
-                    <div class="diem">0/5</div>
+                    <div class="diem">${bookModel.quantityStart}/5</div>
                     <div class="sao">
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
+                      <c:if test="${bookModel.quantityStart == 5}">
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                      </c:if>
+                      <c:if test="${bookModel.quantityStart == 4}">
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star"></i>
+                      </c:if>
+
+                      <c:if test="${bookModel.quantityStart == 3}">
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                      </c:if>
+
+                      <c:if test="${bookModel.quantityStart == 2}">
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                      </c:if>
+
+                      <c:if test="${bookModel.quantityStart == 1}">
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                      </c:if>
+                      <c:if test="${bookModel.quantityStart == 0}">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                      </c:if>
                     </div>
-                    <p class="sonhanxet text-muted">(0 nhận xét)</p>
+                    <p class="sonhanxet text-muted">(${bookModel.quantityComment} nhận xét)</p>
                   </div>
                   <div class="comment">
                     <div class="tiledanhgia text-center">
