@@ -46,7 +46,6 @@
               <a class="btn btn-delete btn-sm nhap-tu-file" type="button" title="Nhập" onclick="myFunction(this)"><i
                       class="fas fa-file-upload"></i> Tải từ file</a>
             </div>
-
             <div class="col-sm-2">
               <a class="btn btn-delete btn-sm print-file" type="button" title="In" onclick="myApp.printTable()"><i
                       class="fas fa-print"></i> In dữ liệu</a>
@@ -83,18 +82,23 @@
             </tr>
             </thead>
             <tbody>
+            <c:forEach var="bill" items="${listBill}">
             <tr>
               <td width="10"><input type="checkbox" name="check1" value="1"></td>
-              <td>MD0837</td>
-              <td>Triệu Thanh Phú</td>
-              <td>Đông Hòa -Dĩ An - Bình Dương</td>
-              <td>2</td>
-              <td>360.000 đ</td>
-              <td>1</td>
-              <td><span class="badge bg-success">Hoàn thành</span></td>
+              <td>${bill.idOrder}</td>
+              <td>${bill.nameUser}</td>
+              <td>${bill.address}</td>
+              <td>${bill.totalProduct}</td>
+              <td>${bill.totalPrice}</td>
+              <td>${bill.paymethod}</td>
+              <td><span class="badge bg-success">${bill.statusBill}</span></td>
               <td>
-                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"><i class="fa fa-edit"></i></button></td>
+                <a href="/findBill?id=${bill.id}">
+                  <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"><i class="fa fa-edit"></i></button>
+              </a>
+              </td>
             </tr>
+            </c:forEach>
             </tbody>
           </table>
         </div>
@@ -103,70 +107,6 @@
   </div>
 </main>
 
-<!--
-  MODAL
--->
-<div class="modal fade" id="ModalUP" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static"
-     data-keyboard="false">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-body">
-        <div class="row">
-          <div class="form-group  col-md-12">
-          <span class="thong-tin-thanh-toan">
-            <h5>Chỉnh sửa thông tin đơn hàng cơ bản</h5>
-          </span>
-          </div>
-        </div>
-        <div class="row">
-          <div class="form-group col-md-6">
-            <label class="control-label">Mã đơn hàng </label>
-            <input class="form-control" type="number" value="8936071672704" disabled>
-          </div>
-          <div class="form-group col-md-6">
-            <label class="control-label">Tên khách hàng</label>
-            <input class="form-control" type="text" required value="Triệu Anh Phú" disabled>
-          </div>
-          <div class="form-group  col-md-6">
-            <label class="control-label">Số lượng sản phẩm</label>
-            <input class="form-control" type="number" required value="20" disabled>
-          </div>
-          <div class="form-group col-md-6 ">
-            <label for="exampleSelect1" class="control-label">Tình trạng sản phẩm</label>
-            <select class="form-control" id="exampleSelect1">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-            </select>
-          </div>
-          <div class="form-group col-md-6">
-            <label class="control-label">Thành tiền</label>
-            <input class="form-control" type="text" value="80.000" disabled>
-          </div>
-          <div class="form-group col-md-6">
-            <label class="control-label">Phương thức thanh toán</label>
-            <input class="form-control" type="text" value="80.000" disabled>
-          </div>
-        </div>
-        <BR>
-        <a href="#" style="    float: right;
-    font-weight: 600;
-    color: #ea0000;">Chỉnh sửa đơn hàng nâng cao</a>
-        <BR>
-        <BR>
-        <button class="btn btn-save" type="button">Lưu lại</button>
-        <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
-        <BR>
-      </div>
-      <div class="modal-footer">
-      </div>
-    </div>
-  </div>
-</div>
-<!--
-MODAL
--->
 <!-- Essential javascripts for application to work-->
 <script src="/templates/admin/doc/js/jquery-3.2.1.min.js"></script>
 <script src="/templates/admin/doc/js/popper.min.js"></script>

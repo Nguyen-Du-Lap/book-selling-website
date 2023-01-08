@@ -4,30 +4,31 @@ import java.sql.Date;
 import java.sql.Timestamp;
 
 public class BillModel extends AbstractModel<BillModel> {
-    private String idOrder;
-    private String idUser;
+    private int idOrder;
+    private int idUser;
     private String shippingInfo;
-    private String idDiscount;
+    private int idDiscount;
     private String address;
-    private String paymentMethod;
-    private double total;
-    private Date shipTime;
+    private String payMethod;
+    private double totalPrice;
+    private double totalQuantity;
     private Timestamp create_order_time;
+    private Date ship_time;
     private Date receiveTime;
 
-    public String getIdOrder() {
+    public int getIdOrder() {
         return idOrder;
     }
 
-    public void setIdOrder(String idOrder) {
+    public void setIdOrder(int idOrder) {
         this.idOrder = idOrder;
     }
 
-    public String getIdUser() {
+    public int getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(String idUser) {
+    public void setIdUser(int idUser) {
         this.idUser = idUser;
     }
 
@@ -39,11 +40,11 @@ public class BillModel extends AbstractModel<BillModel> {
         this.shippingInfo = shippingInfo;
     }
 
-    public String getIdDiscount() {
+    public int getIdDiscount() {
         return idDiscount;
     }
 
-    public void setIdDiscount(String idDiscount) {
+    public void setIdDiscount(int idDiscount) {
         this.idDiscount = idDiscount;
     }
 
@@ -55,28 +56,28 @@ public class BillModel extends AbstractModel<BillModel> {
         this.address = address;
     }
 
-    public String getPaymentMethod() {
-        return paymentMethod;
+    public String getPayMethod() {
+        return payMethod;
     }
 
-    public void setPaymentMethod(String paymentMethod) {
-        this.paymentMethod = paymentMethod;
+    public void setPayMethod(String payMethod) {
+        this.payMethod = payMethod;
     }
 
-    public double getTotal() {
-        return total;
+    public double getTotalPrice() {
+        return totalPrice;
     }
 
-    public void setTotal(double total) {
-        this.total = total;
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
-    public Date getShipTime() {
-        return shipTime;
+    public double getTotalQuantity() {
+        return totalQuantity;
     }
 
-    public void setShipTime(Date shipTime) {
-        this.shipTime = shipTime;
+    public void setTotalQuantity(double totalQuantity) {
+        this.totalQuantity = totalQuantity;
     }
 
     public Timestamp getCreate_order_time() {
@@ -85,6 +86,14 @@ public class BillModel extends AbstractModel<BillModel> {
 
     public void setCreate_order_time(Timestamp create_order_time) {
         this.create_order_time = create_order_time;
+    }
+
+    public Date getShip_time() {
+        return ship_time;
+    }
+
+    public void setShip_time(Date ship_time) {
+        this.ship_time = ship_time;
     }
 
     public Date getReceiveTime() {
@@ -98,14 +107,16 @@ public class BillModel extends AbstractModel<BillModel> {
     @Override
     public String toString() {
         return "BillModel{" +
-                "idOrder='" + idOrder + '\'' +
-                ", idUser='" + idUser + '\'' +
+                "idOrder=" + idOrder +
+                ", idUser=" + idUser +
                 ", shippingInfo='" + shippingInfo + '\'' +
-                ", idDiscount='" + idDiscount + '\'' +
+                ", idDiscount=" + idDiscount +
                 ", address='" + address + '\'' +
-                ", paymentMethod='" + paymentMethod + '\'' +
-                ", shipTime=" + shipTime +
+                ", payMethod='" + payMethod + '\'' +
+                ", totalPrice=" + totalPrice +
+                ", totalQuantity=" + totalQuantity +
                 ", create_order_time=" + create_order_time +
+                ", ship_time=" + ship_time +
                 ", receiveTime=" + receiveTime +
                 '}';
     }
