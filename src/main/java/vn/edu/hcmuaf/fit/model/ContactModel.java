@@ -67,4 +67,5 @@ public class ContactModel extends AbstractModel<ContactModel> {
                 ", status=" + status +
                 '}';
     }
+
 }

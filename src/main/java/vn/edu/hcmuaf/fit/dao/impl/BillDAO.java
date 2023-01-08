@@ -44,7 +44,6 @@ public class BillDAO implements IBillDAO {
         }
         return 0;
     }
-
     @Override
     public List<ShippingInfoModel> shippingInfo() {
         List<ShippingInfoModel> results = new ArrayList<>();

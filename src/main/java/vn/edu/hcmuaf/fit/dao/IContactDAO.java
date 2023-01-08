@@ -11,4 +11,5 @@ public interface IContactDAO {
 
     int update(int id, int status);
 
+
 }

@@ -9,4 +9,5 @@ public interface IContactService {
 
     ContactModel findById(int id);
     int update(int id, int status);
+
 }

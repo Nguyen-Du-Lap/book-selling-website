@@ -22,7 +22,6 @@ public class EmailUtil {
                 return new PasswordAuthentication(email.getFrom(), email.getFromPassword());
             }
         });
-
         try {
              Message message = new MimeMessage(session);
              message.setFrom(new InternetAddress(email.getFrom()));

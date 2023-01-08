@@ -6,7 +6,6 @@ public class EmailModel extends AbstractModel<EmailModel> {
     private String fromPassword;
     private  String content;
     private String subject;
-
     public String getFrom() {
         return from;
     }

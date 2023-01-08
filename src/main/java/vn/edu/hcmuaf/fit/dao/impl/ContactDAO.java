@@ -54,8 +54,7 @@ public class ContactDAO implements IContactDAO {
                 contactModel.setId(resultSet.getInt(1));
                 contactModel.setStatus(resultSet.getInt(2));
                 contact.add(contactModel);
-            }
-            return contact.isEmpty() ? null : contact.get(0);
+            } return contact.isEmpty() ? null : contact.get(0);
         } catch (SQLException e) {
             return null;
         }

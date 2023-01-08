@@ -39,7 +39,7 @@
             <li class="first">
               <a id="changePassword" title="Đổi mật khẩu" href="/account?action=changePassword">Đổi
                 mật khẩu</a></li>
-            <li class="first">
+            <li class="first active">
               <a id="reviewOrders active" title="Xem lại đơn hàng" href="/account?action=reviewOrders">Xem
                 lại đơn hàng</a></li>
             <li class="first">

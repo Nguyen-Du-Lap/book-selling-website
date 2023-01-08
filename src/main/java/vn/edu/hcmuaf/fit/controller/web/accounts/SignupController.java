@@ -18,7 +18,6 @@ public class SignupController extends HttpServlet {
         response.setCharacterEncoding("utf-8");
         request.getRequestDispatcher("/views/web/signup.jsp").forward(request, response);
     }
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");

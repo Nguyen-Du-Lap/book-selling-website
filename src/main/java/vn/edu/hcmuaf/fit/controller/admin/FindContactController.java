@@ -21,7 +21,6 @@ public class FindContactController extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
         String id = request.getParameter("id");
-
         if(id != null) {
             List<ContactModel> list = new ArrayList<>();
             list.add(iContactService.findById(Integer.parseInt(id)));

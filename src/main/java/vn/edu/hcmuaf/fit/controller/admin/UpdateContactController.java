@@ -25,7 +25,6 @@ public class UpdateContactController extends HttpServlet {
         }
         request.getRequestDispatcher("views/admin/management-contact.jsp").forward(request, response);
     }
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");

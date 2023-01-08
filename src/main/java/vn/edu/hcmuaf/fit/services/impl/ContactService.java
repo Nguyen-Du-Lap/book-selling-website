@@ -23,4 +23,5 @@ public class ContactService implements IContactService {
     public int update(int id, int status) {
         return contactDAO.update(id, status);
     }
+
 }
