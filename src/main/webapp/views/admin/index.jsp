@@ -45,7 +45,7 @@
                     <div class="widget-small primary coloured-icon"><i class='icon bx bxs-user-account fa-3x'></i>
                         <div class="info">
                             <h4>Tổng khách hàng</h4>
-                            <p><b>56 khách hàng</b></p>
+                            <p><b>${totalCustomer} khách hàng</b></p>
                             <p class="info-tong">Tổng số khách hàng được quản lý.</p>
                         </div>
                     </div>
@@ -55,7 +55,7 @@
                     <div class="widget-small info coloured-icon"><i class='icon bx bxs-data fa-3x'></i>
                         <div class="info">
                             <h4>Tổng sản phẩm</h4>
-                            <p><b>1850 sản phẩm</b></p>
+                            <p><b>${totalProduct} sản phẩm</b></p>
                             <p class="info-tong">Tổng số sản phẩm được quản lý.</p>
                         </div>
                     </div>
@@ -65,7 +65,7 @@
                     <div class="widget-small warning coloured-icon"><i class='icon bx bxs-shopping-bags fa-3x'></i>
                         <div class="info">
                             <h4>Tổng đơn hàng</h4>
-                            <p><b>247 đơn hàng</b></p>
+                            <p><b>${totalBill} đơn hàng</b></p>
                             <p class="info-tong">Tổng số hóa đơn bán hàng trong tháng.</p>
                         </div>
                     </div>
@@ -75,7 +75,7 @@
                     <div class="widget-small danger coloured-icon"><i class='icon bx bxs-error-alt fa-3x'></i>
                         <div class="info">
                             <h4>Sắp hết hàng</h4>
-                            <p><b>4 sản phẩm</b></p>
+                            <p><b>${outOfStock} sản phẩm</b></p>
                             <p class="info-tong">Số sản phẩm cảnh báo hết cần nhập thêm.</p>
                         </div>
                     </div>
@@ -95,38 +95,28 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>AX032943</td>
-                                    <td>Phạm Thị Ngọc</td>
-                                    <td>
-                                        770.000 đ
-                                    </td>
-                                    <td><span class="badge bg-info">Chờ xử lý</span></td>
-                                </tr>
-                                <tr>
-                                    <td>ER3835</td>
-                                    <td>Nguyễn Thị Mỹ Yến</td>
-                                    <td>
-                                        570.000 đ
-                                    </td>
-                                    <td><span class="badge bg-warning">Đang vận chuyển</span></td>
-                                </tr>
-                                <tr>
-                                    <td>MD0837</td>
-                                    <td>Triệu Thanh Phú</td>
-                                    <td>
-                                        400.000 đ
-                                    </td>
-                                    <td><span class="badge bg-success">Đã hoàn thành</span></td>
-                                </tr>
-                                <tr>
-                                    <td>MT9835</td>
-                                    <td>Đặng Hoàng Phúc	</td>
-                                    <td>
-                                        650.000 đ
-                                    </td>
-                                    <td><span class="badge bg-danger">Đã hủy	</span></td>
-                                </tr>
+                                <c:forEach items="${shippingInfo}" var="shippingInfo">
+                                    <tr>
+                                        <td>${shippingInfo.idOrder}</td>
+                                        <td>${shippingInfo.fullName}</td>
+                                        <td>
+                                                ${shippingInfo.price}đ
+                                        </td>
+                                        <c:if test="${shippingInfo.shippingInfo == 1}">
+                                        <td><span class="badge bg-info">Chờ xử lý</span></td>
+                                        </c:if>
+                                        <c:if test="${shippingInfo.shippingInfo == 2}">
+                                            <td><span class="badge bg-warning">Đang vận chuyển</span></td>
+                                        </c:if>
+                                        <c:if test="${shippingInfo.shippingInfo == 3}">
+                                            <td><span class="badge bg-success">Đã giao</span></td>
+                                        </c:if>
+                                        <c:if test="${shippingInfo.shippingInfo == 4}">
+                                            <td><span class="badge bg-danger">Đã hủy</span></td>
+                                        </c:if>
+                                    </tr>
+                                </c:forEach>
+
                                 </tbody>
                             </table>
                         </div>
@@ -148,26 +138,14 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>#183</td>
-                                    <td>Vương Tuấn Khải</td>
-                                    <td><span class="tag tag-success">0921387221</span></td>
-                                </tr>
-                                <tr>
-                                    <td>#219</td>
-                                    <td>Dịch Dương Thiên Tỉ</td>
-                                    <td><span class="tag tag-warning">0912376352</span></td>
-                                </tr>
-                                <tr>
-                                    <td>#627</td>
-                                    <td>Lâm Duẫn Nhi</td>
-                                    <td><span class="tag tag-primary">01287326654</span></td>
-                                </tr>
-                                <tr>
-                                    <td>#175</td>
-                                    <td>Bạch Mộng Nghiên</td>
-                                    <td><span class="tag tag-danger">0912376763</span></td>
-                                </tr>
+                                <c:forEach items="${newCustomer}" var="newCustomer">
+                                    <tr>
+                                        <td>${newCustomer.idUser}</td>
+                                        <td>${newCustomer.fullName}</td>
+                                        <td><span class="tag tag-success">${newCustomer.phone}</span></td>
+                                    </tr>
+                                </c:forEach>
+
                                 </tbody>
                             </table>
                         </div>

@@ -23,5 +23,20 @@ public class MessageProperties {
     public static String getNot_permission() {
         return prop.get("not_permission").toString();
     }
-    public static String getDelete_success() {return prop.get("delete-success").toString();}
+    public static String getEmail_exist() { return prop.get("email_exist").toString();
+    }
+    public static String getLogin() { return prop.get("login").toString();
+    }
+    public static String getMissing_data() { return prop.get("missing_data").toString();
+    }
+
+    public static String getRe_login() { return prop.get("re_login").toString();
+    }
+
+    public static String getNot_found_email() { return prop.get("not_found_email").toString();
+    }
+
+    public static String getMissing_mail() { return prop.get("missing_mail").toString();
+    }
+
 }

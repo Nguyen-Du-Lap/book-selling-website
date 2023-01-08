@@ -5,6 +5,7 @@ import vn.edu.hcmuaf.fit.dao.IBookManagementDAO;
 import vn.edu.hcmuaf.fit.db.JDBCConnector;
 import vn.edu.hcmuaf.fit.model.BookModel;
 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -111,6 +112,7 @@ public class BookDAO implements IBookDAO {
 
         PreparedStatement statement = null;
         ResultSet resultSet = null;
+
         if(connection != null) {
             try {
                 statement = connection.prepareStatement(sql.toString());

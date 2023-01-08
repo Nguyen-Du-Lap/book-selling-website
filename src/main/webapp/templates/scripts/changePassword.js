@@ -3,10 +3,10 @@ const password = document.getElementById('acc_oldPass');
 const password2 = document.getElementById('acc_newPass');
 const password3 = document.getElementById('acc_confirmPass');
 
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    checkInputs();
-});
+//form.addEventListener('submit', (e) => {
+//    e.preventDefault();
+//    checkInputs();
+//});
 
 function checkInputs() {
     const passwordValue = password.value.trim();
