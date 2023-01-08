@@ -6,6 +6,7 @@
   Time: 10:49 PM
   To change this template use File | Settings | File Templates.
 --%>
+<%@ include file="/common/taglib.jsp" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,7 +56,12 @@
           <h2>
             Thay đổi mật khẩu
           </h2>
-          <form id="form">
+          <c:if test="${not empty message}">
+            <div class="alert alert-${alert}" role="alert">
+                ${message}
+            </div>
+          </c:if>
+          <form id="form" action="/changePassword" method="post">
             <div class="input">
               <label for="acc_oldPass">
                 <span class="req">*</span>Mật khẩu cũ:
@@ -99,7 +105,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
         crossorigin="anonymous"></script>
-<script src="/templates/scripts/changePassword.js"></script>
+<script src="/templates/scripts/changePassword1.js"></script>
 <script src="/templates/scripts/header.js"></script>
 </body>
 </html>

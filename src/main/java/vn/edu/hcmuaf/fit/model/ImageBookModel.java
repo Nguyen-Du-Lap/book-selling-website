@@ -1,20 +1,24 @@
 package vn.edu.hcmuaf.fit.model;
 
 public class ImageBookModel  extends AbstractModel<ImageBookModel>  {
-    private String idBook;
+    private int idBook;
     private String image;
-    private String idImage;
-    public ImageBookModel(String idBook, String image, String idImage) {
+    private int idImage;
+
+    public ImageBookModel() {
+    }
+
+    public ImageBookModel(int idBook, String image, int idImage) {
         this.idBook = idBook;
         this.image = image;
         this.idImage = idImage;
     }
 
-    public String getIdBook() {
+    public int getIdBook() {
         return idBook;
     }
 
-    public void setIdBook(String idBook) {
+    public void setIdBook(int idBook) {
         this.idBook = idBook;
     }
 
@@ -26,11 +30,20 @@ public class ImageBookModel  extends AbstractModel<ImageBookModel>  {
         this.image = image;
     }
 
-    public String getIdImage() {
+    public int getIdImage() {
         return idImage;
     }
 
-    public void setIdImage(String idImage) {
+    public void setIdImage(int idImage) {
         this.idImage = idImage;
+    }
+
+    @Override
+    public String toString() {
+        return "ImageBookModel{" +
+                "idBook=" + idBook +
+                ", image=" + image +
+                ", idImage=" + idImage +
+                '}';
     }
 }

@@ -1,20 +1,55 @@
 package vn.edu.hcmuaf.fit.model;
 
 public class BookDetails  extends AbstractModel<BookDetails> {
-    private String idBook;
+    private int id;
+    private String name;
+    private String nameAuthor;
     private int year;
-    private double weight;
+    private int weight;
+    private String isbn;
     private String size;
     private int page;
     private String language;
     private String description;
 
-    public String getIdBook() {
-        return idBook;
+    public BookDetails() {
     }
 
-    public void setIdBook(String idBook) {
-        this.idBook = idBook;
+    public BookDetails(int id, String name, String nameAuthor, int year, int weight, String isbn, String size, int page, String language, String description) {
+        this.id = id;
+        this.name = name;
+        this.nameAuthor = nameAuthor;
+        this.year = year;
+        this.weight = weight;
+        this.isbn = isbn;
+        this.size = size;
+        this.page = page;
+        this.language = language;
+        this.description = description;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getNameAuthor() {
+        return nameAuthor;
+    }
+
+    public void setNameAuthor(String nameAuthor) {
+        this.nameAuthor = nameAuthor;
     }
 
     public int getYear() {
@@ -25,12 +60,20 @@ public class BookDetails  extends AbstractModel<BookDetails> {
         this.year = year;
     }
 
-    public double getWeight() {
+    public int getWeight() {
         return weight;
     }
 
-    public void setWeight(double weight) {
+    public void setWeight(int weight) {
         this.weight = weight;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 
     public String getSize() {
@@ -67,10 +110,13 @@ public class BookDetails  extends AbstractModel<BookDetails> {
 
     @Override
     public String toString() {
-        return "BookDetailsDAO{" +
-                "idBook='" + idBook + '\'' +
+        return "BookDetails{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", nameAuthor='" + nameAuthor + '\'' +
                 ", year=" + year +
                 ", weight=" + weight +
+                ", isbn='" + isbn + '\'' +
                 ", size='" + size + '\'' +
                 ", page=" + page +
                 ", language='" + language + '\'' +
