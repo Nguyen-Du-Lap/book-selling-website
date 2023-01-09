@@ -276,63 +276,63 @@
                     </div>
                     <p class="sonhanxet text-muted">(${bookModel.quantityComment} nhận xét)</p>
                   </div>
-                  <div class="comment">
-                    <div class="tiledanhgia text-center">
-                      <div class="motthanh d-flex align-items-center">5 <i class="fa fa-star"></i>
-                        <div class="progress mx-2">
-                          <div class="progress-bar" role="progressbar" aria-valuenow="0"
-                               aria-valuemin="0" aria-valuemax="100"></div>
-                        </div> 0%
-                      </div>
-                      <div class="motthanh d-flex align-items-center">4 <i class="fa fa-star"></i>
-                        <div class="progress mx-2">
-                          <div class="progress-bar" role="progressbar" aria-valuenow="0"
-                               aria-valuemin="0" aria-valuemax="100"></div>
-                        </div> 0%
-                      </div>
-                      <div class="motthanh d-flex align-items-center">3 <i class="fa fa-star"></i>
-                        <div class="progress mx-2">
-                          <div class="progress-bar" role="progressbar" aria-valuenow="0"
-                               aria-valuemin="0" aria-valuemax="100"></div>
-                        </div> 0%
-                      </div>
-                      <div class="motthanh d-flex align-items-center">2 <i class="fa fa-star"></i>
-                        <div class="progress mx-2">
-                          <div class="progress-bar" role="progressbar" aria-valuenow="0"
-                               aria-valuemin="0" aria-valuemax="100"></div>
-                        </div> 0%
-                      </div>
-                      <div class="motthanh d-flex align-items-center">1 <i class="fa fa-star"></i>
-                        <div class="progress mx-2">
-                          <div class="progress-bar" role="progressbar" aria-valuenow="0"
-                               aria-valuemin="0" aria-valuemax="100"></div>
-                        </div> 0%
-                      </div>
-                      <div class="btn vietdanhgia mt-3">Viết đánh giá của bạn</div>
+                </div>
+                <div class="content_danhgia">
+                  <c:forEach var="rateDG" items="${rates}">
+                    <div style="font-weight: 600">${rateDG.nameUser}</div>
+                    <div class="product-content-right-product-rate">
+                      <c:if test="${rateDG.startRate == 5}">
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                      </c:if>
+                      <c:if test="${rateDG.startRate == 4}">
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star"></i>
+                      </c:if>
+
+                      <c:if test="${rateDG.startRate == 3}">
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                      </c:if>
+
+                      <c:if test="${rateDG.startRate == 2}">
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                      </c:if>
+
+                      <c:if test="${rateDG.startRate == 1}">
+                        <i class="fa fa-star active"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                      </c:if>
+                      <c:if test="${rateDG.startRate == 0}">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                      </c:if>
                     </div>
-                    <!-- nội dung của form đánh giá  -->
-                    <div class="formdanhgia">
-                      <h6 class="tieude text-uppercase">GỬI ĐÁNH GIÁ CỦA BẠN</h6>
-                      <span class="danhgiacuaban">Đánh giá của bạn về sản phẩm này:</span>
-                      <div class="rating d-flex flex-row-reverse align-items-center justify-content-end">
-                        <input type="radio" name="star" id="star1"><label for="star1"></label>
-                        <input type="radio" name="star" id="star2"><label for="star2"></label>
-                        <input type="radio" name="star" id="star3"><label for="star3"></label>
-                        <input type="radio" name="star" id="star4"><label for="star4"></label>
-                        <input type="radio" name="star" id="star5"><label for="star5"></label>
-                      </div>
-                      <div class="form-group">
-                        <input type="text" class="txtFullname w-100" placeholder="Mời bạn nhập tên(Bắt buộc)">
-                      </div>
-                      <div class="form-group">
-                        <input type="text" class="txtEmail w-100" placeholder="Mời bạn nhập email(Bắt buộc)">
-                      </div>
-                      <div class="form-group">
-                        <input type="text" class="txtComment w-100" placeholder="Đánh giá của bạn về sản phẩm này">
-                      </div>
-                      <div class="btn nutguibl"><p>Gửi bình luận</p></div>
-                    </div>
-                  </div>
+                    <span style="margin-bottom: 8px">${rateDG.rate_time}</span>
+                    <br/>
+                    <span style="margin-bottom: 24px">${rateDG.comment}</span>
+                    <hr/>
+                  </c:forEach>
+
                 </div>
               </div>
             </div>

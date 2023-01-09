@@ -55,7 +55,7 @@
             </li>
 
             <c:forEach var="catalog" items="<%=listCatalog%>">
-                <li class="type_products-item"><a href="/products?catalog=<c:out value ="${catalog.idCatalog}"/>">
+                <li class="type_products-item"><a href="/products/catalogs?id=<c:out value ="${catalog.idCatalog}"/>">
                     <span><c:out value="${catalog.name}"/></span>
                 </a></li>
             </c:forEach>
@@ -65,9 +65,9 @@
                             <div>Công Ty Phát Hành</div><i class="fa-solid fa-chevron-right"></i>
                         </span>
                 </a>
-                <ul class="type_companys-child">
+                <ul class="type_companys-child" style="font-size: 10px">
                     <c:forEach var="publisherCompany" items="<%=listPublisherCompany%>">
-                        <li><a href="/products?publisherCompany=<c:out value ="${publisherCompany.idPc}"/>">
+                        <li><a href="/products/publisherCompany?id=<c:out value ="${publisherCompany.idPc}"/>">
                             <p><c:out value="${publisherCompany.name}"/></p>
                         </a></li>
                     </c:forEach>
@@ -133,7 +133,9 @@
                         <div class="col-md-12">
                             <div class="card h-60">
                                 <a href="/products/product-detail?id=${bookPayTop.idBook}">
-                                    <span class="card_sale active_sale">-${bookPayTop.discount}%</span>
+                                    <c:if test="${bookPayTop.discount != 0}">
+                                        <span class="card_sale active_sale">-${bookPayTop.discount}%</span>
+                                    </c:if>
                                     <img src="${bookPayTop.image}"
                                          class="card-img-top" alt="...">
                                     <div class="card-body">
@@ -223,7 +225,9 @@
                         <div class="col-md-12">
                             <div class="card h-60">
                                 <a href="/products/product-detail?id=${bookNew.idBook}">
-                                    <span class="card_sale active_sale">-${bookNew.discount}%</span>
+                                    <c:if test="${bookNew.discount != 0}">
+                                        <span class="card_sale active_sale">-${bookNew.discount}%</span>
+                                    </c:if>
                                     <img src="${bookNew.image}"
                                          class="card-img-top" alt="...">
                                     <div class="card-body">
@@ -312,7 +316,10 @@
                         <div class="col-md-12">
                             <div class="card h-60">
                                 <a href="/products/product-detail?id=${bookSap.idBook}">
-                                    <span class="card_sale active_sale">-${bookSap.discount}%</span>
+                                    <c:if test="${bookSap.discount != 0}">
+                                        <span class="card_sale active_sale">-${bookSap.discount}%</span>
+                                    </c:if>
+
                                     <img src="${bookSap.image}"
                                          class="card-img-top" alt="...">
                                     <div class="card-body">

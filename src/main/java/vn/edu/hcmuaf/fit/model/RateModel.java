@@ -3,34 +3,48 @@ package vn.edu.hcmuaf.fit.model;
 import java.sql.Timestamp;
 
 public class RateModel  extends AbstractModel<RateModel>  {
-    private String idUser;
-    private String idBook;
-    private String idOrder;
+    private int idUser;
+    private int idBook;
+    private int idOrder;
+    private String nameUser;
     private int startRate;
     private String comment;
     private Timestamp rate_time;
 
-    public String getIdUser() {
+    public RateModel() {
+    }
+
+    public RateModel(int idUser, int idBook, int idOrder, int startRate, String comment, Timestamp rate_time, String nameUser) {
+        this.idUser = idUser;
+        this.idBook = idBook;
+        this.idOrder = idOrder;
+        this.startRate = startRate;
+        this.comment = comment;
+        this.rate_time = rate_time;
+        this.nameUser = nameUser;
+    }
+
+    public int getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(String idUser) {
+    public void setIdUser(int idUser) {
         this.idUser = idUser;
     }
 
-    public String getIdBook() {
+    public int getIdBook() {
         return idBook;
     }
 
-    public void setIdBook(String idBook) {
+    public void setIdBook(int idBook) {
         this.idBook = idBook;
     }
 
-    public String getIdOrder() {
+    public int getIdOrder() {
         return idOrder;
     }
 
-    public void setIdOrder(String idOrder) {
+    public void setIdOrder(int idOrder) {
         this.idOrder = idOrder;
     }
 
@@ -40,6 +54,14 @@ public class RateModel  extends AbstractModel<RateModel>  {
 
     public void setStartRate(int startRate) {
         this.startRate = startRate;
+    }
+
+    public String getNameUser() {
+        return nameUser;
+    }
+
+    public void setNameUser(String nameUser) {
+        this.nameUser = nameUser;
     }
 
     public String getComment() {
@@ -56,17 +78,5 @@ public class RateModel  extends AbstractModel<RateModel>  {
 
     public void setRate_time(Timestamp rate_time) {
         this.rate_time = rate_time;
-    }
-
-    @Override
-    public String toString() {
-        return "RateModel{" +
-                "idUser='" + idUser + '\'' +
-                ", idBook='" + idBook + '\'' +
-                ", idOrder='" + idOrder + '\'' +
-                ", startRate=" + startRate +
-                ", comment='" + comment + '\'' +
-                ", rate_time=" + rate_time +
-                '}';
     }
 }

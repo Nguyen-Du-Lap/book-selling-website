@@ -35,10 +35,10 @@
           Tài khoản</h2>
         <div class="list_ctrl">
           <ul>
-            <li class="first">
+            <li class="first active">
               <a id="account" title="Thông tin tài khoản" href="/account?action=account">Thông tin tài
                 khoản</a></li>
-            <li class="first active">
+            <li class="first">
               <a id="changePassword" title="Đổi mật khẩu" href="/account?action=changePassword">Đổi
                 mật khẩu</a></li>
             <li class="first">
