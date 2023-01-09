@@ -3,6 +3,7 @@ package vn.edu.hcmuaf.fit.dao.impl;
 import vn.edu.hcmuaf.fit.dao.IBillDAO;
 import vn.edu.hcmuaf.fit.db.JDBCConnector;
 import vn.edu.hcmuaf.fit.model.AuthorModel;
+import vn.edu.hcmuaf.fit.model.Bill;
 import vn.edu.hcmuaf.fit.model.ShippingInfoModel;
 
 import java.sql.Connection;
@@ -69,6 +70,302 @@ public class BillDAO implements IBillDAO {
                 }
 
                 return results;
+            } catch (SQLException e) {
+                return null;
+            } finally {
+                try {
+                    if(connection != null) connection.close();
+                    if(statement != null) statement.close();
+                    if(resultSet != null) resultSet.close();
+                } catch (SQLException e) {
+                    return null;
+                }
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public List<Bill> findBillDeliverByIdOrder(int id) {
+        List<Bill> results = new ArrayList<>();
+        String sql = "SELECT bill.id_order, book.name, bill.totalQuantity, bill.total, bill.id_user, book.id_book \n" +
+                "FROM bill JOIN bill_details ON bill.id_order = bill_details.id_order\n" +
+                "JOIN book ON bill_details.id_book = book.id_book\n" +
+                "WHERE bill.shipping_info = 1 AND bill.id_user = ?";
+        Connection connection = JDBCConnector.getConnection();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        if(connection != null) {
+            try {
+                statement = connection.prepareStatement(sql);
+                statement.setInt(1, id);
+                resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                   Bill bill = new Bill();
+                   bill.setIdOrder(resultSet.getInt(1));
+                   bill.setName(resultSet.getString(2));
+                   bill.setQuantity(resultSet.getInt(3));
+                   bill.setTotalPrice(resultSet.getDouble(4));
+                   bill.setIdUser(resultSet.getInt(5));
+                   bill.setImage(findImageById(resultSet.getInt(6)));
+                   results.add(bill);
+                }
+
+                return results;
+            } catch (SQLException e) {
+                return null;
+            } finally {
+                try {
+                    if(connection != null) connection.close();
+                    if(statement != null) statement.close();
+                    if(resultSet != null) resultSet.close();
+                } catch (SQLException e) {
+                    return null;
+                }
+            }
+        }
+        return null;
+    }
+
+    public List<Bill> findBillWarByIdOrder(int id) {
+        List<Bill> results = new ArrayList<>();
+        String sql = "SELECT bill.id_order, book.name, bill.totalQuantity, bill.total, bill.id_user, book.id_book \n" +
+                "FROM bill JOIN bill_details ON bill.id_order = bill_details.id_order\n" +
+                "JOIN book ON bill_details.id_book = book.id_book\n" +
+                "WHERE bill.shipping_info = 1 AND bill.id_user = ?";
+        Connection connection = JDBCConnector.getConnection();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        if(connection != null) {
+            try {
+                statement = connection.prepareStatement(sql);
+                statement.setInt(1, id);
+                resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    Bill bill = new Bill();
+                    bill.setIdOrder(resultSet.getInt(1));
+                    bill.setName(resultSet.getString(2));
+                    bill.setQuantity(resultSet.getInt(3));
+                    bill.setTotalPrice(resultSet.getDouble(4));
+                    bill.setIdUser(resultSet.getInt(5));
+                    bill.setImage(findImageById(resultSet.getInt(6)));
+                    results.add(bill);
+                }
+
+                return results;
+            } catch (SQLException e) {
+                return null;
+            } finally {
+                try {
+                    if(connection != null) connection.close();
+                    if(statement != null) statement.close();
+                    if(resultSet != null) resultSet.close();
+                } catch (SQLException e) {
+                    return null;
+                }
+            }
+        }
+        return null;
+    }
+
+    public List<Bill> findBillDelivByIdOrder(int id) {
+        List<Bill> results = new ArrayList<>();
+        String sql = "SELECT bill.id_order, book.name, bill.totalQuantity, bill.total, bill.id_user, book.id_book \n" +
+                "FROM bill JOIN bill_details ON bill.id_order = bill_details.id_order\n" +
+                "JOIN book ON bill_details.id_book = book.id_book\n" +
+                "WHERE bill.shipping_info = 2 AND bill.id_user = ?";
+        Connection connection = JDBCConnector.getConnection();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        if(connection != null) {
+            try {
+                statement = connection.prepareStatement(sql);
+                statement.setInt(1, id);
+                resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    Bill bill = new Bill();
+                    bill.setIdOrder(resultSet.getInt(1));
+                    bill.setName(resultSet.getString(2));
+                    bill.setQuantity(resultSet.getInt(3));
+                    bill.setTotalPrice(resultSet.getDouble(4));
+                    bill.setIdUser(resultSet.getInt(5));
+                    bill.setImage(findImageById(resultSet.getInt(6)));
+                    results.add(bill);
+                }
+
+                return results;
+            } catch (SQLException e) {
+                return null;
+            } finally {
+                try {
+                    if(connection != null) connection.close();
+                    if(statement != null) statement.close();
+                    if(resultSet != null) resultSet.close();
+                } catch (SQLException e) {
+                    return null;
+                }
+            }
+        }
+        return null;
+    }
+
+    public List<Bill> findBillByIdOrder(int id) {
+        List<Bill> results = new ArrayList<>();
+        String sql = "SELECT bill.id_order, book.name, bill.totalQuantity, bill.total, bill.id_user, book.id_book \n" +
+                "FROM bill JOIN bill_details ON bill.id_order = bill_details.id_order\n" +
+                "JOIN book ON bill_details.id_book = book.id_book\n" +
+                "WHERE bill.shipping_info = 3 AND bill.id_user = ?";
+        Connection connection = JDBCConnector.getConnection();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        if(connection != null) {
+            try {
+                statement = connection.prepareStatement(sql);
+                statement.setInt(1, id);
+                resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    Bill bill = new Bill();
+                    bill.setIdOrder(resultSet.getInt(1));
+                    bill.setName(resultSet.getString(2));
+                    bill.setQuantity(resultSet.getInt(3));
+                    bill.setTotalPrice(resultSet.getDouble(4));
+                    bill.setIdUser(resultSet.getInt(5));
+                    bill.setIdBook(resultSet.getInt(6));
+                    bill.setImage(findImageById(resultSet.getInt(6)));
+                    results.add(bill);
+                }
+
+                return results;
+            } catch (SQLException e) {
+                return null;
+            } finally {
+                try {
+                    if(connection != null) connection.close();
+                    if(statement != null) statement.close();
+                    if(resultSet != null) resultSet.close();
+                } catch (SQLException e) {
+                    return null;
+                }
+            }
+        }
+        return null;
+    }
+
+    public List<Bill> findBillRateByIdOrder(int id) {
+        List<Bill> results = new ArrayList<>();
+        String sql = "SELECT bill.id_order, book.name, bill.totalQuantity, bill.total, bill.id_user, book.id_book\n" +
+                "FROM bill JOIN bill_details ON bill.id_order = bill_details.id_order\n" +
+                "JOIN book ON bill_details.id_book = book.id_book\n" +
+                "WHERE bill.shipping_info = 3 AND bill.id_user = ? AND bill.id_order NOT IN(SELECT id_order FROM rate)";
+        Connection connection = JDBCConnector.getConnection();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        if(connection != null) {
+            try {
+                statement = connection.prepareStatement(sql);
+                statement.setInt(1, id);
+                resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    Bill bill = new Bill();
+                    bill.setIdOrder(resultSet.getInt(1));
+                    bill.setName(resultSet.getString(2));
+                    bill.setQuantity(resultSet.getInt(3));
+                    bill.setTotalPrice(resultSet.getDouble(4));
+                    bill.setIdUser(resultSet.getInt(5));
+                    bill.setIdBook(resultSet.getInt(6));
+                    bill.setImage(findImageById(resultSet.getInt(6)));
+                    results.add(bill);
+                }
+
+                return results;
+            } catch (SQLException e) {
+                return null;
+            } finally {
+                try {
+                    if(connection != null) connection.close();
+                    if(statement != null) statement.close();
+                    if(resultSet != null) resultSet.close();
+                } catch (SQLException e) {
+                    return null;
+                }
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public int rateBook(int idUser, int idBook, int idOrder, int start, String comment) {
+        Connection connection = JDBCConnector.getConnection();
+        String sql = new String("INSERT INTO rate(id_user, id_book, id_order, start_rate, comment) " +
+                "VALUES(?,?,?,?,?)");
+
+        PreparedStatement statement = null;
+        if(connection != null) {
+            try {
+                statement = connection.prepareStatement(sql.toString());
+                statement.setInt(1, idUser);
+                statement.setInt(2, idBook);
+                statement.setInt(3, idOrder);
+                statement.setInt(4, start);
+                statement.setString(5, comment);
+                return statement.executeUpdate();
+            } catch (SQLException e) {
+                return 0;
+            } finally {
+                try {
+                    if(connection != null) connection.close();
+                    if(statement != null) statement.close();
+                } catch (SQLException e) {
+                    return 0;
+                }
+            }
+        }
+        return 0;
+    }
+
+    @Override
+    public int cancelOrder(int idInt) {
+        Connection connection = JDBCConnector.getConnection();
+        String sql = new String("UPDATE bill \n" +
+                "SET shipping_info = 4 \n" +
+                "WHERE id_order = ?");
+
+        PreparedStatement statement = null;
+        if(connection != null) {
+            try {
+                statement = connection.prepareStatement(sql.toString());
+                statement.setInt(1, idInt);
+                return statement.executeUpdate();
+            } catch (SQLException e) {
+                return 0;
+            } finally {
+                try {
+                    if(connection != null) connection.close();
+                    if(statement != null) statement.close();
+                } catch (SQLException e) {
+                    return 0;
+                }
+            }
+        }
+        return 0;
+    }
+
+    public String findImageById(int id) {
+        List<String> images = new ArrayList<>();
+        Connection connection = JDBCConnector.getConnection();
+        String sql = new String("SELECT image FROM image_book WHERE id_book = ?");
+
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        if(connection != null) {
+            try {
+                statement = connection.prepareStatement(sql.toString());
+                statement.setInt(1, id);
+                resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    images.add(resultSet.getString(1));
+                }
+                return images.isEmpty() ? null : images.get(0);
             } catch (SQLException e) {
                 return null;
             } finally {

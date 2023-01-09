@@ -19,6 +19,57 @@
   <link rel="stylesheet" href="<c:url value='/templates/styles/Header.css'/> " />
   <link rel="stylesheet" href="<c:url value='/templates/styles/AccountPage.css'/> " />
   <link rel="stylesheet" href="<c:url value='/templates/styles/Footer.css'/> " />
+
+  <style>
+    .tab {
+      overflow: hidden;
+      border: 1px solid #ccc;
+      background-color: #f1f1f1;
+    }
+
+    /* Style the buttons inside the tab */
+    .tab button {
+      background-color: inherit;
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      transition: 0.3s;
+      font-size: 17px;
+    }
+
+    /* Change background color of buttons on hover */
+    .tab button:hover {
+      background-color: #1a94ff;
+      color: #FFFFFF;
+    }
+
+    /* Create an active/current tablink class */
+    .tab button.active {
+      background-color: #ccc;
+    }
+
+    /* Style the tab content */
+    .tabcontent {
+      display: none;
+      padding: 6px 12px;
+      border: 1px solid #ccc;
+      border-top: none;
+    }
+
+    .btn_blue {
+      background-color: #d74545;
+      padding: 12px 2px;
+      width: 60px;
+      border-radius: 5px;
+      color: #FFFFFF;
+    }
+
+    .btn_blue:hover {
+      opacity: 0.8;
+    }
+  </style>
 </head>
 <body>
 <%@include file="/common/web/header.jsp"%>
@@ -36,10 +87,10 @@
             <li class="first">
               <a id="account" title="Thông tin tài khoản" href="/account?action=account">Thông tin tài
                 khoản</a></li>
-            <li class="first active">
+            <li class="first">
               <a id="changePassword" title="Đổi mật khẩu" href="/account?action=changePassword">Đổi
                 mật khẩu</a></li>
-            <li class="first">
+            <li class="first active">
               <a id="reviewOrders" title="Xem lại đơn hàng" href="/account?action=reviewOrders">Xem
                 lại đơn hàng</a></li>
             <li class="first">
@@ -54,15 +105,162 @@
             <div class="order-box-header-left">
               Thông tin đơn hàng
             </div>
-            <div class="order-box-header-right">
-              <p>
-                0 order(s)</p>
-            </div>
-            <div class="clear">
-            </div>
+<%--            <div class="clear">--%>
+<%--              Các hóa đơn--%>
+<%--            </div>--%>
           </div>
           <div class="paging">
-            &nbsp;
+            <div class="tab">
+              <button class="tablinks" onclick="openCity(event, 'ChoXacNhan')">Chờ xác nhận</button>
+              <button class="tablinks" onclick="openCity(event, 'ChoLayHang')">Chờ lấy hàng</button>
+              <button class="tablinks" onclick="openCity(event, 'DangGiao')">Đang giao</button>
+              <button class="tablinks" onclick="openCity(event, 'DanhGia')">Đánh giá</button>
+              <button class="tablinks" onclick="openCity(event, 'DonHangDaMua')">Đơn hàng đã mua</button>
+            </div>
+
+            <c:if test="${not empty message}">
+              <div class="alert alert-${alert}" role="alert">
+                  ${message}
+              </div>
+            </c:if>
+            <div id="ChoXacNhan" class="tabcontent">
+              <table class="table">
+                <thead>
+                <tr>
+                  <th scope="col">Mã đơn hàng</th>
+                  <th scope="col">Tên sản phẩm</th>
+                  <th scope="col">Ảnh</th>
+                  <th scope="col">Số lượng</th>
+                  <th scope="col">Tổng tiền</th>
+                  <th scope="col">Tình trạng</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="billD" items="${listBillDeliverByIdOrder}">
+                  <tr>
+                    <th scope="1">${billD.idOrder}</th>
+                    <td>${billD.name}</td>
+                    <td><img style="height: 50px" src="${billD.image}"></td>
+                    <td>${billD.quantity}</td>
+                    <td>${billD.totalPrice}</td>
+                    <td><a class="btn_blue" href="/cancelOrder?id=${billD.idOrder}">Hủy đơn</a></td>
+                  </tr>
+                </c:forEach>
+
+
+                </tbody>
+              </table>
+            </div>
+
+            <div id="ChoLayHang" class="tabcontent">
+
+              <table class="table">
+              <thead>
+              <tr>
+                <th scope="col">Mã đơn hàng</th>
+                <th scope="col">Tên sản phẩm</th>
+                <th scope="col">Ảnh</th>
+                <th scope="col">Số lượng</th>
+                <th scope="col">Tổng tiền</th>
+                <th scope="col">Tình trạng</th>
+              </tr>
+              </thead>
+              <tbody>
+              <c:forEach var="billW" items="${listBillWarByIdOrder}">
+                <tr>
+                  <th scope="1">${billW.idOrder}</th>
+                  <td>${billW.name}</td>
+                  <td><img style="height: 50px" src="${billW.image}"></td>
+                  <td>${billW.quantity}</td>
+                  <td>${billW.totalPrice}</td>
+                  <td><a class="btn_blue" href="/cancelOrder?id=${billW.idOrder}">Hủy đơn</a></td>
+                </tr>
+              </c:forEach>
+
+              </tbody>
+            </table>
+            </div>
+
+            <div id="DangGiao" class="tabcontent">
+
+              <table class="table">
+                <thead>
+                <tr>
+                  <th scope="col">Mã đơn hàng</th>
+                  <th scope="col">Tên sản phẩm</th>
+                  <th scope="col">Ảnh</th>
+                  <th scope="col">Số lượng</th>
+                  <th scope="col">Tổng tiền</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="billL" items="${listBillDelivByIdOrder}">
+                  <tr>
+                    <th scope="1">${billL.idOrder}</th>
+                    <td>${billL.name}</td>
+                    <td><img style="height: 50px" src="${billL.image}"></td>
+                    <td>${billL.quantity}</td>
+                    <td>${billL.totalPrice}</td>
+                  </tr>
+                </c:forEach>
+
+                </tbody>
+              </table>
+            </div>
+            <div id="DanhGia" class="tabcontent">
+              <table class="table">
+                <thead>
+                <tr>
+                  <th scope="col">Mã đơn hàng</th>
+                  <th scope="col">Tên sản phẩm</th>
+                  <th scope="col">Ảnh</th>
+                  <th scope="col">Số lượng</th>
+                  <th scope="col">Tổng tiền</th>
+                  <th scope="col">Tình trạng</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="billR" items="${listBillRateByIdOrder}">
+                  <tr>
+                    <th scope="1">${billR.idOrder}</th>
+                    <td>${billR.name}</td>
+                    <td><img style="height: 50px" src="${billR.image}"></td>
+                    <td>${billR.quantity}</td>
+                    <td>${billR.totalPrice}</td>
+                    <td><a class="btn_blue" href="/rate?id=${billR.idOrder}&idBook=${billR.idBook}">Đánh giá</a></td>
+                  </tr>
+                </c:forEach>
+
+                </tbody>
+              </table>
+            </div>
+            <div id="DonHangDaMua" class="tabcontent">
+              <table class="table">
+                <thead>
+                <tr>
+                  <th scope="col">Mã đơn hàng</th>
+                  <th scope="col">Tên sản phẩm</th>
+                  <th scope="col">Ảnh</th>
+                  <th scope="col">Số lượng</th>
+                  <th scope="col">Tổng tiền</th>
+                  <th scope="col">Tình trạng</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="billH" items="${listBillByIdOrder}">
+                  <tr>
+                    <th scope="1">${billH.idOrder}</th>
+                    <td>${billH.name}</td>
+                    <td><img style="height: 50px" src="${billH.image}"></td>
+                    <td>${billH.quantity}</td>
+                    <td>${billH.totalPrice}</td>
+                    <td><a class="btn_blue" href="/products/product-detail?id=${billH.idBook}">Mua lại</a></td>
+                  </tr>
+                </c:forEach>
+
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
@@ -86,5 +284,20 @@
         crossorigin="anonymous"></script>
 <script src="/templates/scripts/.js"></script>
 <script src="/templates/scripts/header.js"></script>
+<script>
+  function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+</script>
 </body>
 </html>

@@ -67,5 +67,15 @@ public class ProductService implements IProductService {
         return iProductDAO.find12BookSearch(key);
     }
 
+    @Override
+    public List<BookModel> find12BookCatalog(int idInt) {
+        return iProductDAO.find12BookCatalog(idInt);
+    }
+
+    @Override
+    public List<BookModel> find12BookPublisher(int idInt) {
+        return iProductDAO.find12BookPublisher(idInt);
+    }
+
 
 }

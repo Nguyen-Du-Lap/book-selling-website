@@ -17,4 +17,8 @@ public interface IProductDAO {
     List<String> findAddImage(int id);
 
     List<BookModel> find12BookSearch(String key);
+
+    List<BookModel> find12BookCatalog(int idInt);
+
+    List<BookModel> find12BookPublisher(int idInt);
 }

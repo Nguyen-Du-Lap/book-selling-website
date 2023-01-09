@@ -108,28 +108,28 @@
                                 List<CatalogModel> listCatalog = catalogDAO.findAll();
                             %>
                                 <c:forEach var="catalog" items="<%=listCatalog%>">
-                                    <li class="type_products-item"><a href="/products?catalog=<c:out value ="${catalog.idCatalog}"/>">
+                                    <li class="type_products-item"><a href="/products/catalogs?id=<c:out value ="${catalog.idCatalog}"/>">
                                         <span><c:out value ="${catalog.name}"/></span></a>
                                     </li>
                                 </c:forEach>
 
                             <li class="type_products-item type_companys">
-                                <a href="">
+                                <a>
                                         <span class="container_type-arrow">
                                             <div>Công Ty Phát Hành</div><i class="fa-solid fa-chevron-right"></i>
                                         </span>
                                 </a>
-                                <ul class="type_companys-child">
+                                <ul class="type_companys-child" style="font-size: 10px">
                                     <%
                                         IPublisherCompany iPublisherCompany = new PublisherCompanyDAO();
                                         List<PublisherCompanyModel> listPublisherCompany = iPublisherCompany.findAll();
                                     %>
                                     <c:forEach var="publisherCompany" items="<%=listPublisherCompany%>">
-                                        <li><a href="/products?publisherCompany=<c:out value ="${publisherCompany.idPc}"/>">
+                                        <li><a href="/products/publisherCompanys?id=<c:out value ="${publisherCompany.idPc}"/>">
                                             <p><c:out value ="${publisherCompany.name}"/></p>
                                         </a></li>
                                     </c:forEach>
-                                    <li><a class="type_company-all" href="/products?publisherCompany=0">
+                                    <li><a class="type_company-all" href="/products?publisherCompanys?id=0">
                                         <p style="font-width: 600;">Tất cả công ty phát hành</p>
                                     </a></li>
                                 </ul>
