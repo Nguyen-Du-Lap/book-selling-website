@@ -1,6 +1,6 @@
 package vn.edu.hcmuaf.fit.model;
 
-public class EmailModel extends AbstractModel<EmailModel> {
+public class                                                                                                                                                                                                                                   EmailModel extends AbstractModel<EmailModel> {
     private String from;
     private String to;
     private String fromPassword;
