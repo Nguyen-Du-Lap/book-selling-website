@@ -8,7 +8,6 @@ import java.util.List;
 public interface ICustomerDAO {
     CustomerModel findByUsernameAndPasswordAndStatus(String email, String password, int status);
 
-    CustomerModel checkAccountExist(String email);
 
     int totalCustomer();
 
@@ -19,4 +18,6 @@ public interface ICustomerDAO {
     CustomerModel findById(int idUser);
 
     int update(int idUser, String firstName, String lastName, String phone, String address);
+
+    CustomerModel findByUsername(String email, int status);
 }

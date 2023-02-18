@@ -59,7 +59,7 @@ CustomerDAO implements ICustomerDAO {
         return null;
     }
 
-    @Override
+
     public CustomerModel checkAccountExist(String email) {
         List<CustomerModel> users = new ArrayList<>();
         String sql = new String("SELECT * FROM customer WHERE email = ?");
@@ -269,6 +269,50 @@ CustomerDAO implements ICustomerDAO {
         } catch (SQLException e) {
             return 0;
         }
+    }
+
+    @Override
+    public CustomerModel findByUsername(String email, int status) {
+        List<CustomerModel> users = new ArrayList<>();
+        Connection connection = JDBCConnector.getConnection();
+        String sql = new String("SELECT * FROM customer WHERE email=? AND  status = ?");
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        if (connection != null) {
+            try {
+                statement = connection.prepareStatement(sql.toString());
+                statement.setString(1, email);
+                statement.setInt(2, status);
+                resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    CustomerModel customerModel = new CustomerModel();
+                    customerModel.setIdUser(resultSet.getInt("id_user"));
+                    customerModel.setFirstName(resultSet.getString("first_name"));
+                    customerModel.setLastName(resultSet.getString("last_name"));
+                    customerModel.setEmail(resultSet.getString("email"));
+                    customerModel.setPassword(resultSet.getString("password"));
+                    customerModel.setAddress(resultSet.getString("address"));
+                    customerModel.setPhone(resultSet.getString("phone"));
+                    customerModel.setRole(resultSet.getString("role"));
+                    customerModel.setStatus(resultSet.getInt("status"));
+                    customerModel.setCreatedTime(resultSet.getTimestamp("created_time"));
+                    users.add(customerModel);
+                }
+
+                return users.isEmpty() ? null : users.get(0);
+            } catch (SQLException e) {
+                return null;
+            } finally {
+                try {
+                    if (connection != null) connection.close();
+                    if (statement != null) statement.close();
+                    if (resultSet != null) resultSet.close();
+                } catch (SQLException e) {
+                    return null;
+                }
+            }
+        }
+        return null;
     }
 }
 

@@ -6,6 +6,7 @@ import vn.edu.hcmuaf.fit.controller.loginGG.common.GooglePojo;
 import vn.edu.hcmuaf.fit.controller.loginGG.common.GoogleUtils;
 import vn.edu.hcmuaf.fit.dao.impl.CustomerDAO;
 import vn.edu.hcmuaf.fit.model.CustomerModel;
+import vn.edu.hcmuaf.fit.utils.SessionUtil;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -27,20 +28,29 @@ public class LoginGoogleServlet extends HttpServlet {
       RequestDispatcher dis = request.getRequestDispatcher("/views/login.jsp");
       dis.forward(request, response);
     } else {
-      String accessToken = GoogleUtils.getToken(code);
-     GooglePojo googlePojo = GoogleUtils.getUserInfo(accessToken);
-      CustomerDAO dao = new CustomerDAO();
-      String email = googlePojo.getEmail();
-      String fName = googlePojo.getFamily_name();
-      String lName = googlePojo.getGiven_name();
-      CustomerModel account = dao.checkAccountExist(email);
-      if(account == null) {
-        dao.signup(email,"",fName,lName,"","");
-              }
+        String accessToken = GoogleUtils.getToken(code);
+        GooglePojo googlePojo = GoogleUtils.getUserInfo(accessToken);
+        CustomerDAO dao = new CustomerDAO();
+        String email = googlePojo.getEmail();
+        String fName = googlePojo.getFamily_name();
+        String lName = googlePojo.getGiven_name();
+        CustomerModel account = dao.checkAccountExist(email);
+        if (account == null) {
+            dao.signup(email, "", fName, lName, "", "");
+        }
+            CustomerModel customer = dao.findByUsername(email, 1);
+            SessionUtil.getInstance().putValue(request, "USERMODEL", customer);
+            if (customer.getRole().equalsIgnoreCase("user")) {
+                response.sendRedirect(request.getContextPath() + "/home");
+//                        req.getRequestDispatcher("/views/web/home.jsp").forward(req, resp);
+            } else if (customer.getRole().equalsIgnoreCase("admin")) {
+                response.sendRedirect(request.getContextPath() + "/admin-root-management-user");
+            } else if (customer.getRole().equalsIgnoreCase("mod")) {
+                response.sendRedirect(request.getContextPath() + "/admin-home");
+            }
+        }
 
-      RequestDispatcher dis = request.getRequestDispatcher("/views/thongTin.jsp");
-      dis.forward(request, response);
-    }
+
   }
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {

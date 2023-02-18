@@ -17,6 +17,11 @@ public class CustomerService implements ICustomerService {
     }
 
     @Override
+    public CustomerModel findByUsername(String email, int status) {
+        return customerDAO.findByUsername(email, status);
+    }
+
+    @Override
     public int totalCustomer() {
         return customerDAO.totalCustomer();
     }
