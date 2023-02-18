@@ -46,7 +46,6 @@
               <a class="btn btn-delete btn-sm nhap-tu-file" type="button" title="Nhập" onclick="myFunction(this)"><i
                       class="fas fa-file-upload"></i> Tải từ file</a>
             </div>
-
             <div class="col-sm-2">
               <a class="btn btn-delete btn-sm print-file" type="button" title="In" onclick="myApp.printTable()"><i
                       class="fas fa-print"></i> In dữ liệu</a>
@@ -73,81 +72,33 @@
             <tr>
               <th width="10"><input type="checkbox" id="all"></th>
               <th>ID đơn hàng</th>
-              <th>Khách hàng</th>
-              <th>Đơn hàng</th>
-              <th>Số lượng</th>
-              <th>Tổng tiền</th>
-              <th>Tình trạng</th>
+              <th>Tên Khách hàng</th>
+              <th>Địa chỉ</th>
+              <th>Số lượng sản phẩm</th>
+              <th>Thành tiền</th>
+              <th>Phương thức thanh toán</th>
+              <th>Tình trạng đơn hàng</th>
               <th>Tính năng</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-              <td width="10"><input type="checkbox" name="check1" value="1"></td>
-              <td>MD0837</td>
-              <td>Triệu Thanh Phú</td>
-              <td>Tôi vẽ - Phương pháp tự học vẽ truyện tranh, Storytelling with data - Kể chuyện thông qua dữ liệu</td>
-              <td>2</td>
-              <td>360.000 đ</td>
-              <td><span class="badge bg-success">Hoàn thành</span></td>
-              <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"><i class="fas fa-trash-alt"></i> </button>
-                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"><i class="fa fa-edit"></i></button></td>
-            </tr>
-            <tr>
-              <td width="10"><input type="checkbox" name="check1" value="1"></td>
-              <td>MĐ8265</td>
-              <td>Nguyễn Thị Ngọc Cẩm</td>
-              <td>25++ Hoạt Động Rèn Luyện Trí Sáng Tạo Và Tư Duy Cho Trẻ (Cuốn Lẻ Và Combo)</td>
-              <td>1</td>
-              <td>80.000 đ</td>
-              <td><span class="badge bg-success">Hoàn thành</span></td>
-              <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"><i class="fas fa-trash-alt"></i> </button>
-                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"><i class="fa fa-edit"></i></button></td>
-            </tr>
-            <tr>
-              <td width="10"><input type="checkbox" name="check1" value="1"></td>
-              <td>MT9835</td>
-              <td>Đặng Hoàng Phúc</td>
-              <td>Án mạng mười một chữ, Ấn ức trắng, 81 án Tây Du - Tây Vực Liệt Vương ký - tập 3</td>
-              <td>3 </td>
-              <td>650.000 đ</td>
-              <td><span class="badge bg-success">Hoàn thành</span></td>
-              <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"><i class="fas fa-trash-alt"></i> </button>
-                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"><i class="fa fa-edit"></i></button></td>
-            </tr>
-            <tr>
-              <td width="10"><input type="checkbox" name="check1" value="1"></td>
-              <td>ER3835</td>
-              <td>Nguyễn Thị Mỹ Yến</td>
-              <td>Khỏi bệnh không cần thuốc</td>
-              <td>1 </td>
-              <td>190.000 đ</td>
-              <td><span class="badge bg-info">Chờ thanh toán</span></td>
-              <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"><i class="fas fa-trash-alt"></i> </button>
-                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"><i class="fa fa-edit"></i></button></td>
-            </tr>
-            <tr>
-              <td width="10"><input type="checkbox" name="check1" value="1"></td>
-              <td>AL3947</td>
-              <td>Phạm Thị Ngọc</td>
-              <td>Infographics - Bách khoa tri thức bằng đồ họa cho trẻ em, Vườn ươm trí tuệ (Bộ 4 cuốn)</td>
-              <td>2 </td>
-              <td>170.000 đ</td>
-              <td><span class="badge bg-warning">Đang giao hàng</span></td>
-              <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"><i class="fas fa-trash-alt"></i> </button>
-                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"><i class="fa fa-edit"></i></button></td>
-            </tr>
-            <tr>
-              <td width="10"><input type="checkbox" name="check1" value="1"></td>
-              <td>QY8723</td>
-              <td>Ngô Thái An</td>
-              <td>Hãy nhắm mắt khi anh đến</td>
-              <td>1 </td>
-              <td>500.000 đ</td>
-              <td><span class="badge bg-danger">Đã hủy</span></td>
-              <td><button class="btn btn-primary btn-sm trash" type="button" title="Xóa"><i class="fas fa-trash-alt"></i> </button>
-                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"><i class="fa fa-edit"></i></button></td>
-            </tr>
+            <c:forEach var="bill" items="${listBill}">
+              <tr>
+                <td width="10"><input type="checkbox" name="check1" value="1"></td>
+                <td><a href="/findDetail?id=${bill.idOrder}">${bill.idOrder}</a></td>
+                <td>${bill.nameUser}</td>
+                <td>${bill.address}</td>
+                <td>${bill.totalProduct}</td>
+                <td>${bill.totalPrice}</td>
+                <td>${bill.paymethod}</td>
+                <td><span class="badge bg-success">${bill.statusBill}</span></td>
+                <td>
+                  <a href="/findBill?id=${bill.idOrder}">
+                    <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"><i class="fa fa-edit"></i></button>
+                  </a>
+                </td>
+              </tr>
+            </c:forEach>
             </tbody>
           </table>
         </div>
@@ -155,6 +106,70 @@
     </div>
   </div>
 </main>
+
+<!--
+  MODAL
+-->
+<div class="modal fade" id="ModalUP" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static"
+     data-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+
+      <div class="modal-body">
+        <div class="row">
+          <div class="form-group  col-md-12">
+          <span class="thong-tin-thanh-toan">
+            <h5>Chỉnh sửa thông tin đơn hàng cơ bản</h5>
+          </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label class="control-label">Mã đơn hàng </label>
+            <input class="form-control" type="number" value="8936071672704">
+          </div>
+          <div class="form-group col-md-6">
+            <label class="control-label">Địa chỉ</label>
+            <input class="form-control" type="text" required value="">
+          </div>
+          <div class="form-group col-md-6 ">
+            <label for="exampleSelect1" class="control-label">Tình trạng đơn hàng</label>
+            <select class="form-control" id="exampleSelect1">
+              <option>Chờ xử lý</option>
+              <option>Đang giao hàng</option>
+              <option>Đã giao</option>
+              <option>Đã hủy</option>
+            </select>
+          </div>
+          <div class="form-group col-md-6">
+            <label class="control-label">Ngày giao</label>
+            <input class="form-control" type="text" value="80.000">
+          </div>
+          <div class="form-group col-md-6">
+            <label class="control-label">Ngày nhận</label>
+            <input class="form-control" type="text" value="80.000">
+          </div>
+
+        </div>
+        <BR>
+        <a href="#" style="    float: right;
+    font-weight: 600;
+    color: #ea0000;">Chỉnh sửa đơn hàng nâng cao</a>
+        <BR>
+        <BR>
+        <button class="btn btn-save" type="button">Lưu lại</button>
+        <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
+        <BR>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+<!--
+MODAL
+-->
+
 <!-- Essential javascripts for application to work-->
 <script src="/templates/admin/doc/js/jquery-3.2.1.min.js"></script>
 <script src="/templates/admin/doc/js/popper.min.js"></script>
@@ -260,22 +275,22 @@
       win.print();
     }
   }
-  //     //Sao chép dữ liệu
-  //     var copyTextareaBtn = document.querySelector('.js-textareacopybtn');
+  //Sao chép dữ liệu
+  var copyTextareaBtn = document.querySelector('.js-textareacopybtn');
 
-  // copyTextareaBtn.addEventListener('click', function(event) {
-  //   var copyTextarea = document.querySelector('.js-copytextarea');
-  //   copyTextarea.focus();
-  //   copyTextarea.select();
+  copyTextareaBtn.addEventListener('click', function(event) {
+    var copyTextarea = document.querySelector('.js-copytextarea');
+    copyTextarea.focus();
+    copyTextarea.select();
 
-  //   try {
-  //     var successful = document.execCommand('copy');
-  //     var msg = successful ? 'successful' : 'unsuccessful';
-  //     console.log('Copying text command was ' + msg);
-  //   } catch (err) {
-  //     console.log('Oops, unable to copy');
-  //   }
-  // });
+    try {
+      var successful = document.execCommand('copy');
+      var msg = successful ? 'successful' : 'unsuccessful';
+      console.log('Copying text command was ' + msg);
+    } catch (err) {
+      console.log('Oops, unable to copy');
+    }
+  });
 
 
   //Modal

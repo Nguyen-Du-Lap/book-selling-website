@@ -18,7 +18,7 @@ public class BookDAO implements IBookDAO {
     public List<BookModel> listBookPayTop() {
         List<BookModel> listBook = new ArrayList<>();
         Connection connection = JDBCConnector.getConnection();
-        String sql = new String("SELECT b.id_book ,b.name, a.name, b.price * b.discount_price + b.price AS giagiam \n" +
+        String sql = new String("SELECT b.id_book ,b.name, a.name, b.price - b.price * b.discount_price AS giagiam \n" +
                 ", b.price, b.discount_price*100 AS giam, IF(v_rate.`start` is null, 0, v_rate.`start`) AS `start`\n" +
                 ", IF(v_comment.sl_comment is null, 0, v_comment.sl_comment) AS sl_comment\n" +
                 "FROM book b LEFT JOIN author a ON b.id_author = a.id_author\n" +
@@ -100,7 +100,7 @@ public class BookDAO implements IBookDAO {
     public List<BookModel> listBookNewReissue() {
         List<BookModel> listBook = new ArrayList<>();
         Connection connection = JDBCConnector.getConnection();
-        String sql = new String("SELECT b.id_book, b.name, a.name, b.price * b.discount_price + b.price AS giagiam \n" +
+        String sql = new String("SELECT b.id_book, b.name, a.name, b.price - b.price * b.discount_price + b.price AS giagiam \n" +
                 ", b.price, b.discount_price*100 AS giam, IF(v_rate.`start` is null, 0, v_rate.`start`) AS `start`\n" +
                 ", IF(v_comment.sl_comment is null, 0, v_comment.sl_comment) AS sl_comment\n" +
                 "FROM book b LEFT JOIN author a ON b.id_author = a.id_author\n" +
@@ -153,7 +153,7 @@ public class BookDAO implements IBookDAO {
     public List<BookModel> listBookReissue() {
         List<BookModel> listBook = new ArrayList<>();
         Connection connection = JDBCConnector.getConnection();
-        String sql = new String("SELECT b.id_book, b.name, a.name, b.price * b.discount_price + b.price AS giagiam \n" +
+        String sql = new String("SELECT b.id_book, b.name, a.name, b.price - b.price * b.discount_price AS giagiam \n" +
                 ", b.price, b.discount_price*100 AS giam, IF(v_rate.`start` is null, 0, v_rate.`start`) AS `start`\n" +
                 ", IF(v_comment.sl_comment is null, 0, v_comment.sl_comment) AS sl_comment\n" +
                 "FROM book b LEFT JOIN author a ON b.id_author = a.id_author\n" +

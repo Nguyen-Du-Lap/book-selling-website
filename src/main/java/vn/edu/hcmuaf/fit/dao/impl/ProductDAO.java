@@ -5,6 +5,7 @@ import vn.edu.hcmuaf.fit.db.JDBCConnector;
 import vn.edu.hcmuaf.fit.model.BookDetails;
 import vn.edu.hcmuaf.fit.model.BookModel;
 import vn.edu.hcmuaf.fit.model.ImageBookModel;
+import vn.edu.hcmuaf.fit.model.Product;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,7 +19,7 @@ public class ProductDAO implements IProductDAO {
     public List<BookModel> findAll() {
         List<BookModel> listBook = new ArrayList<>();
         Connection connection = JDBCConnector.getConnection();
-        String sql = new String("SELECT b.id_book, b.name, a.name, b.price * b.discount_price + b.price AS giagiam \n" +
+        String sql = new String("SELECT b.id_book, b.name, a.name, b.price - b.price * b.discount_price AS giagiam \n" +
                 ", b.price, b.discount_price*100 AS giam, IF(v_rate.`start` is null, 0, v_rate.`start`) AS `start`\n" +
                 ", IF(v_comment.sl_comment is null, 0, v_comment.sl_comment) AS sl_comment\n" +
                 "FROM book b LEFT JOIN author a ON b.id_author = a.id_author\n" +
@@ -68,7 +69,7 @@ public class ProductDAO implements IProductDAO {
     public List<BookModel> find12Book() {
         List<BookModel> listBook = new ArrayList<>();
         Connection connection = JDBCConnector.getConnection();
-        String sql = new String("SELECT b.id_book, b.name, a.name, b.price * b.discount_price + b.price AS giagiam \n" +
+        String sql = new String("SELECT b.id_book, b.name, a.name, b.price - b.price * b.discount_price AS giagiam \n" +
                 ", b.price, b.discount_price*100 AS giam, IF(v_rate.`start` is null, 0, v_rate.`start`) AS `start`\n" +
                 ", IF(v_comment.sl_comment is null, 0, v_comment.sl_comment) AS sl_comment\n" +
                 "FROM book b LEFT JOIN author a ON b.id_author = a.id_author\n" +
@@ -148,7 +149,7 @@ public class ProductDAO implements IProductDAO {
     public List<BookModel> findAllLimitOffset(int limit, int offset) {
         List<BookModel> listBook = new ArrayList<>();
         Connection connection = JDBCConnector.getConnection();
-        String sql = new String("SELECT b.id_book, b.name, a.name, b.price * b.discount_price + b.price AS giagiam \n" +
+        String sql = new String("SELECT b.id_book, b.name, a.name, b.price - b.price * b.discount_price AS giagiam \n" +
                 ", b.price, b.discount_price*100 AS giam, IF(v_rate.`start` is null, 0, v_rate.`start`) AS `start`\n" +
                 ", IF(v_comment.sl_comment is null, 0, v_comment.sl_comment) AS sl_comment\n" +
                 "FROM book b LEFT JOIN author a ON b.id_author = a.id_author\n" +
@@ -200,7 +201,7 @@ public class ProductDAO implements IProductDAO {
     public BookModel findBookDetailById(int id) {
         List<BookModel> listBook = new ArrayList<>();
         Connection connection = JDBCConnector.getConnection();
-        String sql = new String("SELECT b.id_book, b.name, a.name, b.price * b.discount_price + b.price AS giagiam \n" +
+        String sql = new String("SELECT b.id_book, b.name, a.name, b.price - b.price * b.discount_price AS giagiam \n" +
                 ", b.price, b.discount_price*100 AS giam, IF(v_rate.`start` is null, 0, v_rate.`start`) AS `start`\n" +
                 ", IF(v_comment.sl_comment is null, 0, v_comment.sl_comment) AS sl_comment\n" +
                 "FROM book b LEFT JOIN author a ON b.id_author = a.id_author\n" +
@@ -334,7 +335,7 @@ public class ProductDAO implements IProductDAO {
     public List<BookModel> find12BookSearch(String key) {
         List<BookModel> listBook = new ArrayList<>();
         Connection connection = JDBCConnector.getConnection();
-        String sql = new String("SELECT b.id_book, b.name, a.name, b.price * b.discount_price + b.price AS giagiam \n" +
+        String sql = new String("SELECT b.id_book, b.name, a.name, b.price - b.price * b.discount_price AS giagiam \n" +
                 ", b.price, b.discount_price*100 AS giam, IF(v_rate.`start` is null, 0, v_rate.`start`) AS `start`\n" +
                 ", IF(v_comment.sl_comment is null, 0, v_comment.sl_comment) AS sl_comment\n" +
                 "FROM book b LEFT JOIN author a ON b.id_author = a.id_author\n" +
@@ -394,7 +395,7 @@ public class ProductDAO implements IProductDAO {
     public List<BookModel> find12BookCatalog(int idInt) {
         List<BookModel> listBook = new ArrayList<>();
         Connection connection = JDBCConnector.getConnection();
-        String sql = new String("SELECT b.id_book, b.name, a.name, b.price * b.discount_price + b.price AS giagiam \n" +
+        String sql = new String("SELECT b.id_book, b.name, a.name, b.price - b.price * b.discount_price AS giagiam \n" +
                 ", b.price, b.discount_price*100 AS giam, IF(v_rate.`start` is null, 0, v_rate.`start`) AS `start`\n" +
                 ", IF(v_comment.sl_comment is null, 0, v_comment.sl_comment) AS sl_comment\n" +
                 "FROM book b LEFT JOIN author a ON b.id_author = a.id_author\n" +
@@ -446,7 +447,7 @@ public class ProductDAO implements IProductDAO {
     public List<BookModel> find12BookPublisher(int idInt) {
         List<BookModel> listBook = new ArrayList<>();
         Connection connection = JDBCConnector.getConnection();
-        String sql = new String("SELECT b.id_book, b.name, a.name, b.price * b.discount_price + b.price AS giagiam \n" +
+        String sql = new String("SELECT b.id_book, b.name, a.name, b.price - b.price * b.discount_price AS giagiam \n" +
                 ", b.price, b.discount_price*100 AS giam, IF(v_rate.`start` is null, 0, v_rate.`start`) AS `start`\n" +
                 ", IF(v_comment.sl_comment is null, 0, v_comment.sl_comment) AS sl_comment\n" +
                 "FROM book b LEFT JOIN author a ON b.id_author = a.id_author\n" +
@@ -493,4 +494,200 @@ public class ProductDAO implements IProductDAO {
         }
         return null;
     }
+
+    @Override
+    public int totalProduct() {
+        Connection connection = JDBCConnector.getConnection();
+        String sql = new String("SELECT Count(*) FROM book");
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        int result=0;
+        if(connection != null) {
+            try {
+                statement = connection.prepareStatement(sql.toString());
+                resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    result = resultSet.getInt(1);
+                }
+
+                return result;
+            } catch (SQLException e) {
+                return 0;
+            } finally {
+                try {
+                    if(connection != null) connection.close();
+                    if(statement != null) statement.close();
+                    if(resultSet != null) resultSet.close();
+                } catch (SQLException e) {
+                    return 0;
+                }
+            }
+        }
+        return 0;
+    }
+    @Override
+    public int outOfStock() {
+        Connection connection = JDBCConnector.getConnection();
+        String sql = new String("SELECT Count(*) FROM book WHERE quantity < 10");
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        int result=0;
+        if(connection != null) {
+            try {
+                statement = connection.prepareStatement(sql.toString());
+                resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    result = resultSet.getInt(1);
+                }
+
+                return result;
+            } catch (SQLException e) {
+                return 0;
+            } finally {
+                try {
+                    if(connection != null) connection.close();
+                    if(statement != null) statement.close();
+                    if(resultSet != null) resultSet.close();
+                } catch (SQLException e) {
+                    return 0;
+                }
+            }
+        }
+        return 0;
+    }
+
+    //Giỏ hàng
+    public String find1ImageById(int id) {
+        String image = "";
+        Connection connection = JDBCConnector.getConnection();
+        String sql = new String("SELECT image FROM image_book \n" +
+                "WHERE id_book = ?\n" +
+                "LIMIT 1;");
+
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        if(connection != null) {
+            try {
+                statement = connection.prepareStatement(sql.toString());
+                statement.setInt(1, id);
+                resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    image = resultSet.getString(1);
+                }
+
+                return image;
+            } catch (SQLException e) {
+                return null;
+            } finally {
+                try {
+                    if(connection != null) connection.close();
+                    if(statement != null) statement.close();
+                    if(resultSet != null) resultSet.close();
+                } catch (SQLException e) {
+                    return null;
+                }
+            }
+        }
+        return null;
+    }
+    @Override
+    public Product getProductById(int parseInt) {
+        Product product = new Product();
+        Connection connection = JDBCConnector.getConnection();
+        String sql = new String("SELECT b.id_book, b.name, b.price - b.price * b.discount_price  AS giagiam,\n" +
+                "b.price, b.quantity \n" +
+                "FROM book b\n" +
+                "WHERE b.id_book = ? AND b.isActive = 1;");
+
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        if(connection != null) {
+            try {
+                statement = connection.prepareStatement(sql.toString());
+                statement.setInt(1, parseInt);
+                resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    product = new Product();
+                    product.setIdBook(resultSet.getInt(1));
+                    product.setImage(find1ImageById(parseInt));
+                    product.setName(resultSet.getString(2));
+                    product.setPriceDiscount(resultSet.getDouble(3));
+                    product.setPrice(resultSet.getDouble(4));
+                    product.setQuantity(resultSet.getInt(5));
+                }
+
+                return product;
+            } catch (SQLException e) {
+                return null;
+            } finally {
+                try {
+                    if(connection != null) connection.close();
+                    if(statement != null) statement.close();
+                    if(resultSet != null) resultSet.close();
+                } catch (SQLException e) {
+                    return null;
+                }
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public int getRemainQuantity(int idBook) {
+        Connection connection = JDBCConnector.getConnection();
+        String sql = new String("SELECT quantity FROM book WHERE id_book = ?");
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        int result=0;
+        if(connection != null) {
+            try {
+                statement = connection.prepareStatement(sql.toString());
+                statement.setInt(1, idBook);
+                resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    result = resultSet.getInt(1);
+                }
+
+                return result;
+            } catch (SQLException e) {
+                return 0;
+            } finally {
+                try {
+                    if(connection != null) connection.close();
+                    if(statement != null) statement.close();
+                    if(resultSet != null) resultSet.close();
+                } catch (SQLException e) {
+                    return 0;
+                }
+            }
+        }
+        return 0;
+    }
+
+    @Override
+    public void updateQuantity(int idBook, int i) {
+        Connection connection = JDBCConnector.getConnection();
+        String sql = new String("UPDATE book SET quantity = ? WHERE id_book = ?");
+        PreparedStatement statement = null;
+
+        if(connection != null) {
+            try {
+                statement = connection.prepareStatement(sql.toString());
+                statement.setInt(1, i);
+                statement.setInt(2, idBook);
+                statement.executeUpdate();
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if(connection != null) connection.close();
+                    if(statement != null) statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
 }

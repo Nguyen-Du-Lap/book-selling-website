@@ -89,14 +89,14 @@
                     <c:if test="${slide.idPr == 1}">
                         <div class="carousel-item active">
                             <a href="${slide.link}">
-                                <img src="${slide.img}" class="d-block w-100" alt="img slide2">
+                                <img src="${slide.img}" class="d-block w-100" alt="${slide.namePr}">
                             </a>
                         </div>
                     </c:if>
                     <c:if test="${slide.idPr != 1}">
                         <div class="carousel-item">
                             <a href="${slide.link}">
-                                <img src="${slide.img}" class="d-block w-100" alt="img slide2">
+                                <img src="${slide.img}" class="d-block w-100" alt="${slide.namePr}">
                             </a>
                         </div>
                     </c:if>
@@ -124,7 +124,7 @@
                 Sách bán chạy
                 <span class="category_arrow"></span>
             </a>
-            <a class="category_right" href="">Xem tất cả</a>
+            <a class="category_right" href="/product?type=allBookTop">Xem tất cả</a>
         </div>
         <div class="category_carousel" style="height: 402px">
             <div class="container">
@@ -143,9 +143,12 @@
                                         <small class="tacgia text-muted" style="font-weight: bold">${bookPayTop.nameAuthor}</small>
                                         <p class="card-text">
                                         <div class="container_price">
-                                            <p class="card-text_price">${bookPayTop.priceDiscount}đ</p>
-                                            <p style="text-decoration: line-through;" class="card-text_price--sale">${bookPayTop.price}đ
-                                            </p>
+                                            <p class="card-text_price">${bookPayTop.price}đ</p>
+                                            <c:if test="${bookPayTop.discount != 0}">
+                                                <p style="text-decoration: line-through;" class="card-text_price--sale">${bookPayTop.priceDiscount}đ
+                                                </p>
+                                            </c:if>
+
                                         </div>
                                         </p>
                                         <div class="danhgia">
@@ -216,7 +219,7 @@
                 Sách mới phát hành
                 <span class="category_arrow"></span>
             </a>
-            <a class="category_right" href="">Xem tất cả</a>
+            <a class="category_right" href="/product?type=allBookNew">Xem tất cả</a>
         </div>
         <div class="category_carousel" style="height: 402px">
             <div class="container">
@@ -235,9 +238,11 @@
                                         <small class="tacgia text-muted" style="font-weight: bold">${bookNew.nameAuthor}</small>
                                         <p class="card-text">
                                         <div class="container_price">
-                                            <p class="card-text_price">${bookNew.priceDiscount}đ</p>
-                                            <p style="text-decoration: line-through;" class="card-text_price--sale">${bookNew.price}đ
-                                            </p>
+                                            <p class="card-text_price">${bookNew.price}đ</p>
+                                            <c:if test="${bookNew.discount != 0}">
+                                                <p style="text-decoration: line-through;" class="card-text_price--sale">${bookNew.priceDiscount}đ
+                                                </p>
+                                            </c:if>
                                         </div>
                                         </p>
                                         <div class="danhgia">
@@ -307,7 +312,7 @@
                 Sách sắp phát hành
                 <span class="category_arrow"></span>
             </a>
-            <a class="category_right" href="">Xem tất cả</a>
+            <a class="category_right" href="/product?type=allUpcoming">Xem tất cả</a>
         </div>
         <div class="category_carousel" style="height: 402px">
             <div class="container">
@@ -327,9 +332,11 @@
                                         <small class="tacgia text-muted" style="font-weight: bold">${bookSap.nameAuthor}</small>
                                         <p class="card-text">
                                         <div class="container_price">
-                                            <p class="card-text_price">${bookSap.priceDiscount}đ</p>
-                                            <p style="text-decoration: line-through;" class="card-text_price--sale">${bookSap.price}đ
-                                            </p>
+                                            <p class="card-text_price">${bookSap.price}đ</p>
+                                            <c:if test="${bookSap.discount != 0}">
+                                                <p style="text-decoration: line-through;" class="card-text_price--sale">${bookSap.priceDiscount}đ
+                                                </p>
+                                            </c:if>
                                         </div>
                                         </p>
                                         <div class="danhgia">

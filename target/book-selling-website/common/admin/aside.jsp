@@ -60,11 +60,11 @@
 
     <c:if test="${title.equals('Danh Sách Slider')}">
       <li><a class="app-menu__item active" href="<c:url value="/admin-table-slider" />"><i class='app-menu__icon bx bx-task'></i><span
-              class="app-menu__label">Quản lý đơn hàng</span></a></li>
+              class="app-menu__label">Quản lý slider</span></a></li>
     </c:if>
     <c:if test="${!title.equals('Danh Sách Slider')}">
       <li><a class="app-menu__item" href="<c:url value="/admin-table-slider" />"><i class='app-menu__icon bx bx-task'></i><span
-              class="app-menu__label">Quản lý đơn hàng</span></a></li>
+              class="app-menu__label">Quản lý slider</span></a></li>
     </c:if>
 
     <c:if test="${title.equals('Danh sách đánh giá, bình luận')}">
