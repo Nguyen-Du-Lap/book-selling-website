@@ -77,5 +77,17 @@ public class ProductService implements IProductService {
         return iProductDAO.find12BookPublisher(idInt);
     }
 
+    @Override
+    public int totalProduct() {
+        return iProductDAO.totalProduct();
+    }
+
+    @Override
+    public int outOfStock() {
+        return iProductDAO.outOfStock();
+    }
+
+
+    //Giỏ hàng
 
 }

@@ -1,11 +1,12 @@
 package vn.edu.hcmuaf.fit.utils;
 
+import jakarta.mail.*;
 import vn.edu.hcmuaf.fit.model.EmailModel;
 
-import javax.mail.*;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+
+
+import jakarta.mail.internet.InternetAddress;
+import jakarta.mail.internet.MimeMessage;
 import java.util.Properties;
 
 public class EmailUtil {

@@ -35,7 +35,7 @@ public class ForgotPasswordController extends HttpServlet {
                 } else {
                     EmailModel email = new EmailModel();
                     email.setFrom("anminh868@gmail.com");
-                    email.setFromPassword("password");
+                    email.setFromPassword("cqtdqfwzmalyrwrk");
                     email.setTo(emailAddress);
                     email.setSubject("Forgot Password Function");
                     StringBuilder sb = new StringBuilder();

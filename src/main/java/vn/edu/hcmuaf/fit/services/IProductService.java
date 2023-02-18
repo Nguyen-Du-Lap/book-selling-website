@@ -25,4 +25,8 @@ public interface IProductService {
     List<BookModel> find12BookCatalog(int idInt);
 
     List<BookModel> find12BookPublisher(int idInt);
+
+    int totalProduct();
+    int outOfStock();
+
 }

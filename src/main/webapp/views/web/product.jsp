@@ -97,7 +97,13 @@
     <div class="container">
         <ul class="breadcrumb">
             <li class="breadcrumb-item"><a class="chang_font" href="/home">Trang chủ</a></li>
-            <li class="breadcrumb-item active"><a href="vanhocnuocngoai.html">Văn học nước ngoài</a></li>
+            <c:if test="${not empty title}">
+                <li class="breadcrumb-item active"><a>${title}</a></li>
+            </c:if>
+            <c:if test="${title == null}">
+                <li class="breadcrumb-item active"><a>Sản phẩm</a></li>
+            </c:if>
+
         </ul>
     </div>
 </nav>
@@ -148,7 +154,13 @@
                     <!--Header cua khoi san phan-->
                     <div class="header_khoi_sp">
                         <div class="products_right_title">
-                            <h3>VĂN HỌC NƯỚC NGOÀI</h3>
+                            <c:if test="${not empty title}">
+                                <h3>${title}</h3>
+                            </c:if>
+                            <c:if test="${title == null}">
+                                <h3>SẢN PHẨM</h3>
+                            </c:if>
+
                         </div>
                         <div class="products_right_order_left">
                             <i class="fa fa-th-large" aria-hidden="true"></i>
@@ -174,7 +186,7 @@
                                         <div class="card">
                                             <a href="/products/product-detail?id=${book.idBook}" class="motsanpham"
                                                data-toggle="tooltip" data-placement="bottom"
-                                               title="Những người khốn khổ">
+                                               title="${book.name}">
                                                 <img class="card-img-top anh"
                                                      src="${book.image}"
                                                      alt="${book.name}">
@@ -183,8 +195,8 @@
                                                     <small class="tacgia text-muted"
                                                            style="font-weight: bold">${book.nameAuthor}</small>
                                                     <div class="card-price d-flex align-items-baseline">
-                                                        <div class="giamoi">${book.priceDiscount}đ <br></div>
-                                                        <div class="giacu text-muted">${book.price}đ</div>
+                                                        <div class="giamoi">${book.price}đ <br></div>
+                                                        <div class="giacu text-muted">${book.priceDiscount}đ</div>
                                                     </div>
                                                 </div>
                                                 <div class="danhgia">

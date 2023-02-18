@@ -7,13 +7,14 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%--<c:set var="context" value="${pageContext.request.contextPath}"/>--%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Những Người Khốn Khổ</title>
+  <title>${bookModel.name}</title>
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/bootstrap-grid.css">
   <link rel="stylesheet" href="css/bootstrap-reboot.css">
@@ -39,6 +40,7 @@
 <body>
 
 <%@include file="/common/web/header.jsp"%>
+
 <!-------------------------Product----------------------->
 <section class="product">
   <div class="container">
@@ -114,10 +116,13 @@
         </div>
         <hr>
         <div class="product-content-right-product-price">
-          <div class="giabia">Giá:<span class="giacu ml-2">${bookModel.price} ₫</span></div>
-          <div class="giaban">Giá bán tại Doraemon: <span class="giamoi font-weight-bold">${bookModel.priceDiscount} đ</span></div>
+          <div class="giabia">Giá:<span class="giacu ml-2">${bookModel.priceDiscount} ₫</span></div>
+          <div class="giaban">Giá bán tại Doraemon: <span class="giamoi font-weight-bold">${bookModel.price} đ</span></div>
           <div class="tietkiem">Tiết kiệm: <b>20.000 ₫</b>
           </div>
+            <c:if test="${quantityRemain != 0}">
+              <div class="tietkiem">Số lượng còn lại: <b>${quantityRemain}</b>
+            </c:if>
         </div>
         <div class="product-content-right-uudai">
           <h6 class="header font-weight-bold">Khuyến mãi & Ưu đãi tại Doraemon:</h6>
@@ -130,22 +135,36 @@
             <li>Miễn phí đổi trả nếu sách bị lỗi hoặc hỏng</li>
           </ul>
         </div>
-        <div class="product-content-right-soluong d-flex">
-          <label class="font-weight-bold">Số lượng: </label>
-          <div class="input-number input-group md-3 quantity">
-            <div class="input-group-prepend">
-              <span class="input-group-text btn-spin btn-dec" onclick="changeQuantity(-1)">-</span>
-            </div>
-            <input id="soluongsp" type="text" value="1" class="soluongsp  text-center">
-            <div class="input-group-append">
-              <span class="input-group-text btn-spin btn-inc" onclick="changeQuantity(+1)">+</span>
+
+        <c:if test="${quantityRemain == 0}">
+
+           <div class="h2">Đã Hết Hàng</div>
+        </c:if>
+        <c:if test="${quantityRemain != 0}">
+          <div class="product-content-right-soluong d-flex">
+            <label class="font-weight-bold">Số lượng: </label>
+            <div class="input-number input-group md-3 quantity">
+              <div class="input-group-prepend">
+                <span class="input-group-text btn-spin btn-dec" onclick="changeQuantity(-1)">-</span>
+              </div>
+              <input id="soluongsp" type="text" value="1" class="soluongsp text-center input-quantity">
+              <div class="input-group-append">
+                <span class="input-group-text btn-spin btn-inc" onclick="changeQuantity(+1)">+</span>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="product-content-right-product-button row">
-          <button><i class="fas fa-shopping-cart"></i><p>THÊM VÀO GIỎ HÀNG</p></button>
-          <button class="muangay"><p>MUA NGAY</p></button>
-        </div>
+          <div class="product-content-right-product-button row">
+                    <%--          <button><i class="fas fa-shopping-cart"></i><p>THÊM VÀO GIỎ HÀNG</p></button>--%>
+                <div class="add-to-cart">
+                    <a href="#">
+                        <button type="button"><i class="fas fa-shopping-cart"></i><p>THÊM VÀO GIỎ HÀNG</p></button>
+                    </a>
+                </div>
+                <button class="muangay"><p>MUA NGAY</p></button>
+            </div>
+        </c:if>
+
+
         <div class="product-content-right-product-icon d-flex">
           <div class="product-content-right-product-icon-item">
             <i class="fas fa-phone-alt"></i><p>Hotline</p>
@@ -349,6 +368,7 @@
 <!--    footer-->
 
 <!-- ----js phần header -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
@@ -366,6 +386,24 @@
 <script src="/templates/scripts/product_type.js"></script>
 
 <script src="/templates/scripts/product.js"></script>
+<script>
+  $('.add-to-cart a').on('click', function () {
+    const remainQuantity = Number(${quantityRemain}), quantity = $('.quantity .input-quantity').val()
+    if (remainQuantity === 0 || remainQuantity < quantity) {
+      $.alert({
+        title: 'Hết hàng',
+        content: 'Số lượng sản phẩm không đủ.',
+        closeIcon: true,
+        animateFromElement: false,
+        theme: 'material'
+      })
+    } else {
+      window.location.href =
+              '${context}/add-to-cart?product_id=${bookModel.idBook}' + '&action=add' + '&quantity=' + quantity
+    }
 
+    return false
+  })
+</script>
 </body>
 </html>

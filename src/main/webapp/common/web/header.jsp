@@ -21,7 +21,10 @@
                 </form>
                 <div class="top-header-left">
                     <div class="top-header_cart">Giỏ hàng
-                        <span class="top-header_cart-quantity">(0)</span>
+                        <c:if test="${sessionScope.cart.map.size() != 0}">
+                            <span class="top-header_cart-quantity">(${sessionScope.cart.map.size()})</span>
+                        </c:if>
+
                         <i class="fa-solid fa-caret-down"></i>
                         <div class="top-header_cart--item">
                             <h4 class="cart--item_title">Giỏ hàng</h4>
@@ -137,11 +140,15 @@
                         </ul>
                     </nav>
                 </div>
-                <a href="" class="hotline d-flex">
-                    <i class="fa-solid fa-phone"></i>
-                    <h4>Hotline: </h4>
-                    <span>0867 415 853</span>
-                </a>
+                <div style="display: flex">
+                    <a style="background-color: #ed4d2b; padding: 5px; color: #FFFFFF;border-radius: 5px"  href="/voucher">Săn mã giảm giá</a>
+                    <a href="" class="hotline d-flex">
+                        <i class="fa-solid fa-phone"></i>
+                        <h4>Hotline: </h4>
+                        <span>0867 415 853</span>
+                    </a>
+                </div>
+
 
             </div>
         </div>

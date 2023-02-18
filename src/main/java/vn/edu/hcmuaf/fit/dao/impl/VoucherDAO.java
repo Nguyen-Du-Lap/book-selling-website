@@ -1,0 +1,54 @@
+package vn.edu.hcmuaf.fit.dao.impl;
+
+import vn.edu.hcmuaf.fit.dao.IVoucherDAO;
+import vn.edu.hcmuaf.fit.db.JDBCConnector;
+import vn.edu.hcmuaf.fit.model.SlidePrModel;
+import vn.edu.hcmuaf.fit.model.VoucherModel;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class VoucherDAO implements IVoucherDAO {
+    @Override
+    public List<VoucherModel> findAllVoucherById(int idUser) {
+        List<VoucherModel> results = new ArrayList<>();
+        String sql = "SELECT discount.id_discount, discount.name, discount.diktat\n" +
+                "FROM discount \n" +
+                "WHERE discount.id_discount NOT IN \n" +
+                "(SELECT discount_customer.id_discount FROM discount_customer WHERE discount_customer.id_user = ?)";
+        Connection connection = JDBCConnector.getConnection();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        if(connection != null) {
+            try {
+                statement = connection.prepareStatement(sql);
+                statement.setInt(1, idUser);
+                resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                   VoucherModel voucherModel = new VoucherModel();
+                   voucherModel.setIdVoucher(resultSet.getInt(1));
+                   voucherModel.setName(resultSet.getString(2));
+                   voucherModel.setDiktat(resultSet.getString(3));
+                    results.add(voucherModel);
+                }
+
+                return results;
+            } catch (SQLException e) {
+                return null;
+            } finally {
+                try {
+                    if(connection != null) connection.close();
+                    if(statement != null) statement.close();
+                    if(resultSet != null) resultSet.close();
+                } catch (SQLException e) {
+                    return null;
+                }
+            }
+        }
+        return null;
+    }
+}

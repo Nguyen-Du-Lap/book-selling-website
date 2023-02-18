@@ -16,6 +16,7 @@ public class ProductFindCatalogController extends HttpServlet {
         String idCatalog = request.getParameter("id");
         if(idCatalog != null) {
             int idInt = Integer.parseInt(idCatalog);
+            request.setAttribute("title", "Danh mục");
             request.setAttribute("list12Book", iProductService.find12BookCatalog(idInt));
         }
         request.setAttribute("totalPage", iProductService.totalPage());

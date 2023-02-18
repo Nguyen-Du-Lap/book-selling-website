@@ -11,7 +11,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomerDAO implements ICustomerDAO {
+public class
+CustomerDAO implements ICustomerDAO {
 
     @Override
     public CustomerModel findByUsernameAndPasswordAndStatus(String email, String password, int status) {
@@ -91,8 +92,8 @@ public class CustomerDAO implements ICustomerDAO {
     }
 
     public void signup(String email, String password, String firstname, String lastname, String phone, String address) {
-        String sql = new String("INSERT INTO customer (first_name, last_name, email, password, address, phone, role)\n" +
-                "VALUES (?, ?, ?, ?, ?, ?, 'user')");
+        String sql = new String("INSERT INTO customer (first_name, last_name, email, password, address, phone, role, status)\n" +
+                "VALUES (?, ?, ?, ?, ?, ?, 'user', 1)");
         PreparedStatement statement = null;
         try {
             Connection connection = JDBCConnector.getConnection();
