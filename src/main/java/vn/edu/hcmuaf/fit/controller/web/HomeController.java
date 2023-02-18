@@ -61,7 +61,7 @@ public class HomeController extends HttpServlet {
         if(action != null && action.equals("login")) {
             String email = req.getParameter("email");
             String password = req.getParameter("password");
-            if(email != null && password != null) {
+            if(email != null && password != null && !password.equals("")) {
                 CustomerModel customer = customerService.findByUsernameAndPasswordAndStatus(email, password, 1);
                 if(customer != null) {
                     SessionUtil.getInstance().putValue(req, "USERMODEL", customer);
@@ -79,7 +79,12 @@ public class HomeController extends HttpServlet {
                     req.getRequestDispatcher("/views/login.jsp").forward(req, resp);
 //                    resp.sendRedirect(req.getContextPath()+"/login?action=login&message=username_password_invalid&alert=danger");
                 }
-             }
+             } else{
+                req.setAttribute("message", MessageProperties.getUsername_password_invalid());
+                req.setAttribute("alert", "danger");
+                req.getRequestDispatcher("/views/login.jsp").forward(req, resp);
+            }
+
         }
     }
 

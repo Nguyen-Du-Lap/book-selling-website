@@ -54,7 +54,8 @@
       <span>Đăng nhập bằng Facebook</span>
       <i class="fa-brands fa-facebook-f" style="margin-left: 5px;"></i>
     </a>
-    <a href="#" class="social-button" id="google-login">
+    <a href="https://accounts.google.com/o/oauth2/auth?scope=email%20profile%20openid &redirect_uri=http://localhost:8080/login-google&response_type=code
+    &client_id=190006557334-854148cd78ttffl1gh6fdtfkjpo5fi52.apps.googleusercontent.com&approval_prompt=force" class="social-button" id="google-login">
       <span>Đăng nhập bằng Google</span>
       <i class="fa-brands fa-google-plus-g" style="margin-left: 5px;"></i>
     </a>
