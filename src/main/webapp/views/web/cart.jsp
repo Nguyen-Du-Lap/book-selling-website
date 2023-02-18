@@ -122,6 +122,8 @@
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
         crossorigin="anonymous"></script>
 <script src="/templates/scripts/header.js"></script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
   $('.minus .btn-number').on('click', function () {
     const pId = $(this).closest('tr').attr('data-product-id')
@@ -134,25 +136,21 @@
   })
 
   $('.action a').on('click', function () {
-    $.alert({
-      title: 'Xác nhận xóa',
-      content: 'Xóa sản phẩm ' + $(this).closest('tr').find('a[data-product-name]').attr('data-product-name'),
-      closeIcon: true,
-      animateFromElement: false,
-      theme: 'material',
-      buttons: {
-        login: {
-          text: 'Xóa',
-          btnClass: 'btn-danger',
-          action: () => {
-            const pId = $(this).closest('tr').attr('data-product-id')
-            window.location.href = '${context}/add-to-cart?product_id=' + pId + '&action=delete'
-          }
-        }
+    swal({
+      title: "Xác nhận xóa?",
+      text: "Sau khi xóa bạn sẽ không thể khôi phục!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        const pId = $(this).closest('tr').attr('data-product-id')
+        window.location.href = '${context}/add-to-cart?product_id=' + pId + '&action=delete'
+      } else {
+        return false
       }
-    })
+    });
 
-    return false
   })
 </script>
 
