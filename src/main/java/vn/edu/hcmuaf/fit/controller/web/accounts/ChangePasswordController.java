@@ -1,9 +1,11 @@
 package vn.edu.hcmuaf.fit.controller.web.accounts;
 
 import org.apache.commons.beanutils.BeanUtils;
+import vn.edu.hcmuaf.fit.dao.ICustomerDAO;
 import vn.edu.hcmuaf.fit.dao.impl.CustomerDAO;
 import vn.edu.hcmuaf.fit.db.MessageProperties;
 import vn.edu.hcmuaf.fit.model.ChangePasswordModel;
+import vn.edu.hcmuaf.fit.model.CustomerModel;
 import vn.edu.hcmuaf.fit.utils.SessionUtil;
 
 import javax.servlet.*;
@@ -28,23 +30,26 @@ public class ChangePasswordController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            String account = (String) SessionUtil.getInstance().getValue(request, "USERMODEL");
-
-            ChangePasswordModel changePassword = new ChangePasswordModel();
-            BeanUtils.populate(changePassword, request.getParameterMap());
-            request.setAttribute("account", account);
-
-            if (!changePassword.getConfirmPass().equals(changePassword.getNewPass())) {
-                request.setAttribute("message", MessageProperties.getNot_login());
-                request.setAttribute("alert", "danger");
-                request.getRequestDispatcher("/views/web/changePassword.jsp").forward(request, response);
-            } else {
-                CustomerDAO user = new CustomerDAO();
-                user.changePassword(changePassword.getEmail(), changePassword.getOldPass(), changePassword.getNewPass());
-                request.setAttribute("message", MessageProperties.getMissing_mail());
-                request.setAttribute("alert", "success");
-                request.getRequestDispatcher("/views/web/changePassword.jsp").forward(request, response);
+            CustomerModel cus = (CustomerModel) SessionUtil.getInstance().getValue(request, "USERMODEL");
+            String ollPass = request.getParameter("oldPass");
+            String newPass = request.getParameter("newPass");
+            String confirm = request.getParameter("confirmPass");
+            ICustomerDAO dao = new CustomerDAO();
+            CustomerModel account  = dao.findByUsernameAndPasswordAndStatus(cus.getEmail(), ollPass, cus.getStatus());
+            if(account != null ) {
+                if(!newPass.equals(confirm)) {
+                    request.setAttribute("message", "new passwords and confirmation passwords don't match");
+                    request.setAttribute("alert", "danger");
+                    request.getRequestDispatcher("/views/web/changePassword.jsp").forward(request, response);
+                } else {
+                    dao.changePassWord(cus.getEmail(), newPass);
+                    request.setAttribute("message", "Successful");
+                    request.setAttribute("alert", "success");
+                    request.getRequestDispatcher("/views/web/changePassword.jsp").forward(request, response);
+                }
             }
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }

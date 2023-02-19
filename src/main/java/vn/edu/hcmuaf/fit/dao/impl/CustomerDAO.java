@@ -314,5 +314,27 @@ CustomerDAO implements ICustomerDAO {
         return null;
     }
 
+    @Override
+    public void changePassWord(String email,String password) {
+
+        Connection connection = JDBCConnector.getConnection();
+
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        if (connection != null) {
+            try {
+                statement = connection.prepareStatement("update customer set password = ? where email = ?");
+                statement.setString(1,password);
+                statement.setString(2,email);
+                statement.executeUpdate();
+            } catch (SQLException e) {
+
+            } finally {
+
+            }
+        }
+
+    }
+
 }
 
