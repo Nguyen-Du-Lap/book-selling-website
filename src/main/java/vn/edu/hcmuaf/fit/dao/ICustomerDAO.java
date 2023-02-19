@@ -21,4 +21,6 @@ public interface ICustomerDAO {
     int update(int idUser, String firstName, String lastName, String phone, String address);
 
     CustomerModel findByUsername(String email);
+
+    void changePassWord(String email, String password);
 }
