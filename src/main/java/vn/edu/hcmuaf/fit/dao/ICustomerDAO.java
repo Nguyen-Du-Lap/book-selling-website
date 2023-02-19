@@ -19,5 +19,5 @@ public interface ICustomerDAO {
 
     int update(int idUser, String firstName, String lastName, String phone, String address);
 
-    CustomerModel findByUsername(String email, int status);
+    CustomerModel findByUsername(String email);
 }

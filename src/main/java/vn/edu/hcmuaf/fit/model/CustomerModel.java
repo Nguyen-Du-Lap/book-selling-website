@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.fit.model;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 public class CustomerModel  extends AbstractModel<CustomerModel>  {
@@ -15,6 +16,9 @@ public class CustomerModel  extends AbstractModel<CustomerModel>  {
     private int status;
     private Timestamp createdTime;
     private int totalBill;
+    private int attempts;
+    private Date time_clocked;
+
 
     public int getTotalBill() {
         return totalBill;
@@ -109,6 +113,16 @@ public class CustomerModel  extends AbstractModel<CustomerModel>  {
     public void setCreatedTime(Timestamp createdTime) {
         this.createdTime = createdTime;
     }
+
+    public int getAttempts() {
+        return this.attempts;
+    }
+    public void setAttempts(int attempts) {
+        this.attempts = attempts;
+    }
+
+
+
 
     @Override
     public String toString() {

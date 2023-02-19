@@ -38,7 +38,7 @@ public class LoginGoogleServlet extends HttpServlet {
         if (account == null) {
             dao.signup(email, "", fName, lName, "", "");
         }
-            CustomerModel customer = dao.findByUsername(email, 1);
+            CustomerModel customer = dao.findByUsername(email);
             SessionUtil.getInstance().putValue(request, "USERMODEL", customer);
             if (customer.getRole().equalsIgnoreCase("user")) {
                 response.sendRedirect(request.getContextPath() + "/home");

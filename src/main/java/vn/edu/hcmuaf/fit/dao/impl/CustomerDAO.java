@@ -272,17 +272,16 @@ CustomerDAO implements ICustomerDAO {
     }
 
     @Override
-    public CustomerModel findByUsername(String email, int status) {
+    public CustomerModel findByUsername(String email) {
         List<CustomerModel> users = new ArrayList<>();
         Connection connection = JDBCConnector.getConnection();
-        String sql = new String("SELECT * FROM customer WHERE email=? AND  status = ?");
+        String sql = new String("SELECT * FROM customer WHERE email=?");
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         if (connection != null) {
             try {
                 statement = connection.prepareStatement(sql.toString());
                 statement.setString(1, email);
-                statement.setInt(2, status);
                 resultSet = statement.executeQuery();
                 while (resultSet.next()) {
                     CustomerModel customerModel = new CustomerModel();
