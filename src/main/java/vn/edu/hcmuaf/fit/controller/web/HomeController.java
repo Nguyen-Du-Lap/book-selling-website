@@ -49,7 +49,8 @@ public class HomeController extends HttpServlet {
         } else if (action != null && action.equals("logout")) {
             SessionUtil.getInstance().removeValue(req, "USERMODEL");
             resp.sendRedirect(req.getContextPath() + "/home");
-        } else {
+        }
+        else {
             req.setAttribute("listSlide", slidePr.findAll());
             req.setAttribute("listBookPayTop", iBookDAO.listBookPayTop());
             req.setAttribute("listBookMoiPhatHanh", iBookDAO.listBookNewReissue());

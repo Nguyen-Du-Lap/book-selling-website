@@ -1,4 +1,4 @@
-package vn.edu.hcmuaf.fit.controller.loginGG.common;
+package vn.edu.hcmuaf.fit.controller.loginWithGoogle.common;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;

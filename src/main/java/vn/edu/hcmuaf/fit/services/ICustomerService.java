@@ -8,6 +8,7 @@ import java.util.List;
 public interface ICustomerService {
     CustomerModel findByUsernameAndPasswordAndStatus(String email, String password, int status);
 
+
     CustomerModel findByUsername(String email);
     int totalCustomer();
     List<CustomerModel> newCustomer();

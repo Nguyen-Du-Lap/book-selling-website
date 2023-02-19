@@ -1,4 +1,4 @@
-package vn.edu.hcmuaf.fit.controller.loginGG.common;
+package vn.edu.hcmuaf.fit.controller.loginWithGoogle.common;
 
 public class Constants {
 	  public static String GOOGLE_CLIENT_ID = "190006557334-854148cd78ttffl1gh6fdtfkjpo5fi52.apps.googleusercontent.com";

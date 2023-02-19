@@ -1,4 +1,4 @@
-package vn.edu.hcmuaf.fit.controller.loginGG.common;
+package vn.edu.hcmuaf.fit.controller.loginWithGoogle.common;
 
 public class GooglePojo {
 	private String id;

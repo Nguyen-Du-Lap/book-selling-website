@@ -1,9 +1,9 @@
-package vn.edu.hcmuaf.fit.controller.loginGG.Servlet;
+package vn.edu.hcmuaf.fit.controller.loginWithGoogle.Servlet;
 
 
 
-import vn.edu.hcmuaf.fit.controller.loginGG.common.GooglePojo;
-import vn.edu.hcmuaf.fit.controller.loginGG.common.GoogleUtils;
+import vn.edu.hcmuaf.fit.controller.loginWithGoogle.common.GooglePojo;
+import vn.edu.hcmuaf.fit.controller.loginWithGoogle.common.GoogleUtils;
 import vn.edu.hcmuaf.fit.dao.impl.CustomerDAO;
 import vn.edu.hcmuaf.fit.model.CustomerModel;
 import vn.edu.hcmuaf.fit.utils.SessionUtil;

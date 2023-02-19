@@ -45,6 +45,7 @@
              onchange="passwordOnChange(this.value)">
       <i class="fa-solid fa-circle-check"></i>
       <i class="fa-solid fa-circle-xmark"></i>
+
       <small>Error</small>
     </div>
     <a href="/forgotPassword" class="forgotPassword-link">Quên mật khẩu?</a>

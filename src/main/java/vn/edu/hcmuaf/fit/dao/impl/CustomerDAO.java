@@ -271,6 +271,7 @@ CustomerDAO implements ICustomerDAO {
         }
     }
 
+
     @Override
     public CustomerModel findByUsername(String email) {
         List<CustomerModel> users = new ArrayList<>();
