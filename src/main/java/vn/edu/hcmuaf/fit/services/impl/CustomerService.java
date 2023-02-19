@@ -38,4 +38,9 @@ public class CustomerService implements ICustomerService {
     public int update(int idUser, String firstName, String lastName, String phone, String address) {
         return customerDAO.update(idUser, firstName, lastName, phone, address);
     }
+
+    @Override
+    public CustomerModel findByUsername(String email) {
+        return customerDAO.findByUsername(email);
+    }
 }
