@@ -1,4 +1,4 @@
-package vn.edu.hcmuaf.fit.controller.web;
+package vn.edu.hcmuaf.fit.controller.web.vouchers;
 
 import vn.edu.hcmuaf.fit.dao.IVoucherDAO;
 import vn.edu.hcmuaf.fit.dao.impl.VoucherDAO;
