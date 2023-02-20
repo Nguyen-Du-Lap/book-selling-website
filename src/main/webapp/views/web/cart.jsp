@@ -98,8 +98,8 @@
           <span class="provisional">Tạm tính</span>
           <span class="sum_money">${sessionScope.cart.totalPrice}đ</span>
         </div>
-        <div class="order"><a href="/order">ĐẶT HÀNG</a></div>
-        <div class="add_product"><a href="/home">CHỌN THÊM SẢN PHẨM</a></div>
+        <a href="/order"><div class="order">ĐẶT HÀNG</div></a>
+        <a href="/home"><div class="add_product">CHỌN THÊM SẢN PHẨM</div></a>
       </div>
     </c:if>
 
