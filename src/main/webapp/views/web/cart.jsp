@@ -38,6 +38,11 @@
 <div id="content">
   <div class="container">
     <h1 class="header_title">GIỎ HÀNG</h1>
+    <c:if test="${not empty message}">
+      <div class="alert alert-${alert}" role="alert">
+          ${message}
+      </div>
+    </c:if>
     <c:if test="${!sessionScope.containsKey('cart') || sessionScope.cart.map.size() == 0}">
       <div class="no-data text-center my-5 in-cart">
         <img src="/templates/images/empty_cart.jpg" alt="No data">
@@ -49,6 +54,7 @@
       <table style="width: 100%; border: 1px solid #ccc;" class="table">
         <thead>
         <tr>
+          <th>#</th>
           <th style="width: 65%;" scope="col">Sản phẩm</th>
           <th style="width: 12%;" scope="col">Số lượng</th>
           <th style="width: 13%;" scope="col">Thành tiền</th>
@@ -58,6 +64,11 @@
         <tbody>
         <c:forEach var="item" items="${sessionScope.cart.map}">
             <tr data-product-id="${item.key}">
+              <td>
+                <label>
+                  <input type="checkbox" name="settings" value="${item.key}">
+                </label>
+              </td>
               <td class="container_img">
                 <div class="col_img"><img src="${item.value.product.image}" alt=""></div>
                 <div class="col-container_content">
@@ -98,7 +109,7 @@
           <span class="provisional">Tạm tính</span>
           <span class="sum_money">${sessionScope.cart.totalPrice}đ</span>
         </div>
-        <a href="/order"><div class="order">ĐẶT HÀNG</div></a>
+        <div class="order">ĐẶT HÀNG</div>
         <a href="/home"><div class="add_product">CHỌN THÊM SẢN PHẨM</div></a>
       </div>
     </c:if>
@@ -151,6 +162,26 @@
       }
     });
 
+  })
+</script>
+// chon san pham trong gio hang de mua hang
+<script>
+  let checkboxes = $("input[type=checkbox][name=settings]")
+  let enabledSettings = [];
+
+  // Attach a change event handler to the checkboxes.
+  checkboxes.change(function () {
+    enabledSettings = checkboxes
+            .filter(":checked") // Filter out unchecked boxes.
+            .map(function () { // Extract values using jQuery map.
+              return this.value;
+            })
+            .get() // Get array.
+
+  });
+
+  $('.order').on('click', function () {
+    window.location.href = '${context}/order?list_id=' + enabledSettings
   })
 </script>
 
