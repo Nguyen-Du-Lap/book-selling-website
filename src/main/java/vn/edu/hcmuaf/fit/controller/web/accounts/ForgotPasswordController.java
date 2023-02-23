@@ -5,12 +5,20 @@ import vn.edu.hcmuaf.fit.db.MessageProperties;
 import vn.edu.hcmuaf.fit.model.CustomerModel;
 import vn.edu.hcmuaf.fit.model.EmailModel;
 import vn.edu.hcmuaf.fit.utils.EmailUtil;
-
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.mail.Authenticator;
+import javax.mail.Session;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Random;
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 @WebServlet(name = "comfirmRegister", value = "/comfirmRegister")
 public class ForgotPasswordController extends HttpServlet {
@@ -61,6 +69,56 @@ public class ForgotPasswordController extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    public boolean sendEmail(CustomerModel user) {
+        boolean test = false;
+
+        String toEmail = user.getEmail();
+        String fromEmail = "4tiensau@gmail.com";
+        String password = "otfecajmjcaosged";
+
+        try {
+
+            // your host email smtp server details
+            Properties pr = new Properties();
+            pr.put("mail.smtp.host", "smtp.gmail.com");
+            pr.put("mail.smtp.port", "587");
+            pr.put("mail.smtp.auth", "true");
+            pr.put("mail.smtp.starttls.enable", "true");
+//            pr.put("mail.smtp.socketFactory.port", "587");
+//            pr.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+
+            //get session to authenticate the host email address and password
+            Session session = Session.getInstance(pr, new Authenticator() {
+                @Override
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(fromEmail, password);
+                }
+            });
+
+            //set email message details
+            Message mess = new MimeMessage(session);
+
+            //set from email address
+            mess.setFrom(new InternetAddress(fromEmail));
+            //set to email address or destination email address
+            mess.setRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
+
+            //set email subject
+            mess.setSubject("User Email Verification");
+
+            //set message text
+            mess.setText("Registered successfully.Please verify your account using this code: " + user.getCode());
+            //send the message
+            Transport.send(mess);
+
+            test=true;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return test;
     }
 
 }

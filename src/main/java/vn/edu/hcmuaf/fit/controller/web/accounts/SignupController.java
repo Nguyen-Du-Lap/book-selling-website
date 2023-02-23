@@ -3,6 +3,7 @@ package vn.edu.hcmuaf.fit.controller.web.accounts;
 import vn.edu.hcmuaf.fit.dao.impl.CustomerDAO;
 import vn.edu.hcmuaf.fit.db.MessageProperties;
 import vn.edu.hcmuaf.fit.model.CustomerModel;
+import vn.edu.hcmuaf.fit.utils.EmailUtil;
 import vn.edu.hcmuaf.fit.utils.SessionUtil;
 
 import javax.servlet.*;
@@ -36,10 +37,16 @@ public class SignupController extends HttpServlet {
                 CustomerModel account = customerDAO.checkAccountExist(email);
                 if (account == null) {
                     // đc signup
-                    customerDAO.signup(email, pass, fname, lname, phone, address);
+                    EmailUtil sm = new EmailUtil();
+                    String code = sm.getRandom();
+                    CustomerModel user = new CustomerModel(email, pass,fname,lname,phone,address, code, System.currentTimeMillis()/1000/60);
+                    sm.sendEmail(user);
+                    HttpSession session =request.getSession();
+                    session.setAttribute("registerUser",user);
+
                     request.setAttribute("message", MessageProperties.getLogin());
                     request.setAttribute("alert", "success");
-                    request.getRequestDispatcher("/views/login.jsp").forward(request, response);
+                    request.getRequestDispatcher("/views/web/confirmRegister.jsp").forward(request, response);
                 } else {
                     request.setAttribute("message", MessageProperties.getEmail_exist());
                     request.setAttribute("alert", "danger");
@@ -52,4 +59,5 @@ public class SignupController extends HttpServlet {
             request.getRequestDispatcher("/views/web/signup.jsp").forward(request, response);
         }
     }
+
 }

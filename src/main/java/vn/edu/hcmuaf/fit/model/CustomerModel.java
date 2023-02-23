@@ -15,6 +15,22 @@ public class CustomerModel  extends AbstractModel<CustomerModel>  {
     private int status;
     private Timestamp createdTime;
     private int totalBill;
+    private String code;
+    private long time_active_code;
+    public CustomerModel(String email, String pass, String firstName, String lastName, String phone, String address, String code, long time_active_code) {
+        this.email = email;
+        this.password = pass;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phone = phone;
+        this.address = address;
+        this.code = code;
+        this.time_active_code = time_active_code;
+    }
+
+    public CustomerModel() {
+
+    }
 
     public int getTotalBill() {
         return totalBill;
@@ -105,9 +121,15 @@ public class CustomerModel  extends AbstractModel<CustomerModel>  {
     public Timestamp getCreatedTime() {
         return createdTime;
     }
+    public String getCode() {
+        return this.code;
+    }
 
     public void setCreatedTime(Timestamp createdTime) {
         this.createdTime = createdTime;
+    }
+    public long getTime_active_code() {
+        return time_active_code;
     }
 
     @Override
