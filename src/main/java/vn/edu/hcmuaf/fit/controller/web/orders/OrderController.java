@@ -36,7 +36,6 @@ public class OrderController extends HttpServlet {
             }
             else{
                 CustomerModel customerModel = (CustomerModel) SessionUtil.getInstance().getValue(request, "USERMODEL");
-
                 Cart cartOrder = orderService.cartOrder(listId, request);
 
                 request.setAttribute("cartOrder", cartOrder);

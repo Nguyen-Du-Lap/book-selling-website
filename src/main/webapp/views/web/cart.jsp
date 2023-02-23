@@ -96,7 +96,6 @@
                 </div>
               </td>
               <td><span class="col-sum_price">${item.value.product.priceDiscount * item.value.quantity}đ</span></td>
-<%--              <td><i class="col_delete fa-solid fa-trash-can"></i></td>--%>
               <td class="action text-center" data-title="Remove">
                 <a href="#"><i class="col_delete fa-solid fa-trash-can"></i></a>
               </td>

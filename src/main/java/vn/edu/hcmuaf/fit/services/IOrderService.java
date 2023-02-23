@@ -6,6 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public interface IOrderService {
-    public boolean checkIdExistsInCart(String listId, HttpServletRequest request, HttpServletResponse response);
-    public Cart cartOrder(String list, HttpServletRequest request);
+    boolean checkIdExistsInCart(String listId, HttpServletRequest request, HttpServletResponse response);
+    Cart cartOrder(String list, HttpServletRequest request);
 }
