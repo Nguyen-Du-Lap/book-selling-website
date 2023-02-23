@@ -10,8 +10,9 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.Random;
 
-@WebServlet(name = "forgotPassword", value = "/forgotPassword")
+@WebServlet(name = "comfirmRegister", value = "/comfirmRegister")
 public class ForgotPasswordController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -41,7 +42,7 @@ public class ForgotPasswordController extends HttpServlet {
                     StringBuilder sb = new StringBuilder();
                     sb.append("Dear ").append("<br>");
                     sb.append("You are used the forgot password function. <br>");
-                    sb.append("Your new password is <b>").append(account.getPassword()).append("</b>");
+                    sb.append("Your code OTP is <b>").append(account.getPassword()).append("</b>");
                     sb.append("Regards<br>");
                     sb.append("Administrator");
 
@@ -61,4 +62,5 @@ public class ForgotPasswordController extends HttpServlet {
             e.printStackTrace();
         }
     }
+
 }

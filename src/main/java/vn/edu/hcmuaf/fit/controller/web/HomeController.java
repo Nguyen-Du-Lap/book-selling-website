@@ -71,6 +71,7 @@ public class HomeController extends HttpServlet {
 
                 CustomerModel customer = customerService.findByUsernameAndPasswordAndStatus(email, password, 1);
                 if (customer != null) {
+                    BLockUserDao.resetAccount(email);
                     SessionUtil.getInstance().putValue(req, "USERMODEL", customer);
                     if (customer.getRole().equalsIgnoreCase("user")) {
 
