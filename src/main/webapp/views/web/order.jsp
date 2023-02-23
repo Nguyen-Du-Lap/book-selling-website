@@ -37,27 +37,30 @@
 <!--------- end header---------- -->
 <div class="container content">
   <h1 class="header_top">ĐẶT HÀNG</h1>
+  <c:forEach items="${list}" var="item">
+    <h1>${item}</h1>
+  </c:forEach>
   <div class="container_left">
     <div class="cross"></div>
     <h2 class="header_center">THÔNG TIN ĐƠN HÀNG</h2>
-    <form id="submit_form">
+    <form id="submit_form" action="order/pay">
       <div class="form-group input">
         <label for="name">Họ và tên: <span class="obligatory">(*)</span></label>
-        <input type="text" class="form-control" id="name" placeholder="Họ và tên" onchange="nameOnChange(this.value)">
+        <input type="text" class="form-control" id="name" placeholder="Họ và tên" value="${customer.firstName} ${customer.lastName}" onchange="nameOnChange(this.value)" disabled>
         <i class="fa-solid fa-circle-check"></i>
         <i class="fa-solid fa-circle-xmark"></i>
         <small>Error</small>
       </div>
       <div class="form-group input">
         <label for="phone">Điện thoại: <span class="obligatory">(*)</span></label>
-        <input type="text" class="form-control" id="phone" placeholder="Số điện thoại" onchange="phoneOnChange(this.value)">
+        <input type="text" class="form-control" id="phone" placeholder="Số điện thoại" value="${customer.phone}" onchange="phoneOnChange(this.value)" disabled>
         <i class="fa-solid fa-circle-check"></i>
         <i class="fa-solid fa-circle-xmark"></i>
         <small>Error</small>
       </div>
       <div class="form-group input">
         <label for="email">Email: <span class="obligatory">(*)</span></label>
-        <input type="text" class="form-control" id="email" placeholder="Email" onchange="emailOnChange(this.value)" >
+        <input type="text" class="form-control" id="email" placeholder="Email" value="${customer.email}" onchange="emailOnChange(this.value)" disabled>
         <i class="fa-solid fa-circle-check"></i>
         <i class="fa-solid fa-circle-xmark"></i>
         <small>Error</small>
@@ -137,39 +140,38 @@
 
     <h4 class="order_header">Chi tiết đơn hàng</h4>
     <div class="container_order">
-      <div class="wrap_oder">
-        <h2 class="title">Đồng Vọng Dân Gian - Tập 1</h2>
-        <div class="wrap">
-          <span class="id fs_s">Mã SP: </span>
-          <div class="fs_s" id="id">123</div>
-        </div>
-        <div class="wrap">
-          <span class="quantity fs_s">Số lượng:</span>
-          <div class="fs_s" id="quantity">12</div>
-        </div>
-        <div class="wrap" style="margin-bottom: 12px;">
-          <span class="weight fs_s">Khối lượng:</span>
-          <div class="fs_s" id="weight">0.5 Kg</div>
+
+        <div class="wrap_oder">
+          <c:forEach var="item" items="${cartOrder.map}">
+            <h2 class="title"> ${item.value.product.name}</h2>
+            <div class="wrap">
+              <span class="id fs_s">Mã SP: </span>
+              <div class="fs_s" id="id"> ${item.key}</div>
+            </div>
+            <div class="wrap" style="margin-bottom: 12px">
+              <span class="quantity fs_s">Số lượng:</span>
+              <div class="fs_s" id="quantity"> ${item.value.quantity}</div>
+            </div>
+            <hr>
+          </c:forEach>
+          <div class="wrap_left">
+            <div style="margin-top: 12px;" class="wrap mt">
+              <span class="sum_price">Tổng tiền:</span>
+              <div class="ml" id="sum_price"> ${totalPrice} đ</div>
+            </div>
+            <div class="wrap mt">
+              <span class="sum_transport">Phí vận chuyển:</span>
+              <div class="ml" id="sum_transport"> ${transportFee} đ</div>
+            </div>
+            <div class="wrap mt">
+              <span class="sum_order">Thanh toán:</span>
+              <div class="ml" style="font-weight: 600; color: rgb(217, 11, 11);" id="sum_order"> ${totalPrice + transportFee} đ</div>
+            </div>
+          </div>
+          <input id="bt-update_order" type="button" value="CHỈNH SỬA ĐƠN HÀNG">
         </div>
 
-        <hr>
-        <div class="wrap_left">
-          <div style="margin-top: 12px;" class="wrap mt">
-            <span class="sum_price">Tổng tiền:</span>
-            <div class="ml" id="sum_price">147.000 đ</div>
-          </div>
-          <div class="wrap mt">
-            <span class="sum_transport">Phí vận chuyển:</span>
-            <div class="ml" id="sum_transport">0 đ</div>
-          </div>
-          <div class="wrap mt">
-            <span class="sum_order">Thanh toán:</span>
-            <div class="ml" style="font-weight: 600; color: rgb(217, 11, 11);" id="sum_order">147.000 đ</div>
-          </div>
 
-        </div>
-        <input id="bt-update_order" type="button" value="CHỈNH SỬA ĐƠN HÀNG">
-      </div>
     </div>
 
   </div>
