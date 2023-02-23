@@ -77,7 +77,22 @@ public class BLockUserDao {
             throw new RuntimeException(e);
         }
     }
+    public static void resetAccount(String email)  {
 
+        con = JDBCConnector.getConnection();
+        PreparedStatement sel = null;
 
+        try {
+            ps = con.prepareStatement("update customer set status = ? , lock_time = ? where email = ?");
+            ps.setInt(1,1);
+            ps.setInt(2,-1);
+            ps.setString(3,email);
+            ps.executeUpdate();
 
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+                    //already 0 do something
+    }
 }
