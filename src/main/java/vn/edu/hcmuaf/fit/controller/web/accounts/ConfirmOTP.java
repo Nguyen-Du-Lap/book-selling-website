@@ -30,7 +30,8 @@ public class ConfirmOTP extends HttpServlet {
         //String idUser = request.getParameter("id_user");
         if(code.equals(user.getCode()) && (System.currentTimeMillis() / 1000/60) - user.getTime_active_code() <= 5){
             dao.signup(user.getEmail(), user.getPassword(), user.getFirstName(),user.getLastName(), user.getPhone(), user.getAddress());
-            request.getRequestDispatcher("/views/login.jsp").forward(request,response);
+            session.invalidate();
+            request.getRequestDispatcher("/views/login.jsp").forward(request,response );
         }else{
             request.setAttribute("message", "Incorrect verification code");
             request.setAttribute("alert", "danger");
