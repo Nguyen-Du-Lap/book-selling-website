@@ -36,6 +36,11 @@ To change this template use File | Settings | File Templates.
         <div class="input ">
             <label>Mã OPT có hiệu lực 5 phút</label>
             <input type="text" placeholder="Nhập mã opt" id="email" name="code">
+            <c:if test="${not empty message}">
+                <div class="alert alert-${alert}" role="alert">
+                        ${message}
+                </div>
+            </c:if>
             <i class="fa-solid fa-circle-check"></i>
             <i class="fa-solid fa-circle-xmark"></i>
             <small>Error</small>
