@@ -10,7 +10,7 @@ import java.io.IOException;
 public class AuthorController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/views/web/order.jsp").forward(request, response);
+        request.getRequestDispatcher("/views/web/author.jsp").forward(request, response);
 
     }
 
