@@ -13,6 +13,7 @@ import vn.edu.hcmuaf.fit.services.IAuthorService;
 import vn.edu.hcmuaf.fit.services.ICatalogService;
 import vn.edu.hcmuaf.fit.services.ICustomerService;
 import vn.edu.hcmuaf.fit.services.impl.AuthorService;
+import vn.edu.hcmuaf.fit.utils.ErrorParameterUntil;
 import vn.edu.hcmuaf.fit.utils.SessionUtil;
 
 import javax.inject.Inject;
@@ -76,7 +77,6 @@ public class HomeController extends HttpServlet {
                     if (customer.getRole().equalsIgnoreCase("user")) {
 
                         resp.sendRedirect(req.getContextPath() + "/home");
-//                        req.getRequestDispatcher("/views/web/home.jsp").forward(req, resp);
 
                     } else if (customer.getRole().equalsIgnoreCase("admin")) {
 
@@ -92,28 +92,18 @@ public class HomeController extends HttpServlet {
                     CustomerModel account = customerService.findByUsername(email);
 
                     if ((account != null) && BLockUserDao.Attempts(email).equals("Updated")) {
-                        req.setAttribute("message", MessageProperties.getUsername_password_invalid());
-                        req.setAttribute("alert", "danger");
-                        req.getRequestDispatcher("/views/login.jsp").forward(req, resp);
+                        new ErrorParameterUntil(MessageProperties.getUsername_password_invalid(), "danger", "/views/login.jsp", req, resp).sendError();
                     } else {
                         if ((account != null) && BLockUserDao.Attempts(email).equals("block")) {
-                            req.setAttribute("message", "Your account has been locked please contact your administrator to unlock it");
-                            req.setAttribute("alert", "danger");
-                            req.getRequestDispatcher("/views/login.jsp").forward(req, resp);
+                            new ErrorParameterUntil("Your account has been locked please contact your administrator to unlock it", "danger", "/views/login.jsp", req, resp).sendError();
                         }
-
                         else {
-                            req.setAttribute("message", MessageProperties.getUsername_password_invalid());
-                            req.setAttribute("alert", "danger");
-                            req.getRequestDispatcher("/views/login.jsp").forward(req, resp);
+                            new ErrorParameterUntil(MessageProperties.getUsername_password_invalid(), "danger", "/views/login.jsp", req, resp).sendError();
                         }
                     }
                 }
-//                    resp.sendRedirect(req.getContextPath()+"/login?action=login&message=username_password_invalid&alert=danger")
             } else {
-                req.setAttribute("message", MessageProperties.getUsername_password_invalid());
-                req.setAttribute("alert", "danger");
-                req.getRequestDispatcher("/views/login.jsp").forward(req, resp);
+                new ErrorParameterUntil(MessageProperties.getUsername_password_invalid(), "danger", "/views/login.jsp", req, resp).sendError();;
             }
         }
     }
