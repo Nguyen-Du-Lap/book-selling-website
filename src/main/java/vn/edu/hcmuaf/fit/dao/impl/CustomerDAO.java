@@ -225,7 +225,7 @@ CustomerDAO implements ICustomerDAO {
     public CustomerModel findById(int idUser) {
         List<CustomerModel> users = new ArrayList<>();
         Connection connection = JDBCConnector.getConnection();
-        String sql = new String("SELECT id_user, first_name, last_name, phone, address FROM customer " +
+        String sql = new String("SELECT id_user, first_name, last_name, phone, address, email FROM customer " +
                 "WHERE id_user = ?");
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -240,6 +240,7 @@ CustomerDAO implements ICustomerDAO {
                 customerModel.setLastName(resultSet.getString(3));
                 customerModel.setPhone(resultSet.getString(4));
                 customerModel.setAddress(resultSet.getString(5));
+                customerModel.setEmail(resultSet.getString(6));
                 users.add(customerModel);
             }
             return users.isEmpty() ? null : users.get(0);
@@ -270,7 +271,6 @@ CustomerDAO implements ICustomerDAO {
             return 0;
         }
     }
-
     @Override
     public CustomerModel findByUsername(String email) {
         List<CustomerModel> users = new ArrayList<>();

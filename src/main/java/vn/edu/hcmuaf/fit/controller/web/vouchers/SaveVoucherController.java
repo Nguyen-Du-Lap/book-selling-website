@@ -1,4 +1,4 @@
-package vn.edu.hcmuaf.fit.controller.web;
+package vn.edu.hcmuaf.fit.controller.web.vouchers;
 
 import javax.servlet.*;
 import javax.servlet.http.*;

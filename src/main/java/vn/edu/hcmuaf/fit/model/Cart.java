@@ -42,8 +42,7 @@ public class Cart implements Serializable {
         map.forEach((id, item) -> totalPrice += item.getProduct().getPriceDiscount() * item.getQuantity());
         return totalPrice;
     }
-
-//    public void invalidate() {
+    //    public void invalidate() {
 //        final var dao = new ProductDAO();
 //        map.forEach((id, cartItem) ->
 //                dao.updateQuantity(id, cartItem.getQuantity() + ProductService.getRemainQuantity(id)));
