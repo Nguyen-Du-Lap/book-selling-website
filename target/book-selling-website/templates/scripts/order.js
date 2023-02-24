@@ -56,9 +56,13 @@ const pay = document.getElementById('pay')
 
 
 // Xử lý submit form
-form_submit.addEventListener('submit', (e) => {
-  e.preventDefault();
-  checkInputs();
+
+$('#bnt_submit').click(function () {
+  if(checkInputs() > 0) {
+
+  }else {
+    $('#submit_form').submit();
+  }
 })
 
 // Xử lý onchane input
@@ -100,6 +104,7 @@ function addressOnChange(value) {
 
 
 function checkInputs() {
+  let count = 0;
   const nameValue = fname.value.trim()
   const phoneValue = phone.value.trim()
   const emailValue = email.value.trim()
@@ -112,6 +117,7 @@ function checkInputs() {
 
   //check name
   if(nameValue === '') {
+    count++;
     setError(fname, 'Vui lòng nhập tên của bạn');
   } else {
       setSuccess(fname);
@@ -119,17 +125,21 @@ function checkInputs() {
 
 //check phone
   if(phoneValue === '') {
+    count++;
     setError(phone, 'Vui lòng nhập số điện thoại của bạn');
   } else if(!isPhoneNumber(phoneValue)) {
-      setError(phone, 'Số điện thoại không hợp lệ')
+    count++;
+    setError(phone, 'Số điện thoại không hợp lệ')
   } else {
       setSuccess(phone);
   }
 
   //check email
   if(emailValue === '') {
+    count++;
     setError(email, 'Vui lòng nhập vào email');
   } else if(!isEmail(emailValue)) {
+    count++;
       setError(email, 'Email không hợp lệ');
   } else {
       setSuccess(email);
@@ -137,6 +147,7 @@ function checkInputs() {
 
     //check address
     if(addressValue === '') {
+      count++;
       setError(address, 'Vui lòng nhập địa chỉ của bạn');
     } else {
         setSuccess(address);
@@ -144,6 +155,7 @@ function checkInputs() {
 
   //check city
   if(cityValue === 'Chọn tỉnh thành') {
+    count++;
     setError(city, 'Vui lòng chọn tỉnh thành phố');
   } else {
     setSuccess(city);
@@ -151,6 +163,7 @@ function checkInputs() {
 
   //check district
   if(districtValue === 'Chọn quận huyện') {
+    count++;
     setError(district, 'Vui lòng chọn tỉnh quận huyện');
   } else {
     setSuccess(district);
@@ -158,6 +171,7 @@ function checkInputs() {
 
   //check ward
   if(wardValue === 'Chọn phường xã') {
+    count++;
     setError(ward, 'Vui lòng chọn phường xã');
   } else {
     setSuccess(ward);
@@ -165,6 +179,7 @@ function checkInputs() {
 
   //check pack
   if(packValue === 'Chọn quy cách đóng gói') {
+    count++;
     setError(pack, 'Vui lòng chọn quy cách đóng gói');
   } else {
     setSuccess(pack);
@@ -172,11 +187,12 @@ function checkInputs() {
 
   //check pay
   if(payValue === 'Chọn hình thức') {
+    count++;
     setError(pay, 'Vui lòng chọn hình thức thanh toán');
   } else {
     setSuccess(pay);
   }
-
+  return count;
 }
 
 //set error and success all
