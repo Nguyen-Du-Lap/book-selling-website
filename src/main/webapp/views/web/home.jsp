@@ -414,7 +414,7 @@
                     <c:forEach var="author" items="${listAuthor}" >
                         <div class="col-md-12">
                             <div class="card h-60 card_author">
-                                <a href="author/?id=${author.idAuthor}">
+                                <a href="/author?id=${author.idAuthor}">
                                     <img src="${author.img}"
                                          class="card-img-top img_author" alt="...">
                                     <div class="card-body">

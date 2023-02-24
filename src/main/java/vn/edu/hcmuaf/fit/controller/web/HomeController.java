@@ -110,6 +110,10 @@ public class HomeController extends HttpServlet {
                     }
                 }
 //                    resp.sendRedirect(req.getContextPath()+"/login?action=login&message=username_password_invalid&alert=danger")
+            } else {
+                req.setAttribute("message", MessageProperties.getUsername_password_invalid());
+                req.setAttribute("alert", "danger");
+                req.getRequestDispatcher("/views/login.jsp").forward(req, resp);
             }
         }
     }

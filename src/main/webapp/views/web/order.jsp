@@ -1,11 +1,6 @@
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: ndl22
-  Date: 12/5/2022
-  Time: 10:03 PM
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -141,35 +136,35 @@
     <h4 class="order_header">Chi tiết đơn hàng</h4>
     <div class="container_order">
 
-        <div class="wrap_oder">
-          <c:forEach var="item" items="${cartOrder.map}">
-            <h2 class="title"> ${item.value.product.name}</h2>
-            <div class="wrap">
-              <span class="id fs_s">Mã SP: </span>
-              <div class="fs_s" id="id"> ${item.key}</div>
-            </div>
-            <div class="wrap" style="margin-bottom: 12px">
-              <span class="quantity fs_s">Số lượng:</span>
-              <div class="fs_s" id="quantity"> ${item.value.quantity}</div>
-            </div>
-            <hr>
-          </c:forEach>
-          <div class="wrap_left">
-            <div style="margin-top: 12px;" class="wrap mt">
-              <span class="sum_price">Tổng tiền:</span>
-              <div class="ml" id="sum_price"> ${totalPrice} đ</div>
-            </div>
-            <div class="wrap mt">
-              <span class="sum_transport">Phí vận chuyển:</span>
-              <div class="ml" id="sum_transport"> ${transportFee} đ</div>
-            </div>
-            <div class="wrap mt">
-              <span class="sum_order">Thanh toán:</span>
-              <div class="ml" style="font-weight: 600; color: rgb(217, 11, 11);" id="sum_order"> ${totalPrice + transportFee} đ</div>
-            </div>
+      <div class="wrap_oder">
+        <c:forEach var="item" items="${cartOrder.map}">
+          <h2 class="title"> ${item.value.product.name}</h2>
+          <div class="wrap">
+            <span class="id fs_s">Mã SP: </span>
+            <div class="fs_s" id="id"> ${item.key}</div>
           </div>
-          <input id="bt-update_order" type="button" value="CHỈNH SỬA ĐƠN HÀNG">
+          <div class="wrap" style="margin-bottom: 12px">
+            <span class="quantity fs_s">Số lượng:</span>
+            <div class="fs_s" id="quantity"> ${item.value.quantity}</div>
+          </div>
+          <hr>
+        </c:forEach>
+        <div class="wrap_left">
+          <div style="margin-top: 12px;" class="wrap mt">
+            <span class="sum_price">Tổng tiền:</span>
+            <div class="ml" id="sum_price"> ${totalPrice} đ</div>
+          </div>
+          <div class="wrap mt">
+            <span class="sum_transport">Phí vận chuyển:</span>
+            <div class="ml" id="sum_transport"> ${transportFee} đ</div>
+          </div>
+          <div class="wrap mt">
+            <span class="sum_order">Thanh toán:</span>
+            <div class="ml" style="font-weight: 600; color: rgb(217, 11, 11);" id="sum_order"> ${totalPrice + transportFee} đ</div>
+          </div>
         </div>
+        <input id="bt-update_order" type="button" value="CHỈNH SỬA ĐƠN HÀNG">
+      </div>
 
 
     </div>

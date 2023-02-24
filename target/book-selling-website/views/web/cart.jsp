@@ -38,6 +38,11 @@
 <div id="content">
   <div class="container">
     <h1 class="header_title">GIỎ HÀNG</h1>
+    <c:if test="${not empty message}">
+      <div class="alert alert-${alert}" role="alert">
+          ${message}
+      </div>
+    </c:if>
     <c:if test="${!sessionScope.containsKey('cart') || sessionScope.cart.map.size() == 0}">
       <div class="no-data text-center my-5 in-cart">
         <img src="/templates/images/empty_cart.jpg" alt="No data">
@@ -49,6 +54,7 @@
       <table style="width: 100%; border: 1px solid #ccc;" class="table">
         <thead>
         <tr>
+          <th>#</th>
           <th style="width: 65%;" scope="col">Sản phẩm</th>
           <th style="width: 12%;" scope="col">Số lượng</th>
           <th style="width: 13%;" scope="col">Thành tiền</th>
@@ -57,39 +63,43 @@
         </thead>
         <tbody>
         <c:forEach var="item" items="${sessionScope.cart.map}">
-            <tr data-product-id="${item.key}">
-              <td class="container_img">
-                <div class="col_img"><img src="${item.value.product.image}" alt=""></div>
-                <div class="col-container_content">
-                  <a data-product-name="${item.value.product.name}"></a>
-                  <h2 class="title">${item.value.product.name}</h2>
-                  <div class="wrap_id">
-                    <span class="id">Mã SP</span>
-                    <div id="id">${item.key}</div>
-                  </div>
-                  <div class="wrap_price">
-                      <div class="price active">${item.value.product.priceDiscount} đ</div>
-                      <div class="price_sale">${item.value.product.price} đ</div>
-                  </div>
+          <tr data-product-id="${item.key}">
+            <td>
+              <label>
+                <input type="checkbox" name="settings" value="${item.key}">
+              </label>
+            </td>
+            <td class="container_img">
+              <div class="col_img"><img src="${item.value.product.image}" alt=""></div>
+              <div class="col-container_content">
+                <a data-product-name="${item.value.product.name}"></a>
+                <h2 class="title">${item.value.product.name}</h2>
+                <div class="wrap_id">
+                  <span class="id">Mã SP</span>
+                  <div id="id">${item.key}</div>
                 </div>
-              </td>
-              <td>
-                <div class="d-flex quantity">
-                  <div class="input-group-prepend minus">
-                    <span class="input-group-text btn-spin btn-dec btn-number" style="cursor: pointer; background-color: #FFFFFF; border: 1px solid #cacaca">-</span>
-                  </div>
-                  <input type="text" value="${item.value.quantity}" style="width: 60px; background-color: #FFFFFF; border: 1px solid #cacaca" class="soluongsp text-center input-quantity" />
-                  <div class="input-group-append plus">
-                    <span class="input-group-text btn-spin btn-inc btn-number" style="cursor: pointer; background-color: #FFFFFF; border: 1px solid #cacaca">+</span>
-                  </div>
+                <div class="wrap_price">
+                  <div class="price active">${item.value.product.priceDiscount} đ</div>
+                  <div class="price_sale">${item.value.product.price} đ</div>
                 </div>
-              </td>
-              <td><span class="col-sum_price">${item.value.product.priceDiscount * item.value.quantity}đ</span></td>
-<%--              <td><i class="col_delete fa-solid fa-trash-can"></i></td>--%>
-              <td class="action text-center" data-title="Remove">
-                <a href="#"><i class="col_delete fa-solid fa-trash-can"></i></a>
-              </td>
-            </tr>
+              </div>
+            </td>
+            <td>
+              <div class="d-flex quantity">
+                <div class="input-group-prepend minus">
+                  <span class="input-group-text btn-spin btn-dec btn-number" style="cursor: pointer; background-color: #FFFFFF; border: 1px solid #cacaca">-</span>
+                </div>
+                <input type="text" value="${item.value.quantity}" style="width: 60px; background-color: #FFFFFF; border: 1px solid #cacaca" class="soluongsp text-center input-quantity" />
+                <div class="input-group-append plus">
+                  <span class="input-group-text btn-spin btn-inc btn-number" style="cursor: pointer; background-color: #FFFFFF; border: 1px solid #cacaca">+</span>
+                </div>
+              </div>
+            </td>
+            <td><span class="col-sum_price">${item.value.product.priceDiscount * item.value.quantity}đ</span></td>
+            <td class="action text-center" data-title="Remove">
+              <a href="#"><i class="col_delete fa-solid fa-trash-can"></i></a>
+            </td>
+          </tr>
         </c:forEach>
         </tbody>
       </table>
@@ -98,8 +108,8 @@
           <span class="provisional">Tạm tính</span>
           <span class="sum_money">${sessionScope.cart.totalPrice}đ</span>
         </div>
-        <div class="order"><a href="/order">ĐẶT HÀNG</a></div>
-        <div class="add_product"><a href="/home">CHỌN THÊM SẢN PHẨM</a></div>
+        <div class="order">ĐẶT HÀNG</div>
+        <a href="/home"><div class="add_product">CHỌN THÊM SẢN PHẨM</div></a>
       </div>
     </c:if>
 
@@ -122,37 +132,49 @@
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
         crossorigin="anonymous"></script>
 <script src="/templates/scripts/header.js"></script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
   $('.minus .btn-number').on('click', function () {
     const pId = $(this).closest('tr').attr('data-product-id')
     window.location.href = '${context}/add-to-cart?product_id=' + pId + '&action=remove'
   })
-
   $('.plus .btn-number').on('click', function () {
     const pId = $(this).closest('tr').attr('data-product-id')
     window.location.href = '${context}/add-to-cart?product_id=' + pId + '&action=add'
   })
-
   $('.action a').on('click', function () {
-    $.alert({
-      title: 'Xác nhận xóa',
-      content: 'Xóa sản phẩm ' + $(this).closest('tr').find('a[data-product-name]').attr('data-product-name'),
-      closeIcon: true,
-      animateFromElement: false,
-      theme: 'material',
-      buttons: {
-        login: {
-          text: 'Xóa',
-          btnClass: 'btn-danger',
-          action: () => {
-            const pId = $(this).closest('tr').attr('data-product-id')
-            window.location.href = '${context}/add-to-cart?product_id=' + pId + '&action=delete'
-          }
-        }
+    swal({
+      title: "Xác nhận xóa?",
+      text: "Sau khi xóa bạn sẽ không thể khôi phục!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        const pId = $(this).closest('tr').attr('data-product-id')
+        window.location.href = '${context}/add-to-cart?product_id=' + pId + '&action=delete'
+      } else {
+        return false
       }
-    })
-
-    return false
+    });
+  })
+</script>
+// chon san pham trong gio hang de mua hang
+<script>
+  let checkboxes = $("input[type=checkbox][name=settings]")
+  let enabledSettings = [];
+  // Attach a change event handler to the checkboxes.
+  checkboxes.change(function () {
+    enabledSettings = checkboxes
+            .filter(":checked") // Filter out unchecked boxes.
+            .map(function () { // Extract values using jQuery map.
+              return this.value;
+            })
+            .get() // Get array.
+  });
+  $('.order').on('click', function () {
+    window.location.href = '${context}/order?list_id=' + enabledSettings
   })
 </script>
 

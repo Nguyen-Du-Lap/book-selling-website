@@ -63,43 +63,43 @@
         </thead>
         <tbody>
         <c:forEach var="item" items="${sessionScope.cart.map}">
-            <tr data-product-id="${item.key}">
-              <td>
-                <label>
-                  <input type="checkbox" name="settings" value="${item.key}">
-                </label>
-              </td>
-              <td class="container_img">
-                <div class="col_img"><img src="${item.value.product.image}" alt=""></div>
-                <div class="col-container_content">
-                  <a data-product-name="${item.value.product.name}"></a>
-                  <h2 class="title">${item.value.product.name}</h2>
-                  <div class="wrap_id">
-                    <span class="id">Mã SP</span>
-                    <div id="id">${item.key}</div>
-                  </div>
-                  <div class="wrap_price">
-                      <div class="price active">${item.value.product.priceDiscount} đ</div>
-                      <div class="price_sale">${item.value.product.price} đ</div>
-                  </div>
+          <tr data-product-id="${item.key}">
+            <td>
+              <label>
+                <input type="checkbox" name="settings" value="${item.key}">
+              </label>
+            </td>
+            <td class="container_img">
+              <div class="col_img"><img src="${item.value.product.image}" alt=""></div>
+              <div class="col-container_content">
+                <a data-product-name="${item.value.product.name}"></a>
+                <h2 class="title">${item.value.product.name}</h2>
+                <div class="wrap_id">
+                  <span class="id">Mã SP</span>
+                  <div id="id">${item.key}</div>
                 </div>
-              </td>
-              <td>
-                <div class="d-flex quantity">
-                  <div class="input-group-prepend minus">
-                    <span class="input-group-text btn-spin btn-dec btn-number" style="cursor: pointer; background-color: #FFFFFF; border: 1px solid #cacaca">-</span>
-                  </div>
-                  <input type="text" value="${item.value.quantity}" style="width: 60px; background-color: #FFFFFF; border: 1px solid #cacaca" class="soluongsp text-center input-quantity" />
-                  <div class="input-group-append plus">
-                    <span class="input-group-text btn-spin btn-inc btn-number" style="cursor: pointer; background-color: #FFFFFF; border: 1px solid #cacaca">+</span>
-                  </div>
+                <div class="wrap_price">
+                  <div class="price active">${item.value.product.priceDiscount} đ</div>
+                  <div class="price_sale">${item.value.product.price} đ</div>
                 </div>
-              </td>
-              <td><span class="col-sum_price">${item.value.product.priceDiscount * item.value.quantity}đ</span></td>
-              <td class="action text-center" data-title="Remove">
-                <a href="#"><i class="col_delete fa-solid fa-trash-can"></i></a>
-              </td>
-            </tr>
+              </div>
+            </td>
+            <td>
+              <div class="d-flex quantity">
+                <div class="input-group-prepend minus">
+                  <span class="input-group-text btn-spin btn-dec btn-number" style="cursor: pointer; background-color: #FFFFFF; border: 1px solid #cacaca">-</span>
+                </div>
+                <input type="text" value="${item.value.quantity}" style="width: 60px; background-color: #FFFFFF; border: 1px solid #cacaca" class="soluongsp text-center input-quantity" />
+                <div class="input-group-append plus">
+                  <span class="input-group-text btn-spin btn-inc btn-number" style="cursor: pointer; background-color: #FFFFFF; border: 1px solid #cacaca">+</span>
+                </div>
+              </div>
+            </td>
+            <td><span class="col-sum_price">${item.value.product.priceDiscount * item.value.quantity}đ</span></td>
+            <td class="action text-center" data-title="Remove">
+              <a href="#"><i class="col_delete fa-solid fa-trash-can"></i></a>
+            </td>
+          </tr>
         </c:forEach>
         </tbody>
       </table>
@@ -139,12 +139,10 @@
     const pId = $(this).closest('tr').attr('data-product-id')
     window.location.href = '${context}/add-to-cart?product_id=' + pId + '&action=remove'
   })
-
   $('.plus .btn-number').on('click', function () {
     const pId = $(this).closest('tr').attr('data-product-id')
     window.location.href = '${context}/add-to-cart?product_id=' + pId + '&action=add'
   })
-
   $('.action a').on('click', function () {
     swal({
       title: "Xác nhận xóa?",
@@ -160,14 +158,12 @@
         return false
       }
     });
-
   })
 </script>
 // chon san pham trong gio hang de mua hang
 <script>
   let checkboxes = $("input[type=checkbox][name=settings]")
   let enabledSettings = [];
-
   // Attach a change event handler to the checkboxes.
   checkboxes.change(function () {
     enabledSettings = checkboxes
@@ -176,9 +172,7 @@
               return this.value;
             })
             .get() // Get array.
-
   });
-
   $('.order').on('click', function () {
     window.location.href = '${context}/order?list_id=' + enabledSettings
   })

@@ -6,6 +6,7 @@ import jakarta.mail.internet.MimeMessage;
 import vn.edu.hcmuaf.fit.model.CustomerModel;
 import vn.edu.hcmuaf.fit.model.EmailModel;
 
+
 import java.util.Properties;
 import java.util.Random;
 
@@ -48,12 +49,13 @@ public class EmailUtil {
         boolean test = false;
 
         String toEmail = user.getEmail();
-        String fromEmail = "4tiensau@gmail.com";
-        String password = "otfecajmjcaosged";
+        String fromEmail = "sosinhsv1b@gmail.com";
+        String password = "pjsolwceicgzrlzp";
 
         try {
 
             // your host email smtp server details
+
             Properties pr = new Properties();
             pr.put("mail.smtp.host", "smtp.gmail.com");
             pr.put("mail.smtp.port", "587");

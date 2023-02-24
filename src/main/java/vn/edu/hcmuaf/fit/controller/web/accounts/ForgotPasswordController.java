@@ -19,8 +19,9 @@ import javax.mail.PasswordAuthentication;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "comfirmRegister", value = "/comfirmRegister")
+@WebServlet(name = "forgotPassword", value = "/forgotPassword")
 public class ForgotPasswordController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -42,24 +43,19 @@ public class ForgotPasswordController extends HttpServlet {
                     request.setAttribute("alert", "danger");
                     request.getRequestDispatcher("/views/web/forgotPassword.jsp").forward(request, response);
                 } else {
-                    EmailModel email = new EmailModel();
-                    email.setFrom("anminh868@gmail.com");
-                    email.setFromPassword("cqtdqfwzmalyrwrk");
-                    email.setTo(emailAddress);
-                    email.setSubject("Forgot Password Function");
-                    StringBuilder sb = new StringBuilder();
-                    sb.append("Dear ").append("<br>");
-                    sb.append("You are used the forgot password function. <br>");
-                    sb.append("Your code OTP is <b>").append(account.getPassword()).append("</b>");
-                    sb.append("Regards<br>");
-                    sb.append("Administrator");
+                    EmailUtil sm = new EmailUtil();
+                    String code = sm.getRandom();
+                    CustomerDAO dao = new CustomerDAO();
+                    CustomerModel user = dao.findByUsername(emailAddress);
+                    user.setCode(code);
+                   user.setTime_active_code( System.currentTimeMillis()/1000/60);
+                    HttpSession session = request.getSession();
+                    sm.sendEmail(user);
+                    session.setAttribute("UserForgotPass", user);
+                    session.setAttribute("attempts",3);
 
-                    email.setContent(sb.toString());
-                    EmailUtil.send(email);
-
-                    request.setAttribute("message", MessageProperties.getRe_login());
                     request.setAttribute("alert", "success");
-                    request.getRequestDispatcher("/views/login.jsp").forward(request, response);
+                    request.getRequestDispatcher("/views/web/comfirmFogotPass.jsp").forward(request, response);
                 }
             } else {
                 request.setAttribute("message", MessageProperties.getMissing_mail());

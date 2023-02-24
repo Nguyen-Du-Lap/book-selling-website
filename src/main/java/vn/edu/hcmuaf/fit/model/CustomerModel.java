@@ -132,6 +132,14 @@ public class CustomerModel  extends AbstractModel<CustomerModel>  {
         return time_active_code;
     }
 
+    public void setCode(String code) {
+        this.code = code;
+    }
+    public void setTime_active_code(long time_active_code) {
+        this.time_active_code = time_active_code;
+    }
+
+
     @Override
     public String toString() {
         return "CustomerModel{" +
