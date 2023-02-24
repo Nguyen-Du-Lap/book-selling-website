@@ -10,6 +10,10 @@ public class Cart implements Serializable {
 
     private int count;
     private double totalPrice;
+    private int voucher = 0;
+    private int ship = 0;
+    private double totalPriceShip;
+    private double totalPriceShipVoucher;
 
     public void addProduct(Product p, int quantity) {
         CartItem item = map.containsKey(p.getIdBook()) ? map.get(p.getIdBook()) : new CartItem(p);
@@ -42,9 +46,27 @@ public class Cart implements Serializable {
         map.forEach((id, item) -> totalPrice += item.getProduct().getPriceDiscount() * item.getQuantity());
         return totalPrice;
     }
-    //    public void invalidate() {
-//        final var dao = new ProductDAO();
-//        map.forEach((id, cartItem) ->
-//                dao.updateQuantity(id, cartItem.getQuantity() + ProductService.getRemainQuantity(id)));
-//    }
+
+    public double getTotalPriceShip() {
+        return getTotalPrice() + ship;
+    }
+
+    public double getTotalPriceShipVoucher() {
+        return getTotalPriceShip() - voucher;
+    }
+    public int getVoucher() {
+        return voucher;
+    }
+
+    public void setVoucher(int voucher) {
+        this.voucher = voucher;
+    }
+
+    public int getShip() {
+        return ship;
+    }
+
+    public void setShip(int ship) {
+        this.ship = ship;
+    }
 }
