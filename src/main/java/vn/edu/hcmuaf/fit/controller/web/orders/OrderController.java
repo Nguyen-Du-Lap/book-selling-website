@@ -10,7 +10,7 @@ import vn.edu.hcmuaf.fit.model.Cart;
 import vn.edu.hcmuaf.fit.model.CustomerModel;
 import vn.edu.hcmuaf.fit.services.IOrderService;
 import vn.edu.hcmuaf.fit.services.impl.OrderService;
-import vn.edu.hcmuaf.fit.utils.ErrorParameterUntil;
+import vn.edu.hcmuaf.fit.utils.MessageParameterUntil;
 import vn.edu.hcmuaf.fit.utils.SessionUtil;
 
 import javax.servlet.*;
@@ -34,13 +34,13 @@ public class OrderController extends HttpServlet {
         }else{
             String idVoucher = request.getParameter("idVoucher");
             if(idVoucher.equals("") || idVoucher == null) {
-                new ErrorParameterUntil("Mã giảm giá không tồn tại", "warning", "/views/web/cart.jsp", request, response).sendError();
+                new MessageParameterUntil("Mã giảm giá không tồn tại", "warning", "/views/web/cart.jsp", request, response).send();
             }else {
                 int idVoucherInt = Integer.parseInt(idVoucher);
                 if(idVoucherInt == 1000000) {
                     setOrderNotVoucher(cus, request, response);
                 }else if(!discountCustomerDAO.checkIdVoucherInCus(idVoucherInt, cus.getIdUser())) {
-                    new ErrorParameterUntil("Mã giảm giá không tồn tại", "warning", "/views/web/cart.jsp", request, response).sendError();
+                    new MessageParameterUntil("Mã giảm giá không tồn tại", "warning", "/views/web/cart.jsp", request, response).send();
                 } else {
                     setOrderVoucher(idVoucherInt ,cus, request, response);
                 }

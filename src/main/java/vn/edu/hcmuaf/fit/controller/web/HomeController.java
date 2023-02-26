@@ -1,19 +1,16 @@
 package vn.edu.hcmuaf.fit.controller.web;
 
-import vn.edu.hcmuaf.fit.constant.SystemConstant;
 import vn.edu.hcmuaf.fit.dao.IBookDAO;
 import vn.edu.hcmuaf.fit.dao.ISlidePr;
 import vn.edu.hcmuaf.fit.dao.impl.BLockUserDao;
 import vn.edu.hcmuaf.fit.dao.impl.BookDAO;
 import vn.edu.hcmuaf.fit.dao.impl.SlidePrDAO;
 import vn.edu.hcmuaf.fit.db.MessageProperties;
-import vn.edu.hcmuaf.fit.model.AuthorModel;
 import vn.edu.hcmuaf.fit.model.CustomerModel;
 import vn.edu.hcmuaf.fit.services.IAuthorService;
-import vn.edu.hcmuaf.fit.services.ICatalogService;
 import vn.edu.hcmuaf.fit.services.ICustomerService;
 import vn.edu.hcmuaf.fit.services.impl.AuthorService;
-import vn.edu.hcmuaf.fit.utils.ErrorParameterUntil;
+import vn.edu.hcmuaf.fit.utils.MessageParameterUntil;
 import vn.edu.hcmuaf.fit.utils.SessionUtil;
 
 import javax.inject.Inject;
@@ -23,8 +20,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.Properties;
 
 @WebServlet(urlPatterns = { "/home", "/login", "/logout"})
 //@WebServlet(name = "home", value = "/home")
@@ -92,18 +87,18 @@ public class HomeController extends HttpServlet {
                     CustomerModel account = customerService.findByUsername(email);
 
                     if ((account != null) && BLockUserDao.Attempts(email).equals("Updated")) {
-                        new ErrorParameterUntil(MessageProperties.getUsername_password_invalid(), "danger", "/views/login.jsp", req, resp).sendError();
+                        new MessageParameterUntil(MessageProperties.getUsername_password_invalid(), "danger", "/views/login.jsp", req, resp).send();
                     } else {
                         if ((account != null) && BLockUserDao.Attempts(email).equals("block")) {
-                            new ErrorParameterUntil("Your account has been locked please contact your administrator to unlock it", "danger", "/views/login.jsp", req, resp).sendError();
+                            new MessageParameterUntil("Your account has been locked please contact your administrator to unlock it", "danger", "/views/login.jsp", req, resp).send();
                         }
                         else {
-                            new ErrorParameterUntil(MessageProperties.getUsername_password_invalid(), "danger", "/views/login.jsp", req, resp).sendError();
+                            new MessageParameterUntil(MessageProperties.getUsername_password_invalid(), "danger", "/views/login.jsp", req, resp).send();
                         }
                     }
                 }
             } else {
-                new ErrorParameterUntil(MessageProperties.getUsername_password_invalid(), "danger", "/views/login.jsp", req, resp).sendError();;
+                new MessageParameterUntil(MessageProperties.getUsername_password_invalid(), "danger", "/views/login.jsp", req, resp).send();;
             }
         }
     }

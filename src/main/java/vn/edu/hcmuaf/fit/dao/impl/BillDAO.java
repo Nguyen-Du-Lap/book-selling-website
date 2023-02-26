@@ -324,6 +324,41 @@ public class BillDAO implements IBillDAO {
     }
 
     @Override
+    public int addBill(int idUser, int idBook, String address,
+                       int paymentMethod, int pack, int quantity,
+                       double totalPrice, String info, String phone) {
+        Connection connection = JDBCConnector.getConnection();
+        String sql = new String("INSERT INTO bill(id_user, id_book, address, pack, payment_method, totalBill, quantity, phone, info)\n" +
+                "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(sql.toString());
+            statement.setInt(1, idUser);
+            statement.setInt(2, idBook);
+            statement.setString(3, address);
+            statement.setInt(4, pack);
+            statement.setInt(5, paymentMethod);
+            statement.setDouble(6, totalPrice);
+            statement.setInt(7, quantity);
+            statement.setString(8, phone);
+            statement.setString(9, info);
+
+            return statement.executeUpdate();
+
+        }catch (SQLException e) {
+            return 0;
+        } finally {
+            try {
+                if(connection != null) connection.close();
+                if(statement != null) statement.close();
+            } catch (SQLException e) {
+                return 0;
+            }
+        }
+
+    }
+
+    @Override
     public int cancelOrder(int idInt) {
         Connection connection = JDBCConnector.getConnection();
         String sql = new String("UPDATE bill \n" +
