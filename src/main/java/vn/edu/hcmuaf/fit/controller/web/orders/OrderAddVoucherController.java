@@ -1,13 +1,11 @@
 package vn.edu.hcmuaf.fit.controller.web.orders;
 
-import vn.edu.hcmuaf.fit.dao.ICustomerDAO;
-import vn.edu.hcmuaf.fit.dao.impl.CustomerDAO;
 import vn.edu.hcmuaf.fit.dao.impl.DiscountCustomerDAO;
 import vn.edu.hcmuaf.fit.model.Cart;
 import vn.edu.hcmuaf.fit.model.CustomerModel;
 import vn.edu.hcmuaf.fit.services.IOrderService;
 import vn.edu.hcmuaf.fit.services.impl.OrderService;
-import vn.edu.hcmuaf.fit.utils.ErrorParameterUntil;
+import vn.edu.hcmuaf.fit.utils.MessageParameterUntil;
 import vn.edu.hcmuaf.fit.utils.SessionUtil;
 
 import javax.servlet.*;
@@ -28,9 +26,9 @@ public class OrderAddVoucherController extends HttpServlet {
             String listId =  request.getParameter("list_id");
 
             if(listId.equals("")){
-                new ErrorParameterUntil("Chưa chọn sản phẩm", "warning", "/views/web/cart.jsp", request, response).sendError();
+                new MessageParameterUntil("Chưa chọn sản phẩm", "warning", "/views/web/cart.jsp", request, response).send();
             }else if(orderService.checkIdExistsInCart(listId, request, response)) {
-                new ErrorParameterUntil("Sản phẩm không tồn tại", "warning", "/views/web/cart.jsp", request, response).sendError();
+                new MessageParameterUntil("Sản phẩm không tồn tại", "warning", "/views/web/cart.jsp", request, response).send();
             }
             else{
                 Cart cartOrder = orderService.cartOrder(listId, request);

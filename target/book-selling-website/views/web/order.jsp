@@ -12,7 +12,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -43,7 +43,7 @@
   <div class="container_left">
     <div class="cross"></div>
     <h2 class="header_center">THÔNG TIN ĐƠN HÀNG</h2>
-    <form id="submit_form" action="order/pay">
+    <form id="submit_form" action="order/pay" method="post">
       <div class="form-group input">
         <label for="name">Họ và tên: <span class="obligatory">(*)</span></label>
         <input type="text" class="form-control" id="name" placeholder="Họ và tên" value="${customer.firstName} ${customer.lastName}" onchange="nameOnChange(this.value)" disabled>
@@ -54,10 +54,10 @@
       <div class="form-group input">
         <label for="phone">Điện thoại: <span class="obligatory">(*)</span></label>
         <c:if test="${customer.phone == ''}">
-          <input type="text" class="form-control" id="phone" placeholder="Số điện thoại" value="${customer.phone}" onchange="phoneOnChange(this.value)">
+          <input name="phone" type="text" class="form-control" id="phone" placeholder="Số điện thoại" value="${customer.phone}" onchange="phoneOnChange(this.value)">
         </c:if>
         <c:if test="${customer.phone != ''}">
-          <input type="text" class="form-control" id="phone" placeholder="Số điện thoại" value="${customer.phone}" onchange="phoneOnChange(this.value)" disabled>
+          <input name="phone" type="text" class="form-control" id="phone" placeholder="Số điện thoại" value="${customer.phone}" onchange="phoneOnChange(this.value)" disabled>
         </c:if>
         <i class="fa-solid fa-circle-check"></i>
         <i class="fa-solid fa-circle-xmark"></i>
@@ -72,14 +72,14 @@
       </div>
       <div class="form-group input">
         <label for="address">Địa chỉ nhận: <span class="obligatory">(*)</span></label>
-        <input type="text" class="form-control" id="address" placeholder="Địa chỉ nhận" onchange="addressOnChange(this.value)">
+        <input name="address" type="text" class="form-control" id="address" placeholder="Địa chỉ nhận" onchange="addressOnChange(this.value)">
         <i class="fa-solid fa-circle-check"></i>
         <i class="fa-solid fa-circle-xmark"></i>
         <small>Error</small>
       </div>
       <div class="form-group input">
         <label for="city">Tỉnh/Thành: <span class="obligatory">(*)</span></label>
-        <select class="form-control form-select form-select-sm mb-3" id="city" aria-label=".form-select-sm">
+        <select name="city" class="form-control form-select form-select-sm mb-3" id="city" aria-label=".form-select-sm">
           <option value="" selected>Chọn tỉnh thành</option>
         </select>
         <i class="fa-solid fa-circle-check"></i>
@@ -88,7 +88,7 @@
       </div>
       <div class="form-group input">
         <label for="district">Quận/Huyện: <span class="obligatory">(*)</span></label>
-        <select class="form-control form-select form-select-sm mb-3" id="district"
+        <select name="district" class="form-control form-select form-select-sm mb-3" id="district"
                 aria-label=".form-select-sm">
           <option value="" selected>Chọn quận huyện</option>
         </select>
@@ -98,8 +98,8 @@
       </div>
       <div class="form-group input">
         <label for="ward">Phường/Xã: <span class="obligatory">(*)</span></label>
-        <select class="form-control form-select form-select-sm" id="ward" aria-label=".form-select-sm">
-          <option value="" selected>Chọn phường xã</option>
+        <select name="ward" class="form-control form-select form-select-sm" id="ward" aria-label=".form-select-sm">
+          <option  value="" selected>Chọn phường xã</option>
         </select>
         <i class="fa-solid fa-circle-check"></i>
         <i class="fa-solid fa-circle-xmark"></i>
@@ -107,10 +107,10 @@
       </div>
       <div class="form-group input">
         <label for="pack">Đóng gói: <span class="obligatory">(*)</span></label>
-        <select class="form-control" id="pack" aria-label=".form-select-sm">
+        <select name="pack" class="form-control" id="pack" aria-label=".form-select-sm">
           <option value="" selected>Chọn quy cách đóng gói</option>
-          <option value="1">Bọc Blatic</option>
-          <option value="2">Để nguyên seal</option>
+          <option value="0">Bọc Blatic</option>
+          <option value="1">Để nguyên seal</option>
         </select>
         <i class="fa-solid fa-circle-check"></i>
         <i class="fa-solid fa-circle-xmark"></i>
@@ -118,10 +118,10 @@
       </div>
       <div class="form-group input">
         <label for="pay">Hình thức thanh toán: <span class="obligatory">(*)</span></label>
-        <select class="form-control" id="pay" aria-label=".form-select-sm">
+        <select name="pay" class="form-control" id="pay" aria-label=".form-select-sm">
           <option value="" selected>Chọn hình thức</option>
-          <option value="Chuyển khoản">Chuyển khoản</option>
-          <option value="Cod: Giao hàng nhận tiền">Cod: Giao hàng nhận tiền</option>
+          <option value="0">Cod: Giao hàng nhận tiền</option>
+          <option value="1">Chuyển khoảng</option>
         </select>
         <i class="fa-solid fa-circle-check"></i>
         <i class="fa-solid fa-circle-xmark"></i>
