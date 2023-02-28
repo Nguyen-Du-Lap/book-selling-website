@@ -88,9 +88,8 @@ public class BillDAO implements IBillDAO {
     @Override
     public List<Bill> findBillDeliverByIdOrder(int id) {
         List<Bill> results = new ArrayList<>();
-        String sql = "SELECT bill.id_order, book.name, bill.totalQuantity, bill.total, bill.id_user, book.id_book \n" +
-                "FROM bill JOIN bill_details ON bill.id_order = bill_details.id_order\n" +
-                "JOIN book ON bill_details.id_book = book.id_book\n" +
+        String sql = "SELECT bill.id_order, book.name, bill.totalBill, bill.quantity, bill.id_user, bill.id_book \n" +
+                "FROM bill JOIN book ON bill.id_book = book.id_book \n" +
                 "WHERE bill.shipping_info = 1 AND bill.id_user = ?";
         Connection connection = JDBCConnector.getConnection();
         PreparedStatement statement = null;
@@ -104,8 +103,8 @@ public class BillDAO implements IBillDAO {
                    Bill bill = new Bill();
                    bill.setIdOrder(resultSet.getInt(1));
                    bill.setName(resultSet.getString(2));
-                   bill.setQuantity(resultSet.getInt(3));
-                   bill.setTotalPrice(resultSet.getDouble(4));
+                    bill.setTotalPrice(resultSet.getInt(3));
+                    bill.setQuantity(resultSet.getInt(4));
                    bill.setIdUser(resultSet.getInt(5));
                    bill.setImage(findImageById(resultSet.getInt(6)));
                    results.add(bill);
@@ -129,9 +128,8 @@ public class BillDAO implements IBillDAO {
 
     public List<Bill> findBillWarByIdOrder(int id) {
         List<Bill> results = new ArrayList<>();
-        String sql = "SELECT bill.id_order, book.name, bill.totalQuantity, bill.total, bill.id_user, book.id_book \n" +
-                "FROM bill JOIN bill_details ON bill.id_order = bill_details.id_order\n" +
-                "JOIN book ON bill_details.id_book = book.id_book\n" +
+        String sql = "SELECT bill.id_order, book.name, bill.totalBill, bill.quantity, bill.id_user, bill.id_book \n" +
+                "FROM bill JOIN book ON bill.id_book = book.id_book \n" +
                 "WHERE bill.shipping_info = 1 AND bill.id_user = ?";
         Connection connection = JDBCConnector.getConnection();
         PreparedStatement statement = null;
@@ -145,8 +143,8 @@ public class BillDAO implements IBillDAO {
                     Bill bill = new Bill();
                     bill.setIdOrder(resultSet.getInt(1));
                     bill.setName(resultSet.getString(2));
-                    bill.setQuantity(resultSet.getInt(3));
-                    bill.setTotalPrice(resultSet.getDouble(4));
+                    bill.setTotalPrice(resultSet.getInt(3));
+                    bill.setQuantity(resultSet.getInt(4));
                     bill.setIdUser(resultSet.getInt(5));
                     bill.setImage(findImageById(resultSet.getInt(6)));
                     results.add(bill);
@@ -170,9 +168,8 @@ public class BillDAO implements IBillDAO {
 
     public List<Bill> findBillDelivByIdOrder(int id) {
         List<Bill> results = new ArrayList<>();
-        String sql = "SELECT bill.id_order, book.name, bill.totalQuantity, bill.total, bill.id_user, book.id_book \n" +
-                "FROM bill JOIN bill_details ON bill.id_order = bill_details.id_order\n" +
-                "JOIN book ON bill_details.id_book = book.id_book\n" +
+        String sql = "SELECT bill.id_order, book.name, bill.totalBill, bill.quantity, bill.id_user, bill.id_book \n" +
+                "FROM bill JOIN book ON bill.id_book = book.id_book \n" +
                 "WHERE bill.shipping_info = 2 AND bill.id_user = ?";
         Connection connection = JDBCConnector.getConnection();
         PreparedStatement statement = null;
@@ -186,8 +183,8 @@ public class BillDAO implements IBillDAO {
                     Bill bill = new Bill();
                     bill.setIdOrder(resultSet.getInt(1));
                     bill.setName(resultSet.getString(2));
-                    bill.setQuantity(resultSet.getInt(3));
-                    bill.setTotalPrice(resultSet.getDouble(4));
+                    bill.setTotalPrice(resultSet.getInt(3));
+                    bill.setQuantity(resultSet.getInt(4));
                     bill.setIdUser(resultSet.getInt(5));
                     bill.setImage(findImageById(resultSet.getInt(6)));
                     results.add(bill);
@@ -211,9 +208,8 @@ public class BillDAO implements IBillDAO {
 
     public List<Bill> findBillByIdOrder(int id) {
         List<Bill> results = new ArrayList<>();
-        String sql = "SELECT bill.id_order, book.name, bill.totalQuantity, bill.total, bill.id_user, book.id_book \n" +
-                "FROM bill JOIN bill_details ON bill.id_order = bill_details.id_order\n" +
-                "JOIN book ON bill_details.id_book = book.id_book\n" +
+        String sql = "SELECT bill.id_order, book.name, bill.totalBill, bill.quantity, bill.id_user, bill.id_book \n" +
+                "FROM bill JOIN book ON bill.id_book = book.id_book \n" +
                 "WHERE bill.shipping_info = 3 AND bill.id_user = ?";
         Connection connection = JDBCConnector.getConnection();
         PreparedStatement statement = null;
@@ -227,8 +223,8 @@ public class BillDAO implements IBillDAO {
                     Bill bill = new Bill();
                     bill.setIdOrder(resultSet.getInt(1));
                     bill.setName(resultSet.getString(2));
-                    bill.setQuantity(resultSet.getInt(3));
-                    bill.setTotalPrice(resultSet.getDouble(4));
+                    bill.setTotalPrice(resultSet.getInt(3));
+                    bill.setQuantity(resultSet.getInt(4));
                     bill.setIdUser(resultSet.getInt(5));
                     bill.setIdBook(resultSet.getInt(6));
                     bill.setImage(findImageById(resultSet.getInt(6)));
@@ -253,9 +249,8 @@ public class BillDAO implements IBillDAO {
 
     public List<Bill> findBillRateByIdOrder(int id) {
         List<Bill> results = new ArrayList<>();
-        String sql = "SELECT bill.id_order, book.name, bill.totalQuantity, bill.total, bill.id_user, book.id_book\n" +
-                "FROM bill JOIN bill_details ON bill.id_order = bill_details.id_order\n" +
-                "JOIN book ON bill_details.id_book = book.id_book\n" +
+        String sql = "SELECT bill.id_order, book.name, bill.quantity, bill.totalBill, bill.id_user, bill.id_book\n" +
+                "FROM bill JOIN book ON bill.id_book = book.id_book\n" +
                 "WHERE bill.shipping_info = 3 AND bill.id_user = ? AND bill.id_order NOT IN(SELECT id_order FROM rate)";
         Connection connection = JDBCConnector.getConnection();
         PreparedStatement statement = null;
@@ -270,7 +265,7 @@ public class BillDAO implements IBillDAO {
                     bill.setIdOrder(resultSet.getInt(1));
                     bill.setName(resultSet.getString(2));
                     bill.setQuantity(resultSet.getInt(3));
-                    bill.setTotalPrice(resultSet.getDouble(4));
+                    bill.setTotalPrice(resultSet.getInt(4));
                     bill.setIdUser(resultSet.getInt(5));
                     bill.setIdBook(resultSet.getInt(6));
                     bill.setImage(findImageById(resultSet.getInt(6)));
