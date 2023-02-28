@@ -4,6 +4,7 @@ import vn.edu.hcmuaf.fit.dao.impl.CustomerDAO;
 import vn.edu.hcmuaf.fit.db.MessageProperties;
 import vn.edu.hcmuaf.fit.model.CustomerModel;
 import vn.edu.hcmuaf.fit.utils.EmailUtil;
+import vn.edu.hcmuaf.fit.utils.MessageParameterUntil;
 import vn.edu.hcmuaf.fit.utils.SessionUtil;
 
 import javax.servlet.*;
@@ -31,12 +32,9 @@ public class ConfirmOTP extends HttpServlet {
         if(code.equals(user.getCode()) && (System.currentTimeMillis() / 1000/60) - user.getTime_active_code() <= 5){
             dao.signup(user.getEmail(), user.getPassword(), user.getFirstName(),user.getLastName(), user.getPhone(), user.getAddress());
             session.removeAttribute("registerUser");
-            request.getRequestDispatcher("/views/login.jsp").forward(request,response );
+            new MessageParameterUntil("Đăng kí thành công", "success", "/views/login.jsp", request, response).send();
         }else{
-            request.setAttribute("message", "Incorrect verification code");
-            request.setAttribute("alert", "danger");
-            request.getRequestDispatcher("/views/web/confirmRegister.jsp").forward(request, response);
-
+            new MessageParameterUntil("Mã xác minh không chính xác", "danger", "/views/web/confirmRegister.jsp", request, response).send();
         }
     }
     @Override

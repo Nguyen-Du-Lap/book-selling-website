@@ -87,18 +87,18 @@ public class HomeController extends HttpServlet {
                     CustomerModel account = customerService.findByUsername(email);
 
                     if ((account != null) && BLockUserDao.Attempts(email).equals("Updated")) {
-                        new MessageParameterUntil(MessageProperties.getUsername_password_invalid(), "danger", "/views/login.jsp", req, resp).send();
+                        new MessageParameterUntil("username hoặc password không tồn tại", "danger", "/views/login.jsp", req, resp).send();
                     } else {
                         if ((account != null) && BLockUserDao.Attempts(email).equals("block")) {
-                            new MessageParameterUntil("Your account has been locked please contact your administrator to unlock it", "danger", "/views/login.jsp", req, resp).send();
+                            new MessageParameterUntil("Tài khoản của bạn đã bị khóa, vui lòng liên hệ với quản trị viên của bạn để mở khóa", "danger", "/views/login.jsp", req, resp).send();
                         }
                         else {
-                            new MessageParameterUntil(MessageProperties.getUsername_password_invalid(), "danger", "/views/login.jsp", req, resp).send();
+                            new MessageParameterUntil("username hoặc password không tồn tại", "danger", "/views/login.jsp", req, resp).send();
                         }
                     }
                 }
             } else {
-                new MessageParameterUntil(MessageProperties.getUsername_password_invalid(), "danger", "/views/login.jsp", req, resp).send();;
+                new MessageParameterUntil("username hoặc password không tồn tại", "danger", "/views/login.jsp", req, resp).send();;
             }
         }
     }

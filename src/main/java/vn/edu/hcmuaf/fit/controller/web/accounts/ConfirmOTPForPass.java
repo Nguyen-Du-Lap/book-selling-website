@@ -48,7 +48,7 @@ public class ConfirmOTPForPass extends HttpServlet {
                     request.getRequestDispatcher("/views/login.jsp").forward(request, response);
                 } else {
                     session.setAttribute("attempts", attemts -1);
-                    request.setAttribute("message", "Incorrect verification code");
+                    request.setAttribute("message", "Mã xác minh không chính xác");
                     request.setAttribute("alert", "danger");
                     request.getRequestDispatcher("/views/web/comfirmFogotPass.jsp").forward(request, response);
                 }
