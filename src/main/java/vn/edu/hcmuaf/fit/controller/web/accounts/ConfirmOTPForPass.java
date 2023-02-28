@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.fit.controller.web.accounts;
 
+import vn.edu.hcmuaf.fit.dao.impl.BLockUserDao;
 import vn.edu.hcmuaf.fit.dao.impl.CustomerDAO;
 import vn.edu.hcmuaf.fit.db.MessageProperties;
 import vn.edu.hcmuaf.fit.model.CustomerModel;
@@ -30,6 +31,8 @@ public class ConfirmOTPForPass extends HttpServlet {
         CustomerDAO dao = new CustomerDAO();
         //String idUser = request.getParameter("id_user");
         if(code.equals(user.getCode()) && (System.currentTimeMillis() / 1000/60) - user.getTime_active_code() <= 5 && attemts > 0){
+            BLockUserDao.resetAccount(user.getEmail());
+
             request.getRequestDispatcher("/views/web/changePasswordForgot.jsp").forward(request,response );
         }else{
             if((System.currentTimeMillis() / 1000/60) - user.getTime_active_code() > 5 ) {

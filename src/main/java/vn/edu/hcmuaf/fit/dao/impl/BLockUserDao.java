@@ -83,10 +83,11 @@ public class BLockUserDao {
         PreparedStatement sel = null;
 
         try {
-            ps = con.prepareStatement("update customer set status = ? , lock_time = ? where email = ?");
+            ps = con.prepareStatement("update customer set status = ? , lock_time = ?, attempts = ? where email = ?");
             ps.setInt(1,1);
             ps.setInt(2,-1);
-            ps.setString(3,email);
+            ps.setInt(3,3);
+            ps.setString(4,email);
             ps.executeUpdate();
 
         } catch (SQLException e) {
