@@ -22,7 +22,7 @@
 
   <style>
     .tab {
-      overflow: hidden;
+      overflow-y: hidden;
       border: 1px solid #ccc;
       background-color: #f1f1f1;
     }
