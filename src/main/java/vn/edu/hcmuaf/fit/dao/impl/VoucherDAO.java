@@ -51,4 +51,37 @@ public class VoucherDAO implements IVoucherDAO {
         }
         return null;
     }
+    @Override
+    public int getPriceVoucher(int idVoucher) {
+        int results = 0;
+        String sql = "SELECT percent_discount \n" +
+                "FROM discount\n" +
+                "WHERE id_discount = ?";
+        Connection connection = JDBCConnector.getConnection();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        if(connection != null) {
+            try {
+                statement = connection.prepareStatement(sql);
+                statement.setInt(1, idVoucher);
+                resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    results = resultSet.getInt(1);
+                }
+
+                return results;
+            } catch (SQLException e) {
+                return 0;
+            } finally {
+                try {
+                    if(connection != null) connection.close();
+                    if(statement != null) statement.close();
+                    if(resultSet != null) resultSet.close();
+                } catch (SQLException e) {
+                    return 0;
+                }
+            }
+        }
+        return 0;
+    }
 }

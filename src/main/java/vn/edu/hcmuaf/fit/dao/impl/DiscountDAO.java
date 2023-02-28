@@ -1,5 +1,7 @@
 package vn.edu.hcmuaf.fit.dao.impl;
 
-public class DiscountDAO {
+import vn.edu.hcmuaf.fit.dao.IDiscountDAO;
+
+public class DiscountDAO implements IDiscountDAO {
 
 }

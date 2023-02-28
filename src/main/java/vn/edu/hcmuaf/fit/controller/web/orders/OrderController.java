@@ -1,11 +1,16 @@
 package vn.edu.hcmuaf.fit.controller.web.orders;
 
 import vn.edu.hcmuaf.fit.dao.ICustomerDAO;
+import vn.edu.hcmuaf.fit.dao.IDiscountCustomerDAO;
+import vn.edu.hcmuaf.fit.dao.IVoucherDAO;
 import vn.edu.hcmuaf.fit.dao.impl.CustomerDAO;
+import vn.edu.hcmuaf.fit.dao.impl.DiscountCustomerDAO;
+import vn.edu.hcmuaf.fit.dao.impl.VoucherDAO;
 import vn.edu.hcmuaf.fit.model.Cart;
 import vn.edu.hcmuaf.fit.model.CustomerModel;
 import vn.edu.hcmuaf.fit.services.IOrderService;
 import vn.edu.hcmuaf.fit.services.impl.OrderService;
+import vn.edu.hcmuaf.fit.utils.MessageParameterUntil;
 import vn.edu.hcmuaf.fit.utils.SessionUtil;
 
 import javax.servlet.*;
@@ -17,32 +22,28 @@ import java.io.IOException;
 public class OrderController extends HttpServlet {
     IOrderService orderService = new OrderService();
     ICustomerDAO customerDAO = new CustomerDAO();
+    IDiscountCustomerDAO discountCustomerDAO = new DiscountCustomerDAO();
+
+    IVoucherDAO voucherDAO = new VoucherDAO();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         CustomerModel cus = (CustomerModel) SessionUtil.getInstance().getValue(request, "USERMODEL");
         if(cus == null) {
             response.sendRedirect("/login?action=login");
         }else{
-            String listId =  request.getParameter("list_id");
-
-            if(listId.equals("")){
-                request.setAttribute("message", "Chưa chọn sản phẩm");
-                request.setAttribute("alert", "warning");
-                request.getRequestDispatcher("/views/web/cart.jsp").forward(request, response);
-            }else if(orderService.checkIdExistsInCart(listId, request, response)) {
-                request.setAttribute("message", "Sản phẩm không tồn tại");
-                request.setAttribute("alert", "warning");
-                request.getRequestDispatcher("/views/web/cart.jsp").forward(request, response);
-            }
-            else{
-                CustomerModel customerModel = (CustomerModel) SessionUtil.getInstance().getValue(request, "USERMODEL");
-                Cart cartOrder = orderService.cartOrder(listId, request);
-
-                request.setAttribute("cartOrder", cartOrder);
-                request.setAttribute("customer", customerDAO.findById(customerModel.getIdUser()));
-                request.setAttribute("transportFee", 30000);
-                request.setAttribute("totalPrice", cartOrder.getTotalPrice());
-                request.getRequestDispatcher("/views/web/order.jsp").forward(request, response);
+            String idVoucher = request.getParameter("idVoucher");
+            if(idVoucher.equals("") || idVoucher == null) {
+                new MessageParameterUntil("Mã giảm giá không tồn tại", "warning", "/views/web/cart.jsp", request, response).send();
+            }else {
+                int idVoucherInt = Integer.parseInt(idVoucher);
+                if(idVoucherInt == 1000000) {
+                    setOrderNotVoucher(cus, request, response);
+                }else if(!discountCustomerDAO.checkIdVoucherInCus(idVoucherInt, cus.getIdUser())) {
+                    new MessageParameterUntil("Mã giảm giá không tồn tại", "warning", "/views/web/cart.jsp", request, response).send();
+                } else {
+                    setOrderVoucher(idVoucherInt ,cus, request, response);
+                }
             }
         }
 
@@ -51,6 +52,22 @@ public class OrderController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+    }
+
+    public void setOrderNotVoucher(CustomerModel cus, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("customer", customerDAO.findById(cus.getIdUser()));
+        request.getRequestDispatcher("/views/web/order.jsp").forward(request, response);
+    }
+
+    public void setOrderVoucher(int idVoucher, CustomerModel cus, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int priceDiscount = voucherDAO.getPriceVoucher(idVoucher);
+        Cart cartOrder = (Cart) request.getSession().getAttribute("cartOrder");
+        cartOrder.setVoucher(priceDiscount);
+        cartOrder.setShip(30000);
+        request.getSession().setAttribute("cartOrder", cartOrder);
+        request.setAttribute("listDiscount", discountCustomerDAO.findDisByIdVou(cus.getIdUser(), idVoucher));
+        request.setAttribute("customer", customerDAO.findById(cus.getIdUser()));
+        request.getRequestDispatcher("/views/web/order.jsp").forward(request, response);
     }
 
 }
