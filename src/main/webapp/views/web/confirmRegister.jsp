@@ -32,7 +32,6 @@ To change this template use File | Settings | File Templates.
     <div class="signUp-title">Đăng ký</div>
 
     <form action="/confirmOTP" class="form_signUp" id="form_signUp" method="post">
-        <span>We already send a verification  code to your email.</span>
         <div class="input ">
             <label>Mã OPT có hiệu lực 5 phút</label>
             <input type="text" placeholder="Nhập mã opt" id="email" name="code">
