@@ -2,6 +2,7 @@ package vn.edu.hcmuaf.fit.services.impl;
 
 import vn.edu.hcmuaf.fit.dao.IBillDAO;
 import vn.edu.hcmuaf.fit.dao.impl.BillDAO;
+import vn.edu.hcmuaf.fit.model.Cart;
 import vn.edu.hcmuaf.fit.model.ShippingInfoModel;
 import vn.edu.hcmuaf.fit.services.IBillService;
 import vn.edu.hcmuaf.fit.utils.MessageParameterUntil;
@@ -30,14 +31,24 @@ public class BillService implements IBillService {
     public void addBill(int idUser, int idBook, String address, String city, String district, String ward, int packInt, int payInt, int quantity, double totalPriceShipVoucher, String info,
                         String phone, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        if(payInt == 0){
-            int checkAddBill = billDAO.addBill(idUser, idBook, address+", "+ward+", "+district+", "+city, packInt, payInt, quantity, totalPriceShipVoucher, info, phone);
-            if(checkAddBill != 0) {
-                new MessageParameterUntil("Mua hàng thành công", "success", "/views/web/reviewOrders.jsp", request, response).send();
-            }else {
-                new MessageParameterUntil("Mua hàng thât bại", "warning","/views/web/reviewOrders.jsp", request, response).send();
+        if (payInt == 0) {
+            int checkAddBill = billDAO.addBill(idUser, idBook, address + ", " + ward + ", " + district + ", " + city, packInt, payInt, quantity, totalPriceShipVoucher, info, phone);
+            if (checkAddBill == 0) {
+                new MessageParameterUntil("Đặt hàng thât bại", "warning", "/views/web/reviewOrders.jsp", request, response).send();
             }
         }
+    }
+
+    @Override
+    public void removeProductInCart(List<Integer> listIdRemove, HttpServletRequest request) {
+         Cart cart = (Cart) request.getSession().getAttribute("cart");
+         Cart cartOrder = (Cart) request.getSession().getAttribute("cartOrder");
+         for (int id : listIdRemove) {
+             cart.deleteProductById(id);
+             cartOrder.deleteProductById(id);
+         }
+         request.getSession().setAttribute("cart", cart);
+         request.getSession().setAttribute("cartOrder", cartOrder);
     }
 
 

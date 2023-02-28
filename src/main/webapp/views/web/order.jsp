@@ -56,7 +56,7 @@
         <c:if test="${customer.phone == ''}">
           <input name="phone" type="text" class="form-control" id="phone" placeholder="Số điện thoại" value="${customer.phone}" onchange="phoneOnChange(this.value)">
         </c:if>
-        <c:if test="${customer.phone != ''}">
+        <c:if test="${customer.phone != ''}">q
           <input name="phone" type="text" class="form-control" id="phone" placeholder="Số điện thoại" value="${customer.phone}" onchange="phoneOnChange(this.value)" disabled>
         </c:if>
         <i class="fa-solid fa-circle-check"></i>

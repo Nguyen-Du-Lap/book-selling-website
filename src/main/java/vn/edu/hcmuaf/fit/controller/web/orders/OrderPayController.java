@@ -7,13 +7,17 @@ import vn.edu.hcmuaf.fit.model.CartItem;
 import vn.edu.hcmuaf.fit.model.CustomerModel;
 import vn.edu.hcmuaf.fit.services.IBillService;
 import vn.edu.hcmuaf.fit.services.impl.BillService;
+import vn.edu.hcmuaf.fit.utils.MessageParameterUntil;
 import vn.edu.hcmuaf.fit.utils.SessionUtil;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @WebServlet(name = "order/pay", value = "/order/pay")
 public class OrderPayController extends HttpServlet {
@@ -40,13 +44,18 @@ public class OrderPayController extends HttpServlet {
         CustomerModel cus = (CustomerModel) SessionUtil.getInstance().getValue(request, "USERMODEL");
 
         Cart cart = (Cart) request.getSession().getAttribute("cartOrder");
-
-        for (Map.Entry<Integer, CartItem> entry : cart.getMap().entrySet()) {
-            Integer id = entry.getKey();
-            CartItem item = entry.getValue();
+        List<Integer> listIdRemove = new ArrayList<>();
+        Set<Integer> keySet = cart.getMap().keySet();
+        for (Integer key : keySet) {
+            CartItem item = cart.getMap().get(key);
             billService.addBill(cus.getIdUser(), item.getProduct().getIdBook(),
                     address, city, district, ward, packInt, payInt,
                     item.getQuantity(), cart.getTotalPriceShipVoucher(), info, phone, request, response);
+            listIdRemove.add(item.getProduct().getIdBook());
         }
+        billService.removeProductInCart(listIdRemove, request);
+        new MessageParameterUntil("Đặt hàng thành công", "success", "/views/web/reviewOrders.jsp", request, response).send();
     }
+
+
 }
