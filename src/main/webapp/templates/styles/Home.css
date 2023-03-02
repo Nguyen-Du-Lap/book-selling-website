@@ -171,13 +171,13 @@ ul, li {
     height: 0;
     margin-left: 2px;
     vertical-align: middle;
-    border-top: 19px solid transparent;
+    border-top: 20px solid transparent;
     border-left: 12px solid #1a94ff;
     border-right: 0 solid transparent;
     border-bottom: 20px solid transparent;
     position: absolute;
     top: 0;
-    right: -12px;
+    right: -11px;
 }
 
 .category .category_right {
