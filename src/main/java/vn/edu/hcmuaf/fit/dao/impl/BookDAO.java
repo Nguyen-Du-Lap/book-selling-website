@@ -18,11 +18,11 @@ public class BookDAO implements IBookDAO {
     public List<BookModel> listBookPayTop() {
         List<BookModel> listBook = new ArrayList<>();
         Connection connection = JDBCConnector.getConnection();
-        String sql = new String("SELECT b.id_book ,b.name, a.name, b.price - b.price * b.discount_price AS giagiam \n" +
+        String sql = new String("SELECT b.id_book ,b.name, a.name, b.price - b.price * b.discount_price AS giagiam\n" +
                 ", b.price, b.discount_price*100 AS giam, IF(v_rate.`start` is null, 0, v_rate.`start`) AS `start`\n" +
                 ", IF(v_comment.sl_comment is null, 0, v_comment.sl_comment) AS sl_comment\n" +
                 "FROM book b LEFT JOIN author a ON b.id_author = a.id_author\n" +
-                "LEFT JOIN v_rate ON b.id_book = v_rate.id_book \n" +
+                "LEFT JOIN v_rate ON b.id_book = v_rate.id_book\n" +
                 "LEFT JOIN v_comment ON b.id_book = v_comment.id_book\n" +
                 "JOIN v_sl_pay_top ON b.id_book = v_sl_pay_top.id_book\n" +
                 "ORDER BY v_sl_pay_top.sl_book DESC\n" +
