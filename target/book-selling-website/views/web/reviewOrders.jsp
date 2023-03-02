@@ -123,6 +123,11 @@
                   ${message}
               </div>
             </c:if>
+            <c:if test="${orderSuccess == '1'}">
+              <div class="alert alert-success" role="alert">
+                  Đặt hàng thành công
+              </div>
+            </c:if>
             <div id="ChoXacNhan" class="tabcontent">
               <table class="table">
                 <thead>

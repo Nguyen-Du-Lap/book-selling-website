@@ -54,7 +54,7 @@ public class OrderPayController extends HttpServlet {
             listIdRemove.add(item.getProduct().getIdBook());
         }
         billService.removeProductInCart(listIdRemove, request);
-        new MessageParameterUntil("Đặt hàng thành công", "success", "/views/web/reviewOrders.jsp", request, response).send();
+        response.sendRedirect("/order/reviewOrder?orderSuccess=1");
     }
 
 
