@@ -88,9 +88,10 @@
       </div>
       <div class="form-group input">
         <label for="district">Quận/Huyện: <span class="obligatory">(*)</span></label>
-        <select name="district" class="form-control form-select form-select-sm mb-3" id="district"
+        <select    name="district" class="form-control form-select form-select-sm mb-3" id="district"
                 aria-label=".form-select-sm">
-          <option value="" selected>Chọn quận huyện</option>
+          <option  value="" selected>Chọn quận huyện</option>
+
         </select>
         <i class="fa-solid fa-circle-check"></i>
         <i class="fa-solid fa-circle-xmark"></i>
@@ -107,10 +108,11 @@
       </div>
       <div class="form-group input">
         <label for="pack">Đóng gói: <span class="obligatory">(*)</span></label>
-        <select name="pack" class="form-control" id="pack" aria-label=".form-select-sm">
+        <select  onchange="deliveryFee(this)"  name="pack" class="form-control" id="pack" aria-label=".form-select-sm">
           <option value="" selected>Chọn quy cách đóng gói</option>
           <option value="0">Bọc Blatic</option>
           <option value="1">Để nguyên seal</option>
+          <option value="Quận 1">Quận 1</option>
         </select>
         <i class="fa-solid fa-circle-check"></i>
         <i class="fa-solid fa-circle-xmark"></i>
@@ -174,11 +176,11 @@
             </div>
             <div class="wrap mt">
               <span class="sum_transport">Phí vận chuyển:</span>
-              <div class="ml" id="sum_transport"> ${sessionScope.cartOrder.ship} đ</div>
+              <p class="ml" id="sum_transport"> </p>
             </div>
             <div class="wrap mt">
               <span class="sum_order">Thanh toán:</span>
-              <div class="ml" style="font-weight: 600; color: rgb(217, 11, 11);" id="sum_order"> ${sessionScope.cartOrder.totalPriceShipVoucher} đ</div>
+              <div class="ml" style="font-weight: 600; color: rgb(217, 11, 11);" id="sum_order"> </div>
             </div>
           </div>
           <input id="bt-update_order" type="button" value="CHỈNH SỬA ĐƠN HÀNG">
@@ -216,6 +218,8 @@
     window.location.href = '${context}/order?id=' + pId
   })
 </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
 
 </body>
 
