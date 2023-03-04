@@ -120,11 +120,11 @@
 <div id="section2" style="margin-top: 24px;">
     <div class="container">
         <div class="category">
-            <a class="category_left" href="/product?type=allBookTop">
+            <a class="category_left" href="/productList?type=allBookTop">
                 Sách bán chạy
                 <span class="category_arrow"></span>
             </a>
-            <a class="category_right" href="/product?type=allBookTop">Xem tất cả</a>
+            <a class="category_right" href="/productList?type=allBookTop">Xem tất cả</a>
         </div>
         <div class="category_carousel" style="height: 402px">
             <div class="container">
@@ -215,11 +215,11 @@
 <div id="section3" style="margin-top: 24px;">
     <div class="container">
         <div class="category">
-            <a class="category_left" href="/product?type=allBookNew">
+            <a class="category_left" href="/productList?type=allBookNew">
                 Sách mới phát hành
                 <span class="category_arrow"></span>
             </a>
-            <a class="category_right" href="/product?type=allBookNew">Xem tất cả</a>
+            <a class="category_right" href="/productList?type=allBookNew">Xem tất cả</a>
         </div>
         <div class="category_carousel" style="height: 402px">
             <div class="container">
@@ -308,11 +308,11 @@
 <div id="section4" style="margin-top: 24px;">
     <div class="container">
         <div class="category">
-            <a class="category_left" href="/product?type=allUpcoming">
+            <a class="category_left" href="/productList?type=allUpcoming">
                 Sách sắp phát hành
                 <span class="category_arrow"></span>
             </a>
-            <a class="category_right" href="/product?type=allUpcoming">Xem tất cả</a>
+            <a class="category_right" href="/productList?type=allUpcoming">Xem tất cả</a>
         </div>
         <div class="category_carousel" style="height: 402px">
             <div class="container">

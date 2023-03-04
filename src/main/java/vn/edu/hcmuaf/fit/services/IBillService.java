@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.fit.services;
 
+import vn.edu.hcmuaf.fit.model.Cart;
 import vn.edu.hcmuaf.fit.model.ShippingInfoModel;
 
 import javax.servlet.ServletException;
@@ -16,4 +17,6 @@ public interface IBillService {
                  String district, String ward, int packInt, int payInt, int quantity,
                  double totalPriceShipVoucher, String info, String phone,
                  HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+
+    void removeProductInCart(List<Integer> listIdRemove, HttpServletRequest request);
 }

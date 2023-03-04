@@ -134,7 +134,8 @@
         <textarea class="form-control" name="note" rows="3" cols="20" id="note"
                   placeholder="Ghi chú về đơn hàng"></textarea>
       </div>
-      <button type="button" id="bnt_submit" class="btn_submit">ĐẶT HÀNG</button>
+      <button style="background-color: #ed4d2b;border: none;border-radius: 5px;width: 100%;padding: 6px 36px;color: #fff;font-size: 18px;"
+              type="button" id="bnt_submit" class="btn_submit">ĐẶT HÀNG</button>
     </form>
   </div>
   <div class="container_right">

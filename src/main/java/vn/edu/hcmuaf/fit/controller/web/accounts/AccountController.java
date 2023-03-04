@@ -18,22 +18,27 @@ public class AccountController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
-        if (action != null) {
-            if (action.equalsIgnoreCase("account")) {
+        CustomerModel cus = (CustomerModel) SessionUtil.getInstance().getValue(request, "USERMODEL");
+        if(cus == null) {
+            response.sendRedirect("/login?action=login");
+        }else {
+
+            if (action != null) {
+                if (action.equalsIgnoreCase("account")) {
+                    request.getRequestDispatcher("/views/web/account.jsp").forward(request, response);
+                } else if (action.equalsIgnoreCase("changePassword")) {
+                    request.getRequestDispatcher("/views/web/changePassword.jsp").forward(request, response);
+                } else if (action.equalsIgnoreCase("reviewOrders")) {
+                    request.setAttribute("listBillDeliverByIdOrder", iBillDAO.findBillDeliverByIdOrder(cus.getIdUser()));
+                    request.setAttribute("listBillWarByIdOrder", iBillDAO.findBillWarByIdOrder(cus.getIdUser()));
+                    request.setAttribute("listBillDelivByIdOrder", iBillDAO.findBillDelivByIdOrder(cus.getIdUser()));
+                    request.setAttribute("listBillRateByIdOrder", iBillDAO.findBillRateByIdOrder(cus.getIdUser()));
+                    request.setAttribute("listBillByIdOrder", iBillDAO.findBillByIdOrder(cus.getIdUser()));
+                    request.getRequestDispatcher("/views/web/reviewOrders.jsp").forward(request, response);
+                }
+            } else {
                 request.getRequestDispatcher("/views/web/account.jsp").forward(request, response);
-            } else if (action.equalsIgnoreCase("changePassword")) {
-                request.getRequestDispatcher("/views/web/changePassword.jsp").forward(request, response);
-            } else if (action.equalsIgnoreCase("reviewOrders")) {
-                CustomerModel cus = (CustomerModel) SessionUtil.getInstance().getValue(request, "USERMODEL");
-                request.setAttribute("listBillDeliverByIdOrder", iBillDAO.findBillDeliverByIdOrder(cus.getIdUser()));
-                request.setAttribute("listBillWarByIdOrder", iBillDAO.findBillWarByIdOrder(cus.getIdUser()));
-                request.setAttribute("listBillDelivByIdOrder", iBillDAO.findBillDelivByIdOrder(cus.getIdUser()));
-                request.setAttribute("listBillRateByIdOrder", iBillDAO.findBillRateByIdOrder(cus.getIdUser()));
-                request.setAttribute("listBillByIdOrder", iBillDAO.findBillByIdOrder(cus.getIdUser()));
-                request.getRequestDispatcher("/views/web/reviewOrders.jsp").forward(request, response);
             }
-        } else {
-            request.getRequestDispatcher("/views/web/account.jsp").forward(request, response);
         }
     }
 

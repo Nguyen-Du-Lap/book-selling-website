@@ -1,4 +1,4 @@
-package vn.edu.hcmuaf.fit.controller.web;
+package vn.edu.hcmuaf.fit.controller.web.cancelAndRateProduct;
 
 import vn.edu.hcmuaf.fit.dao.IBillDAO;
 import vn.edu.hcmuaf.fit.dao.impl.BillDAO;

@@ -4,6 +4,7 @@ import vn.edu.hcmuaf.fit.dao.impl.CustomerDAO;
 import vn.edu.hcmuaf.fit.db.MessageProperties;
 import vn.edu.hcmuaf.fit.model.CustomerModel;
 import vn.edu.hcmuaf.fit.utils.EmailUtil;
+import vn.edu.hcmuaf.fit.utils.MessageParameterUntil;
 import vn.edu.hcmuaf.fit.utils.SessionUtil;
 
 import javax.servlet.*;
@@ -21,6 +22,7 @@ public class SignupController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html; charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         String email = request.getParameter("email");
         String pass = request.getParameter("password");
         String re_pass = request.getParameter("password2");
@@ -44,19 +46,13 @@ public class SignupController extends HttpServlet {
                     HttpSession session =request.getSession();
                     session.setAttribute("registerUser",user);
 
-                    request.setAttribute("message", MessageProperties.getLogin());
-                    request.setAttribute("alert", "success");
-                    request.getRequestDispatcher("/views/web/confirmRegister.jsp").forward(request, response);
+                    new MessageParameterUntil("Chúng tôi đã gửi mã xác minh đến email của bạn", "success", "/views/web/confirmRegister.jsp",request,response).send();
                 } else {
-                    request.setAttribute("message", MessageProperties.getEmail_exist());
-                    request.setAttribute("alert", "danger");
-                    request.getRequestDispatcher("/views/web/signup.jsp").forward(request, response);
+                    new MessageParameterUntil("Email đã tồn tại", "danger", "/views/web/signup.jsp",request,response).send();
                 }
             }
             }else{
-            request.setAttribute("message", MessageProperties.getMissing_data());
-            request.setAttribute("alert", "danger");
-            request.getRequestDispatcher("/views/web/signup.jsp").forward(request, response);
+                new MessageParameterUntil("Vui lòng nhập thông tin đầy đủ", "danger", "/views/web/signup.jsp",request,response).send();
         }
     }
 

@@ -28,6 +28,10 @@ public class Cart implements Serializable {
         else item.setQuantity(item.getQuantity() - 1);
     }
 
+    public void deleteProductById(int id) {
+        map.remove(id);
+    }
+
     public void deleteProduct(Product p) {
         map.remove(p.getIdBook());
     }

@@ -22,7 +22,7 @@
 
   <style>
     .tab {
-      overflow: hidden;
+      overflow-y: hidden;
       border: 1px solid #ccc;
       background-color: #f1f1f1;
     }
@@ -121,6 +121,11 @@
             <c:if test="${not empty message}">
               <div class="alert alert-${alert}" role="alert">
                   ${message}
+              </div>
+            </c:if>
+            <c:if test="${orderSuccess == '1'}">
+              <div class="alert alert-success" role="alert">
+                  Đặt hàng thành công
               </div>
             </c:if>
             <div id="ChoXacNhan" class="tabcontent">
