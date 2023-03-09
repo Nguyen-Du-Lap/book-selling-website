@@ -19,27 +19,27 @@ import java.util.Map;
 public class OrderFeeController extends HttpServlet {
     IBillService billService = new BillService();
 
-    public void feeDeliver(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public int feeDeliver(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String nameDistrict = request.getParameter("exits");
         int feeDiver = FeeGHNUtils.getFeeGHN(nameDistrict);
         HttpSession session = request.getSession();
         Cart cart = (Cart) session.getAttribute("cartOrder");
         cart.setShip(feeDiver);
-        PrintWriter out = response.getWriter();
-        out.println(feeDiver);
+        return feeDiver;
+
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        feeDeliver(request,response);
+        PrintWriter out = response.getWriter();
+        out.println(feeDeliver(request,response));
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String nameDistrict = request.getParameter("exits");
-        int feeDiver = FeeGHNUtils.getFeeGHN(nameDistrict);
+
         HttpSession session = request.getSession();
         Cart cart = (Cart) session.getAttribute("cartOrder");
-        cart.setShip(feeDiver);
+        cart.setShip(feeDeliver(request,response));
         PrintWriter out = response.getWriter();
         out.println(cart.getTotalPriceShip());
     }
