@@ -9,6 +9,7 @@ public class ShippingCalculator {
         this.distance = distance;
     }
 
+
     public double calculateShippingCost() {
         double ratePerKilo = 20000.0;
         double ratePerKm = 1200.0;
