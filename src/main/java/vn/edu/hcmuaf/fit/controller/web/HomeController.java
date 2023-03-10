@@ -2,7 +2,7 @@ package vn.edu.hcmuaf.fit.controller.web;
 
 import vn.edu.hcmuaf.fit.dao.IBookDAO;
 import vn.edu.hcmuaf.fit.dao.ISlidePr;
-import vn.edu.hcmuaf.fit.dao.impl.BLockUserDao;
+import vn.edu.hcmuaf.fit.dao.impl.BLockUserDAO;
 import vn.edu.hcmuaf.fit.dao.impl.BookDAO;
 import vn.edu.hcmuaf.fit.dao.impl.SlidePrDAO;
 import vn.edu.hcmuaf.fit.db.MessageProperties;
@@ -67,7 +67,7 @@ public class HomeController extends HttpServlet {
 
                 CustomerModel customer = customerService.findByUsernameAndPasswordAndStatus(email, password, 1);
                 if (customer != null) {
-                    BLockUserDao.resetAccount(email);
+                    BLockUserDAO.resetAccount(email);
                     SessionUtil.getInstance().putValue(req, "USERMODEL", customer);
                     if (customer.getRole().equalsIgnoreCase("user")) {
 
@@ -86,19 +86,19 @@ public class HomeController extends HttpServlet {
 
                     CustomerModel account = customerService.findByUsername(email);
 
-                    if ((account != null) && BLockUserDao.Attempts(email).equals("Updated")) {
-                        new MessageParameterUntil("username hoặc password không tồn tại", "danger", "/views/login.jsp", req, resp).send();
+                    if ((account != null) && BLockUserDAO.Attempts(email).equals("Updated")) {
+                        new MessageParameterUntil(MessageProperties.getUsername_password_invalid(), "danger", "/views/login.jsp", req, resp).send();
                     } else {
-                        if ((account != null) && BLockUserDao.Attempts(email).equals("block")) {
-                            new MessageParameterUntil("Tài khoản của bạn đã bị khóa, vui lòng liên hệ với quản trị viên của bạn để mở khóa", "danger", "/views/login.jsp", req, resp).send();
+                        if ((account != null) && BLockUserDAO.Attempts(email).equals("block")) {
+                            new MessageParameterUntil("Your account has been locked please contact your administrator to unlock it", "danger", "/views/login.jsp", req, resp).send();
                         }
                         else {
-                            new MessageParameterUntil("username hoặc password không tồn tại", "danger", "/views/login.jsp", req, resp).send();
+                            new MessageParameterUntil(MessageProperties.getUsername_password_invalid(), "danger", "/views/login.jsp", req, resp).send();
                         }
                     }
                 }
             } else {
-                new MessageParameterUntil("username hoặc password không tồn tại", "danger", "/views/login.jsp", req, resp).send();;
+                new MessageParameterUntil(MessageProperties.getUsername_password_invalid(), "danger", "/views/login.jsp", req, resp).send();;
             }
         }
     }

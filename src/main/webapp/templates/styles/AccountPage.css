@@ -279,3 +279,6 @@ a {
     box-shadow: none;
     /*border: 1px solid rgb(22 22 72);*/
 }
+.active{
+    color: yellow;
+}

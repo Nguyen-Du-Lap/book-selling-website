@@ -32,7 +32,8 @@ public class OrderAddVoucherController extends HttpServlet {
             }
             else{
                 Cart cartOrder = orderService.cartOrder(listId, request);
-                cartOrder.setShip(30000);
+                cartOrder.setShip(0);
+                HttpSession session = request.getSession();
                 request.getSession().removeAttribute("cartOrder");
                 request.getSession().setAttribute("cartOrder", cartOrder);
 

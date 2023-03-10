@@ -70,12 +70,13 @@
                     </div>
                     <form id="form" action="/rate" method="post">
                         <div>
-                            <i class="fa fa-star active"></i>
-                            <i class="fa fa-star active"></i>
-                            <i class="fa fa-star active"></i>
-                            <i class="fa fa-star active"></i>
-                            <i class="fa fa-star active"></i>
-                            <p class="active">Xuất sắc</p>
+                            <i class="fa fa-star active" id="disable_1"></i>
+                            <i class="fa fa-star active" id="disable_2"></i>
+                            <i class="fa fa-star active" id="disable_3"></i>
+                            <i class="fa fa-star active" id="disable_4"></i>
+                            <i class="fa fa-star active" id="disable_5"></i>
+                            <p class="active"  id="text_rate">Xuất sắc</p>
+                            <input name="numberStar" id="numberStar" type="hidden" value="">
                         </div>
 
                         <div class="input">
@@ -111,5 +112,68 @@
         crossorigin="anonymous"></script>
 <script src="/templates/scripts/changePassword1.js"></script>
 <script src="/templates/scripts/header.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<script>
+    const disable_1 = document.getElementById("disable_1");
+    const disable_2 = document.getElementById("disable_2")
+    const disable_3 = document.getElementById("disable_3")
+    const disable_4 = document.getElementById("disable_4")
+    const disable_5 = document.getElementById("disable_5")
+    const text = document.getElementById("text_rate")
+    let giaTri = document.getElementById("numberStar")
+    disable_1.addEventListener("click", function() {
+        disable_1.classList.add("active");
+        disable_2.classList.remove("active");
+        disable_3.classList.remove("active");
+        disable_4.classList.remove("active");
+        disable_5.classList.remove("active");
+        text.innerText = "Tệ"
+        giaTri.value = "1"
+
+    });
+    disable_2.addEventListener("click", function() {
+        disable_1.classList.add("active");
+        disable_2.classList.add("active");
+        disable_3.classList.remove("active");
+        disable_4.classList.remove("active");
+        disable_5.classList.remove("active");
+        text.innerText = "Không hài lòng"
+        giaTri.value = "2"
+
+    });
+    disable_3.addEventListener("click", function() {
+        disable_1.classList.add("active");
+        disable_2.classList.add("active");
+        disable_3.classList.add("active");
+        disable_4.classList.remove("active");
+        disable_5.classList.remove("active");
+        text.innerText = "Bình thường"
+        giaTri.value = "3"
+
+    });
+    disable_4.addEventListener("click", function() {
+        disable_1.classList.add("active");
+        disable_2.classList.add("active");
+        disable_3.classList.add("active");
+        disable_4.classList.add("active");
+        disable_5.classList.remove("active");
+        text.innerText = "Hài lòng"
+        giaTri.value = "4"
+
+    });
+    disable_5.addEventListener("click", function() {
+        disable_1.classList.add("active");
+        disable_2.classList.add("active");
+        disable_3.classList.add("active");
+        disable_4.classList.add("active");
+        disable_5.classList.add("active");
+        text.innerText = "Tuyệt vời"
+        giaTri.value = "5"
+    });
+
+
+
+
+</script>
 </body>
 </html>
