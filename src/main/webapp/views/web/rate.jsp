@@ -12,7 +12,8 @@
 <html lang="en">
 <head>
     <title>Đánh giá</title>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
           integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -45,10 +46,10 @@
                         <li class="first">
                             <a id="account" title="Thông tin tài khoản" href="/account?action=account">Thông tin tài
                                 khoản</a></li>
-                        <li class="first active">
+                        <li class="first">
                             <a id="changePassword" title="Đổi mật khẩu" href="/account?action=changePassword">Đổi
                                 mật khẩu</a></li>
-                        <li class="first">
+                        <li class="first active">
                             <a id="reviewOrders" title="Xem lại đơn hàng" href="/account?action=reviewOrders">Xem
                                 lại đơn hàng</a></li>
                         <li class="first">
@@ -58,8 +59,9 @@
                 </div>
             </div>
             <div class="col_1_1">
-                <div id="login" class="frm_content"
-                     onkeypress="javascript:return WebForm_FireDefaultButton(event, 'acc_save')">
+
+                <div id="login" class="frm_content">
+
                     <h3>Gửi đánh giá của bạn</h3>
                     <div class="container">
                         <label>Chọn Ảnh</label>
