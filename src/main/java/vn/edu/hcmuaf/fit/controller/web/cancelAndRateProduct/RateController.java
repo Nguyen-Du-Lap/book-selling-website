@@ -1,13 +1,16 @@
 package vn.edu.hcmuaf.fit.controller.web.cancelAndRateProduct;
 
 import vn.edu.hcmuaf.fit.dao.IBillDAO;
+import vn.edu.hcmuaf.fit.dao.IProductDAO;
 import vn.edu.hcmuaf.fit.dao.impl.BillDAO;
+import vn.edu.hcmuaf.fit.dao.impl.ProductDAO;
 import vn.edu.hcmuaf.fit.model.CustomerModel;
 import vn.edu.hcmuaf.fit.utils.SessionUtil;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
+import java.awt.image.ImageProducer;
 import java.io.BufferedReader;
 import java.io.IOException;
 
@@ -29,6 +32,8 @@ public class RateController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html; charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         String comment = request.getParameter("comment");
         String idBill = request.getParameter("idBill");
         String idBook = request.getParameter("idBook");
@@ -41,10 +46,10 @@ public class RateController extends HttpServlet {
             int idOrderInt = Integer.parseInt(idBill);
             int rate = iBillDAO.rateBook(cus.getIdUser(), idBookInt, idOrderInt, number, comment);
             if(rate >=1) {
-                request.setAttribute("message", "Danh gia thanh cong");
+                request.setAttribute("message", "Đánh giá thành công");
                 request.setAttribute("alert", "success");
             }else {
-                request.setAttribute("message", "Danh gia that bai");
+                request.setAttribute("message", "Đánh giá thất bại");
                 request.setAttribute("alert", "danger");
             }
         }
