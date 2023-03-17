@@ -132,12 +132,12 @@
                         <label><input name="price" onclick="check()" type="radio" class="giaban" value="5" checked>Bỏ lọc</label>
                     </div>
                     <div class="cap">Nhà xuất bản</div>
-                        <div class="ct">
-                            <label><input name="NXB" type="checkbox" class="nxb" value="1">NXB Phụ nữ Việt Nam</label>
-                            <label><input name="NXB" type="checkbox" class="nxb" value="2">NXB Thông Tấn</label>
-                            <label><input name="NXB" type="checkbox" class="nxb" value="3">Nhà xuất bản Hà Nôi</label>
-                            <label><input name="NXB" type="checkbox" class="nxb" value="4">NXB Văn Học</label>
-                        </div>
+                    <div class="ct">
+                        <label><input name="NXB" type="checkbox" class="nxb" value="1">NXB Phụ nữ Việt Nam</label>
+                        <label><input name="NXB" type="checkbox" class="nxb" value="2">NXB Thông Tấn</label>
+                        <label><input name="NXB" type="checkbox" class="nxb" value="3">Nhà xuất bản Hà Nôi</label>
+                        <label><input name="NXB" type="checkbox" class="nxb" value="4">NXB Văn Học</label>
+                    </div>
 
                     <div class="cap">Phát Hành</div>
                     <div class="ct">
@@ -366,7 +366,7 @@
             let b =classes[classes.length-1];
 
             for(let j =5 ; j < classes.length-1; j++) {
-               a += classes[j]+" ";
+                a += classes[j]+" ";
             }
             if(authors.length == 0 && prices == 5 ) {
                 elements[i].classList.remove("disblay");
