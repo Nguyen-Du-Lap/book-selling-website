@@ -108,11 +108,11 @@
       </div>
       <div class="form-group input">
         <label for="pack">Đóng gói: <span class="obligatory">(*)</span></label>
-        <select  onchange="deliveryFee(this)"  name="pack" class="form-control" id="pack" aria-label=".form-select-sm">
+        <select   name="pack" class="form-control" id="pack" aria-label=".form-select-sm">
           <option value="" selected>Chọn quy cách đóng gói</option>
           <option value="0">Bọc Blatic</option>
           <option value="1">Để nguyên seal</option>
-          <option value="Quận 1">Quận 1</option>
+
         </select>
         <i class="fa-solid fa-circle-check"></i>
         <i class="fa-solid fa-circle-xmark"></i>
@@ -211,14 +211,19 @@
         crossorigin="anonymous"></script>
 <script src="/templates/scripts/header.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script src="/templates/scripts/order.js"></script>
+
+
+
+
 <script>
   $('.id_voucher').on('click', function () {
     const pId = $(this).val()
     window.location.href = '${context}/order?id=' + pId
   })
 </script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
 
 
 </body>

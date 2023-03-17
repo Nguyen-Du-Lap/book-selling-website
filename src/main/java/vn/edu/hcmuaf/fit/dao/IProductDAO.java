@@ -34,4 +34,7 @@ public interface IProductDAO {
 
     void updateQuantity(int idBook, int i);
 
+    List<BookModel> find4Book();
+
+
 }

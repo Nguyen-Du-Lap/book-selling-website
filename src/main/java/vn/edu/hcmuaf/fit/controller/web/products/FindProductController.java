@@ -1,6 +1,7 @@
 package vn.edu.hcmuaf.fit.controller.web.products;
 
 import vn.edu.hcmuaf.fit.dao.IBookDAO;
+import vn.edu.hcmuaf.fit.dao.IProductDAO;
 import vn.edu.hcmuaf.fit.dao.impl.BookDAO;
 import vn.edu.hcmuaf.fit.services.IProductService;
 import vn.edu.hcmuaf.fit.services.impl.ProductService;
@@ -17,12 +18,16 @@ public class FindProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String type = request.getParameter("type");
+
+
         switch (type){
             case "allBookTop":
                 request.setAttribute("list12Book", iBookDAO.listBookPayTopInProduct());
+
                 break;
             case "allBookNew":
                 request.setAttribute("list12Book", iBookDAO.listBookNewInProduct());
+
                 break;
             case "allUpcoming":
                 request.setAttribute("list12Book", iBookDAO.listBookReissueInProduct());

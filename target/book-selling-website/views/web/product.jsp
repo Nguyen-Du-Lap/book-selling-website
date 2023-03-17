@@ -117,18 +117,19 @@
                 <div id="accordion">
                     <div class="cap">Tác giả</div>
                     <div class="ct">
-                        <label><input name="Apple" type="checkbox" class="tacgia" value="Apple">Victor Hugo</label>
-                        <label><input name="OPPO" type="checkbox" class="tacgia" value="OPPO">J.K. Rowling</label>
-                        <label><input name="Samsung" type="checkbox" class="tacgia" value="Samsung">Đinh Mặc</label>
-                        <label><input name="Xiaomi" type="checkbox" class="tacgia" value="Xiaomi">Cố Tây Tước</label>
-                        <label><input name="Vivo" type="checkbox" class="tacgia" value="Vivo">Emily Bronte</label>
+                        <label><input name="auth" onclick="check()" type="checkbox" class="tacgia" value="Victor Hugo">Victor Hugo</label>
+                        <label><input name="auth" onclick="check()" type="checkbox" class="tacgia" value="J.K. Rowling">J.K. Rowling</label>
+                        <label><input name="auth" onclick="check()" type="checkbox" class="tacgia" value="Đinh Mặc">Đinh Mặc</label>
+                        <label><input name="auth" onclick="check()" type="checkbox" class="tacgia" value="Cố Tây Tước">Cố Tây Tước</label>
+                        <label><input name="auth" onclick="check()" type="checkbox" class="tacgia" value="Emily Bronte">Emily Bronte</label>
                     </div>
                     <div class="cap">Giá bán</div>
                     <div class="ct">
-                        <label><input type="checkbox" class="giaban" value="1">Dưới 100.000đ</label>
-                        <label><input type="checkbox" class="giaban" value="2">Từ 100.000đ đến 200.000đ</label>
-                        <label><input type="checkbox" class="giaban" value="3">Từ 200.000đ đến 300.000đ</label>
-                        <label><input type="checkbox" class="giaban" value="4">Trên 300.000đ</label>
+                        <label><input name="price" onclick="check()" type="radio" class="giaban" value="1">Dưới 100.000đ</label>
+                        <label><input name="price" onclick="check()" type="radio" class="giaban" value="2">Từ 100.000đ đến 200.000đ</label>
+                        <label><input name="price" onclick="check()" type="radio" class="giaban" value="3">Từ 200.000đ đến 300.000đ</label>
+                        <label><input name="price" onclick="check()" type="radio" class="giaban" value="4">Trên 300.000đ</label>
+                        <label><input name="price" onclick="check()" type="radio" class="giaban" value="5" checked>Bỏ lọc</label>
                     </div>
                     <div class="cap">Nhà xuất bản</div>
                         <div class="ct">
@@ -140,10 +141,10 @@
 
                     <div class="cap">Phát Hành</div>
                     <div class="ct">
-                        <label><input type="checkbox" class="phathanh" value="1">Nhã Nam</label>
-                        <label><input type="checkbox" class="phathanh" value="2">Skybooks</label>
-                        <label><input type="checkbox" class="phathanh" value="3">AZ VietNam</label>
-                        <label><input type="checkbox" class="phathanh" value="4">Việt Thư</label>
+                        <label><input name="phatHanh" type="checkbox" class="phathanh" value="1">Nhã Nam</label>
+                        <label><input name="phatHanh" type="checkbox" class="phathanh" value="2">Skybooks</label>
+                        <label><input name="phatHanh" type="checkbox" class="phathanh" value="3">AZ VietNam</label>
+                        <label><input name="phatHanh" type="checkbox" class="phathanh" value="4">Việt Thư</label>
                     </div>
                 </div>
             </div>
@@ -181,9 +182,10 @@
                     <div class="items">
                         <div id="data-content" class="row">
                             <c:if test="${not empty list12Book }">
-                                <c:forEach var="book" items="${list12Book}">
-                                    <div class="col-lg-3 col-md-4 col-xs-6 item victo-hugo">
-                                        <div class="card">
+                                <c:forEach  var="book" items="${list12Book}">
+
+                                    <div class="col-lg-3 col-md-4 col-xs-6 item victo-hugo  ${book.nameAuthor} ${book.priceDiscount}">
+                                        <div class="card" >
                                             <a href="/products/product-detail?id=${book.idBook}" class="motsanpham"
                                                data-toggle="tooltip" data-placement="bottom"
                                                title="${book.name}">
@@ -256,8 +258,8 @@
                                 </c:forEach>
                             </c:if>
 
-
                         </div>
+
                         <div class="paginationA">
                             <button class="btn">
                                 <svg
@@ -284,6 +286,7 @@
                                         <a href="/products?page=${i}" class="page">${i}</a>
                                     </c:if>
                                 </c:forEach>
+                                <p>${test} </p>
 
                             </div>
                             <button class="btn">
@@ -338,6 +341,95 @@
 <script src="/templates/scripts/product_type.js"></script>
 
 <script>
+    function check() {
+
+        const checkboxesAuthor = document.querySelectorAll('input[type="checkbox"][name="auth"]');
+        const  authors = [];
+        checkboxesAuthor.forEach(checkbox => {
+            if (checkbox.checked) {
+                authors.push(checkbox.value);
+            }
+        });
+
+        const checkboxesPrice = document.querySelector('input[type="radio"][name="price"]:checked');
+        let prices =checkboxesPrice.value;
+
+        const elements = document.querySelectorAll("div.item");
+        for(let i =0; i< elements.length;i++) {
+            elements[i].classList.remove("disblay")
+        }
+        for (let i = 0; i < elements.length; i++) {
+            let index = 0;
+            let indexPrice =0;
+            const classes = elements[i].classList;
+            let a ='';
+            let b =classes[classes.length-1];
+
+            for(let j =5 ; j < classes.length-1; j++) {
+               a += classes[j]+" ";
+            }
+            if(authors.length == 0 && prices == 5 ) {
+                elements[i].classList.remove("disblay");
+                break;
+            }
+            if(authors.length !=0 && prices == 5) {
+                for (let j =0; j<authors.length;j++) {
+                    if(a.trim() == authors[j]) {
+                        index++
+                    }
+                }
+            }
+            if(authors.length ==0 && prices != 5) {
+                if(prices ==1 && b <= 100000) {
+                    index++
+                }
+                if(prices ==2 && b >= 100000 && b <=200000) {
+                    index++
+                }
+                if(prices ==3 && b >= 200000 && b <= 300000) {
+                    index++
+                }
+                if(prices ==4 && b >= 300000) {
+                    index++
+                }
+            }
+            if(authors.length !=0 && prices !=5) {
+                for (let j =0; j<authors.length;j++) {
+                    if (prices == 1 && b <= 100000 && a.trim() == authors[j]) {
+                        index++
+                    }
+                    if (prices == 2 && b >= 100000 && b <= 200000 && a.trim() == authors[j]) {
+                        index++
+                    }
+                    if (prices == 3 && b >= 200000 && b <= 300000 && a.trim() == authors[j]) {
+                        index++
+                    }
+                    if (prices == 4 && b >= 300000 && a.trim() == authors[j]) {
+                        index++
+                    }
+                }
+            }
+
+
+
+            if(index == 0) {
+                elements[i].classList.add("disblay");
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+
 
 </script>
 </body>
