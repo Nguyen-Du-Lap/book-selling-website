@@ -136,7 +136,7 @@
         crossorigin="anonymous"></script>
 <script src="/templates/scripts/header.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
-<script src="/templates/scripts/order.js"></script>
+<%--<script src="/templates/scripts/order.js"></script>--%>
 <script>
   $('#next').on('click', function () {
     let idVoucher = $("input[name='idDiscount']:checked").val();
