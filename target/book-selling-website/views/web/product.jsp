@@ -84,6 +84,9 @@
         .btn--icon:hover {
             stroke: #fff;
         }
+        .disblay {
+            display: none;
+        }
 
     </style>
 </head>
@@ -117,33 +120,34 @@
                 <div id="accordion">
                     <div class="cap">Tác giả</div>
                     <div class="ct">
-                        <label><input name="Apple" type="checkbox" class="tacgia" value="Apple">Victor Hugo</label>
-                        <label><input name="OPPO" type="checkbox" class="tacgia" value="OPPO">J.K. Rowling</label>
-                        <label><input name="Samsung" type="checkbox" class="tacgia" value="Samsung">Đinh Mặc</label>
-                        <label><input name="Xiaomi" type="checkbox" class="tacgia" value="Xiaomi">Cố Tây Tước</label>
-                        <label><input name="Vivo" type="checkbox" class="tacgia" value="Vivo">Emily Bronte</label>
+                        <label><input name="auth" onclick="check()" type="checkbox" class="tacgia" value="Victor Hugo">Victor Hugo</label>
+                        <label><input name="auth" onclick="check()" type="checkbox" class="tacgia" value="J.K. Rowling">J.K. Rowling</label>
+                        <label><input name="auth" onclick="check()" type="checkbox" class="tacgia" value="Đinh Mặc">Đinh Mặc</label>
+                        <label><input name="auth" onclick="check()" type="checkbox" class="tacgia" value="Cố Tây Tước">Cố Tây Tước</label>
+                        <label><input name="auth" onclick="check()" type="checkbox" class="tacgia" value="Emily Bronte">Emily Bronte</label>
                     </div>
                     <div class="cap">Giá bán</div>
                     <div class="ct">
-                        <label><input type="checkbox" class="giaban" value="1">Dưới 100.000đ</label>
-                        <label><input type="checkbox" class="giaban" value="2">Từ 100.000đ đến 200.000đ</label>
-                        <label><input type="checkbox" class="giaban" value="3">Từ 200.000đ đến 300.000đ</label>
-                        <label><input type="checkbox" class="giaban" value="4">Trên 300.000đ</label>
+                        <label><input name="price" onclick="check()" type="radio" class="giaban" value="1">Dưới 100.000đ</label>
+                        <label><input name="price" onclick="check()" type="radio" class="giaban" value="2">Từ 100.000đ đến 200.000đ</label>
+                        <label><input name="price" onclick="check()" type="radio" class="giaban" value="3">Từ 200.000đ đến 300.000đ</label>
+                        <label><input name="price" onclick="check()" type="radio" class="giaban" value="4">Trên 300.000đ</label>
+                        <label><input name="price" onclick="check()" type="radio" class="giaban" value="5" checked>Bỏ lọc</label>
                     </div>
                     <div class="cap">Nhà xuất bản</div>
-                        <div class="ct">
-                            <label><input name="NXB" type="checkbox" class="nxb" value="1">NXB Phụ nữ Việt Nam</label>
-                            <label><input name="NXB" type="checkbox" class="nxb" value="2">NXB Thông Tấn</label>
-                            <label><input name="NXB" type="checkbox" class="nxb" value="3">Nhà xuất bản Hà Nôi</label>
-                            <label><input name="NXB" type="checkbox" class="nxb" value="4">NXB Văn Học</label>
-                        </div>
+                    <div class="ct">
+                        <label><input name="NXB" type="checkbox" class="nxb" value="1">NXB Phụ nữ Việt Nam</label>
+                        <label><input name="NXB" type="checkbox" class="nxb" value="2">NXB Thông Tấn</label>
+                        <label><input name="NXB" type="checkbox" class="nxb" value="3">Nhà xuất bản Hà Nôi</label>
+                        <label><input name="NXB" type="checkbox" class="nxb" value="4">NXB Văn Học</label>
+                    </div>
 
                     <div class="cap">Phát Hành</div>
                     <div class="ct">
-                        <label><input type="checkbox" class="phathanh" value="1">Nhã Nam</label>
-                        <label><input type="checkbox" class="phathanh" value="2">Skybooks</label>
-                        <label><input type="checkbox" class="phathanh" value="3">AZ VietNam</label>
-                        <label><input type="checkbox" class="phathanh" value="4">Việt Thư</label>
+                        <label><input name="phatHanh" type="checkbox" class="phathanh" value="1">Nhã Nam</label>
+                        <label><input name="phatHanh" type="checkbox" class="phathanh" value="2">Skybooks</label>
+                        <label><input name="phatHanh" type="checkbox" class="phathanh" value="3">AZ VietNam</label>
+                        <label><input name="phatHanh" type="checkbox" class="phathanh" value="4">Việt Thư</label>
                     </div>
                 </div>
             </div>
@@ -181,9 +185,10 @@
                     <div class="items">
                         <div id="data-content" class="row">
                             <c:if test="${not empty list12Book }">
-                                <c:forEach var="book" items="${list12Book}">
-                                    <div class="col-lg-3 col-md-4 col-xs-6 item victo-hugo">
-                                        <div class="card">
+                                <c:forEach  var="book" items="${list12Book}">
+
+                                    <div class="col-lg-3 col-md-4 col-xs-6 item victo-hugo  ${book.nameAuthor} ${book.price} c${book.getIdCP()} ${book.getIdP()}">
+                                        <div class="card" >
                                             <a href="/products/product-detail?id=${book.idBook}" class="motsanpham"
                                                data-toggle="tooltip" data-placement="bottom"
                                                title="${book.name}">
@@ -191,7 +196,7 @@
                                                      src="${book.image}"
                                                      alt="${book.name}">
                                                 <div class="card-body noidungsp mt-3">
-                                                    <h6 class="card-title ten">${book.name}</h6>
+                                                    <h6 class="card-title ten">${book.name} </h6>
                                                     <small class="tacgia text-muted"
                                                            style="font-weight: bold">${book.nameAuthor}</small>
                                                     <div class="card-price d-flex align-items-baseline">
@@ -256,8 +261,8 @@
                                 </c:forEach>
                             </c:if>
 
-
                         </div>
+
                         <div class="paginationA">
                             <button class="btn">
                                 <svg
@@ -284,6 +289,7 @@
                                         <a href="/products?page=${i}" class="page">${i}</a>
                                     </c:if>
                                 </c:forEach>
+                                <p>${test} </p>
 
                             </div>
                             <button class="btn">
@@ -315,6 +321,105 @@
 <%@include file="/common/web/footer.jsp" %>
 
 <!--    footer-->
+<script>
+    function check() {
+        // author
+        const checkboxesAuthor = document.querySelectorAll('input[type="checkbox"][name="auth"]');
+        const  authors = [];
+        checkboxesAuthor.forEach(checkbox => {
+            if (checkbox.checked) {
+                authors.push(checkbox.value);
+            }
+        });
+        // price
+        const checkboxesPrice = document.querySelector('input[type="radio"][name="price"]:checked');
+        let prices =checkboxesPrice.value;
+        // NXB
+        // const checkboxesNXB = document.querySelectorAll('input[type="checkbox"][name="NXB"]');
+        // const  NXBs = [];
+        // checkboxesNXB.forEach(checkbox => {
+        //     if (checkbox.checked) {
+        //         NXBs.push(checkbox.value);
+        //     }
+        // });
+        // // phatHanh
+        // const checkboxesPhatHanh = document.querySelectorAll('input[type="checkbox"][name="phatHanh"]');
+        // const  phatHanhs = [];
+        // checkboxesPhatHanh.forEach(checkbox => {
+        //     if (checkbox.checked) {
+        //         phatHanhs.push(checkbox.value);
+        //     }
+        // });
+        const elements = document.querySelectorAll("div.item");
+        for(let i =0; i< elements.length;i++) {
+            elements[i].classList.remove("disblay")
+        }
+        for (let i = 0; i < elements.length; i++) {
+            let index = 0;
+            const classes = elements[i].classList;
+            let a ='';
+            let b =classes[classes.length-3];
+            // let c = classes[classes.length-2].replace('c','');
+            // let d = classes[classes.length-1];
+
+            for(let j =5 ; j < classes.length-3; j++) {
+                a += classes[j]+" ";
+            }
+            if(authors.length == 0 && prices == 5 ) {
+                elements[i].classList.remove("disblay");
+                break;
+            }
+            if(authors.length !=0 && prices == 5) {
+                for (let j =0; j<authors.length;j++) {
+                    if(a.trim() == authors[j].trim()) {
+                        index++
+                    }
+                }
+            }
+            if(authors.length ==0 && prices != 5 ) {
+                if(prices ==1 && b <= 100000) {
+                    index++
+                }
+                if(prices ==2 && b >= 100000 && b <=200000) {
+                    index++
+                }
+                if(prices ==3 && b >= 200000 && b <= 300000) {
+                    index++
+                }
+                if(prices ==4 && b >= 300000) {
+                    index++
+                }
+            }
+            if(authors.length !=0 && prices !=5 ) {
+                for (let j =0; j<authors.length;j++) {
+                    if (prices == 1 && b <= 100000 && a.trim() == authors[j]) {
+                        index++
+                    }
+                    if (prices == 2 && b >= 100000 && b <= 200000 && a.trim() == authors[j]) {
+                        index++
+                    }
+                    if (prices == 3 && b >= 200000 && b <= 300000 && a.trim() == authors[j]) {
+                        index++
+                    }
+                    if (prices == 4 && b >= 300000 && a.trim() == authors[j]) {
+                        index++
+                    }
+                }
+
+
+            }
+
+
+
+            if(index == 0) {
+                elements[i].classList.add("disblay");
+            }
+        }
+    }
+
+
+
+</script>
 
 <!-- ----js phần header -->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
@@ -337,8 +442,5 @@
 <script src="/templates/scripts/header.js"></script>
 <script src="/templates/scripts/product_type.js"></script>
 
-<script>
-
-</script>
 </body>
 </html>

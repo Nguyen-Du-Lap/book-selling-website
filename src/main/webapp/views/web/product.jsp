@@ -84,6 +84,9 @@
         .btn--icon:hover {
             stroke: #fff;
         }
+        .disblay {
+            display: none;
+        }
 
     </style>
 </head>
@@ -184,7 +187,7 @@
                             <c:if test="${not empty list12Book }">
                                 <c:forEach  var="book" items="${list12Book}">
 
-                                    <div class="col-lg-3 col-md-4 col-xs-6 item victo-hugo  ${book.nameAuthor} ${book.priceDiscount}">
+                                    <div class="col-lg-3 col-md-4 col-xs-6 item victo-hugo  ${book.nameAuthor} ${book.price} c${book.getIdCP()} ${book.getIdP()}">
                                         <div class="card" >
                                             <a href="/products/product-detail?id=${book.idBook}" class="motsanpham"
                                                data-toggle="tooltip" data-placement="bottom"
@@ -193,7 +196,7 @@
                                                      src="${book.image}"
                                                      alt="${book.name}">
                                                 <div class="card-body noidungsp mt-3">
-                                                    <h6 class="card-title ten">${book.name}</h6>
+                                                    <h6 class="card-title ten">${book.name} </h6>
                                                     <small class="tacgia text-muted"
                                                            style="font-weight: bold">${book.nameAuthor}</small>
                                                     <div class="card-price d-flex align-items-baseline">
@@ -318,6 +321,105 @@
 <%@include file="/common/web/footer.jsp" %>
 
 <!--    footer-->
+<script>
+    function check() {
+        // author
+        const checkboxesAuthor = document.querySelectorAll('input[type="checkbox"][name="auth"]');
+        const  authors = [];
+        checkboxesAuthor.forEach(checkbox => {
+            if (checkbox.checked) {
+                authors.push(checkbox.value);
+            }
+        });
+        // price
+        const checkboxesPrice = document.querySelector('input[type="radio"][name="price"]:checked');
+        let prices =checkboxesPrice.value;
+        // NXB
+        // const checkboxesNXB = document.querySelectorAll('input[type="checkbox"][name="NXB"]');
+        // const  NXBs = [];
+        // checkboxesNXB.forEach(checkbox => {
+        //     if (checkbox.checked) {
+        //         NXBs.push(checkbox.value);
+        //     }
+        // });
+        // // phatHanh
+        // const checkboxesPhatHanh = document.querySelectorAll('input[type="checkbox"][name="phatHanh"]');
+        // const  phatHanhs = [];
+        // checkboxesPhatHanh.forEach(checkbox => {
+        //     if (checkbox.checked) {
+        //         phatHanhs.push(checkbox.value);
+        //     }
+        // });
+        const elements = document.querySelectorAll("div.item");
+        for(let i =0; i< elements.length;i++) {
+            elements[i].classList.remove("disblay")
+        }
+        for (let i = 0; i < elements.length; i++) {
+            let index = 0;
+            const classes = elements[i].classList;
+            let a ='';
+            let b =classes[classes.length-3];
+            // let c = classes[classes.length-2].replace('c','');
+            // let d = classes[classes.length-1];
+
+            for(let j =5 ; j < classes.length-3; j++) {
+                a += classes[j]+" ";
+            }
+            if(authors.length == 0 && prices == 5 ) {
+                elements[i].classList.remove("disblay");
+                break;
+            }
+            if(authors.length !=0 && prices == 5) {
+                for (let j =0; j<authors.length;j++) {
+                    if(a.trim() == authors[j].trim()) {
+                        index++
+                    }
+                }
+            }
+            if(authors.length ==0 && prices != 5 ) {
+                if(prices ==1 && b <= 100000) {
+                    index++
+                }
+                if(prices ==2 && b >= 100000 && b <=200000) {
+                    index++
+                }
+                if(prices ==3 && b >= 200000 && b <= 300000) {
+                    index++
+                }
+                if(prices ==4 && b >= 300000) {
+                    index++
+                }
+            }
+            if(authors.length !=0 && prices !=5 ) {
+                for (let j =0; j<authors.length;j++) {
+                    if (prices == 1 && b <= 100000 && a.trim() == authors[j]) {
+                        index++
+                    }
+                    if (prices == 2 && b >= 100000 && b <= 200000 && a.trim() == authors[j]) {
+                        index++
+                    }
+                    if (prices == 3 && b >= 200000 && b <= 300000 && a.trim() == authors[j]) {
+                        index++
+                    }
+                    if (prices == 4 && b >= 300000 && a.trim() == authors[j]) {
+                        index++
+                    }
+                }
+
+
+            }
+
+
+
+            if(index == 0) {
+                elements[i].classList.add("disblay");
+            }
+        }
+    }
+
+
+
+</script>
 
 <!-- ----js phần header -->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
@@ -340,97 +442,5 @@
 <script src="/templates/scripts/header.js"></script>
 <script src="/templates/scripts/product_type.js"></script>
 
-<script>
-    function check() {
-
-        const checkboxesAuthor = document.querySelectorAll('input[type="checkbox"][name="auth"]');
-        const  authors = [];
-        checkboxesAuthor.forEach(checkbox => {
-            if (checkbox.checked) {
-                authors.push(checkbox.value);
-            }
-        });
-
-        const checkboxesPrice = document.querySelector('input[type="radio"][name="price"]:checked');
-        let prices =checkboxesPrice.value;
-
-        const elements = document.querySelectorAll("div.item");
-        for(let i =0; i< elements.length;i++) {
-            elements[i].classList.remove("disblay")
-        }
-        for (let i = 0; i < elements.length; i++) {
-            let index = 0;
-            let indexPrice =0;
-            const classes = elements[i].classList;
-            let a ='';
-            let b =classes[classes.length-1];
-
-            for(let j =5 ; j < classes.length-1; j++) {
-                a += classes[j]+" ";
-            }
-            if(authors.length == 0 && prices == 5 ) {
-                elements[i].classList.remove("disblay");
-                break;
-            }
-            if(authors.length !=0 && prices == 5) {
-                for (let j =0; j<authors.length;j++) {
-                    if(a.trim() == authors[j]) {
-                        index++
-                    }
-                }
-            }
-            if(authors.length ==0 && prices != 5) {
-                if(prices ==1 && b <= 100000) {
-                    index++
-                }
-                if(prices ==2 && b >= 100000 && b <=200000) {
-                    index++
-                }
-                if(prices ==3 && b >= 200000 && b <= 300000) {
-                    index++
-                }
-                if(prices ==4 && b >= 300000) {
-                    index++
-                }
-            }
-            if(authors.length !=0 && prices !=5) {
-                for (let j =0; j<authors.length;j++) {
-                    if (prices == 1 && b <= 100000 && a.trim() == authors[j]) {
-                        index++
-                    }
-                    if (prices == 2 && b >= 100000 && b <= 200000 && a.trim() == authors[j]) {
-                        index++
-                    }
-                    if (prices == 3 && b >= 200000 && b <= 300000 && a.trim() == authors[j]) {
-                        index++
-                    }
-                    if (prices == 4 && b >= 300000 && a.trim() == authors[j]) {
-                        index++
-                    }
-                }
-            }
-
-
-
-            if(index == 0) {
-                elements[i].classList.add("disblay");
-            }
-        }
-
-
-
-
-
-
-
-
-
-
-
-    }
-
-
-
-</script>
 </body>
 </html>

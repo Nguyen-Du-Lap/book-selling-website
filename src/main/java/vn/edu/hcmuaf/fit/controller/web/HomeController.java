@@ -10,6 +10,7 @@ import vn.edu.hcmuaf.fit.model.CustomerModel;
 import vn.edu.hcmuaf.fit.services.IAuthorService;
 import vn.edu.hcmuaf.fit.services.ICustomerService;
 import vn.edu.hcmuaf.fit.services.impl.AuthorService;
+import vn.edu.hcmuaf.fit.utils.MD5Utils;
 import vn.edu.hcmuaf.fit.utils.MessageParameterUntil;
 import vn.edu.hcmuaf.fit.utils.SessionUtil;
 
@@ -65,7 +66,7 @@ public class HomeController extends HttpServlet {
             String password = req.getParameter("password");
             if (email != null && password != null && !password.equals("")) {
 
-                CustomerModel customer = customerService.findByUsernameAndPasswordAndStatus(email, password, 1);
+                CustomerModel customer = customerService.findByUsernameAndPasswordAndStatus(email, MD5Utils.encrypt(password), 1);
                 if (customer != null) {
                     BLockUserDAO.resetAccount(email);
                     SessionUtil.getInstance().putValue(req, "USERMODEL", customer);

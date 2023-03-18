@@ -12,6 +12,7 @@ public class BookDetails  extends AbstractModel<BookDetails> {
     private String language;
     private String description;
 
+
     public BookDetails() {
     }
 
@@ -107,6 +108,7 @@ public class BookDetails  extends AbstractModel<BookDetails> {
     public void setDescription(String description) {
         this.description = description;
     }
+
 
     @Override
     public String toString() {

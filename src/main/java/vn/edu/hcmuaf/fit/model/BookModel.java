@@ -14,6 +14,8 @@ public class BookModel  extends AbstractModel<BookModel> {
     private int quantityComment;
 
     private String image;
+    private String idCP;
+    private String idP;
 
     public BookModel() {
     }
@@ -100,6 +102,21 @@ public class BookModel  extends AbstractModel<BookModel> {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getIdCP() {
+        return idCP;
+    }
+
+    public void setIdCP(String idCP) {
+        this.idCP = idCP;
+    }
+    public String getIdP() {
+        return idP;
+    }
+
+    public void setIdP(String idP) {
+        this.idP = idP;
     }
 
     @Override
