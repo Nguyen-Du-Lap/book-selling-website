@@ -3,6 +3,7 @@ package vn.edu.hcmuaf.fit.controller.web.accounts;
 import vn.edu.hcmuaf.fit.dao.impl.BLockUserDAO;
 import vn.edu.hcmuaf.fit.dao.impl.CustomerDAO;
 import vn.edu.hcmuaf.fit.model.CustomerModel;
+import vn.edu.hcmuaf.fit.utils.MD5Utils;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -33,13 +34,13 @@ public class ConfirmOTPForPassController extends HttpServlet {
             request.getRequestDispatcher("/views/web/changePasswordForgot.jsp").forward(request,response );
         }else{
             if((System.currentTimeMillis() / 1000/60) - user.getTime_active_code() > 5 ) {
-                dao.signup(user.getEmail(), user.getPassword(), user.getFirstName(), user.getLastName(), user.getPhone(), user.getAddress());
+                dao.signup(user.getEmail(), MD5Utils.encrypt(user.getPassword()) , user.getFirstName(), user.getLastName(), user.getPhone(), user.getAddress());
                 session.removeAttribute("UserForgotPass");
                 request.setAttribute("message", "Hiệu lực của mã OPT đã hết");
                 request.getRequestDispatcher("/views/login.jsp").forward(request, response);
             } else {
                 if( attemts <= 0) {
-                    dao.signup(user.getEmail(), user.getPassword(), user.getFirstName(), user.getLastName(), user.getPhone(), user.getAddress());
+                    dao.signup(user.getEmail(), MD5Utils.encrypt(user.getPassword()), user.getFirstName(), user.getLastName(), user.getPhone(), user.getAddress());
                     session.removeAttribute("UserForgotPass");
                     request.setAttribute("message", "Hiệu lực của mã OPT đã hết");
                     request.getRequestDispatcher("/views/login.jsp").forward(request, response);

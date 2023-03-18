@@ -4,6 +4,7 @@ import vn.edu.hcmuaf.fit.dao.impl.CustomerDAO;
 import vn.edu.hcmuaf.fit.db.MessageProperties;
 import vn.edu.hcmuaf.fit.model.CustomerModel;
 import vn.edu.hcmuaf.fit.utils.EmailUtil;
+import vn.edu.hcmuaf.fit.utils.MD5Utils;
 import vn.edu.hcmuaf.fit.utils.MessageParameterUntil;
 import vn.edu.hcmuaf.fit.utils.SessionUtil;
 
