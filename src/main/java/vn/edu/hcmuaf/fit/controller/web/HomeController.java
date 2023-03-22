@@ -44,6 +44,7 @@ public class HomeController extends HttpServlet {
             // neu url :login?action=login thi toi trang logout
         } else if (action != null && action.equals("logout")) {
             SessionUtil.getInstance().removeValue(req, "USERMODEL");
+            req.getSession().invalidate();
             resp.sendRedirect(req.getContextPath() + "/home");
         }
         else {
