@@ -84,4 +84,47 @@ public class VoucherDAO implements IVoucherDAO {
         }
         return 0;
     }
+
+    @Override
+    public void saveVoucherCus(int id, int idCus) {
+        String sql = "INSERT INTO discount_customer VALUES(?, ?, 1)";
+        Connection connection = JDBCConnector.getConnection();
+        PreparedStatement statement = null;
+        if(connection != null) {
+            try {
+                statement = connection.prepareStatement(sql);
+                statement.setInt(1, id);
+                statement.setInt(2, idCus);
+                statement.executeUpdate();
+            } catch (SQLException e) {
+            } finally {
+                try {
+                    if(connection != null) connection.close();
+                    if(statement != null) statement.close();
+                } catch (SQLException e) {
+                }
+            }
+        }
+    }
+
+    @Override
+    public void updateVoucher(int id) {
+        String sql = "UPDATE discount SET quantity = quantity-1 WHERE id_discount = ?";
+        Connection connection = JDBCConnector.getConnection();
+        PreparedStatement statement = null;
+        if(connection != null) {
+            try {
+                statement = connection.prepareStatement(sql);
+                statement.setInt(1, id);
+                statement.executeUpdate();
+            } catch (SQLException e) {
+            } finally {
+                try {
+                    if(connection != null) connection.close();
+                    if(statement != null) statement.close();
+                } catch (SQLException e) {
+                }
+            }
+        }
+    }
 }
