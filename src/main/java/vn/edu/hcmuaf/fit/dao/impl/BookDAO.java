@@ -269,7 +269,7 @@ public class BookDAO implements IBookDAO {
                 "FROM book b LEFT JOIN author a ON b.id_author = a.id_author\n" +
                 "LEFT JOIN v_rate ON b.id_book = v_rate.id_book \n" +
                 "LEFT JOIN v_comment ON b.id_book = v_comment.id_book\n" +
-                "WHERE b.isNew = 0\n" +
+                "WHERE b.isNew = 1 AND b.quantity = 0\n" +
                 "LIMIT 10");
 
 
