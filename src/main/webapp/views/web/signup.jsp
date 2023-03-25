@@ -46,7 +46,7 @@
       <small>Error</small>
     </div>
     <div class="input ">
-      <label>Mật khẩu</label>
+      <label>Mật khẩu <span>(chứa ít nhất 1 kí tự in hoa, số và kí tự đặt biệt)</span></label>
       <input type="password" placeholder="Nhập vào mật khẩu" id="password" name="password" onchange="passwordOnChange(this.value)">
       <i class="fa-solid fa-circle-check"></i>
       <i class="fa-solid fa-circle-xmark"></i>
@@ -59,6 +59,7 @@
       <i class="fa-solid fa-circle-xmark"></i>
       <small>Error</small>
     </div>
+
     <div class="info-title">*Thông tin cá nhân:</div>
     <div class="compul-info">
       <div class="input fname">
@@ -90,7 +91,7 @@
       <i class="fa-solid fa-circle-xmark"></i>
       <small>Error</small>
     </div>
-    <button type="submit" class="btn-signUp">Đăng ký</button>
+    <button type="submit" id="btn-signUp" class="btn-signUp">Đăng ký</button>
     <p style="margin-top: 30px; padding-bottom: 20px; color: #aaaaaa; text-align: center; font-size: 14px;">
       Bằng việc đăng kí, bạn đã đồng ý với <a href="#" class="red-link">Điều khoản dịch vụ</a> & <a href="#" class="red-link">
       Chính sách bảo mật</a> của chúng tôi</p>
