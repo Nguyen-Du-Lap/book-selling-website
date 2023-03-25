@@ -18,9 +18,9 @@ public class BookDAO implements IBookDAO {
     public List<BookModel> listBookPayTop() {
         List<BookModel> listBook = new ArrayList<>();
         Connection connection = JDBCConnector.getConnection();
-        String sql = new String("SELECT b.id_book ,b.name, a.name, b.price - b.price * b.discount_price AS giagiam\n" +
+        String sql = new String("SELECT b.id_book,b.name, a.name, b.price - b.price * b.discount_price AS giagiam\n" +
                 ", b.price, b.discount_price*100 AS giam, IF(v_rate.`start` is null, 0, v_rate.`start`) AS `start`\n" +
-                ", IF(v_comment.sl_comment is null, 0, v_comment.sl_comment) AS sl_comment\n" +
+                ", IF(v_comment.sl_comment is null, 0, v_comment.sl_comment) AS sl_comment,b.id_pc,b.id_p\n" +
                 "FROM book b LEFT JOIN author a ON b.id_author = a.id_author\n" +
                 "LEFT JOIN v_rate ON b.id_book = v_rate.id_book\n" +
                 "LEFT JOIN v_comment ON b.id_book = v_comment.id_book\n" +
@@ -45,6 +45,8 @@ public class BookDAO implements IBookDAO {
                     bookModel.setDiscount(resultSet.getInt(6));
                     bookModel.setQuantityStart(resultSet.getInt(7));
                     bookModel.setQuantityComment(resultSet.getInt(8));
+                    bookModel.setIdCP(resultSet.getString(9));
+                    bookModel.setIdP(resultSet.getString(10));
 
                     String image = findImageById(resultSet.getInt(1));
                     bookModel.setImage(image);
@@ -73,7 +75,7 @@ public class BookDAO implements IBookDAO {
         Connection connection = JDBCConnector.getConnection();
         String sql = new String("SELECT b.id_book ,b.name, a.name, b.price - b.price * b.discount_price AS giagiam\n" +
                 ", b.price, b.discount_price*100 AS giam, IF(v_rate.`start` is null, 0, v_rate.`start`) AS `start`\n" +
-                ", IF(v_comment.sl_comment is null, 0, v_comment.sl_comment) AS sl_comment\n" +
+                ", IF(v_comment.sl_comment is null, 0, v_comment.sl_comment) AS sl_comment,b.id_pc,b.id_p\n" +
                 "FROM book b LEFT JOIN author a ON b.id_author = a.id_author\n" +
                 "LEFT JOIN v_rate ON b.id_book = v_rate.id_book\n" +
                 "LEFT JOIN v_comment ON b.id_book = v_comment.id_book\n" +
@@ -97,7 +99,8 @@ public class BookDAO implements IBookDAO {
                     bookModel.setDiscount(resultSet.getInt(6));
                     bookModel.setQuantityStart(resultSet.getInt(7));
                     bookModel.setQuantityComment(resultSet.getInt(8));
-
+                    bookModel.setIdCP(resultSet.getString(9));
+                    bookModel.setIdP(resultSet.getString(10));
                     String image = findImageById(resultSet.getInt(1));
                     bookModel.setImage(image);
                     listBook.add(bookModel);
@@ -155,7 +158,7 @@ public class BookDAO implements IBookDAO {
         Connection connection = JDBCConnector.getConnection();
         String sql = new String("SELECT b.id_book, b.name, a.name, b.price - b.price * b.discount_price + b.price AS giagiam \n" +
                 ", b.price, b.discount_price*100 AS giam, IF(v_rate.`start` is null, 0, v_rate.`start`) AS `start`\n" +
-                ", IF(v_comment.sl_comment is null, 0, v_comment.sl_comment) AS sl_comment\n" +
+                ", IF(v_comment.sl_comment is null, 0, v_comment.sl_comment) AS sl_comment,b.id_pc,b.id_p\n" +
                 "FROM book b LEFT JOIN author a ON b.id_author = a.id_author\n" +
                 "LEFT JOIN v_rate ON b.id_book = v_rate.id_book \n" +
                 "LEFT JOIN v_comment ON b.id_book = v_comment.id_book\n" +
@@ -180,7 +183,8 @@ public class BookDAO implements IBookDAO {
                     bookModel.setDiscount(resultSet.getInt(6));
                     bookModel.setQuantityStart(resultSet.getInt(7));
                     bookModel.setQuantityComment(resultSet.getInt(8));
-
+                    bookModel.setIdCP(resultSet.getString(9));
+                    bookModel.setIdP(resultSet.getString(10));
                     String image = findImageById(resultSet.getInt(1));
                     bookModel.setImage(image);
                     listBook.add(bookModel);
@@ -208,7 +212,7 @@ public class BookDAO implements IBookDAO {
         Connection connection = JDBCConnector.getConnection();
         String sql = new String("SELECT b.id_book, b.name, a.name, b.price - b.price * b.discount_price + b.price AS giagiam \n" +
                 ", b.price, b.discount_price*100 AS giam, IF(v_rate.`start` is null, 0, v_rate.`start`) AS `start`\n" +
-                ", IF(v_comment.sl_comment is null, 0, v_comment.sl_comment) AS sl_comment\n" +
+                ", IF(v_comment.sl_comment is null, 0, v_comment.sl_comment) AS sl_comment,b.id_pc,b.id_p\n" +
                 "FROM book b LEFT JOIN author a ON b.id_author = a.id_author\n" +
                 "LEFT JOIN v_rate ON b.id_book = v_rate.id_book \n" +
                 "LEFT JOIN v_comment ON b.id_book = v_comment.id_book\n" +
@@ -232,7 +236,8 @@ public class BookDAO implements IBookDAO {
                     bookModel.setDiscount(resultSet.getInt(6));
                     bookModel.setQuantityStart(resultSet.getInt(7));
                     bookModel.setQuantityComment(resultSet.getInt(8));
-
+                    bookModel.setIdCP(resultSet.getString(9));
+                    bookModel.setIdP(resultSet.getString(10));
                     String image = findImageById(resultSet.getInt(1));
                     bookModel.setImage(image);
                     listBook.add(bookModel);
@@ -260,7 +265,7 @@ public class BookDAO implements IBookDAO {
         Connection connection = JDBCConnector.getConnection();
         String sql = new String("SELECT b.id_book, b.name, a.name, b.price - b.price * b.discount_price AS giagiam \n" +
                 ", b.price, b.discount_price*100 AS giam, IF(v_rate.`start` is null, 0, v_rate.`start`) AS `start`\n" +
-                ", IF(v_comment.sl_comment is null, 0, v_comment.sl_comment) AS sl_comment\n" +
+                ", IF(v_comment.sl_comment is null, 0, v_comment.sl_comment) AS sl_comment,b.id_pc,b.id_p\n" +
                 "FROM book b LEFT JOIN author a ON b.id_author = a.id_author\n" +
                 "LEFT JOIN v_rate ON b.id_book = v_rate.id_book \n" +
                 "LEFT JOIN v_comment ON b.id_book = v_comment.id_book\n" +
@@ -284,7 +289,8 @@ public class BookDAO implements IBookDAO {
                     bookModel.setDiscount(resultSet.getInt(6));
                     bookModel.setQuantityStart(resultSet.getInt(7));
                     bookModel.setQuantityComment(resultSet.getInt(8));
-
+                    bookModel.setIdCP(resultSet.getString(9));
+                    bookModel.setIdP(resultSet.getString(10));
                     String image = findImageById(resultSet.getInt(1));
                     bookModel.setImage(image);
                     listBook.add(bookModel);
@@ -312,7 +318,7 @@ public class BookDAO implements IBookDAO {
         Connection connection = JDBCConnector.getConnection();
         String sql = new String("SELECT b.id_book, b.name, a.name, b.price - b.price * b.discount_price AS giagiam \n" +
                 ", b.price, b.discount_price*100 AS giam, IF(v_rate.`start` is null, 0, v_rate.`start`) AS `start`\n" +
-                ", IF(v_comment.sl_comment is null, 0, v_comment.sl_comment) AS sl_comment\n" +
+                ", IF(v_comment.sl_comment is null, 0, v_comment.sl_comment) AS sl_comment,b.id_pc,b.id_p\n" +
                 "FROM book b LEFT JOIN author a ON b.id_author = a.id_author\n" +
                 "LEFT JOIN v_rate ON b.id_book = v_rate.id_book \n" +
                 "LEFT JOIN v_comment ON b.id_book = v_comment.id_book\n" +
@@ -335,7 +341,8 @@ public class BookDAO implements IBookDAO {
                     bookModel.setDiscount(resultSet.getInt(6));
                     bookModel.setQuantityStart(resultSet.getInt(7));
                     bookModel.setQuantityComment(resultSet.getInt(8));
-
+                    bookModel.setIdCP(resultSet.getString(9));
+                    bookModel.setIdP(resultSet.getString(10));
                     String image = findImageById(resultSet.getInt(1));
                     bookModel.setImage(image);
                     listBook.add(bookModel);

@@ -211,7 +211,6 @@
         crossorigin="anonymous"></script>
 <script src="/templates/scripts/header.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script src="/templates/scripts/order.js"></script>
 <script>
   $('.id_voucher').on('click', function () {
@@ -219,7 +218,7 @@
     window.location.href = '${context}/order?id=' + pId
   })
 </script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 
 
 </body>

@@ -6,6 +6,7 @@ import vn.edu.hcmuaf.fit.dao.impl.CustomerDAO;
 import vn.edu.hcmuaf.fit.db.MessageProperties;
 import vn.edu.hcmuaf.fit.model.ChangePasswordModel;
 import vn.edu.hcmuaf.fit.model.CustomerModel;
+import vn.edu.hcmuaf.fit.utils.MD5Utils;
 import vn.edu.hcmuaf.fit.utils.SessionUtil;
 
 import javax.servlet.*;
@@ -35,14 +36,14 @@ public class ChangePasswordController extends HttpServlet {
             String newPass = request.getParameter("newPass");
             String confirm = request.getParameter("confirmPass");
             ICustomerDAO dao = new CustomerDAO();
-            CustomerModel account  = dao.findByUsernameAndPasswordAndStatus(cus.getEmail(), ollPass, cus.getStatus());
+            CustomerModel account  = dao.findByUsernameAndPasswordAndStatus(cus.getEmail(), MD5Utils.encrypt(ollPass), cus.getStatus());
             if(account != null ) {
                 if(!newPass.equals(confirm)) {
                     request.setAttribute("message", "new passwords and confirmation passwords don't match");
                     request.setAttribute("alert", "danger");
                     request.getRequestDispatcher("/views/web/changePassword.jsp").forward(request, response);
                 } else {
-                    dao.changePassWord(cus.getEmail(), newPass);
+                    dao.changePassWord(cus.getEmail(), MD5Utils.encrypt(newPass));
                     request.setAttribute("message", "Successful");
                     request.setAttribute("alert", "success");
                     request.getRequestDispatcher("/views/web/changePassword.jsp").forward(request, response);

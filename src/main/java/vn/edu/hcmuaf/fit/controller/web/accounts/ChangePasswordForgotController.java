@@ -3,6 +3,7 @@ package vn.edu.hcmuaf.fit.controller.web.accounts;
 import vn.edu.hcmuaf.fit.dao.ICustomerDAO;
 import vn.edu.hcmuaf.fit.dao.impl.CustomerDAO;
 import vn.edu.hcmuaf.fit.model.CustomerModel;
+import vn.edu.hcmuaf.fit.utils.MD5Utils;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -31,7 +32,7 @@ public class ChangePasswordForgotController extends HttpServlet {
                     request.setAttribute("alert", "danger");
                     request.getRequestDispatcher("/views/web/changePassword.jsp").forward(request, response);
                 } else {
-                    dao.changePassWord(cus.getEmail(), newPass);
+                    dao.changePassWord(cus.getEmail(), MD5Utils.encrypt(newPass));
                     session.removeAttribute("UserForgotPass");
                     request.setAttribute("message", "Successful");
                     request.setAttribute("alert", "success");
