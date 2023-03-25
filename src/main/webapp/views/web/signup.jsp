@@ -46,7 +46,7 @@
       <small>Error</small>
     </div>
     <div class="input ">
-      <label>Mật khẩu <span>(chứa ít nhất 1 kí tự in hoa, số và kí tự đặt biệt)</span></label>
+      <label>Mật khẩu <span style="font-size: 12px">(chứa ít nhất 1 kí tự in hoa, số và kí tự đặt biệt)</span></label>
       <input type="password" placeholder="Nhập vào mật khẩu" id="password" name="password" onchange="passwordOnChange(this.value)">
       <i class="fa-solid fa-circle-check"></i>
       <i class="fa-solid fa-circle-xmark"></i>
