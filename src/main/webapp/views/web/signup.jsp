@@ -59,6 +59,7 @@
       <i class="fa-solid fa-circle-xmark"></i>
       <small>Error</small>
     </div>
+
     <div class="info-title">*Thông tin cá nhân:</div>
     <div class="compul-info">
       <div class="input fname">
