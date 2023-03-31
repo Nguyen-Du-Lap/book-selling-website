@@ -135,6 +135,7 @@ function checkInputs() {
         setSuccessFor(email);
     }
 
+
     if(passwordValue === '') {
         count++;
         setErrorFor(password, 'Vui lòng nhập vào mật khẩu');
