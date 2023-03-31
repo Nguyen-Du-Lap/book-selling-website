@@ -403,6 +403,13 @@ hr {
     transition: all 0.2s ease-in;
 }
 
+.center-header_div {
+    /*d-flex justify-content-between*/
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 /* -----------------css sidenav--------------- */
 
 #mySidenav {

@@ -34,6 +34,14 @@ ul, li {
     top: 0;
 }
 
+.f_left {
+    float: left;
+}
+
+.f_right {
+    float: right;
+}
+
 .top-header {
     background-color: var(--bs-blue-default);
     height: 54px;
@@ -316,6 +324,12 @@ hr {
     outline: none;
 }
 
+.center-header_div {
+    /*display: block;*/
+}
+
+
+
 /* ----------------menu-------------- */
 
 .menu_products {
@@ -333,7 +347,7 @@ hr {
     position: absolute;
     border: 1px solid #ccc;
     border-top: none;
-    top: 35px;
+    top: 30px;
     left: -1px;
     display: none;
 }
