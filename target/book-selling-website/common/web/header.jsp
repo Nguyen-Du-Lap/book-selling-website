@@ -80,8 +80,8 @@
             </div>
         </div>
         <div class="center-header">
-            <div class="container d-flex justify-content-between" style="align-items: center;">
-                <div class="menu_products">
+            <div class="center-header_div container">
+                <div class="menu_products f_left">
                     <i class="fa-solid fa-bars"></i>
                     Danh mục sản phẩm
                     <nav class="menu_item">
@@ -140,7 +140,7 @@
                         </ul>
                     </nav>
                 </div>
-                <div style="display: flex">
+                <div class="f_right" style="display: flex">
                     <a style="background-color: #ed4d2b; padding: 5px; color: #FFFFFF;border-radius: 5px"  href="/voucher">Săn mã giảm giá</a>
                     <a href="" class="hotline d-flex">
                         <i class="fa-solid fa-phone"></i>
