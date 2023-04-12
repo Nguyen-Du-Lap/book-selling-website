@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.fit.controller.web;
 
+import vn.edu.hcmuaf.fit.bean.Log;
 import vn.edu.hcmuaf.fit.dao.IBookDAO;
 import vn.edu.hcmuaf.fit.dao.ISlidePr;
 import vn.edu.hcmuaf.fit.dao.impl.BLockUserDAO;
@@ -21,6 +22,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.InetAddress;
 
 @WebServlet(urlPatterns = { "/home", "/login", "/logout"})
 //@WebServlet(name = "home", value = "/home")
@@ -62,6 +64,8 @@ public class HomeController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html; charset=UTF-8");
         String action = req.getParameter("action");
+        InetAddress myIP=InetAddress.getLocalHost();
+        String ip= myIP.getHostAddress();
         if (action != null && action.equals("login")) {
             String email = req.getParameter("email");
             String password = req.getParameter("password");
@@ -89,9 +93,14 @@ public class HomeController extends HttpServlet {
                     CustomerModel account = customerService.findByUsername(email);
 
                     if ((account != null) && BLockUserDAO.Attempts(email).equals("Updated")) {
+
+                        Log log = new Log(Log.INFO,ip,"Login",account.getIdUser(),"Login fall",1);
+                        log.insert();
                         new MessageParameterUntil(MessageProperties.getUsername_password_invalid(), "danger", "/views/login.jsp", req, resp).send();
                     } else {
                         if ((account != null) && BLockUserDAO.Attempts(email).equals("block")) {
+                            Log log = new Log(Log.ALER,ip,"Login",account.getIdUser(),"Accout has been locked",1);
+                            log.insert();
                             new MessageParameterUntil("Your account has been locked please contact your administrator to unlock it", "danger", "/views/login.jsp", req, resp).send();
                         }
                         else {
