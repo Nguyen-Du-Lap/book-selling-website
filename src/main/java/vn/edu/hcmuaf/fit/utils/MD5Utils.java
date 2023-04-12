@@ -26,6 +26,7 @@ public class MD5Utils {
             char randomChar2 = (char) (rand.nextInt(26) + 'a');
 
 
+            
 
             String result = str.substring(0, 1) + randomChar1 + randomChar2 + str.substring(1);
             return result;

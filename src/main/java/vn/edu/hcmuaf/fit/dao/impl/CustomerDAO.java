@@ -18,6 +18,7 @@ CustomerDAO implements ICustomerDAO {
     public CustomerModel findByUsernameAndPasswordAndStatus(String email, String password, int status) {
         List<CustomerModel> users = new ArrayList<>();
         Connection connection = JDBCConnector.getConnection();
+
         char firstChar = password.charAt(0);
         String a = String.valueOf(firstChar);
         String b = password.substring(3);
