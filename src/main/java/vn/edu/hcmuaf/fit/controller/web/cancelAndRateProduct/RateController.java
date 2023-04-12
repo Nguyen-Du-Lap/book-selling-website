@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.fit.controller.web.cancelAndRateProduct;
 
+import vn.edu.hcmuaf.fit.bean.Log;
 import vn.edu.hcmuaf.fit.dao.IBillDAO;
 import vn.edu.hcmuaf.fit.dao.IProductDAO;
 import vn.edu.hcmuaf.fit.dao.impl.BillDAO;
