@@ -23,7 +23,7 @@ public class DistrictGHNUtils {
 			String line;
 			StringBuffer response = new StringBuffer();
 			while ((line = rd.readLine()) != null) {
-				response.append(line);
+				response.append(new String(line.getBytes(), "UTF-8"));
 			}
 			rd.close();
 
