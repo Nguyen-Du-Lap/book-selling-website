@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.fit.controller.web.accounts;
 
+import vn.edu.hcmuaf.fit.bean.Log;
 import vn.edu.hcmuaf.fit.dao.impl.BLockUserDAO;
 import vn.edu.hcmuaf.fit.dao.impl.CustomerDAO;
 import vn.edu.hcmuaf.fit.model.CustomerModel;
@@ -9,6 +10,8 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.net.InetAddress;
+import java.util.logging.Level;
 
 @WebServlet(name = "confirmOTPForPass", value = "/confirmOTPForPass")
 public class ConfirmOTPForPassController extends HttpServlet {
@@ -21,7 +24,8 @@ public class ConfirmOTPForPassController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html; charset=UTF-8");
-
+        InetAddress myIP=InetAddress.getLocalHost();
+        String ip= myIP.getHostAddress();
         String code = request.getParameter("code");
         HttpSession session = request.getSession();
         CustomerModel user = (CustomerModel) session.getAttribute("UserForgotPass");
@@ -45,6 +49,8 @@ public class ConfirmOTPForPassController extends HttpServlet {
                     request.setAttribute("message", "Hiệu lực của mã OPT đã hết");
                     request.getRequestDispatcher("/views/login.jsp").forward(request, response);
                 } else {
+                    Log log = new Log(Log.ALER,ip,"ConfirmOTP forgot Password",user.getIdUser(),"Verification code is incorrect",1);
+                    log.insert();
                     session.setAttribute("attempts", attemts -1);
                     request.setAttribute("message", "Mã xác minh không chính xác");
                     request.setAttribute("alert", "danger");

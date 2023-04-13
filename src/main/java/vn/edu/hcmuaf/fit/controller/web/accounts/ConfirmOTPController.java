@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.fit.controller.web.accounts;
 
+import vn.edu.hcmuaf.fit.bean.Log;
 import vn.edu.hcmuaf.fit.dao.impl.CustomerDAO;
 import vn.edu.hcmuaf.fit.model.CustomerModel;
 import vn.edu.hcmuaf.fit.utils.MD5Utils;
@@ -8,6 +9,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.net.InetAddress;
 
 @WebServlet(name = "confirmOTP", value = "/confirmOTP")
 public class ConfirmOTPController extends HttpServlet {
@@ -20,7 +22,8 @@ public class ConfirmOTPController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html; charset=UTF-8");
-
+        InetAddress myIP=InetAddress.getLocalHost();
+        String ip= myIP.getHostAddress();
         String code = request.getParameter("code");
         HttpSession session = request.getSession();
         CustomerModel user = (CustomerModel) session.getAttribute("registerUser");
@@ -28,6 +31,8 @@ public class ConfirmOTPController extends HttpServlet {
         //String idUser = request.getParameter("id_user");
         if(code.equals(user.getCode()) && (System.currentTimeMillis() / 1000/60) - user.getTime_active_code() <= 5){
             dao.signup(user.getEmail(), MD5Utils.encrypt( user.getPassword()), user.getFirstName(),user.getLastName(), user.getPhone(), user.getAddress());
+            Log log = new Log(Log.INFO,ip,"Register", user.getIdUser(),"User register suscess",1);
+            log.insert();
             session.removeAttribute("registerUser");
             request.getRequestDispatcher("/views/login.jsp").forward(request,response );
         }else{

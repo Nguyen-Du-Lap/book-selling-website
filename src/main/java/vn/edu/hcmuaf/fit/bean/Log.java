@@ -15,7 +15,7 @@ import java.util.Map;
 public class Log extends AbBean implements Serializable {
     int id;
     int level;
-
+    String ip;
     String src;
     int user;
     String content;
@@ -36,16 +36,17 @@ public class Log extends AbBean implements Serializable {
     public static int WARNING = 2;
     public static int DANGER = 3;
 
-    public Log( int level, String src, int user, String content, Date createAt, int status) {
-
+    public Log( int level, String ip, String src, int user, String content,  int status) {
         this.level = level;
+        this.ip = ip;
         this.src = src;
         this.user = user;
         this.content = content;
         this.createAt = createAt;
         this.status = status;
     }
-    public Log( int level, int user, String src, String content,  int status) {
+
+    public Log(int level, int user, String src, String content, int status) {
 
         this.level = level;
         this.src = src;
@@ -117,18 +118,28 @@ public class Log extends AbBean implements Serializable {
     public void setStatus(int status) {
         this.status = status;
     }
+
+    public String getIp() {
+        return ip;
+    }
+
+    public void setIp(String ip) {
+        this.ip = ip;
+    }
+
     public boolean  insert() {
 
-        String sql = new String("insert into Logs(`level`,`user`,src,content,createAt,`status`) values (?,?,?,?,NOW(),?)");
+        String sql = new String("insert into logs(`level`,`user`,ip,src,content,createAt,`status`) values (?,?,?,?,?,NOW(),?)");
         PreparedStatement statement = null;
         try {
             Connection connection = JDBCConnector.getConnection();
             statement = connection.prepareStatement(sql.toString());
             statement.setInt(1, this.level);
             statement.setInt(2, getUser());
-            statement.setString(3, getSrc());
-            statement.setString(4, getContent());
-            statement.setInt(5, getStatus());
+            statement.setString(3,getIp());
+            statement.setString(4, getSrc());
+            statement.setString(5, getContent());
+            statement.setInt(6, getStatus());
             statement.executeUpdate();
             return true;
         } catch (SQLException e) {

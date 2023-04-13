@@ -18,15 +18,24 @@ CustomerDAO implements ICustomerDAO {
     public CustomerModel findByUsernameAndPasswordAndStatus(String email, String password, int status) {
         List<CustomerModel> users = new ArrayList<>();
         Connection connection = JDBCConnector.getConnection();
-        String sql = new String("SELECT * FROM customer WHERE email=? AND password=? AND status = ?");
+
+        char firstChar = password.charAt(0);
+        String a = String.valueOf(firstChar);
+        String b = password.substring(3);
+        String sql = new String("SELECT * FROM customer \n" +
+                "WHERE email = ? \n" +
+                "AND SUBSTRING(password, 4) = ? \n" +
+                "AND LEFT(password, 1) = ? \n" +
+                "AND status = ?;");
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         if (connection != null) {
             try {
                 statement = connection.prepareStatement(sql.toString());
                 statement.setString(1, email);
-                statement.setString(2, password);
-                statement.setInt(3, status);
+                statement.setString(2, b);
+                statement.setString(3, a);
+                statement.setInt(4, status);
                 resultSet = statement.executeQuery();
                 while (resultSet.next()) {
                     CustomerModel customerModel = new CustomerModel();

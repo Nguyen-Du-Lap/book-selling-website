@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.fit.controller.web.orders;
 
+import vn.edu.hcmuaf.fit.bean.Log;
 import vn.edu.hcmuaf.fit.dao.IBillDAO;
 import vn.edu.hcmuaf.fit.dao.impl.BillDAO;
 import vn.edu.hcmuaf.fit.model.Cart;
@@ -14,6 +15,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +32,8 @@ public class OrderPayController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html; charset=UTF-8");
+        InetAddress myIP=InetAddress.getLocalHost();
+        String ip= myIP.getHostAddress();
         request.setCharacterEncoding("UTF-8");
         String phone = request.getParameter("phone");
         String address = request.getParameter("address");
@@ -51,6 +55,8 @@ public class OrderPayController extends HttpServlet {
             billService.addBill(cus.getIdUser(), item.getProduct().getIdBook(),
                     address, city, district, ward, packInt, payInt,
                     item.getQuantity(), cart.getTotalPriceShipVoucher(), info, phone, request, response);
+            Log log = new Log(Log.INFO,ip,"OrderPay", cus.getIdUser(), "The customer makes the payment: "+ item.getProduct().getIdBook(),1);
+            log.insert();
             listIdRemove.add(item.getProduct().getIdBook());
         }
         billService.removeProductInCart(listIdRemove, request);
