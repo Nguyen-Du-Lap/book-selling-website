@@ -26,9 +26,9 @@ public class DistrictGHNUtils {
 				response.append(new String(line.getBytes(), "UTF-8"));
 			}
 			rd.close();
-
 			// Phân tích response để lấy DistrictID
 			JSONObject json = new JSONObject(response.toString());
+
 			JSONArray data = json.getJSONArray("data");
 
 			for (int i = 0; i < data.length(); i++) {
@@ -43,6 +43,52 @@ public class DistrictGHNUtils {
 			// TODO: handle exception
 		}
 		return -1;
+	}
+	public static int getDistrictIdOfWard(String name, int huyen) {
+		int result = -1;
+		try {
+			URL url = new URL("https://online-gateway.ghn.vn/shiip/public-api/master-data/ward?district_id");
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("POST");
+			conn.setRequestProperty("Content-Type", "application/json");
+			conn.setRequestProperty("Token", GHNContent.GHN_CLIENT_ID);
+			conn.setDoOutput(true);
+
+			JSONObject jsonInput = new JSONObject();
+			jsonInput.put("district_id", huyen);
+
+			String jsonInputString = jsonInput.toString();
+
+			conn.getOutputStream().write(jsonInputString.getBytes());
+
+			BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			String inputLine;
+			StringBuilder response = new StringBuilder();
+			while ((inputLine = in.readLine()) != null) {
+				response.append(inputLine);
+			}
+			in.close();
+
+			JSONObject jsonResponse = new JSONObject(response.toString());
+			JSONArray data = jsonResponse.getJSONArray("data");
+			for (int i = 0; i < data.length(); i++) {
+				JSONObject district = data.getJSONObject(i);
+				if (district.getString("WardName").equals(name)) {
+					result =district.getInt("WardCode");
+					break;
+				}
+			}
+
+			return  result;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+	public static void main(String[] args) {
+		System.out.println(getDistrictId("Quận Thủ Đức"));
+		System.out.println(getDistrictIdOfWard("Phường Mỹ Bình",getDistrictId("An Giang")));
 	}
 
 }
