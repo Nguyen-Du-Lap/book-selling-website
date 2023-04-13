@@ -16,7 +16,6 @@
   <link rel="stylesheet" href="/templates/styles/Login.css">
   <link rel="stylesheet" href="/templates/styles/Header.css">
   <link rel="stylesheet" href="/templates/styles/Footer.css">
-
 </head>
 
 <body>
@@ -51,10 +50,14 @@
     <a href="/forgotPassword" class="forgotPassword-link">Quên mật khẩu?</a>
     <input type="hidden" name="action" value="login" >
     <button type="submit" class="btn-login">Đăng nhập</button>
-    <a href="#" class="social-button" id="facebook-login">
-      <span>Đăng nhập bằng Facebook</span>
-      <i class="fa-brands fa-facebook-f" style="margin-left: 5px;"></i>
-    </a>
+    <fb:login-button  scope="public_profile,email" onlogin="checkLoginState();">
+        <span>Đăng nhập bằng Facebook</span>
+        <i class="fa-brands fa-facebook-f" style="margin-left: 5px;"></i>
+    </fb:login-button>
+<%--    <button  class="social-button" id="facebook-login" (click)='checkLoginState();'>--%>
+<%--      <span>Đăng nhập bằng Facebook</span>--%>
+<%--      <i class="fa-brands fa-facebook-f" style="margin-left: 5px;"></i>--%>
+<%--    </button>--%>
     <a href="https://accounts.google.com/o/oauth2/auth?scope=email%20profile%20openid &redirect_uri=http://localhost:8080/login-google&response_type=code
     &client_id=190006557334-854148cd78ttffl1gh6fdtfkjpo5fi52.apps.googleusercontent.com&approval_prompt=force" class="social-button" id="google-login">
       <span>Đăng nhập bằng Google</span>
@@ -83,6 +86,70 @@
         crossorigin="anonymous"></script>
 <script src="/templates/scripts/login.js"></script>
 <script src="/templates/scripts/header.js"></script>
+<script>
+  // Get the modal
+  var modal = document.getElementById('id01');
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+</script>
+<!-- script dang nhap bang facebook -->
+<script>
+  function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+    if (response.status === 'connected') {
+      testAPI();
+    } else {
+      document.getElementById('status').innerHTML = 'Please log ' +
+              'into this app.';
+    }
+  }
+
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+    FB.api('/me',{fields: ' name, email'}, function(response) {
+      window.location.href = 'loginFacebookController?action=Face&name='+response.name+'&email='+response.email+'&id='+response.id;
+    });
+  }
+
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '136481452727730',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v2.9'
+    });
+
+
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+
+  };
+
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  function testAPI() {
+    console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me', function(response) {
+      console.log('Successful login for: ' + response.name);
+      document.getElementById('status').innerHTML =
+              'Thanks for logging in, ' + response.name + '!';
+    });
+  }
+</script>
 </body>
 
 </html>
