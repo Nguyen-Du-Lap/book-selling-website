@@ -29,6 +29,12 @@ public class BookDetails  extends AbstractModel<BookDetails> {
         this.description = description;
     }
 
+    public BookDetails(int id, int weight, String size) {
+        this.id = id;
+        this.weight = weight;
+        this.size = size;
+    }
+
     public int getId() {
         return id;
     }
