@@ -112,7 +112,6 @@
           <option value="" selected>Chọn quy cách đóng gói</option>
           <option value="0">Bọc Blatic</option>
           <option value="1">Để nguyên seal</option>
-          <option value="Quận 1">Quận 1</option>
         </select>
         <i class="fa-solid fa-circle-check"></i>
         <i class="fa-solid fa-circle-xmark"></i>
@@ -177,6 +176,10 @@
             <div class="wrap mt">
               <span class="sum_transport">Phí vận chuyển:</span>
               <p class="ml" id="sum_transport"> </p>
+            </div>
+            <div class="wrap mt">
+              <span class="sum_transport">Dự kiến giao:</span>
+              <p class="ml" id="date_transport"> </p>
             </div>
             <div class="wrap mt">
               <span class="sum_order">Thanh toán:</span>

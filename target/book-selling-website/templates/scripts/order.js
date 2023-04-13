@@ -33,8 +33,6 @@ function renderCity(data) {
   district.onchange = function () {
     ward.length = 1;
     const dataCity = data.filter((n) => n.Name === citis.value);
-    deliveryFee(district)
-    deliveryFeeTotal(districts)
     if (this.value != "") {
       const dataWards = dataCity[0].Districts.filter(n => n.Name === this.value)[0].Wards;
 
@@ -42,12 +40,20 @@ function renderCity(data) {
         wards.options[wards.options.length] = new Option(w.Name, w.Name);
 
       }
+
+
     }
+
   };
+  wards.onchange =function () {
+    deliveryFee(district.value,wards.value)
+    deliveryFeeTotal(district.value,wards.value)
+  }
 
 
-    function deliveryFee(obj) {
-    const giaTri = obj.value;
+    function deliveryFee(obj, abj) {
+    const giaTri = obj+"/"+abj;
+    console.log(giaTri);
     $.ajax({
     url: "/orderFee",
     type: "get",
@@ -55,13 +61,20 @@ function renderCity(data) {
     exits: giaTri
   },
     success: function (data) {
+      const parts = data.split(",");
+      const part1 = parts[0].trim();
+      const part2 = parseFloat(parts[1].trim());
+      const  part3=part1.replace(/\[/g, '');
     const row = document.getElementById("sum_transport")
-    row.innerText = data;
+      const time = document.getElementById("date_transport");
+    row.innerText = part2;
+    time.innerText= part3;
+
   }
   })
   }
-  function deliveryFeeTotal(obj) {
-    const giaTri = obj.value;
+  function deliveryFeeTotal(obj, abj) {
+    const giaTri = obj+"/"+abj;
     $.ajax({
       url: "/orderFee",
       type: "post",
@@ -69,6 +82,7 @@ function renderCity(data) {
         exits: giaTri
       },
       success: function (data) {
+
         const row = document.getElementById("sum_order")
         row.innerText = data;
       }

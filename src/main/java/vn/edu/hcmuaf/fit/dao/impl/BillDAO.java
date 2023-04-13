@@ -4,6 +4,7 @@ import vn.edu.hcmuaf.fit.dao.IBillDAO;
 import vn.edu.hcmuaf.fit.db.JDBCConnector;
 import vn.edu.hcmuaf.fit.model.AuthorModel;
 import vn.edu.hcmuaf.fit.model.Bill;
+import vn.edu.hcmuaf.fit.model.BookDetails;
 import vn.edu.hcmuaf.fit.model.ShippingInfoModel;
 
 import java.sql.Connection;
@@ -352,6 +353,41 @@ public class BillDAO implements IBillDAO {
         }
 
     }
+
+    @Override
+    public BookDetails findByIdBook(int id) {
+        BookDetails results = null;
+        String sql = "SELECT id_book,weight, size FROM book_details WHERE id_book=?";
+        Connection connection = JDBCConnector.getConnection();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        if(connection != null) {
+            try {
+                statement = connection.prepareStatement(sql);
+                statement.setInt(1, id);
+                resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    results.setId(resultSet.getInt(1));
+                    results.setWeight(resultSet.getInt(2));
+                    results.setSize(resultSet.getString(3));
+                }
+
+                return results;
+            } catch (SQLException e) {
+                return null;
+            } finally {
+                try {
+                    if(connection != null) connection.close();
+                    if(statement != null) statement.close();
+                    if(resultSet != null) resultSet.close();
+                } catch (SQLException e) {
+                    return null;
+                }
+            }
+        }
+        return null;
+    }
+
 
     @Override
     public int cancelOrder(int idInt) {
