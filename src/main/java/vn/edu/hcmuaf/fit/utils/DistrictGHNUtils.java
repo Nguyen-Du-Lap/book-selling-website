@@ -65,7 +65,7 @@ public class DistrictGHNUtils {
 			String inputLine;
 			StringBuilder response = new StringBuilder();
 			while ((inputLine = in.readLine()) != null) {
-				response.append(inputLine);
+				response.append(new String(inputLine.getBytes(), "UTF-8"));
 			}
 			in.close();
 
