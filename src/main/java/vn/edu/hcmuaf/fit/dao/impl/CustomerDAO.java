@@ -207,7 +207,7 @@ CustomerDAO implements ICustomerDAO {
     public List<CustomerModel> findAllCustomer() {
         List<CustomerModel> users = new ArrayList<>();
         Connection connection = JDBCConnector.getConnection();
-        String sql = new String("SELECT c.id_user, CONCAT(c.first_name,' ',c.last_name), c.phone, c.address, COUNT(b.id_user) " +
+        String sql = new String("SELECT c.id_user, CONCAT(c.first_name,' ',c.last_name) 'full_name', c.phone, c.address, COUNT(b.id_user) 'total_bill', c.first_name, c.last_name, c.email, c.created_time\n" +
                 "FROM customer c JOIN bill b ON c.id_user = b.id_user\n" +
                 "GROUP BY c.id_user, CONCAT(c.first_name,' ',c.last_name), c.phone, c.address, b.id_user");
         PreparedStatement statement = null;
@@ -222,6 +222,10 @@ CustomerDAO implements ICustomerDAO {
                 customerModel.setPhone(resultSet.getString(3));
                 customerModel.setAddress(resultSet.getString(4));
                 customerModel.setTotalBill(resultSet.getInt(5));
+                customerModel.setFirstName(resultSet.getString(6));
+                customerModel.setLastName(resultSet.getString(7));
+                customerModel.setEmail(resultSet.getString(8));
+                customerModel.setCreatedTime(resultSet.getTimestamp(9));
                 users.add(customerModel);
             }
             return users;
