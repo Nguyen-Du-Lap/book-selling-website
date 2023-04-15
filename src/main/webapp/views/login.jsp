@@ -16,6 +16,13 @@
   <link rel="stylesheet" href="/templates/styles/Login.css">
   <link rel="stylesheet" href="/templates/styles/Header.css">
   <link rel="stylesheet" href="/templates/styles/Footer.css">
+  <style>
+    ._4z_d ._4z_f {
+      font-size: 16px!important;
+      line-height: 14px;
+      padding: 2px 6px;
+    }
+  </style>
 </head>
 
 <body>
@@ -50,14 +57,13 @@
     <a href="/forgotPassword" class="forgotPassword-link">Quên mật khẩu?</a>
     <input type="hidden" name="action" value="login" >
     <button type="submit" class="btn-login">Đăng nhập</button>
-    <fb:login-button  scope="public_profile,email" onlogin="checkLoginState();">
+    <fb:login-button class="social-button" id="facebook-login"  scope="public_profile,email" onlogin="checkLoginState();">
+      <div>
         <span>Đăng nhập bằng Facebook</span>
         <i class="fa-brands fa-facebook-f" style="margin-left: 5px;"></i>
+      </div>
     </fb:login-button>
-<%--    <button  class="social-button" id="facebook-login" (click)='checkLoginState();'>--%>
-<%--      <span>Đăng nhập bằng Facebook</span>--%>
-<%--      <i class="fa-brands fa-facebook-f" style="margin-left: 5px;"></i>--%>
-<%--    </button>--%>
+
     <a href="https://accounts.google.com/o/oauth2/auth?scope=email%20profile%20openid &redirect_uri=http://localhost:8080/login-google&response_type=code
     &client_id=190006557334-854148cd78ttffl1gh6fdtfkjpo5fi52.apps.googleusercontent.com&approval_prompt=force" class="social-button" id="google-login">
       <span>Đăng nhập bằng Google</span>
