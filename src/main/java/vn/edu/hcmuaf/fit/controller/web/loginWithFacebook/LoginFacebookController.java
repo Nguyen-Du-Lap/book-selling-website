@@ -19,7 +19,6 @@ public class LoginFacebookController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=utf-8");
-
         String action = request.getParameter("action");
 
         if(action.equals("Face")){
