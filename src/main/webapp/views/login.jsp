@@ -32,12 +32,12 @@
 <!--------- login form---------- -->
 <div class="login">
   <div class="login-title">Đăng nhập</div>
-    <c:if test="${not empty message}">
-      <div class="alert alert-${alert}" role="alert">
-          ${message}
-      </div>
-    </c:if>
-<%--  <form action="/login?action=login" class="form_login" id="form_login" method="post">--%>
+  <c:if test="${not empty message}">
+    <div class="alert alert-${alert}" role="alert">
+        ${message}
+    </div>
+  </c:if>
+  <%--  <form action="/login?action=login" class="form_login" id="form_login" method="post">--%>
   <form action="/login?action=login" class="form_login"  method="post">
     <div class="input ">
       <label>Email</label>
