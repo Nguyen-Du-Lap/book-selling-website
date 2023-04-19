@@ -25,7 +25,6 @@ public class LoginFacebookController extends HttpServlet {
         if(action.equals("Face")){
             String name=request.getParameter("name");
             String email=request.getParameter("email");
-            String id = request.getParameter("id");
 
             CustomerModel account = customerDAO.checkAccountExist(email);
 
