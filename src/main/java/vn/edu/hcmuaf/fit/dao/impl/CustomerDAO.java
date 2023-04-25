@@ -1,13 +1,13 @@
 package vn.edu.hcmuaf.fit.dao.impl;
 
+import vn.edu.hcmuaf.fit.bean.Log;
 import vn.edu.hcmuaf.fit.dao.ICustomerDAO;
 import vn.edu.hcmuaf.fit.db.JDBCConnector;
 import vn.edu.hcmuaf.fit.model.CustomerModel;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -104,9 +104,11 @@ CustomerDAO implements ICustomerDAO {
         String sql = new String("INSERT INTO customer (first_name, last_name, email, password, address, phone, role, status)\n" +
                 "VALUES (?, ?, ?, ?, ?, ?, 'user', 1)");
         PreparedStatement statement = null;
+        ResultSet rs = null;
+        int idR =-1;
         try {
             Connection connection = JDBCConnector.getConnection();
-            statement = connection.prepareStatement(sql.toString());
+            statement = connection.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS); // thêm tham số Statement.RETURN_GENERATED_KEYS để lấy ra giá trị tự động sinh ra
             statement.setString(1, firstname);
             statement.setString(2, lastname);
             statement.setString(3, email);
@@ -115,9 +117,39 @@ CustomerDAO implements ICustomerDAO {
             statement.setString(6, phone);
             statement.executeUpdate();
 
+            // lấy giá trị ID của bản ghi vừa được thêm vào
+            rs = statement.getGeneratedKeys();
+            if (rs.next()) {
+                long id = rs.getLong(1); // lấy giá trị ID từ ResultSet
+                idR = (int) id;
+
+            }
+            InetAddress address1 = InetAddress.getLocalHost();
+            String ip = address1.getHostAddress();
+            Log log = new Log(Log.INFO,ip,"Register", idR,"User register suscess",1);
+            log.insert();
         } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (UnknownHostException e) {
+            throw new RuntimeException(e);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
+
 
     public void changePassword(String email, String oldPass, String newPass) {
         String sql = new String("UPDATE customer \n" +
