@@ -11,4 +11,7 @@ public interface IBillManagementService {
 
     int update(int id, String address, String status, Date shipTime, Date receiveTime);
 
+    List<BillManagementModel> findAllBillConfrim();
+    void confirmBill(String id_order);
+    void deleteBill(String id_order);
 }

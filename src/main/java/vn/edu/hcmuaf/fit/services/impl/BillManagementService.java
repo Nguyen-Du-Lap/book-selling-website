@@ -26,5 +26,20 @@ public class BillManagementService implements IBillManagementService {
         return iBillManagementDAO.update(id, address, status, shipTime, receiveTime);
     }
 
+    @Override
+    public List<BillManagementModel> findAllBillConfrim() {
+        return iBillManagementDAO.findAllBillConfrim();
+    }
+
+    @Override
+    public void confirmBill(String id_order) {
+         iBillManagementDAO.confirmBill(id_order);
+    }
+
+    @Override
+    public void deleteBill(String id_order) { iBillManagementDAO.deleteBill(id_order);
+
+    }
+
 
 }

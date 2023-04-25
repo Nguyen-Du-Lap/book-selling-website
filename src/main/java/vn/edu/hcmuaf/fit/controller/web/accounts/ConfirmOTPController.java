@@ -31,8 +31,8 @@ public class ConfirmOTPController extends HttpServlet {
         //String idUser = request.getParameter("id_user");
         if(code.equals(user.getCode()) && (System.currentTimeMillis() / 1000/60) - user.getTime_active_code() <= 5){
             dao.signup(user.getEmail(), MD5Utils.encrypt( user.getPassword()), user.getFirstName(),user.getLastName(), user.getPhone(), user.getAddress());
-            Log log = new Log(Log.INFO,ip,"Register", user.getIdUser(),"User register suscess",1);
-            log.insert();
+
+
             session.removeAttribute("registerUser");
             request.getRequestDispatcher("/views/login.jsp").forward(request,response );
         }else{
