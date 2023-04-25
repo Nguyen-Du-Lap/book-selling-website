@@ -108,7 +108,7 @@
       </div>
       <div class="form-group input">
         <label for="pack">Đóng gói: <span class="obligatory">(*)</span></label>
-        <select  onchange="deliveryFee(this)"  name="pack" class="form-control" id="pack" aria-label=".form-select-sm">
+        <select   name="pack" class="form-control" id="pack" aria-label=".form-select-sm">
           <option value="" selected>Chọn quy cách đóng gói</option>
           <option value="0">Bọc Blatic</option>
           <option value="1">Để nguyên seal</option>

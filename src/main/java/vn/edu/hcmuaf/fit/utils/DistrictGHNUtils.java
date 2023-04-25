@@ -86,9 +86,6 @@ public class DistrictGHNUtils {
 		}
 		return -1;
 	}
-	public static void main(String[] args) {
-		System.out.println(getDistrictId("Quận Thủ Đức"));
-		System.out.println(getDistrictIdOfWard("Phường Mỹ Bình",getDistrictId("An Giang")));
-	}
+
 
 }

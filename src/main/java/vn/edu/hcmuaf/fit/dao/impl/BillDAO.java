@@ -2,10 +2,7 @@ package vn.edu.hcmuaf.fit.dao.impl;
 
 import vn.edu.hcmuaf.fit.dao.IBillDAO;
 import vn.edu.hcmuaf.fit.db.JDBCConnector;
-import vn.edu.hcmuaf.fit.model.AuthorModel;
-import vn.edu.hcmuaf.fit.model.Bill;
-import vn.edu.hcmuaf.fit.model.BookDetails;
-import vn.edu.hcmuaf.fit.model.ShippingInfoModel;
+import vn.edu.hcmuaf.fit.model.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -446,4 +443,5 @@ public class BillDAO implements IBillDAO {
         }
         return null;
     }
+
 }

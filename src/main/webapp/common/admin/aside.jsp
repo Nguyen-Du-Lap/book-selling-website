@@ -49,6 +49,15 @@
               class="app-menu__label">Quản lý đơn hàng</span></a></li>
     </c:if>
 
+    <c:if test="${title.equals('Xác nhận đơn hàng')}">
+      <li><a class="app-menu__item active" href="<c:url value="/admin-table-order-confirm" />"><i class='app-menu__icon bx bx-task'></i><span
+              class="app-menu__label">Xác nhận đơn hàng</span></a></li>
+    </c:if>
+    <c:if test="${!title.equals('Xác nhận đơn hàng')}">
+      <li><a class="app-menu__item" href="<c:url value="/admin-table-order-confirm" />"><i class='app-menu__icon bx bx-task'></i><span
+              class="app-menu__label">Xác nhận đơn hàng</span></a></li>
+    </c:if>
+
     <c:if test="${title.equals('Danh Sách Bài Viết')}">
       <li><a class="app-menu__item active" href="<c:url value="/admin-table-news" />"><i class='app-menu__icon bx bx-task'></i><span
               class="app-menu__label">Quản lý bài viết</span></a></li>

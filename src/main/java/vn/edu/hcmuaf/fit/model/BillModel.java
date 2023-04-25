@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 public class BillModel extends AbstractModel<BillModel> {
     private String idOrder;
     private String idUser;
+    private String idBook;
     private String shippingInfo;
     private String idDiscount;
     private Date shipTime;
