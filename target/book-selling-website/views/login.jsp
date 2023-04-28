@@ -32,12 +32,12 @@
 <!--------- login form---------- -->
 <div class="login">
   <div class="login-title">Đăng nhập</div>
-    <c:if test="${not empty message}">
-      <div class="alert alert-${alert}" role="alert">
-          ${message}
-      </div>
-    </c:if>
-<%--  <form action="/login?action=login" class="form_login" id="form_login" method="post">--%>
+  <c:if test="${not empty message}">
+    <div class="alert alert-${alert}" role="alert">
+        ${message}
+    </div>
+  </c:if>
+  <%--  <form action="/login?action=login" class="form_login" id="form_login" method="post">--%>
   <form action="/login?action=login" class="form_login"  method="post">
     <div class="input ">
       <label>Email</label>
@@ -57,14 +57,13 @@
     <a href="/forgotPassword" class="forgotPassword-link">Quên mật khẩu?</a>
     <input type="hidden" name="action" value="login" >
     <button type="submit" class="btn-login">Đăng nhập</button>
-<%--    <fb:login-button class="social-button" id="facebook-login"  scope="public_profile,email" onlogin="checkLoginState();">--%>
-<%--      <div>--%>
-<%--        <span>Đăng nhập bằng Facebook</span>--%>
-<%--        <i class="fa-brands fa-facebook-f" style="margin-left: 5px;"></i>--%>
-<%--      </div>--%>
-<%--    </fb:login-button>--%>
-    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+    <fb:login-button class="social-button" id="facebook-login"  scope="public_profile,email" onlogin="checkLoginState();">
+      <div>
+        <span>Đăng nhập bằng Facebook</span>
+        <i class="fa-brands fa-facebook-f" style="margin-left: 5px;"></i>
+      </div>
     </fb:login-button>
+
     <a href="https://accounts.google.com/o/oauth2/auth?scope=email%20profile%20openid &redirect_uri=http://localhost:8080/login-google&response_type=code
     &client_id=190006557334-854148cd78ttffl1gh6fdtfkjpo5fi52.apps.googleusercontent.com&approval_prompt=force" class="social-button" id="google-login">
       <span>Đăng nhập bằng Google</span>
@@ -103,7 +102,7 @@
     }
   }
 </script>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+<!-- script dang nhap bang facebook -->
 <script>
   function statusChangeCallback(response) {
     console.log('statusChangeCallback');
@@ -121,17 +120,16 @@
       statusChangeCallback(response);
     });
     FB.api('/me',{fields: ' name, email'}, function(response) {
-      console.log(response);
-      window.location.href = 'Login?action=Face&name='+response.name+'&email='+response.email+'&id='+response.id;
+      window.location.href = 'loginFacebookController?action=Face&name='+response.name+'&email='+response.email+'&id='+response.id;
     });
   }
 
   window.fbAsyncInit = function() {
     FB.init({
-      appId      : '747837173454160',
+      appId      : '136481452727730',
       cookie     : true,
       xfbml      : true,
-      version    : 'v16.0'
+      version    : 'v2.9'
     });
 
 
@@ -158,55 +156,6 @@
     });
   }
 </script>
-
-
-<!-- script dang nhap bang facebook -->
-<%--<script>--%>
-<%--  function statusChangeCallback(response) {--%>
-<%--    console.log('statusChangeCallback');--%>
-<%--    console.log(response);--%>
-<%--    if (response.status === 'connected') {--%>
-<%--      testAPI();--%>
-<%--    } else {--%>
-<%--      document.getElementById('status').innerHTML = 'Please log ' +--%>
-<%--              'into this app.';--%>
-<%--    }--%>
-<%--  }--%>
-
-<%--  function checkLoginState() {--%>
-<%--    FB.getLoginStatus(function(response) {--%>
-<%--      statusChangeCallback(response);--%>
-<%--    });--%>
-<%--    FB.api('/me',{fields: ' name, email'}, function(response) {--%>
-<%--      window.location.href = 'loginFacebookController?action=Face&name='+response.name+'&email='+response.email+'&id='+response.id;--%>
-<%--    });--%>
-<%--  }--%>
-
-<%--  window.fbAsyncInit = function() {--%>
-<%--    FB.init({--%>
-<%--      appId      : '747837173454160',--%>
-<%--      cookie     : true,--%>
-<%--      xfbml      : true,--%>
-<%--      version    : 'v2.9'--%>
-<%--    });--%>
-
-<%--    FB.AppEvents.logPageView();--%>
-
-<%--  };--%>
-
-<%--  (function(d, s, id){--%>
-<%--    var js, fjs = d.getElementsByTagName(s)[0];--%>
-<%--    if (d.getElementById(id)) {return;}--%>
-<%--    js = d.createElement(s); js.id = id;--%>
-<%--    js.src = "https://connect.facebook.net/en_US/sdk.js";--%>
-<%--    fjs.parentNode.insertBefore(js, fjs);--%>
-<%--  }(document, 'script', 'facebook-jssdk'));--%>
-
-<%--  FB.getLoginStatus(function(response) {--%>
-<%--    statusChangeCallback(response);--%>
-<%--  });--%>
-
-<%--</script>--%>
 </body>
 
 </html>
