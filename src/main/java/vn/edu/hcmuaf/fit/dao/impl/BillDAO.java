@@ -444,4 +444,47 @@ public class BillDAO implements IBillDAO {
         return null;
     }
 
+    public Bill find1BillById(int id) {
+        String sql = "SELECT bill.id_order, book.name, bill.totalBill, bill.quantity, bill.id_user, bill.id_book, bill.address, \n" +
+                "bill.shipping_info, bill.payment_method, bill.pack, bill.ship_time, bill.receive_time\n" +
+                "FROM bill JOIN book ON bill.id_book = book.id_book\n" +
+                "WHERE bill.id_order = ?";
+        Connection connection = JDBCConnector.getConnection();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        if(connection != null) {
+            try {
+                statement = connection.prepareStatement(sql);
+                statement.setInt(1, id);
+                resultSet = statement.executeQuery();
+                resultSet.next();
+                Bill bill = new Bill();
+                    bill.setIdOrder(resultSet.getInt(1));
+                    bill.setName(resultSet.getString(2));
+                    bill.setTotalPrice(resultSet.getInt(3));
+                    bill.setQuantity(resultSet.getInt(4));
+                    bill.setIdUser(resultSet.getInt(5));
+                    bill.setIdBook(resultSet.getInt(6));
+                    bill.setImage(findImageById(resultSet.getInt(6)));
+                    bill.setAddress(resultSet.getString(7));
+                    bill.setShippingInfo(resultSet.getInt(8));
+                    bill.setShip_time(resultSet.getTimestamp(11));
+                    bill.setReceive_time(resultSet.getTimestamp(12));
+
+                return bill;
+            } catch (SQLException e) {
+                return null;
+            } finally {
+                try {
+                    if(connection != null) connection.close();
+                    if(statement != null) statement.close();
+                    if(resultSet != null) resultSet.close();
+                } catch (SQLException e) {
+                    return null;
+                }
+            }
+        }
+        return null;
+    }
+
 }
