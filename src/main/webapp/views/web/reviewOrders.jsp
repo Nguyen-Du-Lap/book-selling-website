@@ -133,26 +133,25 @@
                 <thead>
                 <tr>
                   <th scope="col">Mã đơn hàng</th>
-                  <th scope="col">Tên sản phẩm</th>
+                  <th scope="col" style="width: 300px">Tên sản phẩm</th>
                   <th scope="col">Ảnh</th>
-                  <th scope="col">Số lượng</th>
-                  <th scope="col">Tổng tiền</th>
                   <th scope="col">Tình trạng</th>
+                  <th scope="col">Chi tiết</th>
                 </tr>
                 </thead>
                 <tbody>
                 <c:forEach var="billD" items="${listBillDeliverByIdOrder}">
-                  <tr>
-                    <th scope="1">${billD.idOrder}</th>
-                    <td>${billD.name}</td>
-                    <td><img style="height: 50px" src="${billD.image}"></td>
-                    <td>${billD.quantity}</td>
-                    <td>${billD.totalPrice}</td>
-                    <td><a class="btn_blue" href="/cancelOrder?id=${billD.idOrder}">Hủy đơn</a></td>
-                  </tr>
+                  <a href="/orderDetail?id=${billD.idOrder}">
+                    <tr>
+                      <th scope="1">${billD.idOrder}</th>
+                      <td>${billD.name}</td>
+                      <td><img style="height: 50px" src="${billD.image}"></td>
+                      <td><a class="btn_blue" href="/cancelOrder?id=${billD.idOrder}">Hủy đơn</a></td>
+                      <td><a class="btn_blue" href="/orderDetail?id=${billD.idOrder}">Chi tiết</a></td>
+                    </tr>
+                  </a>
+
                 </c:forEach>
-
-
                 </tbody>
               </table>
             </div>
@@ -163,11 +162,10 @@
               <thead>
               <tr>
                 <th scope="col">Mã đơn hàng</th>
-                <th scope="col">Tên sản phẩm</th>
+                <th scope="col" style="width: 300px">Tên sản phẩm</th>
                 <th scope="col">Ảnh</th>
-                <th scope="col">Số lượng</th>
-                <th scope="col">Tổng tiền</th>
                 <th scope="col">Tình trạng</th>
+                <th scope="col">Chi tiết</th>
               </tr>
               </thead>
               <tbody>
@@ -176,9 +174,8 @@
                   <th scope="1">${billW.idOrder}</th>
                   <td>${billW.name}</td>
                   <td><img style="height: 50px" src="${billW.image}"></td>
-                  <td>${billW.quantity}</td>
-                  <td>${billW.totalPrice}</td>
                   <td><a class="btn_blue" href="/cancelOrder?id=${billW.idOrder}">Hủy đơn</a></td>
+                  <td><a class="btn_blue" href="/orderDetail?id=${billW.idOrder}">Chi tiết</a></td>
                 </tr>
               </c:forEach>
 
@@ -192,10 +189,9 @@
                 <thead>
                 <tr>
                   <th scope="col">Mã đơn hàng</th>
-                  <th scope="col">Tên sản phẩm</th>
+                  <th scope="col" style="width: 300px">Tên sản phẩm</th>
                   <th scope="col">Ảnh</th>
-                  <th scope="col">Số lượng</th>
-                  <th scope="col">Tổng tiền</th>
+                  <th scope="col">Chi tiết</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -204,8 +200,7 @@
                     <th scope="1">${billL.idOrder}</th>
                     <td>${billL.name}</td>
                     <td><img style="height: 50px" src="${billL.image}"></td>
-                    <td>${billL.quantity}</td>
-                    <td>${billL.totalPrice}</td>
+                    <td><a class="btn_blue" href="/orderDetail?id=${billL.idOrder}">Chi tiết</a></td>
                   </tr>
                 </c:forEach>
 
@@ -217,11 +212,10 @@
                 <thead>
                 <tr>
                   <th scope="col">Mã đơn hàng</th>
-                  <th scope="col">Tên sản phẩm</th>
+                  <th scope="col" style="width: 300px">Tên sản phẩm</th>
                   <th scope="col">Ảnh</th>
-                  <th scope="col">Số lượng</th>
-                  <th scope="col">Tổng tiền</th>
                   <th scope="col">Tình trạng</th>
+                  <th scope="col">Chi tiết</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -230,9 +224,8 @@
                     <th scope="1">${billR.idOrder}</th>
                     <td>${billR.name}</td>
                     <td><img style="height: 50px" src="${billR.image}"></td>
-                    <td>${billR.quantity}</td>
-                    <td>${billR.totalPrice}</td>
                     <td><a class="btn_blue" href="/rate?id=${billR.idOrder}&idBook=${billR.idBook}">Đánh giá</a></td>
+                    <td><a class="btn_blue" href="/orderDetail?id=${billR.idOrder}">Chi tiết</a></td>
                   </tr>
                 </c:forEach>
 
