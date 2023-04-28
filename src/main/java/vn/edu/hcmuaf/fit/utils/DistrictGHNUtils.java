@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -19,17 +20,17 @@ public class DistrictGHNUtils {
 			connection.setRequestMethod("GET");
 			connection.setRequestProperty("Content-Type", GHNContent.CONTENT_TYPE);
 			connection.setRequestProperty("Token", GHNContent.GHN_CLIENT_ID);
-			BufferedReader rd = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+			BufferedReader rd = new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"));
 			String line;
 			StringBuffer response = new StringBuffer();
 			while ((line = rd.readLine()) != null) {
-				response.append(new String(line.getBytes(), "UTF-8"));
+				response.append(line);
 			}
 			rd.close();
 			// Phân tích response để lấy DistrictID
-			JSONObject json = new JSONObject(response.toString());
+			JSONObject jsonObject = new JSONObject(response.toString());
 
-			JSONArray data = json.getJSONArray("data");
+			JSONArray data = jsonObject.getJSONArray("data");
 
 			for (int i = 0; i < data.length(); i++) {
 				JSONObject district = data.getJSONObject(i);
@@ -61,16 +62,17 @@ public class DistrictGHNUtils {
 
 			conn.getOutputStream().write(jsonInputString.getBytes());
 
-			BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-			String inputLine;
-			StringBuilder response = new StringBuilder();
-			while ((inputLine = in.readLine()) != null) {
-				response.append(new String(inputLine.getBytes(), "UTF-8"));
+			BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+			String line;
+			StringBuffer response = new StringBuffer();
+			while ((line = rd.readLine()) != null) {
+				response.append(line);
 			}
-			in.close();
+			rd.close();
+			// Phân tích response để lấy DistrictID
+			JSONObject jsonObject = new JSONObject(response.toString());
 
-			JSONObject jsonResponse = new JSONObject(response.toString());
-			JSONArray data = jsonResponse.getJSONArray("data");
+			JSONArray data = jsonObject.getJSONArray("data");
 			for (int i = 0; i < data.length(); i++) {
 				JSONObject district = data.getJSONObject(i);
 				if (district.getString("WardName").equals(name)) {
