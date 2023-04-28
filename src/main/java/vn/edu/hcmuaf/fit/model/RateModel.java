@@ -10,8 +10,19 @@ public class RateModel  extends AbstractModel<RateModel>  {
     private int startRate;
     private String comment;
     private Timestamp rate_time;
-
+    private int status;
     public RateModel() {
+    }
+
+    public RateModel(int idUser, int idBook, int idOrder, String nameUser, int startRate, String comment, Timestamp rate_time, int status) {
+        this.idUser = idUser;
+        this.idBook = idBook;
+        this.idOrder = idOrder;
+        this.nameUser = nameUser;
+        this.startRate = startRate;
+        this.comment = comment;
+        this.rate_time = rate_time;
+        this.status = status;
     }
 
     public RateModel(int idUser, int idBook, int idOrder, int startRate, String comment, Timestamp rate_time, String nameUser) {
@@ -22,6 +33,14 @@ public class RateModel  extends AbstractModel<RateModel>  {
         this.comment = comment;
         this.rate_time = rate_time;
         this.nameUser = nameUser;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public int getIdUser() {
