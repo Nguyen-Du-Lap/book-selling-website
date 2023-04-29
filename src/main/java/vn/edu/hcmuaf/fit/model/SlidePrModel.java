@@ -11,6 +11,10 @@ public class SlidePrModel  extends AbstractModel<SlidePrModel>  {
     private Date startTime;
     private Date finishTime;
     private Timestamp createTime;
+    private int status;
+
+    public SlidePrModel() {
+    }
 
     public int getIdPr() {
         return idPr;
@@ -66,6 +70,14 @@ public class SlidePrModel  extends AbstractModel<SlidePrModel>  {
 
     public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     @Override
