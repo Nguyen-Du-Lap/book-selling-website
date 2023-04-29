@@ -43,6 +43,11 @@
         <div class="tile-body">
           <div class="row element-button">
             <div class="col-sm-2">
+
+              <a class="btn btn-add btn-sm" href="/admin-add-slide" title="Thêm"><i class="fas fa-plus"></i>
+                Thêm slider</a>
+            </div>
+            <div class="col-sm-2">
               <a class="btn btn-delete btn-sm nhap-tu-file" type="button" title="Nhập" onclick="myFunction(this)"><i
                       class="fas fa-file-upload"></i> Tải từ file</a>
             </div>
@@ -71,35 +76,35 @@
             <thead>
             <tr>
               <th width="10"><input type="checkbox" id="all"></th>
-              <th>ID đơn hàng</th>
-              <th>ID khách hàng</th>
-              <th>Tên Khách hàng</th>
-              <th>Tên sách</th>
-              <th>Số sao</th>
-              <th>Nội dung</th>
-              <th>Thời gian</th>
+              <th>ID slider</th>
+              <th>Tên slider</th>
+              <th>Hình ảnh</th>
+              <th>Đường dẫn</th>
+              <th>Thời gian bắt đầu</th>
+              <th>Thời giàn kết thúc</th>
+              <th>Thời gian tạo</th>
               <th>Trang thái</th>
               <th>Tính năng</th>
             </tr>
             </thead>
             <tbody>
-            <c:forEach var="rate" items="${listRate}">
+            <c:forEach var="slide" items="${listSlide}">
               <tr>
 
                 <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                <td><a href="/findDetail?id=${rate.idOrder}">${rate.idOrder}</a></td>
-                <td>${rate.idUser}</td>
-                <td>${rate.nameUser}</td>
-                <td>${rate.idBook}</td>
-                <td>${rate.startRate}</td>
-                <td>${rate.comment}</td>
-                <td>${rate.rate_time}</td>
-                <td><span class="badge bg-success">${rate.status}</span></td>
+                <td><a href="/findDetail?id=${slide.idPr}">${slide.idPr}</a></td>
+                <td>${slide.namePr}</td>
+                <td>${slide.img}</td>
+                <td>${slide.link}</td>
+                <td>${slide.startTime}</td>
+                <td>${slide.finishTime}</td>
+                <td>${slide.createTime}</td>
+                <td><span class="badge bg-success">${slide.status}</span></td>
                 <td>
-                  <a href="/findRate?id=${rate.idOrder}&book=${rate.idBook}">
+                  <a href="/findSlideHinden?id=${slide.idPr}">
                     <button class="btn btn-primary btn-sm edit" type="button" title="Ẩn"><i class="fa fa-remove"></i></button>
                   </a> |
-                  <a href="/findRateAvtivity?id=${rate.idOrder}&book=${rate.idBook}">
+                  <a href="/findSlideAvtivity?id=${slide.idPr}">
                     <button class="btn btn-primary btn-sm edit" type="button" title="Hiện"><i class="fa fa-edit"></i></button>
                   </a>
                 </td>
