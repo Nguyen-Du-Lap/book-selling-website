@@ -476,7 +476,6 @@ public class BillDAO implements IBillDAO {
                     bill.setShippingInfo(resultSet.getInt(8));
                     bill.setShip_time(resultSet.getTimestamp(11));
                     bill.setReceive_time(resultSet.getTimestamp(12));
-
                 return bill;
             } catch (SQLException e) {
                 return null;
