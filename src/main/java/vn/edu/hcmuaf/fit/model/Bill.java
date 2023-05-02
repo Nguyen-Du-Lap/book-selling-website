@@ -1,5 +1,11 @@
 package vn.edu.hcmuaf.fit.model;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Bill {
     private int idOrder;
     private int idUser;
@@ -9,19 +15,24 @@ public class Bill {
     private String paymentMethod;
     private String pack;
     private int quantity;
-    private double totalPrice;
-    private String shippingInfo;
+    private int totalPrice;
+    private int shippingInfo;
     private String info;
     private String phone;
     private String image;
+
+    private String address;
+
+    private Timestamp ship_time;
+    private Timestamp receive_time;
 
     public Bill() {
     }
 
     public Bill(int idOrder, int idUser, int idBook, String name,
                 String paymentMethod, String pack, int quantity,
-                double totalPrice, String shippingInfo,
-                String info, String phone,String image) {
+                int totalPrice, int shippingInfo,
+                String info, String phone,String image, String address, Timestamp ship_time, Timestamp receive_time) {
         this.idOrder = idOrder;
         this.idUser = idUser;
         this.idBook = idBook;
@@ -34,10 +45,13 @@ public class Bill {
         this.info = info;
         this.phone = phone;
         this.image = image;
+        this.address = address;
+        this.ship_time = ship_time;
+        this.receive_time = receive_time;
     }
     public Bill(int idUser, int idBook, String name,
                 String paymentMethod, String pack, int quantity,
-                double totalPrice, String shippingInfo,
+                int totalPrice, int shippingInfo,
                 String info, String phone,String image) {
         this.idUser = idUser;
         this.idBook = idBook;
@@ -108,19 +122,20 @@ public class Bill {
         this.quantity = quantity;
     }
 
-    public double getTotalPrice() {
+    public int getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(double totalPrice) {
+    public void setTotalPrice(int totalPrice) {
         this.totalPrice = totalPrice;
     }
 
     public String getShippingInfo() {
-        return shippingInfo;
+
+        return getNameShippingInfo(shippingInfo);
     }
 
-    public void setShippingInfo(String shippingInfo) {
+    public void setShippingInfo(int shippingInfo) {
         this.shippingInfo = shippingInfo;
     }
 
@@ -145,5 +160,66 @@ public class Bill {
 
     public void setImage(String image) {
         this.image = image;
+    }
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getShip_time() {
+        if(ship_time.equals("")) return "";
+        LocalDateTime dateTime = ship_time.toLocalDateTime();
+        String ngayThangNam = dateTime.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        return ngayThangNam;
+    }
+
+    public void setShip_time(Timestamp ship_time) {
+
+        this.ship_time = ship_time;
+    }
+
+    public String getReceive_time() {
+        if(ship_time.equals("")) return "";
+        LocalDateTime dateTime = receive_time.toLocalDateTime();
+        String ngayThangNam = dateTime.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        return ngayThangNam;
+    }
+
+    public void setReceive_time(Timestamp receive_time) {
+        this.receive_time = receive_time;
+    }
+
+    @Override
+    public String toString() {
+        return "Bill{" +
+                "idOrder=" + idOrder +
+                ", idUser=" + idUser +
+                ", idBook=" + idBook +
+                ", name='" + name + '\'' +
+                ", paymentMethod='" + paymentMethod + '\'' +
+                ", pack='" + pack + '\'' +
+                ", quantity=" + quantity +
+                ", totalPrice=" + totalPrice +
+                ", shippingInfo='" + shippingInfo + '\'' +
+                ", info='" + info + '\'' +
+                ", phone='" + phone + '\'' +
+                ", image='" + image + '\'' +
+                ", address='" + address + '\'' +
+                ", ship_time=" + ship_time +
+                ", receive_time=" + receive_time +
+                '}';
+    }
+
+    public String getNameShippingInfo(int shippingInfo) {
+        switch (shippingInfo) {
+            case 1: return "Chờ xử lý";
+            case 2: return "Đang vận chuyển";
+            case 3: return "Đã hoàn thành";
+            case 4: return "Đã hủy";
+            default: return "error";
+        }
     }
 }
