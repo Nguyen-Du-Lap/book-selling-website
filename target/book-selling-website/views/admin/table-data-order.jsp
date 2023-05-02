@@ -91,7 +91,18 @@
                 <td>${bill.totalProduct}</td>
                 <td>${bill.totalPrice}</td>
                 <td>${bill.paymethod}</td>
-                <td><span class="badge bg-success">${bill.statusBill}</span></td>
+                <c:if test="${bill.statusBill == 'Chờ xử lý'}">
+                  <td><span class="badge bg-danger">${bill.statusBill}</span></td>
+                </c:if>
+                <c:if test="${bill.statusBill == 'Đang vận chuyển'}">
+                  <td><span class="badge bg-warning">${bill.statusBill}</span></td>
+                </c:if>
+                <c:if test="${bill.statusBill == 'Đã hoàn thành'}">
+                  <td><span class="badge bg-success">${bill.statusBill}</span></td>
+                </c:if>
+                <c:if test="${bill.statusBill == 'Đã hủy'}">
+                  <td><span class="badge bg-primary">${bill.statusBill}</span></td>
+                </c:if>
                 <td>
                   <a href="/admin-order-detail?id=${bill.idOrder}">
                     <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"><i class="fa fa-edit"></i></button>
