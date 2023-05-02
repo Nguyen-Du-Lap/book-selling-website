@@ -214,7 +214,6 @@ public class Bill {
                 ", receive_time=" + receive_time +
                 '}';
     }
-
     public String getNameShippingInfo(int shippingInfo) {
         switch (shippingInfo) {
             case 1: return "Chờ xử lý";
