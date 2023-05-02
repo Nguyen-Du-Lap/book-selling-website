@@ -21,7 +21,6 @@ public class OrderDetailController extends HttpServlet {
         int idInt = Integer.parseInt(id);
 
         int idCus = billDAO.find1BillById(idInt).getIdUser();
-
         request.setAttribute("CUSTOMER", customerDAO.findById(idCus));
         request.setAttribute("BILLDETAIL", billDAO.find1BillById(idInt));
         request.getRequestDispatcher("/views/admin/confirm-order-detail.jsp").forward(request, response);

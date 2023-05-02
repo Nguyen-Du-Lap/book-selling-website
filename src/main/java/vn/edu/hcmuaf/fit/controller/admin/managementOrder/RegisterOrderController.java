@@ -27,7 +27,6 @@ public class RegisterOrderController extends HttpServlet {
         InetAddress myIP=InetAddress.getLocalHost();
         String ip= myIP.getHostAddress();
         if(id != null) {
-
             int idInt = Integer.parseInt(id);
             iBillManagementService.confirmBill(id);
             Log log = new Log(Log.ALER,ip,"Đăng kí đơn hàng",cus.getIdUser(),"Đăng kí đơn hàng vận chuyển: " + id,1);
