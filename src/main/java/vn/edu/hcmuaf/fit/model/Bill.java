@@ -12,8 +12,8 @@ public class Bill {
 
     private int idBook;
     private String name;
-    private String paymentMethod;
-    private String pack;
+    private int paymentMethod;
+    private int pack;
     private int quantity;
     private int totalPrice;
     private int shippingInfo;
@@ -31,7 +31,7 @@ public class Bill {
     }
 
     public Bill(int idOrder, int idUser, int idBook, String name,
-                String paymentMethod, String pack, int quantity,
+                int paymentMethod, int pack, int quantity,
                 int totalPrice, int shippingInfo,
                 String info, String phone,String image, String address, Timestamp ship_time, Timestamp receive_time) {
         this.idOrder = idOrder;
@@ -51,7 +51,7 @@ public class Bill {
         this.receive_time = receive_time;
     }
     public Bill(int idUser, int idBook, String name,
-                String paymentMethod, String pack, int quantity,
+                int paymentMethod, int pack, int quantity,
                 int totalPrice, int shippingInfo,
                 String info, String phone,String image) {
         this.idUser = idUser;
@@ -127,18 +127,20 @@ public class Bill {
     }
 
     public String getPaymentMethod() {
-        return paymentMethod;
+
+        return paymentMethod == 0 ? "tiền mặt" : "online";
     }
 
-    public void setPaymentMethod(String paymentMethod) {
+    public void setPaymentMethod(int paymentMethod) {
         this.paymentMethod = paymentMethod;
     }
 
     public String getPack() {
-        return pack;
+
+        return pack == 0 ? "Bọc blastic" : "Để nguyên seal";
     }
 
-    public void setPack(String pack) {
+    public void setPack(int pack) {
         this.pack = pack;
     }
 

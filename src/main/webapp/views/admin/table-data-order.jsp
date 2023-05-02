@@ -93,7 +93,7 @@
                 <td>${bill.paymethod}</td>
                 <td><span class="badge bg-success">${bill.statusBill}</span></td>
                 <td>
-                  <a href="/findBill?id=${bill.idOrder}">
+                  <a href="/admin-order-detail?id=${bill.idOrder}">
                     <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"><i class="fa fa-edit"></i></button>
                   </a>
                 </td>
