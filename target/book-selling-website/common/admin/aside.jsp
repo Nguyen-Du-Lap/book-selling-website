@@ -95,6 +95,13 @@
       <li><a class="app-menu__item" href="<c:url value="/admin-management-contact" />"><i class='app-menu__icon bx bx-calendar-check'></i><span
               class="app-menu__label">Quản lý contact</span></a></li>
     </c:if>
-
+    <c:if test="${title.equals('Danh Sách Log')}">
+      <li><a class="app-menu__item active" href="<c:url value="/admin-table-log" />"><i class='app-menu__icon bx bx-calendar-check'></i><span
+              class="app-menu__label">Quản lý log</span></a></li>
+    </c:if>
+    <c:if test="${!title.equals('Danh Sách Log')}">
+      <li><a class="app-menu__item" href="<c:url value="/admin-table-log" />"><i class='app-menu__icon bx bx-calendar-check'></i><span
+              class="app-menu__label">Quản lý log</span></a></li>
+    </c:if>
   </ul>
 </aside>
