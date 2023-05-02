@@ -1,14 +1,18 @@
 package vn.edu.hcmuaf.fit.controller.admin.managementProduct;
 
+import vn.edu.hcmuaf.fit.bean.Log;
 import vn.edu.hcmuaf.fit.dao.IBookManagementDAO;
 import vn.edu.hcmuaf.fit.dao.impl.BookManagementDAO;
+import vn.edu.hcmuaf.fit.model.CustomerModel;
 import vn.edu.hcmuaf.fit.services.IBookManagementService;
 import vn.edu.hcmuaf.fit.services.impl.BookManagementService;
+import vn.edu.hcmuaf.fit.utils.SessionUtil;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.net.InetAddress;
 
 @WebServlet(name = "admin-add-publisher-company", value = "/admin-add-publisher-company")
 public class AddPublisherCompanyController extends HttpServlet {
@@ -35,8 +39,14 @@ public class AddPublisherCompanyController extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         response.setCharacterEncoding("utf-8");
         String publisherCompany = request.getParameter("publisherCompany");
+        CustomerModel cus = (CustomerModel) SessionUtil.getInstance().getValue(request, "USERMODEL");
+        InetAddress myIP=InetAddress.getLocalHost();
+        String ip= myIP.getHostAddress();
+
         if(publisherCompany != null) {
            if(iBookManagementService.insertPublisherCompany(publisherCompany)) {
+               Log log = new Log(Log.INFO,ip,"Quản lý sản phẩm",cus.getIdUser(),"Thêm công ty xuất bản",1);
+               log.insert();
                response.sendRedirect("/admin-add-san-pham?message=Add success&alert=success");
            }else {
                response.sendRedirect("/admin-add-san-pham?message=Add error&alert=danger");

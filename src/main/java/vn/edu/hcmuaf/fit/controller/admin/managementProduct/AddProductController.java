@@ -1,15 +1,19 @@
 package vn.edu.hcmuaf.fit.controller.admin.managementProduct;
 
+import vn.edu.hcmuaf.fit.bean.Log;
 import vn.edu.hcmuaf.fit.dao.IBookManagementDAO;
 import vn.edu.hcmuaf.fit.dao.impl.BookManagementDAO;
+import vn.edu.hcmuaf.fit.model.CustomerModel;
 import vn.edu.hcmuaf.fit.services.IBookManagementService;
 import vn.edu.hcmuaf.fit.services.impl.BookManagementService;
+import vn.edu.hcmuaf.fit.utils.SessionUtil;
 
 import javax.inject.Inject;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.net.InetAddress;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -63,6 +67,9 @@ public class AddProductController extends HttpServlet {
             Part part2 = request.getPart("image2");
             Part part3 = request.getPart("image3");
             Part part4 = request.getPart("image4");
+            CustomerModel cus = (CustomerModel) SessionUtil.getInstance().getValue(request, "USERMODEL");
+            InetAddress myIP=InetAddress.getLocalHost();
+            String ip= myIP.getHostAddress();
 
             if(name != null && quantity != null && price != null && primeCost != null) {
 
@@ -86,6 +93,8 @@ public class AddProductController extends HttpServlet {
                             if(part2 != null) iBookManagementService.addImage(request, response, part2, id);
                             if(part3 != null) iBookManagementService.addImage(request, response, part3, id);
                             if(part4 != null) iBookManagementService.addImage(request, response, part4, id);
+                            Log log = new Log(Log.INFO,ip,"Quản lý sản phẩm",cus.getIdUser(),"Thêm sản phẩm",1);
+                            log.insert();
                             response.sendRedirect("/admin-add-san-pham?message=Them thanh cong&alert=success");
                         }else {
                             response.sendRedirect("/admin-add-san-pham?message=Them that bai&alert=danger");
