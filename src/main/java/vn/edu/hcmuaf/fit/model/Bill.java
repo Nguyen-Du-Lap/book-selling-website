@@ -25,6 +25,7 @@ public class Bill {
 
     private Timestamp ship_time;
     private Timestamp receive_time;
+    private int idCart;
 
     public Bill() {
     }
@@ -64,6 +65,33 @@ public class Bill {
         this.info = info;
         this.phone = phone;
         this.image = image;
+    }
+
+    public Bill(int idOrder, int idUser, int idBook, String name, String paymentMethod, String pack, int quantity, int totalPrice, int shippingInfo, String info, String phone, String image, String address, Timestamp ship_time, Timestamp receive_time, int idCart) {
+        this.idOrder = idOrder;
+        this.idUser = idUser;
+        this.idBook = idBook;
+        this.name = name;
+        this.paymentMethod = paymentMethod;
+        this.pack = pack;
+        this.quantity = quantity;
+        this.totalPrice = totalPrice;
+        this.shippingInfo = shippingInfo;
+        this.info = info;
+        this.phone = phone;
+        this.image = image;
+        this.address = address;
+        this.ship_time = ship_time;
+        this.receive_time = receive_time;
+        this.idCart = idCart;
+    }
+
+    public int getIdCart() {
+        return idCart;
+    }
+
+    public void setIdCart(int idCart) {
+        this.idCart = idCart;
     }
 
     public int getIdOrder() {

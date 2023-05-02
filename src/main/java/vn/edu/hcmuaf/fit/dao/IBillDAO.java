@@ -22,6 +22,6 @@ public interface IBillDAO {
 
     int rateBook(int idUser, int idBook, int idOrder, int start, String comment);
     int addBill(int idUser, int idBook, String address, int paymentMethod, int pack, int quantity,
-            double totalPrice, String info, String phone);
+            double totalPrice, String info, String phone,int idCart);
     BookDetails findByIdBook(int id);
 }
