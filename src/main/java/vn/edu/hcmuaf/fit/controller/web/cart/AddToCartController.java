@@ -1,6 +1,7 @@
 package vn.edu.hcmuaf.fit.controller.web.cart;
 
 import vn.edu.hcmuaf.fit.dao.IProductDAO;
+import vn.edu.hcmuaf.fit.dao.impl.CartDao;
 import vn.edu.hcmuaf.fit.dao.impl.ProductDAO;
 import vn.edu.hcmuaf.fit.model.Cart;
 import vn.edu.hcmuaf.fit.model.Product;
@@ -14,6 +15,7 @@ import java.io.IOException;
 @WebServlet(name = "add-to-cart", value = "/add-to-cart")
 public class AddToCartController extends HttpServlet {
     private final IProductDAO productDAO = new ProductDAO();
+    private final CartDao cartDao = new CartDao();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -23,8 +25,9 @@ public class AddToCartController extends HttpServlet {
             int remainQuantity = productDAO.getRemainQuantity(product.getIdBook());
 
             Cart cart = (Cart) request.getSession().getAttribute("cart");
-            if (cart == null) cart = new Cart();
 
+            if (cart == null) cart = new Cart();
+            cart.setId(cartDao.setID());
             String action = request.getParameter("action");
             if (action != null) {
                 switch (action) {
@@ -50,11 +53,13 @@ public class AddToCartController extends HttpServlet {
                         break;
                 }
             }else if (remainQuantity >= 1) {
+                cart.setId(cartDao.setID());
                 cart.addProduct(product, 1);
                 productDAO.updateQuantity(product.getIdBook(), remainQuantity - 1);
             }
 
             request.getSession().setAttribute("cart", cart);
+            cart.setId(cartDao.setID());
             response.sendRedirect("cart");
         }
     }

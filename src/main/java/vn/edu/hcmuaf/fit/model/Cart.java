@@ -7,13 +7,56 @@ import java.util.*;
 
 public class Cart implements Serializable {
     private final Map<Integer, CartItem> map = new HashMap<>();
-
+    private int id;
     private int count;
     private double totalPrice;
     private int voucher = 0;
     private int ship = 0;
     private double totalPriceShip;
     private double totalPriceShipVoucher;
+    private String timeShip;
+    private int idUser;
+    private List<Bill> bills;
+
+    public List<Bill> getBills() {
+        return bills;
+    }
+
+    public void setBills(List<Bill> bills) {
+        this.bills = bills;
+    }
+
+    public int getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public void setTotalPriceShip(double totalPriceShip) {
+        this.totalPriceShip = totalPriceShip;
+    }
+
+    public void setTotalPriceShipVoucher(double totalPriceShipVoucher) {
+        this.totalPriceShipVoucher = totalPriceShipVoucher;
+    }
+
+    public String getTimeShip() {
+        return timeShip;
+    }
+
+    public void setTimeShip(String timeShip) {
+        this.timeShip = timeShip;
+    }
 
     public void addProduct(Product p, int quantity) {
         CartItem item = map.containsKey(p.getIdBook()) ? map.get(p.getIdBook()) : new CartItem(p);
@@ -73,4 +116,15 @@ public class Cart implements Serializable {
     public void setShip(int ship) {
         this.ship = ship;
     }
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
 }

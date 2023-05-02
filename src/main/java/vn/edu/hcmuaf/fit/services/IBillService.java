@@ -15,7 +15,7 @@ public interface IBillService {
 
     void addBill(int idUser, int idBook, String address, String city,
                  String district, String ward, int packInt, int payInt, int quantity,
-                 double totalPriceShipVoucher, String info, String phone,
+                 double totalPriceShipVoucher, String info, String phone,int idCart,
                  HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
 
     void removeProductInCart(List<Integer> listIdRemove, HttpServletRequest request);

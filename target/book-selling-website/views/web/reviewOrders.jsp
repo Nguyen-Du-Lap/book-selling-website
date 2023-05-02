@@ -141,13 +141,13 @@
                 </thead>
                 <tbody>
                 <c:forEach var="billD" items="${listBillDeliverByIdOrder}">
-                  <a href="/orderDetail?id=${billD.idOrder}">
+                  <a href="/orderDetail?id=${billD.idCart}">
                     <tr>
-                      <th scope="1">${billD.idOrder}</th>
+                      <th scope="1">${billD.idCart}</th>
                       <td>${billD.name}</td>
                       <td><img style="height: 50px" src="${billD.image}"></td>
-                      <td><a class="btn_blue" href="/cancelOrder?id=${billD.idOrder}">Hủy đơn</a></td>
-                      <td><a class="btn_blue" href="/orderDetail?id=${billD.idOrder}">Chi tiết</a></td>
+                      <td><a class="btn_blue" href="/cancelOrder?id=${billD.idCart}">Hủy đơn</a></td>
+                      <td><a class="btn_blue" href="/orderDetail?id=${billD.idCart}">Chi tiết</a></td>
                     </tr>
                   </a>
 
@@ -171,11 +171,11 @@
               <tbody>
               <c:forEach var="billW" items="${listBillWarByIdOrder}">
                 <tr>
-                  <th scope="1">${billW.idOrder}</th>
+                  <th scope="1">${billW.idCart}</th>
                   <td>${billW.name}</td>
                   <td><img style="height: 50px" src="${billW.image}"></td>
-                  <td><a class="btn_blue" href="/cancelOrder?id=${billW.idOrder}">Hủy đơn</a></td>
-                  <td><a class="btn_blue" href="/orderDetail?id=${billW.idOrder}">Chi tiết</a></td>
+                  <td><a class="btn_blue" href="/cancelOrder?id=${billW.idCart}">Hủy đơn</a></td>
+                  <td><a class="btn_blue" href="/orderDetail?id=${billW.idCart}">Chi tiết</a></td>
                 </tr>
               </c:forEach>
 
@@ -197,10 +197,10 @@
                 <tbody>
                 <c:forEach var="billL" items="${listBillDelivByIdOrder}">
                   <tr>
-                    <th scope="1">${billL.idOrder}</th>
+                    <th scope="1">${billL.idCart}</th>
                     <td>${billL.name}</td>
                     <td><img style="height: 50px" src="${billL.image}"></td>
-                    <td><a class="btn_blue" href="/orderDetail?id=${billL.idOrder}">Chi tiết</a></td>
+                    <td><a class="btn_blue" href="/orderDetail?id=${billL.idCart}">Chi tiết</a></td>
                   </tr>
                 </c:forEach>
 
@@ -221,11 +221,11 @@
                 <tbody>
                 <c:forEach var="billR" items="${listBillRateByIdOrder}">
                   <tr>
-                    <th scope="1">${billR.idOrder}</th>
+                    <th scope="1">${billR.idCart}</th>
                     <td>${billR.name}</td>
                     <td><img style="height: 50px" src="${billR.image}"></td>
                     <td><a class="btn_blue" href="/rate?id=${billR.idOrder}&idBook=${billR.idBook}">Đánh giá</a></td>
-                    <td><a class="btn_blue" href="/orderDetail?id=${billR.idOrder}">Chi tiết</a></td>
+                    <td><a class="btn_blue" href="/orderDetail?id=${billR.idCart}">Chi tiết</a></td>
                   </tr>
                 </c:forEach>
 

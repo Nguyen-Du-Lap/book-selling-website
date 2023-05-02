@@ -29,19 +29,19 @@
                 <tbody>
                 <tr>
                     <td>Tên khách hàng:</td>
-                    <td>${CUSTOMER.firstName} ${CUSTOMER.lastName}</td>
+                    <td>${orderReviewDetail.fullName}</td>
                 </tr>
                 <tr>
                     <td>Địa chỉ:</td>
-                    <td>${BILLDETAIL.address}</td>
+                    <td>${orderReviewDetail.address}</td>
                 </tr>
                 <tr>
                     <td>Số điện thoại:</td>
-                    <td>${CUSTOMER.phone}</td>
+                    <td>${orderReviewDetail.phone}</td>
                 </tr>
                 <tr>
                     <td>Email:</td>
-                    <td>${CUSTOMER.email}</td>
+                    <td>${orderReviewDetail.email}</td>
                 </tr>
                 </tbody>
             </table>
@@ -52,23 +52,23 @@
                 <tbody>
                 <tr>
                     <td>Mã đơn hàng:</td>
-                    <td>${BILLDETAIL.idOrder}</td>
+                    <td>${orderReviewDetail.idcart}</td>
                 </tr>
                 <tr>
                     <td>Ngày đặt hàng:</td>
-                    <td>${BILLDETAIL.ship_time}</td>
+                    <td>${orderReviewDetail.create_order_time}</td>
                 </tr>
                 <tr>
                     <td>Ngày giao đến:</td>
-                    <td>${BILLDETAIL.receive_time}</td>
+                    <td>${orderReviewDetail.timeShip}</td>
                 </tr>
                 <tr>
                     <td>Tổng giá trị:</td>
-                    <td>${BILLDETAIL.totalPrice} VNĐ</td>
+                    <td>${orderReviewDetail.totolPrice} VNĐ</td>
                 </tr>
                 <tr>
                     <td>Tình trạng:</td>
-                    <td>${BILLDETAIL.shippingInfo}</td>
+                    <td>${orderReviewDetail.trangThai}</td>
                 </tr>
                 </tbody>
             </table>
@@ -88,15 +88,20 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="1">${BILLDETAIL.idOrder}</th>
-                        <td>${BILLDETAIL.name}</td>
-                        <td><img style="height: 50px" src="${BILLDETAIL.image}"></td>
-                        <td>${BILLDETAIL.quantity}</td>
-                        <td>${BILLDETAIL.totalPrice}</td>
-                    </tr>
+                <c:forEach var="item" items="${cartReviewDetail}">
+
+                        <tr>
+                            <th scope="1">${item.id}</th>
+                            <td>${item.nameSach}</td>
+                            <td><img style="height: 50px" src="${item.image}"></td>
+                            <td>${item.quantity}</td>
+                            <td>${item.totalPrice}</td>
+                        </tr>
+
+                </c:forEach>
                 </tbody>
             </table>
+
         </div>
     </div>
 </div>
