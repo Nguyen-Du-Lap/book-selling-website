@@ -1,6 +1,7 @@
 package vn.edu.hcmuaf.fit.model;
 
 public class BillDetail extends AbstractModel<BillDetail> {
+
     private int id;
     private BillModel bill;
     private BookModel book;

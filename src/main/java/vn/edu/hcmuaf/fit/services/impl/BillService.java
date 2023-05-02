@@ -29,10 +29,10 @@ public class BillService implements IBillService {
 
     @Override
     public void addBill(int idUser, int idBook, String address, String city, String district, String ward, int packInt, int payInt, int quantity, double totalPriceShipVoucher, String info,
-                        String phone, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+                        String phone,int idCart, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         if (payInt == 0) {
-            int checkAddBill = billDAO.addBill(idUser, idBook, address + ", " + ward + ", " + district + ", " + city, packInt, payInt, quantity, totalPriceShipVoucher, info, phone);
+            int checkAddBill = billDAO.addBill(idUser, idBook, address + ", " + ward + ", " + district + ", " + city, packInt, payInt, quantity, totalPriceShipVoucher, info, phone, idCart);
             if (checkAddBill == 0) {
                 new MessageParameterUntil("Đặt hàng thât bại", "warning", "/views/web/reviewOrders.jsp", request, response).send();
             }

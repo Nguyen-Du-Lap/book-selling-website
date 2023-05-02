@@ -55,7 +55,7 @@ public class OrderFeeController extends HttpServlet {
 //        }
         result = FeeGHNUtils.feeAPIAndDate("10","20","10","200",1463,21808,quan, xa);
         cart.setShip((int) Double.parseDouble(result.get(1)));
-
+        cart.setTimeShip(result.get(0));
         return result;
 
     }

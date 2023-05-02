@@ -3,6 +3,7 @@ package vn.edu.hcmuaf.fit.controller.web.orders;
 import vn.edu.hcmuaf.fit.bean.Log;
 import vn.edu.hcmuaf.fit.dao.IBillDAO;
 import vn.edu.hcmuaf.fit.dao.impl.BillDAO;
+import vn.edu.hcmuaf.fit.dao.impl.CartDao;
 import vn.edu.hcmuaf.fit.model.Cart;
 import vn.edu.hcmuaf.fit.model.CartItem;
 import vn.edu.hcmuaf.fit.model.CustomerModel;
@@ -24,6 +25,7 @@ import java.util.Set;
 @WebServlet(name = "order/pay", value = "/order/pay")
 public class OrderPayController extends HttpServlet {
     IBillService billService = new BillService();
+    CartDao dao = new CartDao();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -43,22 +45,25 @@ public class OrderPayController extends HttpServlet {
         String pack = request.getParameter("pack");
         String pay = request.getParameter("pay");
         String info = request.getParameter("note");
+
         int packInt = Integer.parseInt(pack);
         int payInt = Integer.parseInt(pay);
         CustomerModel cus = (CustomerModel) SessionUtil.getInstance().getValue(request, "USERMODEL");
 
         Cart cart = (Cart) request.getSession().getAttribute("cartOrder");
+        cart.setIdUser(cus.getIdUser());
         List<Integer> listIdRemove = new ArrayList<>();
         Set<Integer> keySet = cart.getMap().keySet();
         for (Integer key : keySet) {
             CartItem item = cart.getMap().get(key);
             billService.addBill(cus.getIdUser(), item.getProduct().getIdBook(),
                     address, city, district, ward, packInt, payInt,
-                    item.getQuantity(), cart.getTotalPriceShipVoucher(), info, phone, request, response);
+                    item.getQuantity(), cart.getTotalPriceShipVoucher(), info, phone, dao.setID(),request, response);
             Log log = new Log(Log.INFO,ip,"OrderPay", cus.getIdUser(), "The customer makes the payment: "+ item.getProduct().getIdBook(),1);
             log.insert();
             listIdRemove.add(item.getProduct().getIdBook());
         }
+        dao.insertCart( dao.setID(),cart.getIdUser(),cart.getTimeShip(),cart.getShip(), cart.getTotalPriceShipVoucher(),"1" );
         billService.removeProductInCart(listIdRemove, request);
         response.sendRedirect("/order/reviewOrder?orderSuccess=1");
     }
