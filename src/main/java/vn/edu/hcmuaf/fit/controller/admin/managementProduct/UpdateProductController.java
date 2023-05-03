@@ -46,7 +46,7 @@ public class UpdateProductController extends HttpServlet {
         try {
             int i = iBookManagementService.update(idInt, name, quantity, price, discount);
             if(i >= 1) {
-                Log log = new Log(Log.INFO,ip,"Quản lý sản phẩm",cus.getIdUser(),"Thay đổi thông tin sản phẩm",1);
+                Log log = new Log(Log.WARNING,ip,"Quản lý sản phẩm",cus.getIdUser(),"Thay đổi thông tin sản phẩm",1);
                 log.insert();
                 response.sendRedirect("/admin-table-product?message=Upload success&alert=success");
             }else {
