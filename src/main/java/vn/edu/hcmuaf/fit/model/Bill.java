@@ -67,7 +67,7 @@ public class Bill {
         this.image = image;
     }
 
-    public Bill(int idOrder, int idUser, int idBook, String name, String paymentMethod, String pack, int quantity, int totalPrice, int shippingInfo, String info, String phone, String image, String address, Timestamp ship_time, Timestamp receive_time, int idCart) {
+    public Bill(int idOrder, int idUser, int idBook, String name, int paymentMethod, int pack, int quantity, int totalPrice, int shippingInfo, String info, String phone, String image, String address, Timestamp ship_time, Timestamp receive_time, int idCart) {
         this.idOrder = idOrder;
         this.idUser = idUser;
         this.idBook = idBook;
