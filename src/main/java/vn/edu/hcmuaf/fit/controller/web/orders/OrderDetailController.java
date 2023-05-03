@@ -23,8 +23,6 @@ public class OrderDetailController extends HttpServlet {
         request.setAttribute("orderReviewDetail", cartDao.getAll(idUser,idInt));
         request.setAttribute("cartReviewDetail", cartDao.getAllDetailCart(idUser,idInt));
         request.getRequestDispatcher("/views/web/orderDetail.jsp").forward(request, response);
-
-
     }
 
     @Override

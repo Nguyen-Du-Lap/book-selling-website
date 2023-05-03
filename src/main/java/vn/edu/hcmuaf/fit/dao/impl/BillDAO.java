@@ -47,10 +47,10 @@ public class BillDAO implements IBillDAO {
     @Override
     public List<ShippingInfoModel> shippingInfo() {
         List<ShippingInfoModel> results = new ArrayList<>();
-        String sql = "SELECT bi.id_order, CONCAT(c.first_name,' ',c.last_name), SUM(bd.quantity*bo.price), \n" +
-                "bi.shipping_info  FROM bill bi JOIN customer c ON bi.id_user = c.id_user\n" +
-                "JOIN bill_details bd ON bi.id_order = bd.id_order JOIN book bo ON bd.id_book = bo.id_book \n" +
-                "GROUP BY bi.id_order, c.first_name, c.last_name";
+        String sql = "SELECT bi.id_order, CONCAT(c.first_name,' ',c.last_name), bi.totalBill,\n" +
+                "bi.shipping_info FROM bill bi JOIN customer c ON bi.id_user = c.id_user\n" +
+                "WHERE bi.shipping_info = 1\n" +
+                "LIMIT 10";
         Connection connection = JDBCConnector.getConnection();
         PreparedStatement statement = null;
         ResultSet resultSet = null;
