@@ -25,7 +25,7 @@ public class DeleteProductController extends HttpServlet {
             if(id != null) {
                 int idInt = Integer.parseInt(id);
                bookManagement.deleteById(idInt);
-                Log log = new Log(Log.INFO,ip,"Quản lý sản phẩm",cus.getIdUser(),"Xóa sản phẩm",1);
+                Log log = new Log(Log.WARNING,ip,"Quản lý sản phẩm",cus.getIdUser(),"Xóa sản phẩm",1);
                 log.insert();
                response.sendRedirect(request.getContextPath()+"/admin-table-product");
             }
