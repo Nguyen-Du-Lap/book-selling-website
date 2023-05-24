@@ -313,7 +313,7 @@ public class ProductDAO implements IProductDAO {
                 statement.setInt(1, id);
                 resultSet = statement.executeQuery();
                 while (resultSet.next()) {
-                    listImage.add(resultSet.getString(3));
+                    listImage.add(resultSet.getString(1));
                 }
 
                 return listImage;
