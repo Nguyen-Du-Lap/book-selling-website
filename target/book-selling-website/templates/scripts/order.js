@@ -67,8 +67,8 @@ function renderCity(data) {
       const  part3=part1.replace(/\[/g, '');
     const row = document.getElementById("sum_transport")
       const time = document.getElementById("date_transport");
-    row.innerText = part2+ ' đ';
-    time.innerText= part3;
+    row.innerText = part2+ 'đ';
+    time.innerText= part3+ 'đ';
 
   }
   })
@@ -82,9 +82,9 @@ function renderCity(data) {
         exits: giaTri
       },
       success: function (data) {
+
         const row = document.getElementById("sum_order")
-        const part2 = parseFloat(data.trim());
-        row.innerText = part2+` đ`;
+        row.innerText = data+'đ';
       }
     })
   }

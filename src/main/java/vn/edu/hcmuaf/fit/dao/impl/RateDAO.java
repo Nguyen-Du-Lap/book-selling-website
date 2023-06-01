@@ -2,7 +2,9 @@ package vn.edu.hcmuaf.fit.dao.impl;
 
 import vn.edu.hcmuaf.fit.dao.IRateDAO;
 import vn.edu.hcmuaf.fit.db.JDBCConnector;
+import vn.edu.hcmuaf.fit.model.Bill;
 import vn.edu.hcmuaf.fit.model.RateModel;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
