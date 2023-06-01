@@ -313,7 +313,7 @@ public class ProductDAO implements IProductDAO {
                 statement.setInt(1, id);
                 resultSet = statement.executeQuery();
                 while (resultSet.next()) {
-                    listImage.add(resultSet.getString(3));
+                    listImage.add(resultSet.getString(1));
                 }
 
                 return listImage;
@@ -336,10 +336,10 @@ public class ProductDAO implements IProductDAO {
     public List<BookModel> find12BookSearch(String key) {
         List<BookModel> listBook = new ArrayList<>();
         Connection connection = JDBCConnector.getConnection();
-        String sql = new String("SELECT b.id_book, b.name, a.name, b.price - b.price * b.discount_price AS giagiam \n" +
+        String sql = new String("SELECT b.id_book, b.name, a.name, b.price - b.price * b.discount_price AS giagiam\n" +
                 ", b.price, b.discount_price*100 AS giam, IF(v_rate.`start` is null, 0, v_rate.`start`) AS `start`\n" +
-                ", IF(v_comment.sl_comment is null, 0, v_comment.sl_comment) AS sl_comment\n,b.id_pc,b.id_p" +
-                "FROM book b LEFT JOIN author a ON b.id_author = a.id_author\n" +
+                ", IF(v_comment.sl_comment is null, 0, v_comment.sl_comment) AS sl_comment ,b.id_pc,b.id_p\n" +
+                "FROM book b LEFT JOIN author a ON b.id_author = a.id_author \n" +
                 "LEFT JOIN v_rate ON b.id_book = v_rate.id_book \n" +
                 "LEFT JOIN v_comment ON b.id_book = v_comment.id_book\n" +
                 "JOIN publisher ON b.id_p = publisher.id_p\n" +
@@ -347,7 +347,6 @@ public class ProductDAO implements IProductDAO {
                 "WHERE b.name LIKE ? OR a.name LIKE ? \n" +
                 "OR publisher.name LIKE ? OR publisher_company.name LIKE ?\n" +
                 "LIMIT 12;");
-
 
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -598,9 +597,10 @@ public class ProductDAO implements IProductDAO {
     public Product getProductById(int parseInt) {
         Product product = new Product();
         Connection connection = JDBCConnector.getConnection();
-        String sql = new String("SELECT b.id_book, b.name, b.price - b.price * b.discount_price  AS giagiam,b.price, b.quantity, bd.size,bd.weight\n" +
-                " FROM book b join book_details bd\n" +
-                " WHERE b.id_book = ? AND b.isActive = 1;");
+        String sql = new String("SELECT b.id_book, b.name, b.price - b.price * b.discount_price  AS giagiam,\n" +
+                "b.price, b.quantity \n" +
+                "FROM book b\n" +
+                "WHERE b.id_book = ? AND b.isActive = 1;");
 
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -617,8 +617,6 @@ public class ProductDAO implements IProductDAO {
                     product.setPriceDiscount(resultSet.getDouble(3));
                     product.setPrice(resultSet.getDouble(4));
                     product.setQuantity(resultSet.getInt(5));
-                    product.setSize(resultSet.getString(6));
-                    product.setWeight(resultSet.getDouble(7));
                 }
 
                 return product;

@@ -6,7 +6,7 @@ import vn.edu.hcmuaf.fit.dao.IVoucherDAO;
 import vn.edu.hcmuaf.fit.dao.impl.CustomerDAO;
 import vn.edu.hcmuaf.fit.dao.impl.DiscountCustomerDAO;
 import vn.edu.hcmuaf.fit.dao.impl.VoucherDAO;
-import vn.edu.hcmuaf.fit.model.CartModel;
+import vn.edu.hcmuaf.fit.model.Cart;
 import vn.edu.hcmuaf.fit.model.CustomerModel;
 import vn.edu.hcmuaf.fit.services.IOrderService;
 import vn.edu.hcmuaf.fit.services.impl.OrderService;
@@ -61,7 +61,7 @@ public class OrderController extends HttpServlet {
 
     public void setOrderVoucher(int idVoucher, CustomerModel cus, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int priceDiscount = voucherDAO.getPriceVoucher(idVoucher);
-        CartModel cartOrder = (CartModel) request.getSession().getAttribute("cartOrder");
+        Cart cartOrder = (Cart) request.getSession().getAttribute("cartOrder");
         cartOrder.setVoucher(priceDiscount);
         cartOrder.setShip(30000);
         request.getSession().setAttribute("cartOrder", cartOrder);

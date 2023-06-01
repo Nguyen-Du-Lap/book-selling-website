@@ -46,7 +46,7 @@ public class CartDao {
 
         if (connection != null) {
             try {
-                String sql = "INSERT INTO carts VALUES (?, ?, ?, ?, ?, ?,null)";
+                String sql = "INSERT INTO carts VALUES (?, ?, ?, ?, ?, ?)";
                 statement = connection.prepareStatement(sql);
 
                 statement.setInt(1, id);

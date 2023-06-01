@@ -1,6 +1,7 @@
 package vn.edu.hcmuaf.fit.services.impl;
 
-import vn.edu.hcmuaf.fit.model.CartModel;
+import vn.edu.hcmuaf.fit.model.Cart;
+import vn.edu.hcmuaf.fit.model.CartItem;
 import vn.edu.hcmuaf.fit.services.IOrderService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +15,7 @@ public class OrderService implements IOrderService {
     public boolean checkIdExistsInCart(String listId, HttpServletRequest request, HttpServletResponse response) {
         //Lay tat ca cac id mua hang
         StringTokenizer st = new StringTokenizer(listId,",");
-        CartModel cart = (CartModel) request.getSession().getAttribute("cart");
+        Cart cart = (Cart) request.getSession().getAttribute("cart");
         while(st.hasMoreTokens()) {
             if(!cart.getMap().containsKey(Integer.parseInt(st.nextToken()))) return true;
         }
@@ -22,9 +23,9 @@ public class OrderService implements IOrderService {
     }
 
     @Override
-    public CartModel cartOrder(String list, HttpServletRequest request) {
-        CartModel result = new CartModel();
-        CartModel cart = (CartModel) request.getSession().getAttribute("cart");
+    public Cart cartOrder(String list,  HttpServletRequest request) {
+        Cart result = new Cart();
+        Cart cart = (Cart) request.getSession().getAttribute("cart");
         List<Integer> listId = getListId(list);
         for(int id : listId) {
             if(cart.getMap().containsKey(id)) {
