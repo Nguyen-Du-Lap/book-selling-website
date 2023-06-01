@@ -95,7 +95,7 @@
         <div class="modal-content">
 
             <div class="modal-body">
-                <form action="/update-book" method="post">
+                <form action="/update-book" enctype="multipart/form-data" method="post">
                     <div class="row">
                         <div class="form-group  col-md-12">
                           <span class="thong-tin-thanh-toan">
@@ -149,7 +149,22 @@
                                 <input name="discount" class="form-control" type="number" required value="${book.discount}">
                             </div>
                         </c:forEach>
-
+                        <div class="form-group col-md-12">
+                            <label class="control-label">Ảnh 1</label>
+                            <input name="image1" type="file">
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label class="control-label">Ảnh 2</label>
+                            <input name="image2" type="file">
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label class="control-label">Ảnh 3</label>
+                            <input name="image3" type="file">
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label class="control-label">Ảnh 4</label>
+                            <input name="image4" type="file">
+                        </div>
 
                     </div>
 
