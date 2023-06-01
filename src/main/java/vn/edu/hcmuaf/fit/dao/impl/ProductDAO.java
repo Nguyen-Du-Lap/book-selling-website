@@ -598,9 +598,10 @@ public class ProductDAO implements IProductDAO {
     public Product getProductById(int parseInt) {
         Product product = new Product();
         Connection connection = JDBCConnector.getConnection();
-        String sql = new String("SELECT b.id_book, b.name, b.price - b.price * b.discount_price  AS giagiam,b.price, b.quantity, bd.size,bd.weight\n" +
-                " FROM book b join book_details bd\n" +
-                " WHERE b.id_book = ? AND b.isActive = 1;");
+        String sql = new String("SELECT b.id_book, b.name, b.price - b.price * b.discount_price  AS giagiam,\n" +
+                "b.price, b.quantity \n" +
+                "FROM book b\n" +
+                "WHERE b.id_book = ? AND b.isActive = 1;");
 
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -617,8 +618,6 @@ public class ProductDAO implements IProductDAO {
                     product.setPriceDiscount(resultSet.getDouble(3));
                     product.setPrice(resultSet.getDouble(4));
                     product.setQuantity(resultSet.getInt(5));
-                    product.setSize(resultSet.getString(6));
-                    product.setWeight(resultSet.getDouble(7));
                 }
 
                 return product;

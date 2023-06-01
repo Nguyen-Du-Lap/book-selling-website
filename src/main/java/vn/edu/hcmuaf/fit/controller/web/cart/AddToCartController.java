@@ -3,8 +3,9 @@ package vn.edu.hcmuaf.fit.controller.web.cart;
 import vn.edu.hcmuaf.fit.dao.IProductDAO;
 import vn.edu.hcmuaf.fit.dao.impl.CartDao;
 import vn.edu.hcmuaf.fit.dao.impl.ProductDAO;
-import vn.edu.hcmuaf.fit.model.CartModel;
+import vn.edu.hcmuaf.fit.model.Cart;
 import vn.edu.hcmuaf.fit.model.Product;
+import vn.edu.hcmuaf.fit.services.impl.ProductService;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -23,9 +24,9 @@ public class AddToCartController extends HttpServlet {
             Product product = productDAO.getProductById(Integer.parseInt(productId));
             int remainQuantity = productDAO.getRemainQuantity(product.getIdBook());
 
-            CartModel cart = (CartModel) request.getSession().getAttribute("cart");
+            Cart cart = (Cart) request.getSession().getAttribute("cart");
 
-            if (cart == null) cart = new CartModel();
+            if (cart == null) cart = new Cart();
             cart.setId(cartDao.setID());
             String action = request.getParameter("action");
             if (action != null) {

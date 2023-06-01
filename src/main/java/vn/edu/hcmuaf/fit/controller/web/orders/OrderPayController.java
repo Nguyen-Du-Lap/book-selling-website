@@ -1,12 +1,15 @@
 package vn.edu.hcmuaf.fit.controller.web.orders;
 
 import vn.edu.hcmuaf.fit.bean.Log;
+import vn.edu.hcmuaf.fit.dao.IBillDAO;
+import vn.edu.hcmuaf.fit.dao.impl.BillDAO;
 import vn.edu.hcmuaf.fit.dao.impl.CartDao;
-import vn.edu.hcmuaf.fit.model.CartModel;
+import vn.edu.hcmuaf.fit.model.Cart;
 import vn.edu.hcmuaf.fit.model.CartItem;
 import vn.edu.hcmuaf.fit.model.CustomerModel;
 import vn.edu.hcmuaf.fit.services.IBillService;
 import vn.edu.hcmuaf.fit.services.impl.BillService;
+import vn.edu.hcmuaf.fit.utils.MessageParameterUntil;
 import vn.edu.hcmuaf.fit.utils.SessionUtil;
 
 import javax.servlet.*;
@@ -16,6 +19,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 @WebServlet(name = "order/pay", value = "/order/pay")
@@ -46,7 +50,7 @@ public class OrderPayController extends HttpServlet {
         int payInt = Integer.parseInt(pay);
         CustomerModel cus = (CustomerModel) SessionUtil.getInstance().getValue(request, "USERMODEL");
 
-        CartModel cart = (CartModel) request.getSession().getAttribute("cartOrder");
+        Cart cart = (Cart) request.getSession().getAttribute("cartOrder");
         cart.setIdUser(cus.getIdUser());
         List<Integer> listIdRemove = new ArrayList<>();
         Set<Integer> keySet = cart.getMap().keySet();
@@ -60,7 +64,6 @@ public class OrderPayController extends HttpServlet {
             listIdRemove.add(item.getProduct().getIdBook());
         }
         dao.insertCart( dao.setID(),cart.getIdUser(),cart.getTimeShip(),cart.getShip(), cart.getTotalPriceShipVoucher(),"1" );
-
         billService.removeProductInCart(listIdRemove, request);
         response.sendRedirect("/order/reviewOrder?orderSuccess=1");
     }
