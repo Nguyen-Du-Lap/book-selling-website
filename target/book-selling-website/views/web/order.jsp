@@ -183,7 +183,7 @@
             </div>
             <div class="wrap mt">
               <span class="sum_order">Thanh toán:</span>
-              <div class="ml" style="font-weight: 600; color: rgb(217, 11, 11);" id="sum_order"> </div>
+              <p style="font-weight: 600; color: rgb(217, 11, 11);" class="ml"  id="sum_order"> </p>
             </div>
           </div>
           <input id="bt-update_order" type="button" value="CHỈNH SỬA ĐƠN HÀNG">

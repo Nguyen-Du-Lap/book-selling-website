@@ -1,6 +1,5 @@
 package vn.edu.hcmuaf.fit.services;
 
-import vn.edu.hcmuaf.fit.model.Cart;
 import vn.edu.hcmuaf.fit.model.ShippingInfoModel;
 
 import javax.servlet.ServletException;
