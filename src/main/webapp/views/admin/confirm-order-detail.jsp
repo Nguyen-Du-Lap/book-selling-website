@@ -76,7 +76,7 @@
                                     <tbody>
                                     <tr>
                                         <td>Mã đơn hàng:</td>
-                                        <td>${BILLDETAIL.idOrder}</td>
+                                        <td>${BILLDETAIL.idCart}</td>
                                     </tr>
                                     <tr>
                                         <td>Ngày đặt hàng:</td>
@@ -84,7 +84,7 @@
                                     </tr>
                                     <tr>
                                         <td>Ngày giao đến:</td>
-                                        <td>${BILLDETAIL.receive_time}</td>
+                                        <td>${BILLDETAIL.getShip_time_predict()}</td>
                                     </tr>
                                     <tr>
                                         <td>Đóng gói:</td>
@@ -110,7 +110,7 @@
                                         <td>Đăng kí giao hàng:</td>
                                         <c:if test="${BILLDETAIL.shippingInfo == 'Chờ xử lý'}">
                                             <td><button type="button" class="btn btn-danger">
-                                                <a style="color: #FFFFFF" href="/admin-register-order?id=${BILLDETAIL.idOrder}">Đăng kí đơn hàng</a>
+                                                <a style="color: #FFFFFF" href="/admin-register-order?id=${BILLDETAIL.idCart}&variable=${CUSTOMER.idUser}">Đăng kí đơn hàng</a>
                                             </button></td>
                                         </c:if>
                                         <c:if test="${BILLDETAIL.shippingInfo != 'Chờ xử lý'}">

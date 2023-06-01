@@ -70,7 +70,7 @@ public class CartDao {
             }
         }
     }
-    public OrderReviewDetail getAll(int id,int idCart) {
+    public OrderReviewDetail getAllByIdUserAndIdCart(int id, int idCart) {
         OrderReviewDetail orderReviewDetail = new OrderReviewDetail();
         String sql = "SELECT  CONCAT(t.first_name, ' ', t.last_name) AS fullname, b.address, b.phone, t.email, b.idCart, b.create_order_time, e.timeShip, e.totalPrice, b.shipping_info\n" +
                 " FROM bill b JOIN carts e ON b.idCart = e.id JOIN customer t ON e.idUser = t.id_user WHERE t.id_user = ? and b.idCart =?";
@@ -159,5 +159,47 @@ public class CartDao {
         }
         return null;
     }
+    public CartModel getCartById( int idCart) {
+        CartModel result = new CartModel();
+
+        String sql = "SELECT id, idUser, timeShip, feeShip, totalPrice, infoShip, create_Time FROM carts WHERE id =?";
+        Connection connection = JDBCConnector.getConnection();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        if(connection != null) {
+            try {
+                statement = connection.prepareStatement(sql);
+                statement.setInt(1, idCart);
+
+                resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+
+                    result.setId(resultSet.getInt(1));
+                    result.setIdUser(resultSet.getInt(2));
+                    result.setTimeShip(resultSet.getString(3));
+                    result.setShip(resultSet.getInt(4));
+                    result.setTotalPrice(resultSet.getInt(5));
+                    result.setInShip(resultSet.getInt(6));
+                    result.setCreateTime(resultSet.getTimestamp(7));
+
+                }
+
+                return result;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return result;
+            } finally {
+                try {
+                    if(connection != null) connection.close();
+                    if(statement != null) statement.close();
+                    if(resultSet != null) resultSet.close();
+                } catch (SQLException e) {
+                    return null;
+                }
+            }
+        }
+        return null;
+    }
+
 
 }

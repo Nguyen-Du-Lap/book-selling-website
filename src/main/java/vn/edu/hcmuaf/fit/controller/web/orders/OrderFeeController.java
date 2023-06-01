@@ -29,6 +29,9 @@ public class OrderFeeController extends HttpServlet {
         int w = cart.weight();
         double cost =  FeeGHNUtils.getFeeShip(x,y,z,w,1463,21808,quan, xa);
         String dateTime =  FeeGHNUtils.getDateShip(x,y,z,w,1463,21808,quan, xa);
+        HttpSession httpSession = request.getSession();
+        InformationDeliverModel informationDeliverModel = new InformationDeliverModel(cart.getId(),x,y,z,w,quan,xa);
+        httpSession.setAttribute("deliver", informationDeliverModel);
         result.add(dateTime);
         result.add(String.valueOf(cost));
         cart.setShip((int) Double.parseDouble(result.get(1)));
