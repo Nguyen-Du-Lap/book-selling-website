@@ -42,19 +42,25 @@ public class SignupController extends HttpServlet {
                     // đc signup
                     EmailUtil sm = new EmailUtil();
                     String code = sm.getRandom();
-                    CustomerModel user = new CustomerModel(email, pass,fname,lname,phone,address, code, System.currentTimeMillis()/1000/60);
+                    CustomerModel user = new CustomerModel(email, pass, fname, lname, phone, address, code, System.currentTimeMillis() / 1000 / 60);
                     sm.sendEmail(user);
-                    HttpSession session =request.getSession();
-                    session.setAttribute("registerUser",user);
+                    HttpSession session = request.getSession();
+                    session.setAttribute("registerUser", user);
 
-                    new MessageParameterUntil("Chúng tôi đã gửi mã xác minh đến email của bạn", "success", "/views/web/confirmRegister.jsp",request,response).send();
+                    new MessageParameterUntil("Chúng tôi đã gửi mã xác minh đến email của bạn", "success", "/views/web/confirmRegister.jsp", request, response).send();
                 } else {
-                    new MessageParameterUntil("Email đã tồn tại", "danger", "/views/web/signup.jsp",request,response).send();
+                    if (customerDAO.getTypeLogin(account.getEmail()) == 2) {
+                        new MessageParameterUntil("Tài khoản này của bạn đã được đăng nhập bằng tài khoản google", "danger", "/views/web/confirmRegister.jsp", request, response).send();
+                    } else {
+                        new MessageParameterUntil("Email đã tồn tại", "danger", "/views/web/signup.jsp", request, response).send();
+                    }
+
                 }
             }
-            }else{
-                new MessageParameterUntil("Vui lòng nhập thông tin đầy đủ", "danger", "/views/web/signup.jsp",request,response).send();
+        }else {
+            new MessageParameterUntil("Vui lòng nhập thông tin đầy đủ", "danger", "/views/web/signup.jsp", request, response).send();
+
+            }
+
         }
     }
-
-}
