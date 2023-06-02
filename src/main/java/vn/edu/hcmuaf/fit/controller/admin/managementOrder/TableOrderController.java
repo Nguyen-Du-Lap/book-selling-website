@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.fit.controller.admin.managementOrder;
 
+import vn.edu.hcmuaf.fit.dao.impl.CartDao;
 import vn.edu.hcmuaf.fit.model.BillManagementModel;
 import vn.edu.hcmuaf.fit.services.IBillManagementService;
 
@@ -14,10 +15,12 @@ import java.util.*;
 public class TableOrderController extends HttpServlet {
     @Inject
     IBillManagementService iBillManagementService;
+    CartDao dao = new CartDao();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // title dung de active aside
         request.setAttribute("title", "Danh Sách Đơn Hàng");
+
         request.setAttribute("listBill", iBillManagementService.findAll());
 
         String message = request.getParameter("message");

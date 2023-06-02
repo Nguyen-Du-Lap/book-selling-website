@@ -85,7 +85,7 @@
             <c:forEach var="bill" items="${listBill}">
               <tr>
                 <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                <td><a href="/findDetail?id=${bill.idOrder}">${bill.idOrder}</a></td>
+                <td><a href="/findDetail?id=${bill.getIdCart()}">${bill.getIdCart()}</a></td>
                 <td>${bill.nameUser}</td>
                 <td>${bill.address}</td>
                 <td>${bill.totalProduct}</td>
@@ -104,7 +104,7 @@
                   <td><span class="badge bg-primary">${bill.statusBill}</span></td>
                 </c:if>
                 <td>
-                  <a href="/admin-order-detail?id=${bill.idOrder}">
+                  <a href="/admin-order-detail?id=${bill.idCart}">
                     <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"><i class="fa fa-edit"></i></button>
                   </a>
                 </td>
