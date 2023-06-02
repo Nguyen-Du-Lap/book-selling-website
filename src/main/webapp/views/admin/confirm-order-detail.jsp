@@ -157,13 +157,15 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <th scope="1">${BILLDETAIL.idOrder}</th>
-                                        <td>${BILLDETAIL.name}</td>
-                                        <td><img style="height: 50px" src="${BILLDETAIL.image}"></td>
-                                        <td>${BILLDETAIL.quantity}</td>
-                                        <td>${BILLDETAIL.totalPrice}</td>
-                                    </tr>
+                                    <c:forEach var="BILL" items="${LISTBILL}">
+                                        <tr>
+                                            <th scope="1">${BILL.idOrder}</th>
+                                            <td>${BILL.name}</td>
+                                            <td><img style="height: 50px" src="${BILL.image}"></td>
+                                            <td>${BILL.quantity}</td>
+                                            <td>${BILL.totalPrice}</td>
+                                        </tr>
+                                    </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
