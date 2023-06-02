@@ -38,7 +38,6 @@ public class AddToCartController extends HttpServlet {
                         if (remainQuantity < qnt) {
                             break;
                         }
-
                         cart.addProduct(product, qnt);
                         productDAO.updateQuantity(product.getIdBook(), remainQuantity - qnt);
                         break;
