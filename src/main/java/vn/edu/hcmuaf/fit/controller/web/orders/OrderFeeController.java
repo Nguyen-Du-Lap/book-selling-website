@@ -3,11 +3,9 @@ package vn.edu.hcmuaf.fit.controller.web.orders;
 import vn.edu.hcmuaf.fit.dao.IBillDAO;
 import vn.edu.hcmuaf.fit.dao.impl.BillDAO;
 import vn.edu.hcmuaf.fit.model.*;
-import vn.edu.hcmuaf.fit.services.IBillDetailsService;
 import vn.edu.hcmuaf.fit.services.IBillService;
 import vn.edu.hcmuaf.fit.services.impl.BillService;
 import vn.edu.hcmuaf.fit.utils.FeeGHNUtils;
-import vn.edu.hcmuaf.fit.utils.SessionUtil;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -15,8 +13,6 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.StringTokenizer;
 
 @WebServlet(name = "order/fee", value = "/orderFee")
@@ -33,7 +29,7 @@ public class OrderFeeController extends HttpServlet {
         ArrayList<String> result = new ArrayList<>();
         ArrayList<CartItem> p = new ArrayList<>();
         HttpSession session = request.getSession();
-        Cart cart = (Cart) session.getAttribute("cartOrder");
+        CartModel cart = (CartModel) session.getAttribute("cartOrder");
 //        Map<Integer, CartItem> mapSP = cart.getMap();
 //        p.addAll(mapSP.values());
 //        int weght =0;
@@ -69,7 +65,7 @@ public class OrderFeeController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        Cart cart = (Cart) session.getAttribute("cartOrder");
+        CartModel cart = (CartModel) session.getAttribute("cartOrder");
         feeDeliver(request,response);
         PrintWriter out = response.getWriter();
         out.println(cart.getTotalPriceShip());

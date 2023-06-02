@@ -3,7 +3,7 @@ package vn.edu.hcmuaf.fit.controller.web.orders;
 import vn.edu.hcmuaf.fit.dao.IProductDAO;
 import vn.edu.hcmuaf.fit.dao.impl.CartDao;
 import vn.edu.hcmuaf.fit.dao.impl.ProductDAO;
-import vn.edu.hcmuaf.fit.model.Cart;
+import vn.edu.hcmuaf.fit.model.CartModel;
 import vn.edu.hcmuaf.fit.model.Product;
 
 import javax.servlet.*;
@@ -22,7 +22,7 @@ public class OrderBuyNowControlller extends HttpServlet {
             Product product = productDAO.getProductById(Integer.parseInt(productId));
             int remainQuantity = productDAO.getRemainQuantity(product.getIdBook());
 
-            Cart cart = new Cart();
+            CartModel cart = new CartModel();
             cart.setId(cartDao.setID());
             String quantity = request.getParameter("quantity");
             int qnt = quantity == null ? 1 : Integer.parseInt(quantity);
