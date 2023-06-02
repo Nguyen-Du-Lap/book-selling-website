@@ -68,7 +68,7 @@ function renderCity(data) {
     const row = document.getElementById("sum_transport")
       const time = document.getElementById("date_transport");
     row.innerText = part2+ 'đ';
-    time.innerText= part3+ 'đ';
+    time.innerText= part3;
 
   }
   })

@@ -53,12 +53,7 @@
       </div>
       <div class="form-group input">
         <label for="phone">Điện thoại: <span class="obligatory">(*)</span></label>
-        <c:if test="${customer.phone == ''}">
-          <input name="phone" type="text" class="form-control" id="phone" placeholder="Số điện thoại" value="${customer.phone}" onchange="phoneOnChange(this.value)">
-        </c:if>
-        <c:if test="${customer.phone != ''}">
-          <input name="phone" type="text" class="form-control" id="phone" placeholder="Số điện thoại" value="${customer.phone}" onchange="phoneOnChange(this.value)" disabled>
-        </c:if>
+        <input name="phone" type="text" class="form-control" id="phone" placeholder="Số điện thoại" value="${customer.phone}" onchange="phoneOnChange(this.value)">
         <i class="fa-solid fa-circle-check"></i>
         <i class="fa-solid fa-circle-xmark"></i>
         <small>Error</small>

@@ -214,9 +214,8 @@ public class BillManagementDAO implements IBillManagementDAO {
     @Override
     public void confirmBill(String id_order) {
             Connection connection = JDBCConnector.getConnection();
-            String sql = "UPDATE bill SET shipping_info = 2 WHERE id_order = ?";
+            String sql = "UPDATE bill SET shipping_info = 2 WHERE idCart = ?";
             PreparedStatement statement = null;
-
             if (connection != null) {
                 try {
                     statement = connection.prepareStatement(sql);
