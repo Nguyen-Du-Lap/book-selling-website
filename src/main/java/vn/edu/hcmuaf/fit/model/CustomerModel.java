@@ -17,6 +17,7 @@ public class CustomerModel  extends AbstractModel<CustomerModel>  {
     private int totalBill;
     private String code;
     private long time_active_code;
+    private int typeLogin;
     public CustomerModel(String email, String pass, String firstName, String lastName, String phone, String address, String code, long time_active_code) {
         this.email = email;
         this.password = pass;
@@ -139,6 +140,13 @@ public class CustomerModel  extends AbstractModel<CustomerModel>  {
         this.time_active_code = time_active_code;
     }
 
+    public int getTypeLogin() {
+        return typeLogin;
+    }
+
+    public void setTypeLogin(int typeLogin) {
+        this.typeLogin = typeLogin;
+    }
 
     @Override
     public String toString() {

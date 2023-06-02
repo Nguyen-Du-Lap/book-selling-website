@@ -56,17 +56,15 @@ public class InformationDeliverDao {
 
         if (connection != null) {
             try {
-                String sql = "INSERT INTO infomationdelivers VALUES (?, ?, ?, ?, ?, ?,?,?)";
+                String sql = "INSERT INTO infomationdelivers(idCart, x,y,z,w, districtTo,warTo) VALUES (?, ?, ?, ?, ?,?,?)";
                 statement = connection.prepareStatement(sql);
-
-                statement.setInt(1, a.getId());
-                statement.setInt(2, a.getIdOrder());
-                statement.setInt(3, a.getX());
-                statement.setInt(4, a.getY());
-                statement.setInt(5, a.getZ());
-                statement.setInt(6, a.getW());
-                statement.setString(7, a.getDistrictTo());
-                statement.setString(8, a.getWarTo());
+                statement.setInt(1, a.getIdOrder());
+                statement.setInt(2, a.getX());
+                statement.setInt(3, a.getY());
+                statement.setInt(4, a.getZ());
+                statement.setInt(5, a.getW());
+                statement.setString(6, a.getDistrictTo());
+                statement.setString(7, a.getWarTo());
                 statement.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();
