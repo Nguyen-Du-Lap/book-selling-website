@@ -4,9 +4,9 @@
 <html lang="en">
 <head>
     <title>Danh sách sản phẩm | Quản trị Admin</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Main CSS-->
     <link rel="stylesheet" type="text/css" href="/templates/admin/doc/css/main.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
@@ -36,6 +36,28 @@
         <div id="clock"></div>
     </div>
     <div class="row">
+        <div class="col-md-12">
+            <div class="tile">
+                <div class="tile-body">
+                    <div class="row element-button">
+                        <div class="col-sm-2">
+                            <a class="btn btn-excel btn-sm" href="" title="In"><i class="fas fa-file-excel"></i> Xuất Excel</a>
+                        </div>
+                        <div class="col-sm-2">
+                            <a href="/exportFIlePDFOrder?name=${CUSTOMER.firstName} ${CUSTOMER.lastName}&address=${BILLDETAIL.address}&phone=${CUSTOMER.phone}&email=${CUSTOMER.email}&idOder=${BILLDETAIL.idOrder}&quantity=${BILLDETAIL.quantity}&nameProduct=${BILLDETAIL.name}&information=${BILLDETAIL.info}" class="btn btn-delete btn-sm pdf-file" type="button" title="In"><i
+                                    class="fas fa-file-pdf"></i> Xuất PDF</a>
+                        </div>
+                        <div class="col-sm-6">
+                            <c:if test="${not empty message}">
+                                <div class="alert alert-${alert}" role="alert">
+                                        ${message}
+                                </div>
+                            </c:if>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="col-md-12">
             <div class="tile">
                 <div class="tile-body">
