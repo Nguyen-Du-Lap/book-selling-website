@@ -380,6 +380,42 @@ CustomerDAO implements ICustomerDAO {
         }
 
     }
+    public String  updateTypeLogin(String email) {
+        Connection connection = JDBCConnector.getConnection();
+        String result ="";
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        if (connection != null) {
+            try {
+                statement = connection.prepareStatement("update customer set typeLogin = 2 where email = ?");
+                statement.setString(1, email);
+                statement.executeUpdate();
+            } catch (SQLException e) {
+
+            } finally {
+
+            }
+        }
+        return result;
+    }
+        public void getTypeLogin(String email) {
+            Connection connection = JDBCConnector.getConnection();
+
+            PreparedStatement statement = null;
+            ResultSet resultSet = null;
+            if (connection != null) {
+                try {
+                    statement = connection.prepareStatement("select  typeLogin = 2 " +
+                            "from customer where email = ?");
+                    statement.setString(1,email);
+                    statement.executeUpdate();
+                } catch (SQLException e) {
+
+                } finally {
+
+                }
+            }
+    }
 
 }
 
