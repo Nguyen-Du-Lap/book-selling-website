@@ -4,6 +4,8 @@ import vn.edu.hcmuaf.fit.db.JDBCConnector;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 
 public class BLockUserDAO {
 
@@ -18,8 +20,9 @@ public class BLockUserDAO {
         int value = 3;
         int date = -1;
         PreparedStatement sel = null;
-        Date dateCurrent = Date.valueOf(LocalDate.now());
-        int timeCurrent = (int) dateCurrent.getTime();
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        long timeCurrent = currentDateTime.toInstant(ZoneOffset.UTC).toEpochMilli();
+        long minutes = timeCurrent / 60000;
         try {
             sel = con.prepareStatement(
                     "SELECT * FROM customer WHERE email = ? ");
@@ -50,11 +53,11 @@ public class BLockUserDAO {
                 message = "block";
                 PreparedStatement ps = con.prepareStatement("update customer set status = ? , lock_time = ? where email = ?");
                 ps.setInt(1,0);
-                ps.setInt(2,timeCurrent);
+                ps.setLong(2,minutes);
                 ps.setString(3,email);
                 ps.executeUpdate();
             } else {
-                if(value == 0 && date != -1 && (timeCurrent - date) >= 24*60*60*1000) {
+                if(value == 0 && date != -1 && (minutes - date) >= 5) {
                     message = "reset";
                     PreparedStatement ps = con.prepareStatement("update customer set status = ? , lock_time= ? , attempts = ? where email = ?");
                     ps.setInt(1,1);
