@@ -1,0 +1,12 @@
+# Ignore JSP and Servlet related files
+*.war
+*.ear
+/target/
+/out/
+/build/
+/classes/
+/generated/
+/web/WEB-INF/classes/
+/web/WEB-INF/lib/
+.idea/
+

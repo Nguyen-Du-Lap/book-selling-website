@@ -18,17 +18,18 @@ public class BillManagementDAO implements IBillManagementDAO {
 
     @Override
     public List<BillManagementModel> findAllBill() {
-        List<BillManagementModel> listBill = new ArrayList<>();
         Connection connection = JDBCConnector.getConnection();
-        String sql = new String("SELECT b.id_order, CONCAT(c.first_name, ' ', c.last_name) AS fullname, b.address, \n" +
-                "       CASE WHEN b.payment_method = 0 THEN 'Tiền mặt' ELSE 'Online' END AS payment_method, \n" +
-                "       b.totalBill, b.quantity, \n" +
-                "       CASE WHEN b.shipping_info = 1 THEN 'Chờ xử lý' \n" +
-                "            WHEN b.shipping_info = 2 THEN 'Đang vận chuyển' \n" +
-                "            WHEN b.shipping_info = 3 THEN 'Đã hoàn thành' \n" +
-                "            WHEN b.shipping_info = 4 THEN 'Đã hủy' END AS shipping_info \n" +
-                "FROM bill b \n" +
-                "INNER JOIN customer c ON b.id_user = c.id_user ");
+        ArrayList<BillManagementModel> result = new ArrayList<>();
+        String sql = "SELECT b.id_order,CONCAT(t.first_name, ' ', t.last_name) AS fullname,\n" +
+                "b.address, CASE WHEN b.payment_method = 0 THEN 'Tiền mặt' ELSE 'Online' END AS payment_method, SUM(b.quantity), \n" +
+                "c.totalPrice,   CASE WHEN b.shipping_info = 1 THEN 'Chờ xử lý' \n" +
+                "                       WHEN b.shipping_info = 2 THEN 'Đang vận chuyển' \n" +
+                "                            WHEN b.shipping_info = 3 THEN 'Đã hoàn thành' \n" +
+                "                            WHEN b.shipping_info = 4 THEN 'Đã hủy' END AS shipping_info, c.id\n" +
+                "FROM bill b JOIN carts c\n" +
+                "ON b.idCart = c.id JOIN customer t \n" +
+                "ON t.id_user = c.idUser\n" +
+                "GROUP BY b.idCart";
 
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -42,14 +43,15 @@ public class BillManagementDAO implements IBillManagementDAO {
                     billManagementModel.setNameUser(resultSet.getString(2));
                     billManagementModel.setAddress(resultSet.getString(3));
                     billManagementModel.setPaymethod(resultSet.getString(4));
-                    billManagementModel.setTotalPrice(resultSet.getDouble(5));
-                    billManagementModel.setTotalProduct(resultSet.getInt(6));
+                    billManagementModel.setTotalPrice(resultSet.getDouble(6));
+                    billManagementModel.setTotalProduct(resultSet.getInt(5));
                     billManagementModel.setStatusBill(resultSet.getString(7));
+                    billManagementModel.setIdCart(resultSet.getInt(8));
 
-                    listBill.add(billManagementModel);
+                    result.add(billManagementModel);
                 }
 
-                return listBill;
+                return result;
             } catch (SQLException e) {
                 return null;
             } finally {
@@ -63,7 +65,7 @@ public class BillManagementDAO implements IBillManagementDAO {
             }
         }
 
-        return listBill;
+        return result;
     }
 
     @Override

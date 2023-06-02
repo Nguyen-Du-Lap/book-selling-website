@@ -26,6 +26,7 @@ public class Bill {
     private Timestamp ship_time;
     private Timestamp receive_time;
     private int idCart;
+    private String ship_time_predict;
 
     public Bill() {
     }
@@ -84,6 +85,14 @@ public class Bill {
         this.ship_time = ship_time;
         this.receive_time = receive_time;
         this.idCart = idCart;
+    }
+
+    public String getShip_time_predict() {
+        return ship_time_predict;
+    }
+
+    public void setShip_time_predict(String ship_time_predict) {
+        this.ship_time_predict = ship_time_predict;
     }
 
     public int getIdCart() {

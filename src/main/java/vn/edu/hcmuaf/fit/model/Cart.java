@@ -3,6 +3,7 @@ package vn.edu.hcmuaf.fit.model;
 import vn.edu.hcmuaf.fit.dao.impl.ProductDAO;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.*;
 
 public class Cart implements Serializable {
@@ -16,7 +17,17 @@ public class Cart implements Serializable {
     private double totalPriceShipVoucher;
     private String timeShip;
     private int idUser;
+    private int inShip;
+    private Timestamp createTime;
     private List<Bill> bills;
+
+    public Timestamp getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Timestamp createTime) {
+        this.createTime = createTime;
+    }
 
     public List<Bill> getBills() {
         return bills;
@@ -24,6 +35,14 @@ public class Cart implements Serializable {
 
     public void setBills(List<Bill> bills) {
         this.bills = bills;
+    }
+
+    public int getInShip() {
+        return inShip;
+    }
+
+    public void setInShip(int inShip) {
+        this.inShip = inShip;
     }
 
     public int getIdUser() {

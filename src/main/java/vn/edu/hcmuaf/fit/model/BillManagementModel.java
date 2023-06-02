@@ -14,6 +14,7 @@ public class BillManagementModel extends AbstractModel<BillManagementModel> {
     private Timestamp create_Order;
     private Date shipdate;
     private Date receiveDate;
+    private int idCart;
 
 
     public BillManagementModel(int idOrder, String nameUser, String address, String paymethod, int totalProduct, double totalPrice, String statusBill, Timestamp create_Order, Date shipdate, Date receiveDate) {
@@ -31,6 +32,14 @@ public class BillManagementModel extends AbstractModel<BillManagementModel> {
 
     public BillManagementModel() {
 
+    }
+
+    public int getIdCart() {
+        return idCart;
+    }
+
+    public void setIdCart(int idCart) {
+        this.idCart = idCart;
     }
 
     public int getIdOrder() {

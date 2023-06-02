@@ -1,8 +1,6 @@
 package vn.edu.hcmuaf.fit.controller.web.orders;
 
-import vn.edu.hcmuaf.fit.dao.impl.BillDAO;
 import vn.edu.hcmuaf.fit.dao.impl.CartDao;
-import vn.edu.hcmuaf.fit.dao.impl.CustomerDAO;
 import vn.edu.hcmuaf.fit.model.CustomerModel;
 import vn.edu.hcmuaf.fit.utils.SessionUtil;
 
@@ -20,7 +18,7 @@ public class OrderDetailController extends HttpServlet {
         String id = request.getParameter("id");
         int idInt = Integer.parseInt(id);
         int idUser = cus.getIdUser();
-        request.setAttribute("orderReviewDetail", cartDao.getAll(idUser,idInt));
+        request.setAttribute("orderReviewDetail", cartDao.getAllByIdUserAndIdCart(idUser,idInt));
         request.setAttribute("cartReviewDetail", cartDao.getAllDetailCart(idUser,idInt));
         request.getRequestDispatcher("/views/web/orderDetail.jsp").forward(request, response);
     }
