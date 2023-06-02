@@ -1,7 +1,7 @@
 package vn.edu.hcmuaf.fit.controller.web.orders;
 
 import vn.edu.hcmuaf.fit.dao.impl.DiscountCustomerDAO;
-import vn.edu.hcmuaf.fit.model.Cart;
+import vn.edu.hcmuaf.fit.model.CartModel;
 import vn.edu.hcmuaf.fit.model.CustomerModel;
 import vn.edu.hcmuaf.fit.services.IOrderService;
 import vn.edu.hcmuaf.fit.services.impl.OrderService;
@@ -31,7 +31,7 @@ public class OrderAddVoucherController extends HttpServlet {
                 new MessageParameterUntil("Sản phẩm không tồn tại", "warning", "/views/web/cart.jsp", request, response).send();
             }
             else{
-                Cart cartOrder = orderService.cartOrder(listId, request);
+                CartModel cartOrder = orderService.cartOrder(listId, request);
                 cartOrder.setShip(0);
                 HttpSession session = request.getSession();
                 request.getSession().removeAttribute("cartOrder");

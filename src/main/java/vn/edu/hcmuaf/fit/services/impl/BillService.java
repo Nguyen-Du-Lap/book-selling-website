@@ -2,7 +2,7 @@ package vn.edu.hcmuaf.fit.services.impl;
 
 import vn.edu.hcmuaf.fit.dao.IBillDAO;
 import vn.edu.hcmuaf.fit.dao.impl.BillDAO;
-import vn.edu.hcmuaf.fit.model.Cart;
+import vn.edu.hcmuaf.fit.model.CartModel;
 import vn.edu.hcmuaf.fit.model.ShippingInfoModel;
 import vn.edu.hcmuaf.fit.services.IBillService;
 import vn.edu.hcmuaf.fit.utils.MessageParameterUntil;
@@ -41,8 +41,8 @@ public class BillService implements IBillService {
 
     @Override
     public void removeProductInCart(List<Integer> listIdRemove, HttpServletRequest request) {
-         Cart cart = (Cart) request.getSession().getAttribute("cart");
-         Cart cartOrder = (Cart) request.getSession().getAttribute("cartOrder");
+         CartModel cart = (CartModel) request.getSession().getAttribute("cart");
+         CartModel cartOrder = (CartModel) request.getSession().getAttribute("cartOrder");
          for (int id : listIdRemove) {
              cart.deleteProductById(id);
              cartOrder.deleteProductById(id);
