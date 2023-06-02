@@ -2,9 +2,11 @@ package vn.edu.hcmuaf.fit.controller.web.orders;
 
 import vn.edu.hcmuaf.fit.bean.Log;
 import vn.edu.hcmuaf.fit.dao.impl.CartDao;
+import vn.edu.hcmuaf.fit.dao.impl.InformationDeliverDao;
 import vn.edu.hcmuaf.fit.model.CartModel;
 import vn.edu.hcmuaf.fit.model.CartItem;
 import vn.edu.hcmuaf.fit.model.CustomerModel;
+import vn.edu.hcmuaf.fit.model.InformationDeliverModel;
 import vn.edu.hcmuaf.fit.services.IBillService;
 import vn.edu.hcmuaf.fit.services.impl.BillService;
 import vn.edu.hcmuaf.fit.utils.SessionUtil;
@@ -59,6 +61,11 @@ public class OrderPayController extends HttpServlet {
             log.insert();
             listIdRemove.add(item.getProduct().getIdBook());
         }
+        HttpSession httpSession = request.getSession();
+        InformationDeliverModel informationDeliverModel = (InformationDeliverModel) httpSession.getAttribute("deliver");
+        informationDeliverModel.setIdOrder(dao.setID());
+        InformationDeliverDao informationDeliverDao = new InformationDeliverDao();
+        informationDeliverDao.insertInfomationDeliver(informationDeliverModel);
         dao.insertCart( dao.setID(),cart.getIdUser(),cart.getTimeShip(),cart.getShip(), cart.getTotalPriceShipVoucher(),"1" );
         billService.removeProductInCart(listIdRemove, request);
         response.sendRedirect("/order/reviewOrder?orderSuccess=1");

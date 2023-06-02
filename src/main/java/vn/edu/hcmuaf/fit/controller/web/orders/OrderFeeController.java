@@ -30,30 +30,20 @@ public class OrderFeeController extends HttpServlet {
         ArrayList<CartItem> p = new ArrayList<>();
         HttpSession session = request.getSession();
         CartModel cart = (CartModel) session.getAttribute("cartOrder");
-//        Map<Integer, CartItem> mapSP = cart.getMap();
-//        p.addAll(mapSP.values());
-//        int weght =0;
-//        int x1 = 0;
-//        int x2 = 0;
-//        double x3 = p.size() *0.5;
-//        for(int i =0 ;i < p.size(); i++) {
-//            BookDetails bookDetails = iBillDAO.findByIdBook(p.get(i).getProduct().getIdBook());
-//            StringTokenizer tokenizer = new StringTokenizer(bookDetails.getSize(),"x");
-//            String tr1 = tokenizer.nextToken().trim();
-//            String tr2 = tokenizer.nextToken().trim();
-//            if(x1 < Integer.parseInt(tr1)) {
-//                x1 = Integer.parseInt(tr1);
-//            }
-//            if(x2 < Integer.parseInt(tr2)) {
-//                x2 = Integer.parseInt(tr2);
-//            }
-//            weght += bookDetails.getWeight();
-//        }
-        result = FeeGHNUtils.feeAPIAndDate("10","20","10","200",1463,21808,quan, xa);
+        int x = cart.sizeX();
+        int y = cart.sizeY();
+        int z = cart.sizeZ();
+        int w = cart.weight();
+        double cost =  FeeGHNUtils.getFeeShip(x,y,z,w,1463,21808,quan, xa);
+        String dateTime =  FeeGHNUtils.getDateShip(x,y,z,w,1463,21808,quan, xa);
+        HttpSession httpSession = request.getSession();
+        InformationDeliverModel informationDeliverModel = new InformationDeliverModel(cart.getId(),x,y,z,w,quan,xa);
+        httpSession.setAttribute("deliver", informationDeliverModel);
+        result.add(dateTime);
+        result.add(String.valueOf(cost));
         cart.setShip((int) Double.parseDouble(result.get(1)));
         cart.setTimeShip(result.get(0));
         return result;
-
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

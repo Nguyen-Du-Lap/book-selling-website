@@ -142,6 +142,53 @@ public class CartModel implements Serializable {
     public void setId(int id) {
         this.id = id;
     }
+    public int sizeX() {
+        int result = 0;
+        for (CartItem item : map.values()) {
+            String size= item.getProduct().getSize();
+            StringTokenizer tokenizer = new StringTokenizer(size,"x");
+            String x = tokenizer.nextToken().trim();
+            double dx = Double.parseDouble(x);
+            if(result<=dx) {
+                result = (int)dx;
+            }
+        }
+        return result;
+    }
+    public int sizeY() {
+        int result = 0;
+        for (CartItem item : map.values()) {
+            String size= item.getProduct().getSize();
+            StringTokenizer tokenizer = new StringTokenizer(size,"x");
+            String x = tokenizer.nextToken().trim();
+            String y = tokenizer.nextToken().trim();
+            double dy = Double.parseDouble(y);
+            if(result<=dy) {
+                result = (int)dy;
+            }
+        }
+        return result;
+    }
+    public int sizeZ() {
+        double result = 1;
+        for (CartItem item : map.values()) {
+            String size= item.getProduct().getSize();
+            StringTokenizer tokenizer = new StringTokenizer(size,"x");
+            String x = tokenizer.nextToken().trim();
+            String y = tokenizer.nextToken().trim();
+            String z = tokenizer.nextToken().trim();
+            double dz = Double.parseDouble(z);
+            result += dz;
+        }
+        return (int)result;
+    }
+    public int weight() {
+        int result = 0;
+        for (CartItem item : map.values()) {
+            result += item.getProduct().getWeight();
+        }
+        return result;
+    }
 
 
 }
