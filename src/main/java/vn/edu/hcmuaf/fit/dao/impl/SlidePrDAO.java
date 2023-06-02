@@ -16,7 +16,7 @@ public class SlidePrDAO implements ISlidePr {
     @Override
     public List<SlidePrModel> findAll() {
         List<SlidePrModel> results = new ArrayList<>();
-        String sql = "SELECT * FROM slide_pr";
+        String sql = "SELECT * FROM slide_pr where status = 1";
         Connection connection = JDBCConnector.getConnection();
         PreparedStatement statement = null;
         ResultSet resultSet = null;

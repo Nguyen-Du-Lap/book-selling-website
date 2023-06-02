@@ -37,10 +37,12 @@ public class LoginGoogleController extends HttpServlet {
         CustomerModel account = dao.checkAccountExist(email);
         if (account == null) {
             dao.signup(email, "", fName, lName, "", "");
+            dao.updateTypeLogin(email);
         }
             CustomerModel customer = dao.findByUsername(email);
             SessionUtil.getInstance().putValue(request, "USERMODEL", customer);
             if (customer.getRole().equalsIgnoreCase("user")) {
+
                 response.sendRedirect(request.getContextPath() + "/home");
 //                        req.getRequestDispatcher("/views/web/home.jsp").forward(req, resp);
             } else if (customer.getRole().equalsIgnoreCase("admin")) {

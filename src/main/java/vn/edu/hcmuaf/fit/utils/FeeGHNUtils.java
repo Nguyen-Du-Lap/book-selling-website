@@ -252,7 +252,8 @@ public class FeeGHNUtils {
 
 		}
 	public static void main(String[] args) {
-
-			}
+		System.out.println(getDateShip(100,100,100,1000,1463,21808,"Quận 4","Phường 1"));
+		System.out.println(getDateShip(100,100,100,1000,1463,21808,"Quận 4","Phường 1"));
+	}
 
 }

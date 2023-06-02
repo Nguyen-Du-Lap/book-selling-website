@@ -17,15 +17,11 @@ import java.util.StringTokenizer;
 
 @WebServlet(name = "order/fee", value = "/orderFee")
 public class OrderFeeController extends HttpServlet {
-    IBillService billService = new BillService();
-    IBillDAO iBillDAO = new BillDAO();
-
     public ArrayList<String> feeDeliver(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String nameDistrict = request.getParameter("exits");
         StringTokenizer tokenizer1 = new StringTokenizer(nameDistrict,"/");
-        String quan = tokenizer1.nextToken();
-        String xa = tokenizer1.nextToken();
-        //1463 quận thủ đức , 21808 linh trung
+        String quan = tokenizer1.nextToken().trim();
+        String xa = tokenizer1.nextToken().trim();
         ArrayList<String> result = new ArrayList<>();
         ArrayList<CartItem> p = new ArrayList<>();
         HttpSession session = request.getSession();
@@ -47,6 +43,7 @@ public class OrderFeeController extends HttpServlet {
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         PrintWriter out = response.getWriter();
         out.println(feeDeliver(request,response));
     }

@@ -59,7 +59,7 @@ public class RateDAO implements IRateDAO {
         List<RateModel> results = new ArrayList<>();
         String sql = "SELECT r.id_book, r.id_order, r.start_rate, r.comment, r.rate_time, r.status,CONCAT(c.first_name, ' ', c.last_name) AS fullname, r.id_user\n" +
                 "FROM rate r\n" +
-                "JOIN customer c ON r.id_user = c.id_user";
+                "JOIN customer c ON r.id_user = c.id_user ";
 
         Connection connection = JDBCConnector.getConnection();
         PreparedStatement statement = null;
