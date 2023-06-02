@@ -57,7 +57,7 @@ public class CartDao {
                 statement.setString(6, infoShip);
 
                 statement.executeUpdate();
-                System.out.println("Cart inserted successfully.");
+                System.out.println("CartModel inserted successfully.");
             } catch (SQLException e) {
                 e.printStackTrace();
             } finally {

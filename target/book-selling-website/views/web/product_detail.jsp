@@ -160,7 +160,8 @@
                         <button type="button"><i class="fas fa-shopping-cart"></i><p>THÊM VÀO GIỎ HÀNG</p></button>
                     </a>
                 </div>
-                <button class="muangay"><p>MUA NGAY</p></button>
+
+                <button class="muangay buy-now"><p>MUA NGAY</p></button>
             </div>
         </c:if>
 
@@ -400,6 +401,24 @@
     } else {
       window.location.href =
               '${context}/add-to-cart?product_id=${bookModel.idBook}' + '&action=add' + '&quantity=' + quantity
+    }
+
+    return false
+  })
+
+  $('.buy-now').on('click', function () {
+    const remainQuantity = Number(${quantityRemain}), quantity = $('.quantity .input-quantity').val()
+    if (remainQuantity === 0 || remainQuantity < quantity) {
+      $.alert({
+        title: 'Hết hàng',
+        content: 'Số lượng sản phẩm không đủ.',
+        closeIcon: true,
+        animateFromElement: false,
+        theme: 'material'
+      })
+    } else {
+      window.location.href =
+              '${context}/orderBuyNowControlller?product_id=${bookModel.idBook}' + '&quantity=' + quantity
     }
 
     return false
