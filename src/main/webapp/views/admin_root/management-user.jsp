@@ -41,6 +41,11 @@
                 <div class="tile-body">
                     <div class="row element-button">
                         <div class="col-sm-2">
+
+                            <a class="btn btn-add btn-sm" href="/admin-root-add-staff" title="Thêm"><i class="fas fa-plus"></i>
+                                Thêm nhân viên</a>
+                        </div>
+                        <div class="col-sm-2">
                             <a class="btn btn-delete btn-sm nhap-tu-file" type="button" title="Nhập" onclick="myFunction(this)"><i
                                     class="fas fa-file-upload"></i> Tải từ file</a>
                         </div>
@@ -81,12 +86,12 @@
                         <c:forEach var="staff" items="${listStaff}">
                             <tr>
                                 <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                <td>${customer.idUser}</td>
-                                <td>${customer.fullName}</td>
-                                <td>${customer.phone}</td>
-                                <td>${customer.address}</td>
+                                <td>${staff.idUser}</td>
+                                <td>${staff.fullName}</td>
+                                <td>${staff.phone}</td>
+                                <td>${staff.address}</td>
                                 <td>
-                                    <a href="/findCustomer?idUser=${customer.idUser}">
+                                    <a href="/findCustomer?idUser=${staff.idUser}">
                                         <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
                                                 data-target="#ModalUP"><i class="fas fa-edit"></i></button>
                                     </a>

@@ -237,11 +237,12 @@ CustomerDAO implements ICustomerDAO {
 
     @Override
     public List<CustomerModel> findAllCustomer() {
-        List<CustomerModel> users = new ArrayList<>();
-        Connection connection = JDBCConnector.getConnection();
+
         String sql = new String("SELECT c.id_user, CONCAT(c.first_name,' ',c.last_name) 'full_name', c.phone, c.address, COUNT(b.id_user) 'total_bill', c.first_name, c.last_name, c.email, c.created_time\n" +
                 "FROM customer c JOIN bill b ON c.id_user = b.id_user\n" +
                 "GROUP BY c.id_user, CONCAT(c.first_name,' ',c.last_name), c.phone, c.address, b.id_user");
+        List<CustomerModel> users = new ArrayList<>();
+        Connection connection = JDBCConnector.getConnection();
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
@@ -318,9 +319,10 @@ CustomerDAO implements ICustomerDAO {
     }
     @Override
     public CustomerModel findByUsername(String email) {
+
+        String sql = new String("SELECT * FROM customer WHERE email=?");
         List<CustomerModel> users = new ArrayList<>();
         Connection connection = JDBCConnector.getConnection();
-        String sql = new String("SELECT * FROM customer WHERE email=?");
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         if (connection != null) {
@@ -428,6 +430,85 @@ CustomerDAO implements ICustomerDAO {
             }
             return 1;
     }
+    public List<CustomerModel> getAllUserAdmin() {
+        String sql = "SELECT c.id_user, CONCAT(c.first_name,' ',c.last_name) 'full_name', c.phone, c.address, \n" +
+                "c.first_name, c.last_name, c.email, c.created_time, c.role\n" +
+                "                FROM customer c WHERE c.role ='mod'";
+        List<CustomerModel> users = new ArrayList<>();
+        Connection connection = JDBCConnector.getConnection();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        try {
+            statement = connection.prepareStatement(sql.toString());
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                CustomerModel customerModel = new CustomerModel();
+                customerModel.setIdUser(resultSet.getInt(1));
+                customerModel.setFullName(resultSet.getString(2));
+                customerModel.setPhone(resultSet.getString(3));
+                customerModel.setAddress(resultSet.getString(4));
+                customerModel.setFirstName(resultSet.getString(5));
+                customerModel.setLastName(resultSet.getString(6));
+                customerModel.setEmail(resultSet.getString(7));
+                customerModel.setCreatedTime(resultSet.getTimestamp(8));
+                customerModel.setRole(resultSet.getString(9));
+                users.add(customerModel);
+            }
+            return users;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+    public void signupMod(String email, String password, String firstname, String lastname, String phone, String address) {
+        String sql = new String("INSERT INTO customer (first_name, last_name, email, password, address, phone, role, status)\n" +
+                "VALUES (?, ?, ?, ?, ?, ?, 'mod', 1)");
+        PreparedStatement statement = null;
+        ResultSet rs = null;
+        int idR =-1;
+        try {
+            Connection connection = JDBCConnector.getConnection();
+            statement = connection.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS); // thêm tham số Statement.RETURN_GENERATED_KEYS để lấy ra giá trị tự động sinh ra
+            statement.setString(1, firstname);
+            statement.setString(2, lastname);
+            statement.setString(3, email);
+            statement.setString(4, password);
+            statement.setString(5, address);
+            statement.setString(6, phone);
+            statement.executeUpdate();
+
+            // lấy giá trị ID của bản ghi vừa được thêm vào
+            rs = statement.getGeneratedKeys();
+            if (rs.next()) {
+                long id = rs.getLong(1); // lấy giá trị ID từ ResultSet
+                idR = (int) id;
+
+            }
+            InetAddress address1 = InetAddress.getLocalHost();
+            String ip = address1.getHostAddress();
+            Log log = new Log(Log.INFO,ip,"Register", idR,"User register suscess",1);
+            log.insert();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (UnknownHostException e) {
+            throw new RuntimeException(e);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
 
 }
 
