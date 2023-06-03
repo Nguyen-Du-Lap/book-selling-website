@@ -1,4 +1,4 @@
-package vn.edu.hcmuaf.fit.controller.admin;
+package vn.edu.hcmuaf.fit.controller.adminRoot;
 
 import vn.edu.hcmuaf.fit.services.IBillService;
 import vn.edu.hcmuaf.fit.services.ICustomerService;

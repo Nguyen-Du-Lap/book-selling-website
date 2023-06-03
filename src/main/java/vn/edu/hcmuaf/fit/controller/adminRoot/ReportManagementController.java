@@ -1,4 +1,4 @@
-package vn.edu.hcmuaf.fit.controller.admin;
+package vn.edu.hcmuaf.fit.controller.adminRoot;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
