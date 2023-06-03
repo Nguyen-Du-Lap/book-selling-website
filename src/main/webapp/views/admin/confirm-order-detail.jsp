@@ -44,7 +44,7 @@
                             <a class="btn btn-excel btn-sm" href="" title="In"><i class="fas fa-file-excel"></i> Xuất Excel</a>
                         </div>
                         <div class="col-sm-2">
-                            <a href="/exportFIlePDFOrder?name=${CUSTOMER.firstName} ${CUSTOMER.lastName}&address=${BILLDETAIL.address}&phone=${CUSTOMER.phone}&email=${CUSTOMER.email}&idOder=${BILLDETAIL.idOrder}&quantity=${BILLDETAIL.quantity}&nameProduct=${BILLDETAIL.name}&information=${BILLDETAIL.info}" class="btn btn-delete btn-sm pdf-file" type="button" title="In"><i
+                            <a href="/exportFIlePDFOrder?id=${BILLDETAIL.idCart}" class="btn btn-delete btn-sm pdf-file" type="button" title="In"><i
                                     class="fas fa-file-pdf"></i> Xuất PDF</a>
                         </div>
                         <div class="col-sm-6">
@@ -122,7 +122,8 @@
                                     </tr>
                                     <tr>
                                         <td>Tổng giá trị:</td>
-                                        <td>${BILLDETAIL.totalPrice} VNĐ</td>
+                                        <td>${BILLDETAIL.totalPrice} VNĐ
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Tình trạng:</td>
