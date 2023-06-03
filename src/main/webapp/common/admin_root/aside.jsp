@@ -49,6 +49,15 @@
       </li>
     </c:if>
 
+    <c:if test="${title.equals('Danh Sách Log')}">
+      <li><a class="app-menu__item active" href="<c:url value="/admin-root-table-log" />"><i class='app-menu__icon bx bx-calendar-check'></i><span
+              class="app-menu__label">Quản lý log</span></a></li>
+    </c:if>
+    <c:if test="${!title.equals('Danh Sách Log')}">
+      <li><a class="app-menu__item" href="<c:url value="/admin-root-table-log" />"><i class='app-menu__icon bx bx-calendar-check'></i><span
+              class="app-menu__label">Quản lý log</span></a></li>
+    </c:if>
+
     <c:if test="${title.equals('Kích Hoạt Bảo Trì')}">
       <li><a class="app-menu__item active" href="<c:url value="/admin-root-enable-maintenance" />">
         <i class='app-menu__icon bx bx-calendar-check'></i><span

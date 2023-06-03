@@ -28,8 +28,8 @@
 
 <body onload="time()" class="app sidebar-mini rtl">
 <!-- Navbar-->
-<%@include file="/common/admin/header.jsp"%>
-<%@include file="/common/admin/aside.jsp"%>
+<%@include file="/common/admin_root/header.jsp"%>
+<%@include file="/common/admin_root/aside.jsp"%>
 <main class="app-content">
   <div class="app-title">
     <ul class="app-breadcrumb breadcrumb side">

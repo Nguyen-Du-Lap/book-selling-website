@@ -1,6 +1,6 @@
-package vn.edu.hcmuaf.fit.controller.admin.managementOrder;
+package vn.edu.hcmuaf.fit.controller.adminRoot.managementLog;
 
-import vn.edu.hcmuaf.fit.services.IBillManagementService;
+import vn.edu.hcmuaf.fit.services.ILogManagmentService;
 
 import javax.inject.Inject;
 import javax.servlet.*;
@@ -8,15 +8,16 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "admin-table-order-confirm", value = "/admin-table-order-confirm")
-public class TableOrderConfirmController extends HttpServlet {
+@WebServlet(name = "admin-table-log", value = "/admin-root-table-log")
+public class TableLogController extends HttpServlet {
     @Inject
-    IBillManagementService iBillManagementService;
+    ILogManagmentService iLogManagmentService;
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // title dung de active aside
-        request.setAttribute("title", "Xác nhận đơn hàng");
-        request.setAttribute("listBill", iBillManagementService.findAllBillConfrim());
+        request.setAttribute("title", "Danh Sách Log");
+        request.setAttribute("listLog", iLogManagmentService.getAll());
 
         String message = request.getParameter("message");
         String alert = request.getParameter("alert");
@@ -25,7 +26,7 @@ public class TableOrderConfirmController extends HttpServlet {
             request.setAttribute("message", message);
             request.setAttribute("alert", alert);
         }
-        request.getRequestDispatcher("views/admin/table-data-order-confirm.jsp").forward(request, response);
+        request.getRequestDispatcher("views/admin_root/table-data-log.jsp").forward(request, response);
 
     }
 
