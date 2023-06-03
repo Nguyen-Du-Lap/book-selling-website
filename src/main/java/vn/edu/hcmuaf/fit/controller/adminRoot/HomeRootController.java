@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.fit.controller.adminRoot;
 
+import vn.edu.hcmuaf.fit.filter.MaintenanceFilter;
 import vn.edu.hcmuaf.fit.services.IBillService;
 import vn.edu.hcmuaf.fit.services.ICustomerService;
 import vn.edu.hcmuaf.fit.services.IProductService;
@@ -28,6 +29,8 @@ public class HomeRootController extends HttpServlet {
         req.setAttribute("outOfStock", iProductService.outOfStock());
         req.setAttribute("shippingInfo", iBillService.shippingInfo());
         req.setAttribute("newCustomer", iCustomerService.newCustomer());
+        // kiểm tra xem hệ thống có đạng bảo trì ko
+        req.setAttribute("maintenance", MaintenanceFilter.maintenanceMode);
         req.getRequestDispatcher("views/admin_root/index.jsp").forward(req, resp);
     }
 

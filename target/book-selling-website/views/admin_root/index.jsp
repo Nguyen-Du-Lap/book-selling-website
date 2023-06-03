@@ -20,6 +20,27 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+    <!-- Thư viện SweetAlert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <style>
+        .button_seting{
+            border: none;
+            background-color: #ffdf68;
+            padding: 8px;
+            border-radius: 5px;
+        }
+        .button_seting i {
+            font-size: 24px;
+            color: #001c40;
+        }
+        .button_seting:hover{
+            background-color: #001c40;
+            cursor: pointer;
+        }
+        .button_seting:hover i {
+            color: #fff;
+        }
+    </style>
 </head>
 
 <body onload="time()" class="app sidebar-mini rtl">
@@ -37,6 +58,30 @@
         </div>
     </div>
     <div class="row">
+        <div class="col-md-12">
+            <div class="app-title">
+                <c:if test="${maintenance}">
+                    <ul class="app-breadcrumb breadcrumb">
+                        <li class="breadcrumb-item"><a href="#"><b>Bảo trì hệ thống</b></a></li>
+                    </ul>
+                    <ul class="app-breadcrumb breadcrumb">
+                        <button class="button_seting" onclick="confirmTurnOffMaintenance()"><i class="fa-solid fa-wrench"></i></button>
+                    </ul>
+                </c:if>
+                <c:if test="${!maintenance}">
+                    <ul class="app-breadcrumb breadcrumb">
+                        <li class="breadcrumb-item"><a href="#"><b>Bảo trì hệ thống</b></a></li>
+                    </ul>
+                    <ul class="app-breadcrumb breadcrumb">
+                        <button class="button_seting" onclick="confirmMaintenance()"><i class="fa-solid fa-wrench"></i></button>
+                    </ul>
+                </c:if>
+
+            </div>
+
+
+
+        </div>
         <!--Left-->
         <div class="col-md-12 col-lg-6">
             <div class="row">
@@ -203,6 +248,7 @@
     <!--===============================================================================================-->
     <script type="text/javascript" src="/templates/admin/doc/js/plugins/chart.js"></script>
     <!--===============================================================================================-->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <script type="text/javascript">
         var data = {
             labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6"],
@@ -274,6 +320,46 @@
                 }
                 return i;
             }
+        }
+    </script>
+    <script>
+        function confirmMaintenance() {
+            swal({
+                title: "Xác nhận bảo trì?",
+                text: "Xác nhận bật chế độ bảo trì cho hệ thống!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        window.location.href = '/admin-root-enable-maintenance'
+                        swal("Bật thành công!", {
+                            icon: "success",
+                        });
+                    } else {
+                        swal("Đã hủy yêu cầu!");
+                    }
+                });
+        }
+        function confirmTurnOffMaintenance() {
+            swal({
+                title: "Xác nhận dừng bảo trì?",
+                text: "Xác nhận dừng chế độ bảo trì cho hệ thống!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        window.location.href = '/admin-root-enable-maintenance'
+                        swal("Thành công!", {
+                            icon: "success",
+                        });
+                    } else {
+                        swal("Đã hủy yêu cầu!");
+                    }
+                });
         }
     </script>
 </body>

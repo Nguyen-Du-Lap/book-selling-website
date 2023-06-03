@@ -5,7 +5,7 @@
   <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="/templates/images/avatar-admin.jpg" width="50px"
                                       alt="User Image">
     <div>
-      <p class="app-sidebar__user-name"><b>Admin</b></p>
+      <p class="app-sidebar__user-name"><b>Mod</b></p>
       <p class="app-sidebar__user-designation">Chào mừng bạn trở lại</p>
     </div>
   </div>
