@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MaintenanceFilter implements Filter {
-    public static boolean maintenanceMode = false; // Đặt trạng thái chế độ bảo trì ban đầu là true
+    public static boolean maintenanceMode = false; // Đặt trạng thái chế độ bảo trì ban đầu là false
     // list url không chặn
     List<String> listUrl = new ArrayList();
     @Override

@@ -5,7 +5,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "admin-management-user", value = "/admin-root-management-user")
+@WebServlet(name = "admin-root-management-user", value = "/admin-root-management-user")
 public class ManagementUserController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
