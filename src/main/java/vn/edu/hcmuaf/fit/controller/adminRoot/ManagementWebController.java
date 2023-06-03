@@ -1,17 +1,16 @@
-package vn.edu.hcmuaf.fit.controller.admin;
+package vn.edu.hcmuaf.fit.controller.adminRoot;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "admin-management-user", value = "/admin-root-management-user")
-public class ManagementUserController extends HttpServlet {
+@WebServlet(name = "admin-management-web", value = "/admin-root-management-web")
+public class ManagementWebController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // title dung de active aside
-        request.setAttribute("title", "Danh Sách Nhân Viên");
-        request.getRequestDispatcher("/views/admin_root/management-user.jsp").forward(request, response);
+        request.setAttribute("title", "Giới Thiệu Về Doraemon");
+        request.getRequestDispatcher("views/admin_root/management-web.jsp").forward(request, response);
     }
 
     @Override
