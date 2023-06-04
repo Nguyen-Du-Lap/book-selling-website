@@ -5,7 +5,7 @@
   <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="/templates/images/avatar-admin.jpg" width="50px"
                                       alt="User Image">
     <div>
-      <p class="app-sidebar__user-name"><b>Admin</b></p>
+      <p class="app-sidebar__user-name"><b>Mod</b></p>
       <p class="app-sidebar__user-designation">Chào mừng bạn trở lại</p>
     </div>
   </div>
@@ -49,14 +49,6 @@
               class="app-menu__label">Quản lý đơn hàng</span></a></li>
     </c:if>
 
-    <c:if test="${title.equals('Xác nhận đơn hàng')}">
-      <li><a class="app-menu__item active" href="<c:url value="/admin-table-order-confirm" />"><i class='app-menu__icon bx bx-task'></i><span
-              class="app-menu__label">Xác nhận đơn hàng</span></a></li>
-    </c:if>
-    <c:if test="${!title.equals('Xác nhận đơn hàng')}">
-      <li><a class="app-menu__item" href="<c:url value="/admin-table-order-confirm" />"><i class='app-menu__icon bx bx-task'></i><span
-              class="app-menu__label">Xác nhận đơn hàng</span></a></li>
-    </c:if>
 
     <c:if test="${title.equals('Danh Sách Bài Viết')}">
       <li><a class="app-menu__item active" href="<c:url value="/admin-table-news" />"><i class='app-menu__icon bx bx-task'></i><span
@@ -95,13 +87,6 @@
       <li><a class="app-menu__item" href="<c:url value="/admin-management-contact" />"><i class='app-menu__icon bx bx-calendar-check'></i><span
               class="app-menu__label">Quản lý contact</span></a></li>
     </c:if>
-    <c:if test="${title.equals('Danh Sách Log')}">
-      <li><a class="app-menu__item active" href="<c:url value="/admin-table-log" />"><i class='app-menu__icon bx bx-calendar-check'></i><span
-              class="app-menu__label">Quản lý log</span></a></li>
-    </c:if>
-    <c:if test="${!title.equals('Danh Sách Log')}">
-      <li><a class="app-menu__item" href="<c:url value="/admin-table-log" />"><i class='app-menu__icon bx bx-calendar-check'></i><span
-              class="app-menu__label">Quản lý log</span></a></li>
-    </c:if>
+
   </ul>
 </aside>
