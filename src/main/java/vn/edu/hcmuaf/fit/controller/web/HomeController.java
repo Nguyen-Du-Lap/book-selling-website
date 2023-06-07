@@ -81,7 +81,7 @@ public class HomeController extends HttpServlet {
 
                     } else if (customer.getRole().equalsIgnoreCase("admin")) {
 
-                        resp.sendRedirect(req.getContextPath() + "/admin-root-management-user");
+                        resp.sendRedirect(req.getContextPath() + "/admin-root-home");
 
                     } else if (customer.getRole().equalsIgnoreCase("mod")) {
 

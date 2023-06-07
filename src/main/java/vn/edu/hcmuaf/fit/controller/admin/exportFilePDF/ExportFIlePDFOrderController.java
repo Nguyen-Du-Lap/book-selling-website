@@ -5,34 +5,41 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import com.itextpdf.html2pdf.HtmlConverter;
+import java.util.List;
 
+import com.itextpdf.html2pdf.HtmlConverter;
+import vn.edu.hcmuaf.fit.dao.impl.BillDAO;
+import vn.edu.hcmuaf.fit.dao.impl.CartDao;
+import vn.edu.hcmuaf.fit.dao.impl.CustomerDAO;
+import vn.edu.hcmuaf.fit.model.Bill;
+import vn.edu.hcmuaf.fit.model.CartModel;
+import vn.edu.hcmuaf.fit.model.CustomerModel;
+import vn.edu.hcmuaf.fit.utils.PriceFormatUtil;
 
 
 @WebServlet(name = "exportFIlePDFOrderController", value = "/exportFIlePDFOrder")
 public class ExportFIlePDFOrderController extends HttpServlet {
+    CartDao cartDao = new CartDao();
+    BillDAO billDAO = new BillDAO();
+    CustomerDAO customerDAO = new CustomerDAO();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html; charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-//         getParmeters includes the nameUser, address, phone, email, idOder, quantity, nameProduct, information
-        String nameUser = request.getParameter("name");
-        String address = request.getParameter("address");
-        String phone = request.getParameter("phone");
-        String email = request.getParameter("email");
-        String idOder = request.getParameter("idOder");
-        String quantity = request.getParameter("quantity");
-        String nameProduct = request.getParameter("nameProduct");
-        String information = request.getParameter("information");
-
+        String id = request.getParameter("id");
+        int idInt = Integer.parseInt(id);
+        CartModel cartModel = cartDao.getCartById(idInt);
+        CustomerModel customerModel = customerDAO.findById(cartModel.getIdUser());
+        Bill bill = billDAO.find1BillByIdCart(cartModel.getId());
+        List<Bill> listBill = billDAO.findAllBillByIdCart(cartModel.getId());
 
         // Thiết lập thông tin phản hồi
         response.setContentType("application/pdf");
-        response.setHeader("Content-Disposition", "attachment; filename=\"don_hang-"+idOder+".pdf\"");
+        response.setHeader("Content-Disposition", "attachment; filename=\"don_hang-"+bill.getIdCart()+".pdf\"");
 
         // Tạo một đối tượng Document từ mã HTML
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        HtmlConverter.convertToPdf(toStringHtml(nameUser, address, phone, email, idOder, quantity, nameProduct, information), outputStream);
+        HtmlConverter.convertToPdf(toStringHtml(customerModel, bill, listBill), outputStream);
 
         // Ghi dữ liệu PDF đã tạo vào phản hồi
         response.setContentLength(outputStream.size());
@@ -47,8 +54,8 @@ public class ExportFIlePDFOrderController extends HttpServlet {
     }
 
     //toStringHtml nameUser, address, phone, email, idOder, quantity, nameProduct, information
-    public String toStringHtml(String nameUser, String address, String phone, String email, String idOder, String quantity, String nameProduct , String information) {
-        return "<!DOCTYPE html>\n" +
+    public String toStringHtml(CustomerModel customerModel, Bill bill, List<Bill> listBill){
+        String htmlCode = "<!DOCTYPE html>\n" +
                 "<html>\n" +
                 "<head>\n" +
                 "    <title>Đơn hàng</title>\n" +
@@ -98,10 +105,10 @@ public class ExportFIlePDFOrderController extends HttpServlet {
                 "            <th>Email</th>\n" +
                 "        </tr>\n" +
                 "        <tr>\n" +
-                "            <td>"+nameUser+"</td>\n" +
-                "            <td>"+address+"</td>\n" +
-                "            <td>"+phone+"</td>\n" +
-                "            <td>"+email+"</td>\n" +
+                "            <td>"+customerModel.getFirstName()+" "+customerModel.getLastName()+"</td>\n" +
+                "            <td>"+customerModel.getAddress()+"</td>\n" +
+                "            <td>"+customerModel.getPhone()+"</td>\n" +
+                "            <td>"+customerModel.getEmail()+"</td>\n" +
                 "        </tr>\n" +
                 "        <!-- Thêm các hàng khách hàng khác vào đây -->\n" +
                 "    </table>\n" +
@@ -130,16 +137,27 @@ public class ExportFIlePDFOrderController extends HttpServlet {
                 "            <th>Số lượng</th>\n" +
                 "            <th>Tên sản phẩm</th>\n" +
                 "            <th>Ghi chú</th>\n" +
-                "        </tr>\n" +
-                "        <tr>\n" +
-                "            <td>"+idOder+"</td>\n" +
-                "            <td>"+quantity+"</td>\n" +
-                "            <td>"+nameProduct+"</td>\n" +
-                "            <td>"+information+"</td>\n" +
-                "        </tr>\n" +
-                "        <!-- Thêm các hàng đơn hàng khác vào đây -->\n" +
+                "        </tr>\n";
+                for(Bill b: listBill) {
+                    int idOder = b.getIdOrder();
+                    int quantity = b.getQuantity();
+                    String nameProduct = b.getName();
+                    String information = b.getInfo() != null ? b.getInfo() : "";
+
+                    htmlCode += "<tr>\n" +
+                            "<td>"+idOder+"</td>\n" +
+                            "<td>"+quantity+"</td>\n" +
+                            "<td>"+nameProduct+"</td>\n" +
+                            "<td>"+information+"</td>\n" +
+                            "</tr>\n";
+                }
+
+                htmlCode += "<!-- Thêm các hàng đơn hàng khác vào đây -->\n"+
                 "    </table>\n" +
+                 "<h2>Tổng tiền: "+ PriceFormatUtil.formatPrice(bill.getTotalPrice())+"</h2>\n" +
                 "</body>\n" +
                 "</html>\n";
+
+                return htmlCode;
     }
 }

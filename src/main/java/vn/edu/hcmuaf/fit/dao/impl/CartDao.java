@@ -200,6 +200,185 @@ public class CartDao {
         }
         return null;
     }
+    public ArrayList<CartModel> getAllCart() {
+        ArrayList<CartModel> result = new ArrayList<>();
+        String sql = "SELECT id, idUser, timeShip, feeShip, totalPrice, infoShip, create_time\n" +
+                "FROM carts ";
+        Connection connection = JDBCConnector.getConnection();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        if(connection != null) {
+            try {
+                statement = connection.prepareStatement(sql);
+                resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    CartModel cartModel = new CartModel();
+                    cartModel.setId(resultSet.getInt(1));
+                    cartModel.setIdUser(resultSet.getInt(2));
+                    cartModel.setTimeShip(resultSet.getString(3));
+                    cartModel.setShip(resultSet.getInt(4));
+                    cartModel.setTotalPrice(resultSet.getDouble(5));
+                    cartModel.setInShip(resultSet.getInt(6));
+                    cartModel.setCreateTime(resultSet.getTimestamp(7));
+                    result.add(cartModel);
 
+                }
 
+                return result;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return result;
+            } finally {
+                try {
+                    if(connection != null) connection.close();
+                    if(statement != null) statement.close();
+                    if(resultSet != null) resultSet.close();
+                } catch (SQLException e) {
+                    return null;
+                }
+            }
+        }
+        return null;
+    }
+    public ArrayList<BookModel> top5BookBanChay() {
+        String sql = "SELECT s.id_book, s.name, sum(b.quantity), s.price,SUM(b.quantity * s.price), ct.name\n" +
+                "FROM bill b JOIN book s\n" +
+                "ON b.id_book = s.id_book JOIN carts c\n" +
+                "ON b.idCart = c.id JOIN catalog ct ON s.id_catalog = ct.id_catalog\n" +
+                "WHERE c.infoShip = 3\n" +
+                "GROUP BY s.id_book\n" +
+                "ORDER by SUM(b.quantity * s.price)  DESC\n" +
+                "LIMIT 5";
+        ArrayList<BookModel> result  = new ArrayList<>();
+        Connection connection = JDBCConnector.getConnection();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        if(connection != null) {
+            try {
+                statement = connection.prepareStatement(sql);
+                resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    BookModel bookModel = new BookModel();
+                    bookModel.setIdBook(resultSet.getInt(1));
+                    bookModel.setName(resultSet.getString(2));
+                    bookModel.setQuantity(resultSet.getInt(3));
+                    bookModel.setPrice(resultSet.getInt(4));
+                    bookModel.setCatalog(resultSet.getString(6));
+                    result.add(bookModel);
+                }
+
+                return result;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return result;
+            } finally {
+                try {
+                    if(connection != null) connection.close();
+                    if(statement != null) statement.close();
+                    if(resultSet != null) resultSet.close();
+                } catch (SQLException e) {
+                    return null;
+                }
+            }
+        }
+        return null;
+    }
+    public ArrayList<BookModel> bookHetHang() {
+        String sql = "SELECT b.id_book, b.NAME, b.quantity, b.price,  ct.name\n" +
+                "FROM book b JOIN catalog ct ON b.id_catalog = ct.id_catalog\n" +
+                "WHERE quantity =0";
+        ArrayList<BookModel> result  = new ArrayList<>();
+        Connection connection = JDBCConnector.getConnection();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        if(connection != null) {
+            try {
+                statement = connection.prepareStatement(sql);
+                resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    BookModel bookModel = new BookModel();
+                    bookModel.setIdBook(resultSet.getInt(1));
+                    bookModel.setName(resultSet.getString(2));
+                    bookModel.setQuantity(resultSet.getInt(3));
+                    bookModel.setPrice(resultSet.getInt(4));
+                    bookModel.setCatalog(resultSet.getString(5));
+                    result.add(bookModel);
+                }
+
+                return result;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return result;
+            } finally {
+                try {
+                    if(connection != null) connection.close();
+                    if(statement != null) statement.close();
+                    if(resultSet != null) resultSet.close();
+                } catch (SQLException e) {
+                    return null;
+                }
+            }
+        }
+        return null;
+    }
+    public int soLuongKhachMoi() {
+        String sql = "SELECT COUNT(*) FROM customer  WHERE created_time >= DATE_SUB(NOW(), INTERVAL 1 MONTH) AND ROLE = 'user';";
+        int result = 0;
+        Connection connection = JDBCConnector.getConnection();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        if(connection != null) {
+            try {
+                statement = connection.prepareStatement(sql);
+                resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    result = resultSet.getInt(1);
+                }
+
+                return result;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return result;
+            } finally {
+                try {
+                    if(connection != null) connection.close();
+                    if(statement != null) statement.close();
+                    if(resultSet != null) resultSet.close();
+                } catch (SQLException e) {
+                    return 0;
+                }
+            }
+        }
+        return 0;
+    }
+    public int getAllSanPham() {
+        String sql = "SELECT sum(quantity) FROM book";
+        int result = 0;
+        Connection connection = JDBCConnector.getConnection();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        if(connection != null) {
+            try {
+                statement = connection.prepareStatement(sql);
+                resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    result = resultSet.getInt(1);
+                }
+
+                return result;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return result;
+            } finally {
+                try {
+                    if(connection != null) connection.close();
+                    if(statement != null) statement.close();
+                    if(resultSet != null) resultSet.close();
+                } catch (SQLException e) {
+                    return 0;
+                }
+            }
+        }
+        return 0;
+    }
 }

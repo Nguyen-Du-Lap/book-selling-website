@@ -19,21 +19,12 @@ public class CartModel implements Serializable {
     private Timestamp createTime;
     private List<Bill> bills;
 
-    public Timestamp getCreateTime() {
-        return createTime;
-    }
 
     public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 
-    public List<Bill> getBills() {
-        return bills;
-    }
 
-    public void setBills(List<Bill> bills) {
-        this.bills = bills;
-    }
 
     public int getInShip() {
         return inShip;
@@ -55,17 +46,7 @@ public class CartModel implements Serializable {
         this.count = count;
     }
 
-    public void setTotalPrice(double totalPrice) {
-        this.totalPrice = totalPrice;
-    }
 
-    public void setTotalPriceShip(double totalPriceShip) {
-        this.totalPriceShip = totalPriceShip;
-    }
-
-    public void setTotalPriceShipVoucher(double totalPriceShipVoucher) {
-        this.totalPriceShipVoucher = totalPriceShipVoucher;
-    }
 
     public String getTimeShip() {
         return timeShip;
@@ -109,6 +90,9 @@ public class CartModel implements Serializable {
         totalPrice = 0;
         map.forEach((id, item) -> totalPrice += item.getProduct().getPriceDiscount() * item.getQuantity());
         return totalPrice;
+    }
+    public double getTotalPriceFromCart() {
+        return  totalPrice;
     }
 
     public double getTotalPriceShip() {
@@ -190,5 +174,27 @@ public class CartModel implements Serializable {
         return result;
     }
 
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
 
+    public void setTotalPriceShip(double totalPriceShip) {
+        this.totalPriceShip = totalPriceShip;
+    }
+
+    public void setTotalPriceShipVoucher(double totalPriceShipVoucher) {
+        this.totalPriceShipVoucher = totalPriceShipVoucher;
+    }
+
+    public Timestamp getCreateTime() {
+        return createTime;
+    }
+
+    public List<Bill> getBills() {
+        return bills;
+    }
+
+    public void setBills(List<Bill> bills) {
+        this.bills = bills;
+    }
 }
