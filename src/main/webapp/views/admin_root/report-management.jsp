@@ -227,24 +227,26 @@
   var data = {
     labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"],
     datasets: [{
-      label: "Dữ liệu đầu tiên",
+      label: "Số tiền chi tiêu",
       fillColor: "rgba(255, 255, 255, 0.158)",
       strokeColor: "black",
       pointColor: "rgb(220, 64, 59)",
       pointStrokeColor: "#fff",
       pointHighlightFill: "#fff",
       pointHighlightStroke: "green",
-      data: [20, 59, 90, 51, 56, 100, 40, 60, 78, 53, 33, 81]
+      data: [${nhapHang.getT1()}, ${nhapHang.getT2()}, ${nhapHang.getT3()}, ${nhapHang.getT4()}, ${nhapHang.getT5()}, ${nhapHang.getT6()}, ${nhapHang.getT7()},
+        ${nhapHang.getT8()}, ${nhapHang.getT9()}, ${nhapHang.getT10()}, ${nhapHang.getT11()}, ${nhapHang.getT12()}]
     },
       {
-        label: "Dữ liệu kế tiếp",
+        label: "Số tiền bán ra",
         fillColor: "rgba(255, 255, 255, 0.158)",
         strokeColor: "rgb(220, 64, 59)",
         pointColor: "black",
         pointStrokeColor: "#fff",
         pointHighlightFill: "#fff",
         pointHighlightStroke: "green",
-        data: [48, 48, 49, 39, 86, 10, 50, 70, 60, 70, 75, 90]
+        data: [${xuatHang.getT1()}, ${xuatHang.getT2()}, ${xuatHang.getT3()}, ${xuatHang.getT4()}, ${xuatHang.getT5()}, ${xuatHang.getT6()}, ${xuatHang.getT7()},
+          ${xuatHang.getT8()}, ${xuatHang.getT9()}, ${xuatHang.getT10()}, ${xuatHang.getT11()}, ${xuatHang.getT12()}]
       }
     ]
   };
