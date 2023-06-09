@@ -45,6 +45,7 @@ public class ReportManagementController extends HttpServlet {
         request.setAttribute("listSanPhamBanChay",sanPhamBanChay);
         request.setAttribute("listTongDonHang",listDonHang);
         request.setAttribute("listSanPhamHetHang",sanPhamDaHetHang);
+       
         // title dung de active aside
         request.setAttribute("title", "Báo Cáo Doanh Thu");
         request.getRequestDispatcher("views/admin_root/report-management.jsp").forward(request, response);
