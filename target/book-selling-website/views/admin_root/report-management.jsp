@@ -234,7 +234,7 @@
       pointStrokeColor: "#fff",
       pointHighlightFill: "#fff",
       pointHighlightStroke: "green",
-      data: [20, 59, 90, 51, 56, 100, 40, 60, 78, 53, 33, 81]
+      data: [${namMoi}, 59, 90, 51, 56, 100, 40, 60, 78, 53, 33, 81]
     },
       {
         label: "Dữ liệu kế tiếp",
