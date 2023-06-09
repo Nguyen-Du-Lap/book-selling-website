@@ -43,4 +43,8 @@ public class CustomerService implements ICustomerService {
     public CustomerModel findByUsername(String email) {
         return customerDAO.findByUsername(email);
     }
+
+    public List<CustomerModel> getAllUserAdmin() {
+        return customerDAO.getAllUserAdmin();
+    }
 }
