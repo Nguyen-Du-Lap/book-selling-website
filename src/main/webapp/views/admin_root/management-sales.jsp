@@ -93,17 +93,18 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <c:forEach items="${listVoucher}" var="voucher">
                             <tr>
                                 <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                                <td>1</td>
-                                <td>Giảm giá 50K cho khach hang moi</td>
-                                <td>1000</td>
-                                <td>50000</td>
-                                <td>Khách hàng mới hoặc đơn hàng đầu tiên</td>
-                                <td><span class="badge bg-success">${product.status}</span></td>
+                                <td>${voucher.id_discount}</td>
+                                <td>${voucher.name}</td>
+                                <td>${voucher.quantity}</td>
+                                <td>${voucher.percent_discount}</td>
+                                <td>${voucher.diktat}</td>
+                                <td>${voucher.status}</td>
                                 <td>
                                     <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
-                                            onclick="deleteProduct(${product.id})"><i class="fas fa-trash-alt"></i>
+                                            onclick="deleteProduct(${voucher.id_discount})"><i class="fas fa-trash-alt"></i>
                                     </button>
 
                                     <button id="id_edit" class="btn btn-primary btn-sm edit" type="button" title="Sửa">
@@ -112,7 +113,7 @@
 
                                 </td>
                             </tr>
-
+                        </c:forEach>
                         </tbody>
                     </table>
                 </div>
