@@ -105,7 +105,7 @@
                                         <td>${BILLDETAIL.ship_time}</td>
                                     </tr>
                                     <tr>
-                                        <td>Ngày giao đến:</td>
+                                        <td>Ngày dự kiến giao đến:</td>
                                         <td>${BILLDETAIL.getShip_time_predict()}</td>
                                     </tr>
                                     <tr>
