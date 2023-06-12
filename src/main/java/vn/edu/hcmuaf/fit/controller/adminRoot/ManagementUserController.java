@@ -18,7 +18,6 @@ public class ManagementUserController extends HttpServlet {
         // title dung de active aside
         CustomerDAO dao = new CustomerDAO();
         List<CustomerModel> users = dao.getAllUserAdmin();
-        System.out.println(users.size());
         request.setAttribute("title", "Danh Sách Nhân Viên");
         request.setAttribute("listStaff", users);
         request.getRequestDispatcher("/views/admin_root/management-user.jsp").forward(request, response);
