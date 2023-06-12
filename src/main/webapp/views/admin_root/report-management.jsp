@@ -1,4 +1,6 @@
+<%@ include file="/common/taglib.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="C" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,7 +45,7 @@
       <div class="widget-small info coloured-icon"><i class='icon bx bxs-purchase-tag-alt fa-3x' ></i>
         <div class="info">
           <h4>Tổng sản phẩm</h4>
-          <p><b>8580 sản phẩm</b></p>
+          <p><b>${tongSanPham}</b></p>
         </div>
       </div>
     </div>
@@ -51,7 +53,7 @@
       <div class="widget-small warning coloured-icon"><i class='icon fa-3x bx bxs-shopping-bag-alt'></i>
         <div class="info">
           <h4>Tổng đơn hàng</h4>
-          <p><b>457 đơn hàng</b></p>
+          <p><b>${tongDonHang}</b></p>
         </div>
       </div>
     </div>
@@ -61,7 +63,7 @@
       <div class="widget-small primary coloured-icon"><i class='icon fa-3x bx bxs-chart' ></i>
         <div class="info">
           <h4>Tổng thu nhập</h4>
-          <p><b>104.890.000 đ</b></p>
+          <p><b>${tongThuNhap} đ</b></p>
         </div>
       </div>
     </div>
@@ -69,7 +71,7 @@
       <div class="widget-small info coloured-icon"><i class='icon fa-3x bx bxs-user-badge' ></i>
         <div class="info">
           <h4>Khách hàng mới</h4>
-          <p><b>3 khách hàng</b></p>
+          <p><b>${khachHangMoi} khách hàng</b></p>
         </div>
       </div>
     </div>
@@ -77,7 +79,7 @@
       <div class="widget-small warning coloured-icon"><i class='icon fa-3x bx bxs-tag-x' ></i>
         <div class="info">
           <h4>Hết hàng</h4>
-          <p><b>1 sản phẩm</b></p>
+          <p><b>${sanPhamHetHang} sản phẩm</b></p>
         </div>
       </div>
     </div>
@@ -85,7 +87,7 @@
       <div class="widget-small danger coloured-icon"><i class='icon fa-3x bx bxs-receipt' ></i>
         <div class="info">
           <h4>Đơn hàng hủy</h4>
-          <p><b>2 đơn hàng</b></p>
+          <p><b>${donHangDaHuy} đơn hàng</b></p>
         </div>
       </div>
     </div>
@@ -107,36 +109,16 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-              <td>8936071672704</td>
-              <td>Tôi vẽ - Phương pháp tự học vẽ truyện tranh</td>
-              <td>80.000 đ</td>
-              <td>Sách tâm lý - kỹ năng sống</td>
-            </tr>
-            <tr>
-              <td>8936203360776</td>
-              <td>Việt Nam sử lược (ấn bản kỉ niệm 100 năm xuất bản lần đầu)</td>
-              <td>360.000 đ</td>
-              <td>Lịch sử - địa lý - tôn giáo</td>
-            </tr>
-            <tr>
-              <td>8938535959000</td>
-              <td>Storytelling with data - Kể chuyện thông qua dữ liệu</td>
-              <td>271.150 đ</td>
-              <td>Khoa học kỹ thuật</td>
-            </tr>
-            <tr>
-              <td>8936170870049</td>
-              <td>Digital Marketing - Từ chiến lược đến thực thi</td>
-              <td>198.000 đ</td>
-              <td>Sách Kinh tế</td>
-            </tr>
-            <tr>
-              <td>9786043654868</td>
-              <td>Can Trường Bước Tiếp (Tái bản 2021)</td>
-              <td>80.100 đ</td>
-              <td>Sách văn học trong nước</td>
-            </tr>
+            <C:forEach var="book" items="${listSanPhamBanChay}">
+              <tr>
+                <td>${book.getIdBook()}</td>
+                <td>${book.getName()}</td>
+                <td>${book.getPrice()} đ</td>
+                <td>${book.getCatalog()}</td>
+              </tr>
+            </C:forEach>
+
+
             </tbody>
           </table>
         </div>
@@ -155,58 +137,21 @@
             <tr>
               <th>ID đơn hàng</th>
               <th>Khách hàng</th>
-              <th>Đơn hàng</th>
-              <th>Số lượng</th>
+              <th>Thời gian đặt hàng</th>
+              <th>Tiền giao hàng</th>
               <th>Tổng tiền</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-              <td>MD0837</td>
-              <td>Triệu Thanh Phú</td>
-              <td>Tôi vẽ - Phương pháp tự học vẽ truyện tranh, Storytelling with data - Kể chuyện thông qua dữ liệu</td>
-              <td>2 sản phẩm</td>
-              <td>360.000 đ</td>
-            </tr>
-            <tr>
-              <td>MĐ8265</td>
-              <td>Nguyễn Thị Ngọc Cẩm</td>
-              <td>25++ Hoạt Động Rèn Luyện Trí Sáng Tạo Và Tư Duy Cho Trẻ (Cuốn Lẻ Và Combo)</td>
-              <td>1 sản phẩm</td>
-              <td>80.000 đ</td>
-            </tr>
-            <tr>
-              <td>MT9835</td>
-              <td>Đặng Hoàng Phúc</td>
-              <td>Án mạng mười một chữ, Ấn ức trắng, 81 án Tây Du - Tây Vực Liệt Vương ký - tập 3</td>
-              <td>3 sản phẩm</td>
-              <td>650.000 đ</td>
-            </tr>
-            <tr>
-              <td>ER3835</td>
-              <td>Nguyễn Thị Mỹ Yến</td>
-              <td>Khỏi bệnh không cần thuốc</td>
-              <td>1 sản phẩm</td>
-              <td>190.000 đ</td>
-            </tr>
-            <tr>
-              <td>AL3947</td>
-              <td>Phạm Thị Ngọc</td>
-              <td>Infographics - Bách khoa tri thức bằng đồ họa cho trẻ em, Vườn ươm trí tuệ (Bộ 4 cuốn)</td>
-              <td>2 sản phẩm</td>
-              <td>170.000 đ</td>
-            </tr>
-            <tr>
-              <td>QY8723</td>
-              <td>Ngô Thái An</td>
-              <td>Hãy nhắm mắt khi anh đến</td>
-              <td>1 sản phẩm</td>
-              <td>500.000 đ</td>
-            </tr>
-            <tr>
-              <th colspan="4">Tổng cộng:</th>
-              <td>1.950.000 đ</td>
-            </tr>
+            <C:forEach var="cart" items="${listTongDonHang}">
+              <tr>
+                <td>${cart.id}</td>
+                <td>${cart.idUser}</td>
+                <td>${cart.createTime} đ</td>
+                <td>${cart.ship}</td>
+                <td>${cart.getTotalPriceFromCart()}</td>
+              </tr>
+            </C:forEach>
             </tbody>
           </table>
         </div>
@@ -225,23 +170,21 @@
             <tr>
               <th>Mã sản phẩm</th>
               <th>Tên sản phẩm</th>
-              <th>Ảnh</th>
-              <th>Số lượng</th>
               <th>Tình trạng</th>
               <th>Giá tiền</th>
               <th>Danh mục</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-              <td>8934974181200</td>
-              <td>Xa Ngoài Kia Nơi Loài Tôm Hát - Where The Crawdads Sing (Bìa Phim)</td>
-              <td><img src="/img-sanpham/tu.jpg" alt="" width="100px;"></td>
-              <td>0</td>
-              <td><span class="badge bg-danger">Hết hàng</span></td>
-              <td>148.500 đ</td>
-              <td>Sách văn học nước ngoài</td>
-            </tr>
+            <C:forEach var="book" items="${listSanPhamHetHang}">
+              <tr>
+                <td>${book.getIdBook()}</td>
+                <td>${book.getName()}</td>
+                <td>Hết hàng</td>
+                <td>${book.getPrice()} đ</td>
+                <td>${book.getCatalog()}</td>
+              </tr>
+            </C:forEach>
             </tbody>
           </table>
         </div>
@@ -284,24 +227,26 @@
   var data = {
     labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"],
     datasets: [{
-      label: "Dữ liệu đầu tiên",
+      label: "Số tiền chi tiêu",
       fillColor: "rgba(255, 255, 255, 0.158)",
       strokeColor: "black",
       pointColor: "rgb(220, 64, 59)",
       pointStrokeColor: "#fff",
       pointHighlightFill: "#fff",
       pointHighlightStroke: "green",
-      data: [20, 59, 90, 51, 56, 100, 40, 60, 78, 53, 33, 81]
+      data: [${nhapHang.getT1()}, ${nhapHang.getT2()}, ${nhapHang.getT3()}, ${nhapHang.getT4()}, ${nhapHang.getT5()}, ${nhapHang.getT6()}, ${nhapHang.getT7()},
+        ${nhapHang.getT8()}, ${nhapHang.getT9()}, ${nhapHang.getT10()}, ${nhapHang.getT11()}, ${nhapHang.getT12()}]
     },
       {
-        label: "Dữ liệu kế tiếp",
+        label: "Số tiền bán ra",
         fillColor: "rgba(255, 255, 255, 0.158)",
         strokeColor: "rgb(220, 64, 59)",
         pointColor: "black",
         pointStrokeColor: "#fff",
         pointHighlightFill: "#fff",
         pointHighlightStroke: "green",
-        data: [48, 48, 49, 39, 86, 10, 50, 70, 60, 70, 75, 90]
+        data: [${xuatHang.getT1()}, ${xuatHang.getT2()}, ${xuatHang.getT3()}, ${xuatHang.getT4()}, ${xuatHang.getT5()}, ${xuatHang.getT6()}, ${xuatHang.getT7()},
+          ${xuatHang.getT8()}, ${xuatHang.getT9()}, ${xuatHang.getT10()}, ${xuatHang.getT11()}, ${xuatHang.getT12()}]
       }
     ]
   };

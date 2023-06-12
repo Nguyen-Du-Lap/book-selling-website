@@ -16,6 +16,8 @@ public class BookModel  extends AbstractModel<BookModel> {
     private String image;
     private String idCP;
     private String idP;
+    private int quantity;
+    private String catalog;
 
     public BookModel() {
     }
@@ -30,6 +32,14 @@ public class BookModel  extends AbstractModel<BookModel> {
         this.quantityStart = quantityStart;
         this.quantityComment = quantityComment;
         this.image = image;
+    }
+
+    public String getCatalog() {
+        return catalog;
+    }
+
+    public void setCatalog(String catalog) {
+        this.catalog = catalog;
     }
 
     public int getIdBook() {
@@ -117,6 +127,14 @@ public class BookModel  extends AbstractModel<BookModel> {
 
     public void setIdP(String idP) {
         this.idP = idP;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     @Override

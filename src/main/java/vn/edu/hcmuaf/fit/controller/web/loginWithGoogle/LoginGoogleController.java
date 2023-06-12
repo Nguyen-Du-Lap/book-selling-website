@@ -46,7 +46,7 @@ public class LoginGoogleController extends HttpServlet {
                 response.sendRedirect(request.getContextPath() + "/home");
 //                        req.getRequestDispatcher("/views/web/home.jsp").forward(req, resp);
             } else if (customer.getRole().equalsIgnoreCase("admin")) {
-                response.sendRedirect(request.getContextPath() + "/admin-root-management-user");
+                response.sendRedirect(request.getContextPath() + "/admin-root-home");
             } else if (customer.getRole().equalsIgnoreCase("mod")) {
                 response.sendRedirect(request.getContextPath() + "/admin-home");
             }
