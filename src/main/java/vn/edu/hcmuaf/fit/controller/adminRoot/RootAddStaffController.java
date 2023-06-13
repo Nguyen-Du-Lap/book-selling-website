@@ -20,6 +20,15 @@ public class RootAddStaffController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
+        String message = request.getParameter("message");
+        String alert = request.getParameter("alert");
+        if( message != null && alert != null) {
+            request.setAttribute("message", message);
+            request.setAttribute("alert", alert);
+        }
         request.getRequestDispatcher("/views/admin_root/form-add-staff.jsp").forward(request, response);
     }
 

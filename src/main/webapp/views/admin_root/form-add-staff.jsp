@@ -29,8 +29,8 @@
 <body class="app sidebar-mini rtl">
 
 <!-- Navbar-->
-<%@include file="/common/admin/header.jsp" %>
-<%@include file="/common/admin/aside.jsp" %>
+<%@include file="/common/admin_root/header.jsp"%>
+<%@include file="/common/admin_root/aside.jsp"%>>
 <main class="app-content">
     <div class="app-title">
         <ul class="app-breadcrumb breadcrumb">
@@ -53,6 +53,7 @@
                     </div>
 
                     <form action="/admin-root-add-staff" method="post" class="row">
+
                         <div class="form-group col-md-3">
                             <label class="control-label">Họ</label>
                             <input name="nameLast" class="form-control" type="text">
