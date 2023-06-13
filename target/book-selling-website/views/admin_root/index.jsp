@@ -261,18 +261,8 @@
                 pointStrokeColor: "rgb(255, 212, 59)",
                 pointHighlightFill: "rgb(255, 212, 59)",
                 pointHighlightStroke: "rgb(255, 212, 59)",
-                data: [20, 59, 90, 51, 56, 100]
-            },
-                {
-                    label: "Dữ liệu kế tiếp",
-                    fillColor: "rgba(9, 109, 239, 0.651)  ",
-                    pointColor: "rgb(9, 109, 239)",
-                    strokeColor: "rgb(9, 109, 239)",
-                    pointStrokeColor: "rgb(9, 109, 239)",
-                    pointHighlightFill: "rgb(9, 109, 239)",
-                    pointHighlightStroke: "rgb(9, 109, 239)",
-                    data: [48, 48, 49, 39, 86, 10]
-                }
+                data: [${thongKe.getT1()}, ${thongKe.getT2()}, ${thongKe.getT3()}, ${thongKe.getT4()}, ${thongKe.getT5()}, ${thongKe.getT6()}]
+            }
             ]
         };
         var ctxl = $("#lineChartDemo").get(0).getContext("2d");

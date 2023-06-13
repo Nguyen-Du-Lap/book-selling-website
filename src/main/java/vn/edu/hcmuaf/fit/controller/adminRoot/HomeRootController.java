@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.fit.controller.adminRoot;
 
+import vn.edu.hcmuaf.fit.dao.impl.ThongKeDao;
 import vn.edu.hcmuaf.fit.filter.MaintenanceFilter;
 import vn.edu.hcmuaf.fit.services.IBillService;
 import vn.edu.hcmuaf.fit.services.ICustomerService;
@@ -25,6 +26,7 @@ public class HomeRootController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // title dung de active aside
         req.setAttribute("title", "Bảng điều khiển");
+        req.setAttribute("thongKe", new ThongKeDao().thuNhapTrong6Thang());
         req.setAttribute("totalCustomer", iCustomerService.totalCustomer());
         req.setAttribute("totalProduct", iProductService.totalProduct());
         req.setAttribute("totalBill", iBillService.totalBill());
