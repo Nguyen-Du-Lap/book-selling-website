@@ -29,8 +29,8 @@
 <body class="app sidebar-mini rtl">
 
 <!-- Navbar-->
-<%@include file="/common/admin/header.jsp" %>
-<%@include file="/common/admin/aside.jsp" %>
+<%@include file="/common/admin_root/header.jsp" %>
+<%@include file="/common/admin_root/aside.jsp" %>
 <main class="app-content">
     <div class="app-title">
         <ul class="app-breadcrumb breadcrumb">
@@ -76,7 +76,7 @@
                         </div>
                         <div class="form-group col-md-3">
                             <label class="control-label">Địa chỉ</label>
-                            <input name="addess" class="form-control"  type="text">
+                            <input name="address" class="form-control"  type="text">
                         </div>
                         <div class="form-group col-md-9">
                             <button class="btn btn-save" type="submit">Lưu lại</button>

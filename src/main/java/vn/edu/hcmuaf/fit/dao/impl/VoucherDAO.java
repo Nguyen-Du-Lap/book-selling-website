@@ -3,6 +3,7 @@ package vn.edu.hcmuaf.fit.dao.impl;
 import vn.edu.hcmuaf.fit.dao.IVoucherDAO;
 import vn.edu.hcmuaf.fit.db.JDBCConnector;
 import vn.edu.hcmuaf.fit.model.SlidePrModel;
+import vn.edu.hcmuaf.fit.model.VoucherManagementModel;
 import vn.edu.hcmuaf.fit.model.VoucherModel;
 
 import java.sql.Connection;
@@ -18,7 +19,7 @@ public class VoucherDAO implements IVoucherDAO {
         List<VoucherModel> results = new ArrayList<>();
         String sql = "SELECT discount.id_discount, discount.name, discount.diktat\n" +
                 "FROM discount \n" +
-                "WHERE discount.id_discount NOT IN \n" +
+                "WHERE discount.`status` = 1 AND discount.id_discount NOT IN \n" +
                 "(SELECT discount_customer.id_discount FROM discount_customer WHERE discount_customer.id_user = ?)";
         Connection connection = JDBCConnector.getConnection();
         PreparedStatement statement = null;
@@ -126,5 +127,42 @@ public class VoucherDAO implements IVoucherDAO {
                 }
             }
         }
+    }
+
+    public List<VoucherManagementModel> findAllVoucher() {
+        List<VoucherManagementModel> results = new ArrayList<>();
+        String sql = "SELECT * FROM discount";
+        Connection connection = JDBCConnector.getConnection();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        if(connection != null) {
+            try {
+                statement = connection.prepareStatement(sql);
+                resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    VoucherManagementModel voucherModel = new VoucherManagementModel();
+                    voucherModel.setId_discount(resultSet.getInt(1));
+                    voucherModel.setName(resultSet.getString(2));
+                    voucherModel.setQuantity(resultSet.getInt(3));
+                    voucherModel.setPercent_discount(resultSet.getInt(4));
+                    voucherModel.setDiktat(resultSet.getString(5));
+                    voucherModel.setStatus(resultSet.getInt(6));
+                    voucherModel.setPrice_minimum(resultSet.getInt(7));
+                    results.add(voucherModel);
+                }
+                return results;
+            } catch (SQLException e) {
+                return null;
+            } finally {
+                try {
+                    if(connection != null) connection.close();
+                    if(statement != null) statement.close();
+                    if(resultSet != null) resultSet.close();
+                } catch (SQLException e) {
+                    return null;
+                }
+            }
+        }
+        return null;
     }
 }

@@ -334,10 +334,10 @@
             })
                 .then((willDelete) => {
                     if (willDelete) {
-                        window.location.href = '/admin-root-enable-maintenance'
                         swal("Bật thành công!", {
                             icon: "success",
                         });
+                        window.location.href = '/admin-root-enable-maintenance'
                     } else {
                         swal("Đã hủy yêu cầu!");
                     }
@@ -353,10 +353,10 @@
             })
                 .then((willDelete) => {
                     if (willDelete) {
-                        window.location.href = '/admin-root-enable-maintenance'
                         swal("Thành công!", {
                             icon: "success",
                         });
+                        window.location.href = '/admin-root-enable-maintenance'
                     } else {
                         swal("Đã hủy yêu cầu!");
                     }
