@@ -381,4 +381,40 @@ public class CartDao {
         }
         return 0;
     }
+    public double chiPhiDonHang(int idCart) {
+        double  result = 0.0;
+
+        String sql = "SELECT SUM(b.prime_cost)\n" +
+                "FROM book b JOIN bill c\n" +
+                "ON b.id_book = c.id_book\n" +
+                "WHERE c.idCart = ?\n" +
+                "GROUP BY c.idCart";
+        Connection connection = JDBCConnector.getConnection();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        if(connection != null) {
+            try {
+                statement = connection.prepareStatement(sql);
+                statement.setInt(1, idCart);
+                resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                   result = resultSet.getDouble(1);
+                }
+
+                return result;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return result;
+            } finally {
+                try {
+                    if(connection != null) connection.close();
+                    if(statement != null) statement.close();
+                    if(resultSet != null) resultSet.close();
+                } catch (SQLException e) {
+                    return 0.0;
+                }
+            }
+        }
+        return 0.0;
+    }
 }
