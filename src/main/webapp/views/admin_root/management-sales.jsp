@@ -1,12 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <title>Danh sách sản phẩm | Quản trị Admin</title>
-    <meta charset="UTF-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách khuyến mãi | Quản lý khuyến mãi</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Main CSS-->
     <link rel="stylesheet" type="text/css" href="/templates/admin/doc/css/main.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
@@ -20,20 +21,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 
 <body onload="time()" class="app sidebar-mini rtl">
 <!-- Navbar-->
-<%@include file="/common/admin/header.jsp"%>
-<%@include file="/common/admin/aside.jsp"%>
+<%@include file="/common/admin_root/header.jsp"%>
+<%@include file="/common/admin_root/aside.jsp"%>
 <main class="app-content">
     <div class="app-title">
         <ul class="app-breadcrumb breadcrumb side">
-            <li class="breadcrumb-item active"><a href="#"><b>Danh sách sản phẩm</b></a></li>
+            <li class="breadcrumb-item active"><a href="#"><b>Danh sách khuyến mãi</b></a></li>
 
         </ul>
         <div id="clock"></div>
+
     </div>
     <div class="row">
         <div class="col-md-12">
@@ -41,11 +42,34 @@
                 <div class="tile-body">
                     <div class="row element-button">
                         <div class="col-sm-2">
+
+                            <a class="btn btn-add btn-sm" href="/admin-add-san-pham" title="Thêm"><i class="fas fa-plus"></i>
+                                Tạo mới khuyến mãi</a>
+                        </div>
+                        <div class="col-sm-2">
+                            <a class="btn btn-delete btn-sm nhap-tu-file" type="button" title="Nhập" onclick="myFunction(this)"><i
+                                    class="fas fa-file-upload"></i> Tải từ file</a>
+                        </div>
+
+                        <div class="col-sm-2">
+                            <a class="btn btn-delete btn-sm print-file" type="button" title="In" onclick="myApp.printTable()"><i
+                                    class="fas fa-print"></i> In dữ liệu</a>
+                        </div>
+                        <div class="col-sm-2">
+                            <a class="btn btn-delete btn-sm print-file js-textareacopybtn" type="button" title="Sao chép"><i
+                                    class="fas fa-copy"></i> Sao chép</a>
+                        </div>
+
+                        <div class="col-sm-2">
                             <a class="btn btn-excel btn-sm" href="" title="In"><i class="fas fa-file-excel"></i> Xuất Excel</a>
                         </div>
                         <div class="col-sm-2">
-                            <a href="/exportFIlePDFOrder?id=${BILLDETAIL.idCart}" class="btn btn-delete btn-sm pdf-file" type="button" title="In"><i
+                            <a class="btn btn-delete btn-sm pdf-file" type="button" title="In" onclick="myFunction(this)"><i
                                     class="fas fa-file-pdf"></i> Xuất PDF</a>
+                        </div>
+                        <div class="col-sm-2">
+                            <a class="btn btn-delete btn-sm" type="button" title="Xóa" onclick="myFunction(this)"><i
+                                    class="fas fa-trash-alt"></i> Xóa tất cả </a>
                         </div>
                         <div class="col-sm-6">
                             <c:if test="${not empty message}">
@@ -55,123 +79,43 @@
                             </c:if>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div class="tile">
-                <div class="tile-body">
-                    <div class="container" style="min-height: 600px">
-                        <h1 class="text-center my-4">Chi tiết đơn hàng</h1>
-                        <c:if test="${not empty message}">
-                            <div class="alert alert-${alert}" role="alert">
-                                    ${message}
-                            </div>
-                        </c:if>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h2>Thông tin khách hàng</h2>
-                                <table class="table">
-                                    <tbody>
-                                    <tr>
-                                        <td>Tên khách hàng:</td>
-                                        <td>${CUSTOMER.firstName} ${CUSTOMER.lastName}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Địa chỉ:</td>
-                                        <td>${BILLDETAIL.address}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Số điện thoại:</td>
-                                        <td>${CUSTOMER.phone}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Email:</td>
-                                        <td>${CUSTOMER.email}</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="col-md-6">
-                                <h2>Thông tin đơn hàng</h2>
-                                <table class="table">
-                                    <tbody>
-                                    <tr>
-                                        <td>Mã đơn hàng:</td>
-                                        <td>${BILLDETAIL.idCart}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ngày đặt hàng:</td>
-                                        <td>${BILLDETAIL.ship_time}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ngày dự kiến giao đến:</td>
-                                        <td>${BILLDETAIL.getShip_time_predict()}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Đóng gói:</td>
-                                        <td>${BILLDETAIL.pack}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Phương thức thanh toán:</td>
-                                        <td>${BILLDETAIL.paymentMethod}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ghi chú:</td>
-                                        <td>${BILLDETAIL.info}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Tổng giá trị:</td>
-                                        <td>${BILLDETAIL.totalPrice} VNĐ
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Tình trạng:</td>
-                                        <td>${BILLDETAIL.shippingInfo}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Đăng kí giao hàng:</td>
-                                        <c:if test="${BILLDETAIL.shippingInfo == 'Chờ xử lý'}">
-                                            <td><button type="button" class="btn btn-danger">
-                                                <a style="color: #FFFFFF" href="/admin-register-order?id=${BILLDETAIL.idCart}&variable=${CUSTOMER.idUser}">Đăng kí đơn hàng</a>
-                                            </button></td>
-                                        </c:if>
-                                        <c:if test="${BILLDETAIL.shippingInfo != 'Chờ xử lý'}">
-                                            <td>Đã đăng kí vận chuyển</td>
-                                        </c:if>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h2>Danh sách sản phẩm</h2>
-                                <table class="table">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">Mã đơn hàng</th>
-                                        <th scope="col">Tên sản phẩm</th>
-                                        <th scope="col">Ảnh</th>
-                                        <th scope="col">Số lượng</th>
-                                        <th scope="col">Tổng tiền</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <c:forEach var="BILL" items="${LISTBILL}">
-                                        <tr>
-                                            <th scope="1">${BILL.idOrder}</th>
-                                            <td>${BILL.name}</td>
-                                            <td><img style="height: 50px" src="${BILL.image}"></td>
-                                            <td>${BILL.quantity}</td>
-                                            <td>${BILL.totalPrice}</td>
-                                        </tr>
-                                    </c:forEach>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+                    <table class="table table-hover table-bordered" id="sampleTable">
+                        <thead>
+                        <tr>
+                            <th width="10"><input type="checkbox" id="all"></th>
+                            <th>Mã giảm giá</th>
+                            <th>Tên giảm giá</th>
+                            <th>Số lượng</th>
+                            <th>Tiền giảm</th>
+                            <th>Nội dung</th>
+                            <th>Trạng thái</th>
+                            <th>Chức năng</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach items="${listVoucher}" var="voucher">
+                            <tr>
+                                <td width="10"><input type="checkbox" name="check1" value="1"></td>
+                                <td>${voucher.id_discount}</td>
+                                <td>${voucher.name}</td>
+                                <td>${voucher.quantity}</td>
+                                <td>${voucher.percent_discount}</td>
+                                <td>${voucher.diktat}</td>
+                                <td>${voucher.status}</td>
+                                <td>
+                                    <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
+                                            onclick="deleteProduct(${voucher.id_discount})"><i class="fas fa-trash-alt"></i>
+                                    </button>
+
+                                    <button id="id_edit" class="btn btn-primary btn-sm edit" type="button" title="Sửa">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+
+                                </td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -193,11 +137,11 @@
                 </div>
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <label class="control-label">Mã sản phẩm </label>
+                        <label class="control-label">Mã giảm giá</label>
                         <input class="form-control" type="number" value="8936071672704">
                     </div>
                     <div class="form-group col-md-6">
-                        <label class="control-label">Tên sản phẩm</label>
+                        <label class="control-label">Tên giảm giá</label>
                         <input class="form-control" type="text" required value="Tôi vẽ - Phương pháp tự học vẽ truyện tranh">
                     </div>
                     <div class="form-group  col-md-6">
@@ -304,6 +248,13 @@ MODAL
             return i;
         }
     }
+</script>
+<script>
+    $(document).ready(function() {
+        $('#id_edit').onclick(() => {
+            $('#ModalUP').setAttribute("aria-hidden", "false");
+        })
+    });
 </script>
 </body>
 
