@@ -165,4 +165,31 @@ public class VoucherDAO implements IVoucherDAO {
         }
         return null;
     }
+
+    // function addVoucher have attribute name, quantity, percent_discount, diktat, price_minimum
+    public void addVoucher(String name, int quantity, int percent_discount, String diktat, int price_minimum) {
+        String sql = "INSERT INTO discount (name, quantity, percent_discount, diktat, status, price_minimum) VALUES(?, ?, ?, ?, ?, ?)";
+        Connection connection = JDBCConnector.getConnection();
+        PreparedStatement statement = null;
+        if(connection != null) {
+            try {
+                statement = connection.prepareStatement(sql);
+                statement.setString(1, name);
+                statement.setInt(2, quantity);
+                statement.setInt(3, percent_discount);
+                statement.setString(4, diktat);
+                statement.setInt(5, 1);
+                statement.setInt(6, price_minimum);
+                statement.executeUpdate();
+            } catch (SQLException e) {
+            } finally {
+                try {
+                    if(connection != null) connection.close();
+                    if(statement != null) statement.close();
+                } catch (SQLException e) {
+                }
+            }
+        }
+    }
+
 }
