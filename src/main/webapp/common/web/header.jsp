@@ -128,11 +128,11 @@
                                         List<PublisherCompanyModel> listPublisherCompany = iPublisherCompany.findAll();
                                     %>
                                     <c:forEach var="publisherCompany" items="<%=listPublisherCompany%>">
-                                        <li><a href="/products/publisherCompanys?id=<c:out value ="${publisherCompany.idPc}"/>">
+                                        <li><a href="/products/publisherCompany?id=<c:out value ="${publisherCompany.idPc}"/>">
                                             <p><c:out value ="${publisherCompany.name}"/></p>
                                         </a></li>
                                     </c:forEach>
-                                    <li><a class="type_company-all" href="/products?publisherCompanys?id=0">
+                                    <li><a class="type_company-all" href="/products?publisherCompany?id=0">
                                         <p style="font-width: 600;">Tất cả công ty phát hành</p>
                                     </a></li>
                                 </ul>

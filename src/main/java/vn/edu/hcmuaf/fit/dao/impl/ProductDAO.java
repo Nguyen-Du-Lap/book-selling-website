@@ -450,7 +450,7 @@ public class ProductDAO implements IProductDAO {
         Connection connection = JDBCConnector.getConnection();
         String sql = new String("SELECT b.id_book, b.name, a.name, b.price - b.price * b.discount_price AS giagiam \n" +
                 ", b.price, b.discount_price*100 AS giam, IF(v_rate.`start` is null, 0, v_rate.`start`) AS `start`\n" +
-                ", IF(v_comment.sl_comment is null, 0, v_comment.sl_comment) AS sl_comment\n,b.id_pc,b.id_p" +
+                ", IF(v_comment.sl_comment is null, 0, v_comment.sl_comment) AS sl_comment ,b.id_pc,b.id_p\n" +
                 "FROM book b LEFT JOIN author a ON b.id_author = a.id_author\n" +
                 "LEFT JOIN v_rate ON b.id_book = v_rate.id_book \n" +
                 "LEFT JOIN v_comment ON b.id_book = v_comment.id_book\n" +
