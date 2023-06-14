@@ -1,7 +1,7 @@
 package vn.edu.hcmuaf.fit.controller.adminRoot;
 
 import vn.edu.hcmuaf.fit.dao.impl.CartDao;
-import vn.edu.hcmuaf.fit.dao.impl.ThongKeDao;
+import vn.edu.hcmuaf.fit.dao.impl.StatisticalDao;
 import vn.edu.hcmuaf.fit.model.BookModel;
 import vn.edu.hcmuaf.fit.model.CartModel;
 
@@ -16,7 +16,7 @@ public class ReportManagementController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         CartDao dao = new CartDao();
-        ThongKeDao thongKeDao = new ThongKeDao();
+        StatisticalDao thongKeDao = new StatisticalDao();
         ArrayList<CartModel> listDonHang = new ArrayList<>();
         ArrayList<CartModel> listDonHangDaHuy = new ArrayList<>();
         ArrayList<BookModel> sanPhamBanChay = dao.top5BookBanChay();

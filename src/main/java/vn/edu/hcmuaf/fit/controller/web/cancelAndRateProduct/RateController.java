@@ -15,6 +15,7 @@ import javax.servlet.annotation.*;
 import java.awt.image.ImageProducer;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.net.InetAddress;
 
 
 @WebServlet(name = "rate", value = "/rate")
@@ -42,24 +43,27 @@ public class RateController extends HttpServlet {
         String numberStar =  request.getParameter("numberStar");
         int number = Integer.parseInt(numberStar);
         CustomerModel cus = (CustomerModel) SessionUtil.getInstance().getValue(request, "USERMODEL");
+        InetAddress myIP=InetAddress.getLocalHost();
+        String ip= myIP.getHostAddress();
         if(comment != null && idBill != null && idBook != null) {
             int idBookInt = Integer.parseInt(idBook);
             int idOrderInt = Integer.parseInt(idBill);
             int rate = iBillDAO.rateBook(cus.getIdUser(), idBookInt, idOrderInt, number, comment);
+            String message;
+            String messageType;
             if(rate >=1) {
-                String message = "Đánh giá thành công";
-                String messageType = "success";
-                request.getSession().setAttribute("message", message);
-                request.getSession().setAttribute("alert", messageType);
-                response.sendRedirect("account?action=reviewOrders");
+                Log log = new Log(Log.INFO,ip,"Đánh giá sản phẩm",cus.getIdUser(),"Đánh giá sản phẩm: "+ idBook,1);
+                log.insert();
+                message = "Đánh giá thành công";
+                messageType = "success";
 
             }else {
-                String message = "Đánh giá thất bại";
-                String messageType = "danger";
-                request.getSession().setAttribute("message", message);
-                request.getSession().setAttribute("alert", messageType);
-                response.sendRedirect("account?action=reviewOrders");
+                message = "Đánh giá thất bại";
+                messageType = "danger";
             }
+            request.getSession().setAttribute("message", message);
+            request.getSession().setAttribute("alert", messageType);
+            response.sendRedirect("account?action=reviewOrders");
         }
 
 

@@ -85,13 +85,14 @@
               </c:if>
               <c:if test="${contact.status == 0}">
                 <td><span class="badge bg-danger">Chưa đọc</span></td>
-              </c:if>
-              <td>
-                <a href="/findContact?id=${contact.id}">
-                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"
-                       ><i class="fas fa-edit"></i></button></a>
+                <td>
+                  <a href="/findContact?id=${contact.id}">
+                    <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"
+                    ><i class="fas fa-edit"></i></button></a>
 
-              </td>
+                </td>
+              </c:if>
+
             </tr>
             </c:forEach>
             </tbody>
