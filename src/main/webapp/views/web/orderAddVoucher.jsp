@@ -99,10 +99,6 @@
               <div class="ml" id="sum_price"> ${sessionScope.cartOrder.totalPrice} đ</div>
             </div>
             <div class="wrap mt">
-              <span class="sum_transport">Phí vận chuyển:</span>
-              <div class="ml" id="sum_transport"> ${sessionScope.cartOrder.ship} đ</div>
-            </div>
-            <div class="wrap mt">
               <span class="sum_order">Thanh toán:</span>
               <div class="ml" style="font-weight: 600; color: rgb(217, 11, 11);" id="sum_order"> ${sessionScope.cartOrder.totalPriceShip} đ</div>
             </div>
