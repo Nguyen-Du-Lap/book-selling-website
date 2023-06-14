@@ -30,6 +30,7 @@ public class AccountController extends HttpServlet {
 
             if (action != null) {
                 if (action.equalsIgnoreCase("account")) {
+                    request.setAttribute("cus", cus);
                     request.getRequestDispatcher("/views/web/account.jsp").forward(request, response);
                 } else if (action.equalsIgnoreCase("changePassword")) {
                     request.getRequestDispatcher("/views/web/changePassword.jsp").forward(request, response);
@@ -42,6 +43,7 @@ public class AccountController extends HttpServlet {
                     request.getRequestDispatcher("/views/web/reviewOrders.jsp").forward(request, response);
                 }
             } else {
+                request.setAttribute("cus", cus);
                 request.getRequestDispatcher("/views/web/account.jsp").forward(request, response);
             }
         }

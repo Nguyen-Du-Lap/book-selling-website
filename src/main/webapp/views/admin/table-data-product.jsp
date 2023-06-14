@@ -88,7 +88,6 @@
               <th>Ảnh</th>
               <th>Số lượng</th>
               <th>Tình trạng</th>
-              <th>Giá tiền</th>
               <th>Danh mục</th>
               <th>Chức năng</th>
             </tr>
@@ -102,7 +101,6 @@
                 <td><img src="${product.image}" alt="" width="100px;"></td>
                 <td>${product.quantity}</td>
                 <td><span class="badge bg-success">${product.status}</span></td>
-                <td>${product.price} đ</td>
                 <td>${product.category}</td>
                 <td>
                     <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
