@@ -77,7 +77,7 @@
                             <i class="fa fa-star active" id="disable_4"></i>
                             <i class="fa fa-star active" id="disable_5"></i>
                             <p class="active"  id="text_rate">Xuất sắc</p>
-                            <input name="numberStar" id="numberStar" type="hidden" value="">
+                            <input name="numberStar" id="numberStar" type="hidden" value="5">
                         </div>
 
                         <div class="input">

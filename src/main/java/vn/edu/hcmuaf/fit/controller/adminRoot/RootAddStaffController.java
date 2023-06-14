@@ -20,10 +20,15 @@ public class RootAddStaffController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
         String message = request.getParameter("message");
         String alert = request.getParameter("alert");
-        request.setAttribute("alert", alert);
-        request.setAttribute("message", message);
+        if( message != null && alert != null) {
+            request.setAttribute("message", message);
+            request.setAttribute("alert", alert);
+        }
         request.getRequestDispatcher("/views/admin_root/form-add-staff.jsp").forward(request, response);
     }
 
@@ -37,9 +42,9 @@ public class RootAddStaffController extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String numberPhone = request.getParameter("numberPhone");
-        String address = request.getParameter("address");
+        String addess = request.getParameter("addess");
 
-        if(lastName == null||firstName == null||email == null||password == null||numberPhone == null||address == null|| lastName.isEmpty() ||firstName.isEmpty() ||email.isEmpty() ||password.isEmpty() ||numberPhone.isEmpty() || address.isEmpty()) {
+        if(lastName == null||firstName == null||email == null||password == null||numberPhone == null||addess == null|| lastName.isEmpty() ||firstName.isEmpty() ||email.isEmpty() ||password.isEmpty() ||numberPhone.isEmpty() || addess.isEmpty()) {
             response.sendRedirect("/admin-root-add-staff?message=Them that bai&alert=danger");
         } else {
             if(dao.findByUsername(email) != null) {
@@ -48,7 +53,7 @@ public class RootAddStaffController extends HttpServlet {
                 String pass = MD5Utils.encrypt(password);
                 Log log = new Log(Log.INFO,ip,"Quản lý nhân viên",cus.getIdUser(),"Thêm nhân viên",1);
                 log.insert();
-                dao.signupMod(email,pass,firstName,lastName,numberPhone,address);
+                dao.signupMod(email,pass,firstName,lastName,numberPhone,addess);
                 response.sendRedirect("/admin-root-add-staff?message=Them thanh cong&alert=success");
             }
         }

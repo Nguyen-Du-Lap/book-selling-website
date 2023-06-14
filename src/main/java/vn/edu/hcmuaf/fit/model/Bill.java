@@ -1,10 +1,14 @@
 package vn.edu.hcmuaf.fit.model;
 
+import vn.edu.hcmuaf.fit.dao.impl.BillDAO;
+import vn.edu.hcmuaf.fit.dao.impl.CartDao;
+
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class Bill {
     private int idOrder;
@@ -259,5 +263,21 @@ public class Bill {
             case 4: return "Đã hủy";
             default: return "error";
         }
+    }
+    public static void main(String[] args) {
+        CartDao cartDao = new CartDao();
+        ArrayList<CartModel> listModel = cartDao.getAllCartByIdUser(40);
+        for(int i =0 ;i < listModel.size();i++) {
+            listModel.get(i).setBills(new BillDAO().findAllBillByIdCart( listModel.get(i).getId()));
+
+        }
+        System.out.println(listModel.size());
+        ArrayList<CartModel> dangChoList = new ArrayList<>();
+        for (int i =0;i<listModel.size();i++) {
+            if(listModel.get(i).getInShip() == 1) {
+                dangChoList.add(listModel.get(i));
+            }
+        }
+        System.out.println(dangChoList.get(1).getIdUser());
     }
 }

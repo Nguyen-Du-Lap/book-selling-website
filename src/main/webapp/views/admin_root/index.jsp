@@ -135,29 +135,29 @@
                                 <thead>
                                 <tr>
                                     <th>ID đơn hàng</th>
-                                    <th>Tên khách hàng</th>
+                                    <th>Mã khách hàng</th>
                                     <th>Tổng tiền</th>
                                     <th>Trạng thái</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach items="${shippingInfo}" var="shippingInfo">
+                                <c:forEach items="${shippingInfo}" var="cart">
                                     <tr>
-                                        <td>${shippingInfo.idOrder}</td>
-                                        <td>${shippingInfo.fullName}</td>
+                                        <td>${cart.id}</td>
+                                        <td>${cart.idUser}</td>
                                         <td>
-                                                ${shippingInfo.price}đ
+                                                ${cart.getTotalPriceFromCart()}đ
                                         </td>
-                                        <c:if test="${shippingInfo.shippingInfo == 1}">
+                                        <c:if test="${cart.inShip == 1}">
                                         <td><span class="badge bg-info">Chờ xử lý</span></td>
                                         </c:if>
-                                        <c:if test="${shippingInfo.shippingInfo == 2}">
+                                        <c:if test="${cart.inShip == 2}">
                                             <td><span class="badge bg-warning">Đang vận chuyển</span></td>
                                         </c:if>
-                                        <c:if test="${shippingInfo.shippingInfo == 3}">
+                                        <c:if test="${cart.inShip == 3}">
                                             <td><span class="badge bg-success">Đã giao</span></td>
                                         </c:if>
-                                        <c:if test="${shippingInfo.shippingInfo == 4}">
+                                        <c:if test="${cart.inShip == 4}">
                                             <td><span class="badge bg-danger">Đã hủy</span></td>
                                         </c:if>
                                     </tr>
@@ -261,18 +261,8 @@
                 pointStrokeColor: "rgb(255, 212, 59)",
                 pointHighlightFill: "rgb(255, 212, 59)",
                 pointHighlightStroke: "rgb(255, 212, 59)",
-                data: [20, 59, 90, 51, 56, 100]
-            },
-                {
-                    label: "Dữ liệu kế tiếp",
-                    fillColor: "rgba(9, 109, 239, 0.651)  ",
-                    pointColor: "rgb(9, 109, 239)",
-                    strokeColor: "rgb(9, 109, 239)",
-                    pointStrokeColor: "rgb(9, 109, 239)",
-                    pointHighlightFill: "rgb(9, 109, 239)",
-                    pointHighlightStroke: "rgb(9, 109, 239)",
-                    data: [48, 48, 49, 39, 86, 10]
-                }
+                data: [${thongKe.getT1()}, ${thongKe.getT2()}, ${thongKe.getT3()}, ${thongKe.getT4()}, ${thongKe.getT5()}, ${thongKe.getT6()}]
+            }
             ]
         };
         var ctxl = $("#lineChartDemo").get(0).getContext("2d");
