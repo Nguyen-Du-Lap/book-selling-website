@@ -24,7 +24,7 @@ public class ReportManagementController extends HttpServlet {
         double tongThuNhap =0.0;
         for(int i =0 ; i< dao.getAllCart().size();i++) {
             if(dao.getAllCart().get(i).getInShip() == 2 || dao.getAllCart().get(i).getInShip() == 3) {
-                tongThuNhap += dao.getAllCart().get(i).getTotalPriceFromCart();
+                tongThuNhap += dao.getAllCart().get(i).getTotalPriceFromCart()- dao.getAllCart().get(i).getShip() - dao.chiPhiDonHang(dao.getAllCart().get(i).getId());
 
                 listDonHang.add(dao.getAllCart().get(i));
 

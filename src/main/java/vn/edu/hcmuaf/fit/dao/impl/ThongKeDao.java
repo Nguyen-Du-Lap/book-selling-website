@@ -134,4 +134,56 @@ public class ThongKeDao {
         }
         return null;
     }
+
+
+
+    public ThongKeModel thuNhapTrong6Thang() {
+        ThongKeModel result =new ThongKeModel();
+        String sql = "SELECT\n" +
+                "  SUM(CASE WHEN MONTH(c.create_time) = MONTH(DATE_SUB(CURDATE(), INTERVAL 5 MONTH)) THEN c.totalPrice - a.von - c.feeShip ELSE 0 END) AS 'Month 1',\n" +
+                "  SUM(CASE WHEN MONTH(c.create_time) = MONTH(DATE_SUB(CURDATE(), INTERVAL 4 MONTH)) THEN c.totalPrice - a.von - c.feeShip ELSE 0 END) AS 'Month 2',\n" +
+                "  SUM(CASE WHEN MONTH(c.create_time) = MONTH(DATE_SUB(CURDATE(), INTERVAL 3 MONTH)) THEN c.totalPrice - a.von - c.feeShip ELSE 0 END) AS 'Month 3',\n" +
+                "  SUM(CASE WHEN MONTH(c.create_time) = MONTH(DATE_SUB(CURDATE(), INTERVAL 2 MONTH)) THEN c.totalPrice - a.von - c.feeShip ELSE 0 END) AS 'Month 4',\n" +
+                "  SUM(CASE WHEN MONTH(c.create_time) = MONTH(DATE_SUB(CURDATE(), INTERVAL 1 MONTH)) THEN c.totalPrice - a.von - c.feeShip ELSE 0 END) AS 'Month 5',\n" +
+                "  SUM(CASE WHEN MONTH(c.create_time) = MONTH(CURDATE()) THEN c.totalPrice - a.von - c.feeShip ELSE 0 END) AS 'Month 6'\n" +
+                "FROM carts c JOIN (SELECT SUM(b.prime_cost) AS von, c.idCart\n" +
+                "FROM book b JOIN bill c\n" +
+                "ON b.id_book = c.id_book\n" +
+                "GROUP BY c.idCart) a ON c.id = a.idCart\n" +
+                "\n" +
+                "WHERE create_time >= DATE_SUB(CURDATE(), INTERVAL 5 MONTH);";
+        Connection connection = JDBCConnector.getConnection();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        if(connection != null) {
+            try {
+                statement = connection.prepareStatement(sql);
+                resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    result.setT1(resultSet.getDouble(1));
+                    result.setT2(resultSet.getDouble(2));
+                    result.setT3(resultSet.getDouble(3));
+                    result.setT4(resultSet.getDouble(4));
+                    result.setT5(resultSet.getDouble(5));
+                    result.setT6(resultSet.getDouble(6));
+                }
+
+                return result;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return result;
+            } finally {
+                try {
+                    if(connection != null) connection.close();
+                    if(statement != null) statement.close();
+                    if(resultSet != null) resultSet.close();
+                } catch (SQLException e) {
+                    return null;
+                }
+            }
+        }
+        return null;
+    }
+
+
 }

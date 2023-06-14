@@ -150,7 +150,6 @@
                                 <table class="table">
                                     <thead>
                                     <tr>
-                                        <th scope="col">Mã đơn hàng</th>
                                         <th scope="col">Tên sản phẩm</th>
                                         <th scope="col">Ảnh</th>
                                         <th scope="col">Số lượng</th>
@@ -158,13 +157,12 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach var="BILL" items="${LISTBILL}">
+                                    <c:forEach var="item" items="${LISTBILL}">
                                         <tr>
-                                            <th scope="1">${BILL.idOrder}</th>
-                                            <td>${BILL.name}</td>
-                                            <td><img style="height: 50px" src="${BILL.image}"></td>
-                                            <td>${BILL.quantity}</td>
-                                            <td>${BILL.totalPrice}</td>
+                                            <td>${item.nameSach}</td>
+                                            <td><img style="height: 50px" src="${item.image}"></td>
+                                            <td>${item.quantity}</td>
+                                            <td>${item.totalPrice}</td>
                                         </tr>
                                     </c:forEach>
                                     </tbody>

@@ -110,11 +110,12 @@ public class CartDao {
             }
         }
         return null;
+
     }
     public List<CartDetailModel> getAllDetailCart(int id, int idCart) {
         List<CartDetailModel> result = new ArrayList<>();
 
-        String sql = "SELECT b.idCart ,bk.name, b.quantity, imb.image, b.quantity* bk.prime_cost AS tongtien\n" +
+        String sql = "SELECT b.idCart ,bk.name, b.quantity, imb.image, b.quantity* bk.price AS tongtien\n" +
                 "FROM bill b\n" +
                 "JOIN carts e ON b.idCart = e.id\n" +
                 "JOIN book bk ON b.id_book = bk.id_book\n" +
@@ -380,5 +381,108 @@ public class CartDao {
             }
         }
         return 0;
+    }
+    public double chiPhiDonHang(int idCart) {
+        double  result = 0.0;
+
+        String sql = "SELECT SUM(b.prime_cost)\n" +
+                "FROM book b JOIN bill c\n" +
+                "ON b.id_book = c.id_book\n" +
+                "WHERE c.idCart = ?\n" +
+                "GROUP BY c.idCart";
+        Connection connection = JDBCConnector.getConnection();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        if(connection != null) {
+            try {
+                statement = connection.prepareStatement(sql);
+                statement.setInt(1, idCart);
+                resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                   result = resultSet.getDouble(1);
+                }
+
+                return result;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return result;
+            } finally {
+                try {
+                    if(connection != null) connection.close();
+                    if(statement != null) statement.close();
+                    if(resultSet != null) resultSet.close();
+                } catch (SQLException e) {
+                    return 0.0;
+                }
+            }
+        }
+        return 0.0;
+    }
+    public ArrayList<CartModel> getAllCartByIdUser(int idUser) {
+        ArrayList<CartModel> result = new ArrayList<>();
+        String sql = "SELECT id, idUser, timeShip, feeShip, totalPrice, infoShip, create_time\n" +
+                "FROM carts where idUser = ? ";
+        Connection connection = JDBCConnector.getConnection();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        if(connection != null) {
+            try {
+                statement = connection.prepareStatement(sql);
+                statement.setInt(1, idUser);
+                resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    CartModel cartModel = new CartModel();
+                    cartModel.setId(resultSet.getInt(1));
+                    cartModel.setIdUser(resultSet.getInt(2));
+                    cartModel.setTimeShip(resultSet.getString(3));
+                    cartModel.setShip(resultSet.getInt(4));
+                    cartModel.setTotalPrice(resultSet.getDouble(5));
+                    cartModel.setInShip(resultSet.getInt(6));
+                    cartModel.setCreateTime(resultSet.getTimestamp(7));
+                    result.add(cartModel);
+
+                }
+
+                return result;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return result;
+            } finally {
+                try {
+                    if(connection != null) connection.close();
+                    if(statement != null) statement.close();
+                    if(resultSet != null) resultSet.close();
+                } catch (SQLException e) {
+                    return null;
+                }
+            }
+        }
+        return null;
+    }
+    public void updateCart(int id,int infoShip) {
+        Connection connection = JDBCConnector.getConnection();
+        PreparedStatement statement = null;
+
+        if (connection != null) {
+            try {
+                String sql = " update carts set infoShip = ? where id = ?";
+                statement = connection.prepareStatement(sql);
+
+                statement.setInt(1, infoShip);
+                statement.setInt(2, id);
+
+                statement.executeUpdate();
+                System.out.println("CartModel update successfully.");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (connection != null) connection.close();
+                    if (statement != null) statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }
