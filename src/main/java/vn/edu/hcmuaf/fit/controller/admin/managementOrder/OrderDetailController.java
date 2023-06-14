@@ -26,7 +26,7 @@ public class OrderDetailController extends HttpServlet {
         System.out.println(billDAO.find1BillByIdCart(cartModel.getId()).toString());
         request.setAttribute("CUSTOMER", customerDAO.findById(cartModel.getIdUser())) ;
         request.setAttribute("BILLDETAIL", billDAO.find1BillByIdCart(cartModel.getId()));
-        request.setAttribute("LISTBILL", billDAO.findAllBillByIdCart(cartModel.getId()));
+        request.setAttribute("LISTBILL",  cartDao.getAllDetailCart(cartModel.getIdUser(),idInt));
         request.getRequestDispatcher("/views/admin/confirm-order-detail.jsp").forward(request, response);
     }
 

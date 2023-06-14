@@ -115,7 +115,7 @@ public class CartDao {
     public List<CartDetailModel> getAllDetailCart(int id, int idCart) {
         List<CartDetailModel> result = new ArrayList<>();
 
-        String sql = "SELECT b.idCart ,bk.name, b.quantity, imb.image, b.quantity* bk.prime_cost AS tongtien\n" +
+        String sql = "SELECT b.idCart ,bk.name, b.quantity, imb.image, b.quantity* bk.price AS tongtien\n" +
                 "FROM bill b\n" +
                 "JOIN carts e ON b.idCart = e.id\n" +
                 "JOIN book bk ON b.id_book = bk.id_book\n" +
