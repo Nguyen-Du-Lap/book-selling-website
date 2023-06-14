@@ -186,7 +186,7 @@
                     </c:forEach>
                   </td>
                   <td>
-                    <c:forEach var="billD" items="${cartW.getBills()}">
+                    <c:forEach var="billW" items="${cartW.getBills()}">
                       <img style="height: 50px" src="${billW.image}"><br><br>
                     </c:forEach>
                   </td>
@@ -238,7 +238,7 @@
                   <th scope="col">Mã đơn hàng</th>
                   <th scope="col" style="width: 300px">Tên sản phẩm</th>
                   <th scope="col">Ảnh</th>
-                  <th scope="col">Tình trạng</th>
+                  <th scope="col">Đánh giá</th>
                   <th scope="col">Chi tiết</th>
                 </tr>
                 </thead>

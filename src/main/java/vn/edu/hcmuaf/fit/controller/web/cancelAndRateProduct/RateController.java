@@ -6,6 +6,7 @@ import vn.edu.hcmuaf.fit.dao.IProductDAO;
 import vn.edu.hcmuaf.fit.dao.impl.BillDAO;
 import vn.edu.hcmuaf.fit.dao.impl.ProductDAO;
 import vn.edu.hcmuaf.fit.model.CustomerModel;
+import vn.edu.hcmuaf.fit.utils.MessageParameterUntil;
 import vn.edu.hcmuaf.fit.utils.SessionUtil;
 
 import javax.servlet.*;
@@ -38,22 +39,29 @@ public class RateController extends HttpServlet {
         String comment = request.getParameter("comment");
         String idBill = request.getParameter("idBill");
         String idBook = request.getParameter("idBook");
-        String numberStar = request.getParameterValues("numberStar")[0];
+        String numberStar =  request.getParameter("numberStar");
         int number = Integer.parseInt(numberStar);
-        BufferedReader reader = request.getReader();
         CustomerModel cus = (CustomerModel) SessionUtil.getInstance().getValue(request, "USERMODEL");
         if(comment != null && idBill != null && idBook != null) {
             int idBookInt = Integer.parseInt(idBook);
             int idOrderInt = Integer.parseInt(idBill);
             int rate = iBillDAO.rateBook(cus.getIdUser(), idBookInt, idOrderInt, number, comment);
             if(rate >=1) {
-                request.setAttribute("message", "Đánh giá thành công");
-                request.setAttribute("alert", "success");
+                String message = "Đánh giá thành công";
+                String messageType = "success";
+                request.getSession().setAttribute("message", message);
+                request.getSession().setAttribute("alert", messageType);
+                response.sendRedirect("account?action=reviewOrders");
+
             }else {
-                request.setAttribute("message", "Đánh giá thất bại");
-                request.setAttribute("alert", "danger");
+                String message = "Đánh giá thất bại";
+                String messageType = "danger";
+                request.getSession().setAttribute("message", message);
+                request.getSession().setAttribute("alert", messageType);
+                response.sendRedirect("account?action=reviewOrders");
             }
         }
-        request.getRequestDispatcher("views/web/reviewOrders.jsp").forward(request, response);
+
+
     }
 }

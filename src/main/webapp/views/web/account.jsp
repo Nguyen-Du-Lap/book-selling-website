@@ -61,31 +61,31 @@
               <label>
                 <span class="req">*</span>Email của bạn:
               </label>
-              <input name="email" type="text" value="" maxlength="150" id="acc_email">
+              <input name="email" type="text" value="${cus.email}" maxlength="150" id="acc_email">
               <small>error</small>
             </div>
             <div class="input ">
               <label for="acc_fname">
                 <span class="req">*</span>Họ:</label>
-              <input name="fname" type="text" value="" maxlength="150" id="acc_fname">
+              <input name="fname" type="text" value="${cus.lastName}" maxlength="150" id="acc_fname">
               <small>error</small>
             </div>
             <div class="input ">
               <label for="acc_lname">
                 <span class="req">*</span>Tên:</label>
-              <input name="lname" type="text" value="" maxlength="150" id="acc_lname">
+              <input name="lname" type="text" value="${cus.firstName}" maxlength="150" id="acc_lname">
               <small>error</small>
             </div>
             <div class="input ">
               <label for="acc_phoneNumber">
                 <span class="req">*</span>Điện thoại:</label>
-              <input name="phoneNumber" type="tel" id="acc_phoneNumber">
+              <input name="phoneNumber" type="tel" id="acc_phoneNumber" value="${cus.phone}">
               <small>error</small>
             </div>
             <div>
               <label for="acc_address">
                 Địa chỉ:</label>
-              <input name="address" type="text" maxlength="250" id="acc_address">
+              <input name="address" type="text" maxlength="250" id="acc_address" value="${cus.address}">
             </div>
             <div>
               <label>

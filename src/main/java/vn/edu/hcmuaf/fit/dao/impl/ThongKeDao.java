@@ -91,7 +91,7 @@ public class ThongKeDao {
                 "    SELECT 1 AS month UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL SELECT 5 UNION ALL\n" +
                 "    SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9 UNION ALL SELECT 10 UNION ALL SELECT 11 UNION ALL SELECT 12\n" +
                 ") AS month_num\n" +
-                "LEFT JOIN carts ON month_num.month = MONTH(create_time) AND YEAR(create_time) = YEAR(CURRENT_DATE);";
+                "LEFT JOIN carts ON month_num.month = MONTH(create_time) AND YEAR(create_time) = YEAR(CURRENT_DATE) WHERE create_time >= DATE_SUB(CURDATE(), INTERVAL 5 MONTH) AND infoShip = 3;";
         Connection connection = JDBCConnector.getConnection();
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -151,7 +151,7 @@ public class ThongKeDao {
                 "ON b.id_book = c.id_book\n" +
                 "GROUP BY c.idCart) a ON c.id = a.idCart\n" +
                 "\n" +
-                "WHERE create_time >= DATE_SUB(CURDATE(), INTERVAL 5 MONTH);";
+                "WHERE create_time >= DATE_SUB(CURDATE(), INTERVAL 5 MONTH) AND c.infoShip = 3;";
         Connection connection = JDBCConnector.getConnection();
         PreparedStatement statement = null;
         ResultSet resultSet = null;
