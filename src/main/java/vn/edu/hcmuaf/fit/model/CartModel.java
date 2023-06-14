@@ -197,4 +197,20 @@ public class CartModel implements Serializable {
     public void setBills(List<Bill> bills) {
         this.bills = bills;
     }
+    public String getInFoShipString() {
+        if(inShip == 1) {
+            return "Chờ xử lí";
+        } else {
+            if(inShip == 2) {
+                return "Đang vận chuyển";
+            } else {
+                if (inShip == 3) {
+                    return "Vận chuyển thành công";
+                } else {
+                    return "Đã hủy";
+                }
+
+            }
+        }
+    }
 }
