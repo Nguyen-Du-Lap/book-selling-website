@@ -2,6 +2,8 @@ package vn.edu.hcmuaf.fit.controller.web.accounts;
 
 import vn.edu.hcmuaf.fit.dao.IBillDAO;
 import vn.edu.hcmuaf.fit.dao.impl.BillDAO;
+import vn.edu.hcmuaf.fit.dao.impl.CartDao;
+import vn.edu.hcmuaf.fit.model.CartModel;
 import vn.edu.hcmuaf.fit.model.CustomerModel;
 import vn.edu.hcmuaf.fit.utils.SessionUtil;
 
@@ -9,6 +11,8 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(name = "account", value = "/account")
 
@@ -29,11 +33,11 @@ public class AccountController extends HttpServlet {
                 } else if (action.equalsIgnoreCase("changePassword")) {
                     request.getRequestDispatcher("/views/web/changePassword.jsp").forward(request, response);
                 } else if (action.equalsIgnoreCase("reviewOrders")) {
-                    request.setAttribute("listBillDeliverByIdOrder", iBillDAO.findBillDeliverByIdOrder(cus.getIdUser()));
-                    request.setAttribute("listBillWarByIdOrder", iBillDAO.findBillWarByIdOrder(cus.getIdUser()));
-                    request.setAttribute("listBillDelivByIdOrder", iBillDAO.findBillDelivByIdOrder(cus.getIdUser()));
-                    request.setAttribute("listBillRateByIdOrder", iBillDAO.findBillRateByIdOrder(cus.getIdUser()));
-                    request.setAttribute("listBillByIdOrder", iBillDAO.findBillByIdOrder(cus.getIdUser()));
+                    request.setAttribute("listBillDeliverByIdOrder", listDonHang(cus,1));
+                    request.setAttribute("listBillWarByIdOrder",  listDonHang(cus,1));
+                    request.setAttribute("listBillDelivByIdOrder",  listDonHang(cus,2));
+                    request.setAttribute("listBillRateByIdOrder",  listDonHang(cus,3));
+                    request.setAttribute("listBillByIdOrder", listDonHang(cus,3));
                     request.getRequestDispatcher("/views/web/reviewOrders.jsp").forward(request, response);
                 }
             } else {
@@ -45,5 +49,20 @@ public class AccountController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+    }
+
+    public List<CartModel> listDonHang(CustomerModel cus, int info) {
+        CartDao cartDao = new CartDao();
+        List<CartModel> listModel = cartDao.getAllCartByIdUser(cus.getIdUser());
+        for(int i =0 ;i < listModel.size();i++) {
+            listModel.get(i).setBills(new BillDAO().findAllBillByIdCart( listModel.get(i).getId()));
+        }
+        List<CartModel> dangChoList = new ArrayList<>();
+        for (int i =0;i<listModel.size();i++) {
+            if(listModel.get(i).getInShip() == info) {
+                dangChoList.add(listModel.get(i));
+            }
+        }
+        return  dangChoList;
     }
 }

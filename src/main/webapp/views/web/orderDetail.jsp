@@ -80,7 +80,7 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th scope="col">Mã đơn hàng</th>
+
                     <th scope="col">Tên sản phẩm</th>
                     <th scope="col">Ảnh</th>
                     <th scope="col">Số lượng</th>
@@ -91,7 +91,6 @@
                 <c:forEach var="item" items="${cartReviewDetail}">
 
                         <tr>
-                            <th scope="1">${item.id}</th>
                             <td>${item.nameSach}</td>
                             <td><img style="height: 50px" src="${item.image}"></td>
                             <td>${item.quantity}</td>
