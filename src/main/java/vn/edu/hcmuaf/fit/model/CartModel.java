@@ -199,7 +199,7 @@ public class CartModel implements Serializable {
     }
     public String getInFoShipString() {
         if(inShip == 1) {
-            return "Chờ xử lí";
+            return "Chờ xử lý";
         } else {
             if(inShip == 2) {
                 return "Đang vận chuyển";

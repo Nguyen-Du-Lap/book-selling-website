@@ -79,11 +79,11 @@
                                     </tr>
                                     <tr>
                                         <td>Địa chỉ:</td>
-                                        <td>${BILLDETAIL.address}</td>
+                                        <td>${cart.bills.get(0).address}</td>
                                     </tr>
                                     <tr>
                                         <td>Số điện thoại:</td>
-                                        <td>${CUSTOMER.phone}</td>
+                                        <td>${cart.bills.get(0).phone}</td>
                                     </tr>
                                     <tr>
                                         <td>Email:</td>
@@ -98,45 +98,45 @@
                                     <tbody>
                                     <tr>
                                         <td>Mã đơn hàng:</td>
-                                        <td>${BILLDETAIL.idCart}</td>
+                                        <td>${cart.id}</td>
                                     </tr>
                                     <tr>
                                         <td>Ngày đặt hàng:</td>
-                                        <td>${BILLDETAIL.ship_time}</td>
+                                        <td>${cart.createTime}</td>
                                     </tr>
                                     <tr>
                                         <td>Ngày dự kiến giao đến:</td>
-                                        <td>${BILLDETAIL.getShip_time_predict()}</td>
+                                        <td>${cart.timeShip}</td>
                                     </tr>
                                     <tr>
                                         <td>Đóng gói:</td>
-                                        <td>${BILLDETAIL.pack}</td>
+                                        <td>${cart.bills.get(0).pack}</td>
                                     </tr>
                                     <tr>
                                         <td>Phương thức thanh toán:</td>
-                                        <td>${BILLDETAIL.paymentMethod}</td>
+                                        <td>${cart.bills.get(0).paymentMethod}</td>
                                     </tr>
                                     <tr>
                                         <td>Ghi chú:</td>
-                                        <td>${BILLDETAIL.info}</td>
+                                        <td>${cart.bills.get(0).info}</td>
                                     </tr>
                                     <tr>
                                         <td>Tổng giá trị:</td>
-                                        <td>${BILLDETAIL.totalPrice} VNĐ
+                                        <td>${cart.getTotalPriceFromCart()} VNĐ
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Tình trạng:</td>
-                                        <td>${BILLDETAIL.shippingInfo}</td>
+                                        <td>${cart.getInFoShipString()}</td>
                                     </tr>
                                     <tr>
                                         <td>Đăng kí giao hàng:</td>
-                                        <c:if test="${BILLDETAIL.shippingInfo == 'Chờ xử lý'}">
+                                        <c:if test="${cart.getInFoShipString() == 'Chờ xử lý'}">
                                             <td><button type="button" class="btn btn-danger">
-                                                <a style="color: #FFFFFF" href="/admin-register-order?id=${BILLDETAIL.idCart}&variable=${CUSTOMER.idUser}">Đăng kí đơn hàng</a>
+                                                <a style="color: #FFFFFF" href="/admin-register-order?id=${cart.id}&variable=${CUSTOMER.idUser}">Đăng kí đơn hàng</a>
                                             </button></td>
                                         </c:if>
-                                        <c:if test="${BILLDETAIL.shippingInfo != 'Chờ xử lý'}">
+                                        <c:if test="${cart.getInFoShipString() != 'Chờ xử lý'}">
                                             <td>Đã đăng kí vận chuyển</td>
                                         </c:if>
                                     </tr>

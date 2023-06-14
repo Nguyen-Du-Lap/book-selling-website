@@ -11,6 +11,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name = "admin-order-detail", value = "/admin-order-detail")
 public class OrderDetailController extends HttpServlet {
@@ -25,7 +26,7 @@ public class OrderDetailController extends HttpServlet {
         CartModel cartModel = cartDao.getCartById(idInt);
         System.out.println(billDAO.find1BillByIdCart(cartModel.getId()).toString());
         request.setAttribute("CUSTOMER", customerDAO.findById(cartModel.getIdUser())) ;
-        request.setAttribute("BILLDETAIL", billDAO.find1BillByIdCart(cartModel.getId()));
+        request.setAttribute("cart", listDonHang(idInt));
         request.setAttribute("LISTBILL",  cartDao.getAllDetailCart(cartModel.getIdUser(),idInt));
         request.getRequestDispatcher("/views/admin/confirm-order-detail.jsp").forward(request, response);
     }
@@ -33,5 +34,13 @@ public class OrderDetailController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+    }
+    public CartModel listDonHang( int id) {
+        CartDao cartDao = new CartDao();
+        CartModel listModel = cartDao.getCartById(id);
+        listModel.setBills(new BillDAO().findAllBillByIdCart( listModel.getId()));
+
+
+        return listModel;
     }
 }

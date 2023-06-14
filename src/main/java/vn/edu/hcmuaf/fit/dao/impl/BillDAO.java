@@ -539,7 +539,7 @@ public class BillDAO implements IBillDAO {
     public List<Bill> findAllBillByIdCart(int id) {
         List<Bill> list = new ArrayList<Bill>();
         String sql = "SELECT b.id_order, s.name, b.totalBill, b.quantity, b.id_user, b.id_book, b.address, b.shipping_info, b.payment_method, b.pack,\n" +
-                "c.create_time, c.timeShip, b.idCart\n" +
+                "c.create_time, c.timeShip, b.idCart, b.phone\n" +
                 "FROM bill b JOIN book s \n" +
                 "ON b.id_book = s.id_book JOIN carts c ON b.idCart = c.id\n" +
                 "WHERE b.idCart = ?";
@@ -565,6 +565,7 @@ public class BillDAO implements IBillDAO {
                     bill.setShip_time(resultSet.getTimestamp(11));
                     bill.setShip_time_predict(resultSet.getString(12));
                     bill.setIdCart(resultSet.getInt(13));
+                    bill.setPhone(resultSet.getString(14));
                     list.add(bill);
                 }
 
