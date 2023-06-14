@@ -26,7 +26,8 @@ public class ProductSearchController extends HttpServlet {
         if(key != null) {
             request.setAttribute("list12Book", iProductService.find12BookSearch(key));
         }
-
+        request.setAttribute("totalPage", iProductService.totalPage());
+        request.setAttribute("currentPage", 1);
         request.getRequestDispatcher("/views/web/product.jsp").forward(request, response);
     }
 }
