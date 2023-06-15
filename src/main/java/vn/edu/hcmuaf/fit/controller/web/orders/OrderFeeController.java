@@ -50,11 +50,10 @@ public class OrderFeeController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         HttpSession session = request.getSession();
         CartModel cart = (CartModel) session.getAttribute("cartOrder");
         feeDeliver(request,response);
         PrintWriter out = response.getWriter();
-        out.println(cart.getTotalPriceShip());
+        out.println(cart.getTotalPriceShipVoucher());
     }
 }

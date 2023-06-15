@@ -53,7 +53,6 @@ function renderCity(data) {
 
     function deliveryFee(obj, abj) {
     const giaTri = obj+"/"+abj;
-    console.log(giaTri);
     $.ajax({
     url: "/orderFee",
     type: "get",
@@ -65,7 +64,7 @@ function renderCity(data) {
       const part1 = parts[0].trim();
       const part2 = parseFloat(parts[1].trim());
       const  part3=part1.replace(/\[/g, '');
-    const row = document.getElementById("sum_transport")
+    const row = document.getElementById("sum_transport");
       const time = document.getElementById("date_transport");
     row.innerText = part2+ 'đ';
     time.innerText= part3;
@@ -82,9 +81,10 @@ function renderCity(data) {
         exits: giaTri
       },
       success: function (data) {
+        const part12 = data.replace(/\r?\n|\r/g, '');
+        const row1 = document.getElementById("sum_order");
+        row1.innerText = part12;
 
-        const row = document.getElementById("sum_order")
-        row.innerText = data+'đ';
       }
     })
   }

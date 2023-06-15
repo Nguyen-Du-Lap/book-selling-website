@@ -177,8 +177,13 @@
               <p class="ml" id="date_transport"> </p>
             </div>
             <div class="wrap mt">
-              <span class="sum_order">Thanh toán:</span>
-              <div class="ml" style="font-weight: 600; color: rgb(217, 11, 11);" id="sum_order"> </div>
+              <span class="sum_transport">Giảm giá:</span>
+              <p class="ml" id="voucher">${sessionScope.cartOrder.voucher} đ </p>
+            </div>
+            <div class="wrap mt">
+              <span class="sum_transport">Thanh toán:</span>
+              <span class="ml" style="font-weight: 600; color: rgb(217, 11, 11);" id="sum_order"> </span>
+              
             </div>
           </div>
           <input id="bt-update_order" type="button" value="CHỈNH SỬA ĐƠN HÀNG">

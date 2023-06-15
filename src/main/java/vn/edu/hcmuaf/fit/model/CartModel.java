@@ -100,7 +100,14 @@ public class CartModel implements Serializable {
     }
 
     public double getTotalPriceShipVoucher() {
-        return getTotalPriceShip() - voucher;
+
+        if(getTotalPriceShip() - voucher < 0) {
+            return 0;
+        } else {
+            return getTotalPriceShip() - voucher;
+        }
+
+
     }
     public int getVoucher() {
         return voucher;
