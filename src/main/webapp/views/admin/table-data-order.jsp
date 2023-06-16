@@ -72,9 +72,8 @@
             <tr>
               <th width="10"><input type="checkbox" id="all"></th>
               <th>ID đơn hàng</th>
-              <th>Tên Khách hàng</th>
+              <th>Mã Khách hàng</th>
               <th>Địa chỉ</th>
-              <th>Số lượng sản phẩm</th>
               <th>Thành tiền</th>
               <th>Phương thức thanh toán</th>
               <th>Tình trạng đơn hàng</th>
@@ -82,29 +81,28 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach var="bill" items="${listBill}">
+            <c:forEach var="cart" items="${listBill}">
               <tr>
                 <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                <td><a href="/findDetail?id=${bill.getIdCart()}">${bill.getIdCart()}</a></td>
-                <td>${bill.nameUser}</td>
-                <td>${bill.address}</td>
-                <td>${bill.totalProduct}</td>
-                <td>${bill.totalPrice}</td>
-                <td>${bill.paymethod}</td>
-                <c:if test="${bill.statusBill == 'Chờ xử lý'}">
-                  <td><span class="badge bg-danger">${bill.statusBill}</span></td>
+                <td><a href="/findDetail?id=${cart.id}">${cart.id}</a></td>
+                <td>${cart.idUser}</td>
+                <td>${cart.bills.get(0).address}</td>
+                <td>${cart.getTotalPriceFromCart()}</td>
+                <td>${cart.bills.get(0).paymentMethod}</td>
+                <c:if test="${cart.inShip == 1}">
+                  <td><span class="badge bg-danger">Chờ xử lí</span></td>
                 </c:if>
-                <c:if test="${bill.statusBill == 'Đang vận chuyển'}">
-                  <td><span class="badge bg-warning">${bill.statusBill}</span></td>
+                <c:if test="${cart.inShip == 2}">
+                  <td><span class="badge bg-warning">Đang giao</span></td>
                 </c:if>
-                <c:if test="${bill.statusBill == 'Đã hoàn thành'}">
-                  <td><span class="badge bg-success">${bill.statusBill}</span></td>
+                <c:if test="${cart.inShip == 3}">
+                  <td><span class="badge bg-success">Đã giao</span></td>
                 </c:if>
-                <c:if test="${bill.statusBill == 'Đã hủy'}">
-                  <td><span class="badge bg-primary">${bill.statusBill}</span></td>
+                <c:if test="${cart.inShip == 4}">
+                  <td><span class="badge bg-primary">Đã hủy</span></td>
                 </c:if>
                 <td>
-                  <a href="/admin-order-detail?id=${bill.idCart}">
+                  <a href="/admin-order-detail?id=${cart.id}">
                     <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"><i class="fa fa-edit"></i></button>
                   </a>
                 </td>

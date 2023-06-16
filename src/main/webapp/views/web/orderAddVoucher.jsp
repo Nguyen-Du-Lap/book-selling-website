@@ -98,10 +98,7 @@
               <span class="sum_price">Tổng tiền:</span>
               <div class="ml" id="sum_price"> ${sessionScope.cartOrder.totalPrice} đ</div>
             </div>
-            <div class="wrap mt">
-              <span class="sum_order">Thanh toán:</span>
-              <div class="ml" style="font-weight: 600; color: rgb(217, 11, 11);" id="sum_order"> ${sessionScope.cartOrder.totalPriceShip} đ</div>
-            </div>
+
           </div>
           <a href="/cart">
             <input class="btn_bt" id="bt-update_order"  type="button" value="CHỈNH SỬA ĐƠN HÀNG">

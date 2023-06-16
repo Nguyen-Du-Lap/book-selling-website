@@ -45,6 +45,14 @@
     <div class="wrapper">
       <h1>LIÊN HỆ HỖ TRỢ</h1>
     </div>
+    <div>
+      <c:if test="${not empty message}">
+        <div class="alert alert-${alert}" role="alert">
+            ${message}
+        </div>
+      </c:if>
+      <c:if test="${orderSuccess == '1'}">
+    </div>
     <div class="content_container">
       <div class="content_left">
         <div class="contact-title">
@@ -78,7 +86,7 @@
         </div>
       </div>
       <div class="content_right">
-        <form id="submit_form" method="post">
+        <form form action="/contact" id="submit_form" method="post">
           <div class="form-group input">
             <input type="text" class="form-control" name="name" placeholder="Họ và tên">
           </div>
