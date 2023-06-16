@@ -238,9 +238,11 @@ CustomerDAO implements ICustomerDAO {
     @Override
     public List<CustomerModel> findAllCustomer() {
 
-        String sql = new String("SELECT c.id_user, CONCAT(c.first_name,' ',c.last_name) 'full_name', c.phone, c.address, COUNT(b.id_user) 'total_bill', c.first_name, c.last_name, c.email, c.created_time\n" +
-                "FROM customer c JOIN bill b ON c.id_user = b.id_user\n" +
-                "GROUP BY c.id_user, CONCAT(c.first_name,' ',c.last_name), c.phone, c.address, b.id_user");
+        String sql = new String("SELECT c.id_user, CONCAT(c.first_name,' ',c.last_name) AS full_name, c.phone, c.address, IFNULL(COUNT(b.id_user), 0) AS total_bill, c.first_name, c.last_name, c.email, c.created_time\n" +
+                "FROM customer c\n" +
+                "LEFT JOIN bill b ON c.id_user = b.id_user\n" +
+                "WHERE c.role = 'user'\n" +
+                "GROUP BY c.id_user, CONCAT(c.first_name,' ',c.last_name), c.phone, c.address, b.id_user;");
         List<CustomerModel> users = new ArrayList<>();
         Connection connection = JDBCConnector.getConnection();
         PreparedStatement statement = null;

@@ -59,7 +59,7 @@
 
                 </div>
             </c:forEach>
-
+            <button style="border: none; padding: 4px 8px; margin-top: 12px" onclick="goBack()">Trở lại</button>
         </div>
     </div>
 </div>
@@ -80,7 +80,11 @@
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
         crossorigin="anonymous"></script>
 <script src="/templates/scripts/header.js"></script>
-
+<script>
+    function goBack() {
+        history.back();
+    }
+</script>
 </body>
 
 </html>
