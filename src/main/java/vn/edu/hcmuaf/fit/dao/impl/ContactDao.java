@@ -56,7 +56,7 @@ public class ContactDao {
 
         if (connection != null) {
             try {
-                String sql = "INSERT INTO contact  VALUES(null,?,?,?,?,?,?)";
+                String sql = "INSERT INTO contact  VALUES(null,?,?,?,?,?,?, null)";
                 statement = connection.prepareStatement(sql);
 
                 statement.setInt(1, idUser);

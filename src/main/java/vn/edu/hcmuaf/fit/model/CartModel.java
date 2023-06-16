@@ -33,6 +33,9 @@ public class CartModel implements Serializable {
         this.bills = bills;
     }
 
+    public CartModel() {
+    }
+
     public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
