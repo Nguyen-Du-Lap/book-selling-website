@@ -18,7 +18,20 @@ public class CartModel implements Serializable {
     private int inShip;
     private Timestamp createTime;
     private List<Bill> bills;
-
+    public CartModel(int id, int count, double totalPrice, int voucher, int ship, double totalPriceShip, double totalPriceShipVoucher, String timeShip, int idUser, int inShip, Timestamp createTime, List<Bill> bills) {
+        this.id = id;
+        this.count = count;
+        this.totalPrice = totalPrice;
+        this.voucher = voucher;
+        this.ship = ship;
+        this.totalPriceShip = totalPriceShip;
+        this.totalPriceShipVoucher = totalPriceShipVoucher;
+        this.timeShip = timeShip;
+        this.idUser = idUser;
+        this.inShip = inShip;
+        this.createTime = createTime;
+        this.bills = bills;
+    }
 
     public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
@@ -220,4 +233,6 @@ public class CartModel implements Serializable {
             }
         }
     }
+
+
 }

@@ -30,7 +30,7 @@ import vn.edu.hcmuaf.fit.constant.GHNContent;
 
 public class FeeGHNUtils {
 
-	public static String registerShip(String height, String lenght, String with, String weght, int from_district_id, int from_ward_id, String tenHuyen, String tenXa) {
+	public static String registerShipForDeliver(String height, String lenght, String with, String weght, int from_district_id, int from_ward_id, String tenHuyen, String tenXa) {
 		String apiUrl = "http://140.238.54.136/api/registerTransport";
 		String authToken = token();
 		ArrayList<String> result = new ArrayList<>();
@@ -288,16 +288,5 @@ public class FeeGHNUtils {
 		}
 		return null;
 	}
-
-
-
-
-
-
-
-	public static void main(String[] args) {
-		System.out.println(getTrangThaiDonhang("29d28eacc463493b997fc23076adca4f"));
-		//System.out.println(getID("29d28eacc463493b997fc23076adca4f"));
-		}
 
 }
