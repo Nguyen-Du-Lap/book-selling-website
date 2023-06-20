@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Main CSS-->
-    <link rel="stylesheet" type="text/css" href="/templates/admin/doc/css/main.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/templates/admin/doc/css/main.css">
     <!-- Font-icon css-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <!-- or -->
@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
           integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <script type="text/javascript" src="/templates/admin/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/templates/admin/ckeditor/ckeditor.js"></script>
     <script src="http://code.jquery.com/jquery.min.js" type="text/javascript"></script>
 </head>
 
@@ -67,7 +67,7 @@
 
                         <div>
                             <button id="btnSubmitAddWeb" class="btn btn-save" type="submit">Lưu lại</button>
-                            <a class="btn btn-cancel" href="/admin-root-management-web">Hủy bỏ</a>
+                            <a class="btn btn-cancel" href="${pageContext.request.contextPath}/admin-root-management-web">Hủy bỏ</a>
                         </div>
                     </form>
                 </div>
@@ -78,11 +78,11 @@
 
 
 
-<script src="/templates/admin/doc/js/jquery-3.2.1.min.js"></script>
-<script src="/templates/admin/doc/js/popper.min.js"></script>
-<script src="/templates/admin/doc/js/bootstrap.min.js"></script>
-<script src="/templates/admin/doc/js/main.js"></script>
-<script src="/templates/admin/doc/js/plugins/pace.min.js"></script>
+<script src="${pageContext.request.contextPath}/templates/admin/doc/js/jquery-3.2.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/templates/admin/doc/js/popper.min.js"></script>
+<script src="${pageContext.request.contextPath}/templates/admin/doc/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/templates/admin/doc/js/main.js"></script>
+<script src="${pageContext.request.contextPath}/templates/admin/doc/js/plugins/pace.min.js"></script>
 <script>
     var editor = '';
     $(document).ready(function () {
