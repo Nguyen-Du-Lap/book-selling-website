@@ -9,7 +9,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Main CSS-->
-  <link rel="stylesheet" type="text/css" href="/templates/admin/doc/css/main.css">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/templates/admin/doc/css/main.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
   <!-- or -->
   <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
@@ -43,7 +43,7 @@
           <div class="row element-button">
             <div class="col-sm-2">
 
-              <a class="btn btn-add btn-sm" href="/admin-add-san-pham" title="Thêm"><i class="fas fa-plus"></i>
+              <a class="btn btn-add btn-sm" href="${pageContext.request.contextPath}/admin-add-san-pham" title="Thêm"><i class="fas fa-plus"></i>
                 Tạo mới sản phẩm</a>
             </div>
             <div class="col-sm-2">
@@ -106,7 +106,7 @@
                     <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
                             onclick="deleteProduct(${product.id})"><i class="fas fa-trash-alt"></i>
                     </button>
-                    <a href="/findProduct?id=${product.id}">
+                    <a href="${pageContext.request.contextPath}/findProduct?id=${product.id}">
                       <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"
                               ><i class="fas fa-edit"></i></button>
                     </a>
@@ -180,7 +180,7 @@
         <BR>
         <BR>
         <button href="/ad" class="btn btn-save" type="button">Lưu lại</button>
-        <a class="btn btn-cancel" data-dismiss="modal" href="/admin-table-product">Hủy bỏ</a>
+        <a class="btn btn-cancel" data-dismiss="modal" href="${pageContext.request.contextPath}/admin-table-product">Hủy bỏ</a>
         <BR>
       </div>
       <div class="modal-footer">
@@ -193,20 +193,20 @@ MODAL
 -->
 
 <!-- Essential javascripts for application to work-->
-<script src="/templates/admin/doc/js/jquery-3.2.1.min.js"></script>
-<script src="/templates/admin/doc/js/popper.min.js"></script>
-<script src="/templates/admin/doc/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/templates/admin/doc/js/jquery-3.2.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/templates/admin/doc/js/popper.min.js"></script>
+<script src="${pageContext.request.contextPath}/templates/admin/doc/js/bootstrap.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="src/jquery.table2excel.js"></script>
-<script src="/templates/admin/doc/js/main.js"></script>
+<script src="${pageContext.request.contextPath}/templates/admin/doc/js/main.js"></script>
 <!-- The javascript plugin to display page loading on top-->
-<script src="/templates/admin/doc/js/plugins/pace.min.js"></script>
+<script src="${pageContext.request.contextPath}/templates/admin/doc/js/plugins/pace.min.js"></script>
 <!-- Page specific javascripts-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 <!-- Data table plugin-->
-<script type="text/javascript" src="/templates/admin/doc/js/plugins/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="/templates/admin/doc/js/plugins/dataTables.bootstrap.min.js"></script>
-<script src="/templates/scripts/crud.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/templates/admin/doc/js/plugins/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/templates/admin/doc/js/plugins/dataTables.bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/templates/scripts/crud.js"></script>
 <script type="text/javascript">
   $('#sampleTable').DataTable();
   //Thời Gian

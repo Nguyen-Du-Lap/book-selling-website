@@ -8,7 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Main CSS-->
-    <link rel="stylesheet" type="text/css" href="/templates/admin/doc/css/main.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/templates/admin/doc/css/main.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <!-- or -->
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
@@ -44,7 +44,7 @@
                             <a class="btn btn-excel btn-sm" href="" title="In"><i class="fas fa-file-excel"></i> Xuất Excel</a>
                         </div>
                         <div class="col-sm-2">
-                            <a href="/exportFIlePDFOrder?id=${BILLDETAIL.idCart}" class="btn btn-delete btn-sm pdf-file" type="button" title="In"><i
+                            <a href="${pageContext.request.contextPath}/exportFIlePDFOrder?id=${BILLDETAIL.idCart}" class="btn btn-delete btn-sm pdf-file" type="button" title="In"><i
                                     class="fas fa-file-pdf"></i> Xuất PDF</a>
                         </div>
                         <div class="col-sm-6">
@@ -133,7 +133,7 @@
                                         <td>Đăng kí giao hàng:</td>
                                         <c:if test="${cart.getInFoShipString() == 'Chờ xử lý'}">
                                             <td><button type="button" class="btn btn-danger">
-                                                <a style="color: #FFFFFF" href="/admin-register-order?id=${cart.id}&variable=${CUSTOMER.idUser}">Đăng kí đơn hàng</a>
+                                                <a style="color: #FFFFFF" href="${pageContext.request.contextPath}/admin-register-order?id=${cart.id}&variable=${CUSTOMER.idUser}">Đăng kí đơn hàng</a>
                                             </button></td>
                                         </c:if>
                                         <c:if test="${cart.getInFoShipString() != 'Chờ xử lý'}">
@@ -233,7 +233,7 @@
                 <BR>
                 <BR>
                 <button href="/ad" class="btn btn-save" type="button">Lưu lại</button>
-                <a class="btn btn-cancel" data-dismiss="modal" href="/admin-table-product">Hủy bỏ</a>
+                <a class="btn btn-cancel" data-dismiss="modal" href="${pageContext.request.contextPath}/admin-table-product">Hủy bỏ</a>
                 <BR>
             </div>
             <div class="modal-footer">
@@ -246,20 +246,20 @@ MODAL
 -->
 
 <!-- Essential javascripts for application to work-->
-<script src="/templates/admin/doc/js/jquery-3.2.1.min.js"></script>
-<script src="/templates/admin/doc/js/popper.min.js"></script>
-<script src="/templates/admin/doc/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/templates/admin/doc/js/jquery-3.2.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/templates/admin/doc/js/popper.min.js"></script>
+<script src="${pageContext.request.contextPath}/templates/admin/doc/js/bootstrap.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="src/jquery.table2excel.js"></script>
-<script src="/templates/admin/doc/js/main.js"></script>
+<script src="${pageContext.request.contextPath}/templates/admin/doc/js/main.js"></script>
 <!-- The javascript plugin to display page loading on top-->
-<script src="/templates/admin/doc/js/plugins/pace.min.js"></script>
+<script src="${pageContext.request.contextPath}/templates/admin/doc/js/plugins/pace.min.js"></script>
 <!-- Page specific javascripts-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 <!-- Data table plugin-->
-<script type="text/javascript" src="/templates/admin/doc/js/plugins/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="/templates/admin/doc/js/plugins/dataTables.bootstrap.min.js"></script>
-<script src="/templates/scripts/crud.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/templates/admin/doc/js/plugins/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/templates/admin/doc/js/plugins/dataTables.bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/templates/scripts/crud.js"></script>
 <script type="text/javascript">
     $('#sampleTable').DataTable();
     //Thời Gian

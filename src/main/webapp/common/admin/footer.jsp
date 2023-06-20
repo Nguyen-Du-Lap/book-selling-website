@@ -1,14 +1,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<script src="/templates/admin/doc/js/jquery-3.2.1.min.js"></script>
-<script src="/templates/admin/doc/js/popper.min.js"></script>
-<script src="/templates/admin/doc/js/bootstrap.min.js"></script>
-<script src="/templates/admin/doc/js/main.js"></script>
+<script src="${pageContext.request.contextPath}/templates/admin/doc/js/jquery-3.2.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/templates/admin/doc/js/popper.min.js"></script>
+<script src="${pageContext.request.contextPath}/templates/admin/doc/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/templates/admin/doc/js/main.js"></script>
 <!-- The javascript plugin to display page loading on top-->
-<script src="/templates/admin/doc/js/plugins/pace.min.js"></script>
+<script src="${pageContext.request.contextPath}/templates/admin/doc/js/plugins/pace.min.js"></script>
 <!-- Page specific javascripts-->
-<script type="text/javascript" src="/templates/admin/doc/js/plugins/moment.min.js"></script>
-<script type="text/javascript" src="/templates/admin/doc/js/plugins/jquery-ui.custom.min.js"></script>
-<script type="text/javascript" src="/templates/admin/doc/js/plugins/fullcalendar.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/templates/admin/doc/js/plugins/moment.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/templates/admin/doc/js/plugins/jquery-ui.custom.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/templates/admin/doc/js/plugins/fullcalendar.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $('#external-events .fc-event').each(function() {
