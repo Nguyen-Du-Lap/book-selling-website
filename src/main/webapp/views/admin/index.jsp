@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Main CSS-->
-    <link rel="stylesheet" type="text/css" href="/templates/admin/doc/css/main.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/templates/admin/doc/css/main.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <!-- or -->
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
@@ -190,18 +190,18 @@
         </b></p>
     </div>
 </main>
-    <script src="/templates/admin/doc/js/jquery-3.2.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/templates/admin/doc/js/jquery-3.2.1.min.js"></script>
     <!--===============================================================================================-->
-    <script src="/templates/admin/doc/js/popper.min.js"></script>
+    <script src="${pageContext.request.contextPath}/templates/admin/doc/js/popper.min.js"></script>
     <script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
     <!--===============================================================================================-->
-    <script src="/templates/admin/doc/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/templates/admin/doc/js/bootstrap.min.js"></script>
     <!--===============================================================================================-->
-    <script src="/templates/admin/doc/js/main.js"></script>
+    <script src="${pageContext.request.contextPath}/templates/admin/doc/js/main.js"></script>
     <!--===============================================================================================-->
-    <script src="/templates/admin/doc/js/plugins/pace.min.js"></script>
+    <script src="${pageContext.request.contextPath}/templates/admin/doc/js/plugins/pace.min.js"></script>
     <!--===============================================================================================-->
-    <script type="text/javascript" src="/templates/admin/doc/js/plugins/chart.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/templates/admin/doc/js/plugins/chart.js"></script>
     <!--===============================================================================================-->
     <script type="text/javascript">
         var data = {
