@@ -31,7 +31,7 @@ public class OrderController extends HttpServlet {
 
         CustomerModel cus = (CustomerModel) SessionUtil.getInstance().getValue(request, "USERMODEL");
         if(cus == null) {
-            response.sendRedirect("/login?action=login");
+            response.sendRedirect(request.getContextPath()+"/login?action=login");
         }else{
             String idVoucher = request.getParameter("idVoucher");
             if(idVoucher.equals("") || idVoucher == null) {

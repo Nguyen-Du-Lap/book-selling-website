@@ -37,7 +37,7 @@ public class ReviewOrderController extends HttpServlet {
         request.setAttribute("listBillDeliverByIdOrder", listDonHang(cus,1));
         request.setAttribute("listBillWarByIdOrder",  listDonHang(cus,1));
         request.setAttribute("listBillDelivByIdOrder",  listDonHang(cus,2));
-        request.setAttribute("listBillRateByIdOrder",  listDonHang(cus,3));
+        request.setAttribute("listBillRateByIdOrder",  cartModelsChuaRate(cus,3));
         request.setAttribute("listBillByIdOrder", listDonHang(cus,3));
         request.setAttribute("orderSuccess", orderSuccess);
         request.getRequestDispatcher("/views/web/reviewOrders.jsp").forward(request, response);
@@ -63,7 +63,20 @@ public class ReviewOrderController extends HttpServlet {
         }
         return  dangChoList;
     }
-
+    public List<CartModel> cartModelsChuaRate(CustomerModel cus, int info) {
+        CartDao cartDao = new CartDao();
+        List<CartModel> listModel = cartDao.getAllCartByIdUser(cus.getIdUser());
+        for(int i =0 ;i < listModel.size();i++) {
+            listModel.get(i).setBills(new BillDAO().findAllBillByIdCartRate( listModel.get(i).getId()));
+        }
+        List<CartModel> dangChoList = new ArrayList<>();
+        for (int i =0;i<listModel.size();i++) {
+            if(listModel.get(i).getInShip() == info && listModel.get(i).getBills().size() >0) {
+                dangChoList.add(listModel.get(i));
+            }
+        }
+        return  dangChoList;
+    }
 
 
 }

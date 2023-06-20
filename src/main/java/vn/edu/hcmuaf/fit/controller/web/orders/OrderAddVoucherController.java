@@ -21,7 +21,7 @@ public class OrderAddVoucherController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         CustomerModel cus = (CustomerModel) SessionUtil.getInstance().getValue(request, "USERMODEL");
         if(cus == null) {
-            response.sendRedirect("/login?action=login");
+            response.sendRedirect(request.getContextPath()+"/login?action=login");
         }else{
             String listId =  request.getParameter("list_id");
 

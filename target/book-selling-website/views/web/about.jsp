@@ -24,9 +24,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"
         integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="/templates/styles/Header.css">
-  <link rel="stylesheet" href="/templates/styles/About.css">
-  <link rel="stylesheet" href="/templates/styles/Footer.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/templates/styles/Header.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/templates/styles/About.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/templates/styles/Footer.css">
   <title>Giới thiệu</title>
 </head>
 
@@ -38,7 +38,7 @@
   <div class="container">
     <nav id="breadcrumbbar">
       <ul class="breadcrumb">
-        <li class="breadcrumb-item"><a class="chang_font" href="/home">Trang chủ</a></li>
+        <li class="breadcrumb-item"><a class="chang_font" href="${pageContext.request.contextPath}/home">Trang chủ</a></li>
         <li class="breadcrumb-item active"><a href="">Giới thiệu nhà sách Doraemon</a></li>
       </ul>
     </nav>
@@ -335,7 +335,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
         crossorigin="anonymous"></script>
-<script src="/templates/scripts/header.js"></script>
+<script src="${pageContext.request.contextPath}/templates/scripts/header.js"></script>
 
 </body>
 

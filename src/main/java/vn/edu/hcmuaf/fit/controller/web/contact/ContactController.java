@@ -17,12 +17,14 @@ import java.net.InetAddress;
 public class ContactController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         request.getRequestDispatcher("/views/web/contact.jsp").forward(request, response);
 
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         ContactDao dao = new ContactDao();
         String name = request.getParameter("name");
         String email = request.getParameter("email");
@@ -38,6 +40,7 @@ public class ContactController extends HttpServlet {
             if(check > 0) {
                 Log log = new Log(Log.WARNING,ip,"Phản hổi từ khách hàng",cus.getIdUser(),content,1);
                 log.insert();
+                System.out.println(content);
                 message = "Gửi thành công";
                 messageType = "success";
             }else {

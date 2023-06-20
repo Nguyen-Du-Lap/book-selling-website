@@ -12,7 +12,7 @@
     <div id="header">
         <div class="top-header">
             <div class="container top-header-content">
-                <a class="logo" href="/home">DORAEMON</a>
+                <a class="logo" href="${pageContext.request.contextPath}/home">DORAEMON</a>
                 <form action="/products/search" method="post">
                     <div class="top-header_search">
                         <input type="text" name="key" placeholder="Tìm kiếm">
@@ -29,7 +29,7 @@
                         <div class="top-header_cart--item">
                             <h4 class="cart--item_title">Giỏ hàng</h4>
                             <hr>
-                            <a href="/cart" class="cart--item_link">
+                            <a href="${pageContext.request.contextPath}/cart" class="cart--item_link">
                                 <span>Xem giỏ hàng <i class="fa-solid fa-caret-right"></i></span>
                             </a>
                         </div>
@@ -46,20 +46,20 @@
                                 <a href="<c:url value="/login?action=login"/> " class="account--item_center"><span>Đăng nhập</span></a>
                                 <div class="account--item_bottom">
                                     <span>Khách hàng mới?</span>
-                                    <a class="register" href="/signup">Tạo tài khoản</a>
+                                    <a class="register" href="${pageContext.request.contextPath}/signup">Tạo tài khoản</a>
                                 </div>
                             </div>
                         </div>
                     </c:if>
                     <c:if test="${not empty USERMODEL}">
-                        <a href="/account" style="display: flex">
+                        <a href="${pageContext.request.contextPath}/account" style="display: flex">
                             <i style="padding: 4px; border-radius: 50%; color: #fff;font-size: 13px" class="fa-solid fa-user"></i>
                             <p style="color: #FFFFFF; font-size: 13px">${USERMODEL.firstName}</p>
                         </a>
                     </c:if>
                 </div>
                 <div class="top-header-left_media">
-                    <a href="/cart">
+                    <a href="${pageContext.request.contextPath}/cart">
                         <div class="container-icon_cart">
                             <i class="fa-solid fa-cart-shopping"></i>
                             <div class="sticker">0</div>
@@ -92,16 +92,16 @@
                                         <i class="fa-solid fa-chevron-right"></i>
                                     </span>
                                 <ul class="type_hot-child">
-                                    <li><a href="/products?hot=1">
+                                    <li><a href="${pageContext.request.contextPath}/products?hot=1">
                                         <p>Sách bán chạy</p>
                                     </a></li>
-                                    <li><a href="/products?hot=2">
+                                    <li><a href="${pageContext.request.contextPath}/products?hot=2">
                                         <p>Sách mới</p>
                                     </a></li>
-                                    <li><a href="/products?hot=3">
+                                    <li><a href="${pageContext.request.contextPath}/products?hot=3">
                                         <p>Sắp phát hành</p>
                                     </a></li>
-                                    <li><a href="/products?hot=4">
+                                    <li><a href="${pageContext.request.contextPath}/products?hot=4">
                                         <p>Sách giảm giá</p>
                                     </a></li>
                                 </ul>
@@ -111,7 +111,7 @@
                                 List<CatalogModel> listCatalog = catalogDAO.findAll();
                             %>
                                 <c:forEach var="catalog" items="<%=listCatalog%>">
-                                    <li class="type_products-item"><a href="/products/catalogs?id=<c:out value ="${catalog.idCatalog}"/>">
+                                    <li class="type_products-item"><a href="${pageContext.request.contextPath}/products/catalogs?id=<c:out value ="${catalog.idCatalog}"/>">
                                         <span><c:out value ="${catalog.name}"/></span></a>
                                     </li>
                                 </c:forEach>
@@ -128,11 +128,11 @@
                                         List<PublisherCompanyModel> listPublisherCompany = iPublisherCompany.findAll();
                                     %>
                                     <c:forEach var="publisherCompany" items="<%=listPublisherCompany%>">
-                                        <li><a href="/products/publisherCompany?id=<c:out value ="${publisherCompany.idPc}"/>">
+                                        <li><a href="${pageContext.request.contextPath}/products/publisherCompany?id=<c:out value ="${publisherCompany.idPc}"/>">
                                             <p><c:out value ="${publisherCompany.name}"/></p>
                                         </a></li>
                                     </c:forEach>
-                                    <li><a class="type_company-all" href="/products?publisherCompany?id=0">
+                                    <li><a class="type_company-all" href="${pageContext.request.contextPath}/products?publisherCompany?id=0">
                                         <p style="font-width: 600;">Tất cả công ty phát hành</p>
                                     </a></li>
                                 </ul>
@@ -141,7 +141,7 @@
                     </nav>
                 </div>
                 <div class="f_right" style="display: flex">
-                    <a style="background-color: #ed4d2b; padding: 5px; color: #FFFFFF;border-radius: 5px"  href="/voucher">Săn mã giảm giá</a>
+                    <a style="background-color: #ed4d2b; padding: 5px; color: #FFFFFF;border-radius: 5px"  href="${pageContext.request.contextPath}/voucher">Săn mã giảm giá</a>
                     <a href="" class="hotline d-flex">
                         <i class="fa-solid fa-phone"></i>
                         <h4>Hotline: </h4>
@@ -161,8 +161,8 @@
             <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
-            <a href="/login?action=login">Đăng ký</a>
-            <a href="/login?action=login">Đăng nhập</a>
+            <a href="${pageContext.request.contextPath}/login?action=login">Đăng ký</a>
+            <a href="${pageContext.request.contextPath}/login?action=login">Đăng nhập</a>
         </div>
         <button class="dropdown-btn">Nổi bật
             <i class="fa fa-caret-down"></i>

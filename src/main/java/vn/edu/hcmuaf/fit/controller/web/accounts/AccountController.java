@@ -25,7 +25,7 @@ public class AccountController extends HttpServlet {
         String action = request.getParameter("action");
         CustomerModel cus = (CustomerModel) SessionUtil.getInstance().getValue(request, "USERMODEL");
         if(cus == null) {
-            response.sendRedirect("/login?action=login");
+            response.sendRedirect(request.getContextPath()+"/login?action=login");
         }else {
 
             if (action != null) {

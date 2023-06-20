@@ -20,6 +20,8 @@ import java.net.InetAddress;
 public class ManagementContactFindController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
             String id = request.getParameter("id");
             request.setAttribute("contact", new ContactDao().getContactById(Integer.parseInt(id)));
             request.getRequestDispatcher("views/admin/form-feedBack-contact.jsp").forward(request, response);
@@ -27,6 +29,7 @@ public class ManagementContactFindController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         String id = request.getParameter("id");
         CustomerModel cus = (CustomerModel) SessionUtil.getInstance().getValue(request, "USERMODEL");
         ContactModel contactModel = new ContactDao().getContactById(Integer.parseInt(id));

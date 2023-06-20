@@ -19,9 +19,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"
           integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <link rel="stylesheet" href="<c:url value='/templates/styles/Header.css'/> "/>
-    <link rel="stylesheet" href="<c:url value='/templates/styles/Footer.css'/> "/>
-    <link rel="stylesheet" href="<c:url value='/templates/styles/Home.css'/> "/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/templates/styles/Login.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/templates/styles/Home.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/templates/styles/Header.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/templates/styles/Footer.css">
     <title>Home</title>
 </head>
 
@@ -55,7 +56,7 @@
             </li>
 
             <c:forEach var="catalog" items="<%=listCatalog%>">
-                <li class="type_products-item"><a href="/products/catalogs?id=<c:out value ="${catalog.idCatalog}"/>">
+                <li class="type_products-item"><a href="${pageContext.request.contextPath}/products/catalogs?id=<c:out value ="${catalog.idCatalog}"/>">
                     <span><c:out value="${catalog.name}"/></span>
                 </a></li>
             </c:forEach>
@@ -67,7 +68,7 @@
                 </a>
                 <ul class="type_companys-child" style="font-size: 10px">
                     <c:forEach var="publisherCompany" items="<%=listPublisherCompany%>">
-                        <li><a href="/products/publisherCompany?id=<c:out value ="${publisherCompany.idPc}"/>">
+                        <li><a href="${pageContext.request.contextPath}/products/publisherCompany?id=<c:out value ="${publisherCompany.idPc}"/>">
                             <p><c:out value="${publisherCompany.name}"/></p>
                         </a></li>
                     </c:forEach>
@@ -89,14 +90,14 @@
                     <c:if test="${slide.idPr == 1}">
                         <div class="carousel-item active">
                             <a href="${slide.link}">
-                                <img src="${slide.img}" class="d-block w-100" alt="${slide.namePr}">
+                                <img src="${pageContext.request.contextPath}/${slide.img}" class="d-block w-100" alt="${slide.namePr}">
                             </a>
                         </div>
                     </c:if>
                     <c:if test="${slide.idPr != 1}">
                         <div class="carousel-item">
                             <a href="${slide.link}">
-                                <img src="${slide.img}" class="d-block w-100" alt="${slide.namePr}">
+                                <img src="${pageContext.request.contextPath}/${slide.img}" class="d-block w-100" alt="${slide.namePr}">
                             </a>
                         </div>
                     </c:if>
@@ -120,11 +121,11 @@
 <div id="section2" style="margin-top: 24px;">
     <div class="container">
         <div class="category">
-            <a class="category_left" href="/productList?type=allBookTop">
+            <a class="category_left" href="${pageContext.request.contextPath}/productList?type=allBookTop">
                 Sách bán chạy
                 <span class="category_arrow"></span>
             </a>
-            <a class="category_right" href="/productList?type=allBookTop">Xem tất cả</a>
+            <a class="category_right" href="${pageContext.request.contextPath}/productList?type=allBookTop">Xem tất cả</a>
         </div>
         <div class="category_carousel" style="height: 402px">
             <div class="container">
@@ -132,11 +133,11 @@
                     <c:forEach var="bookPayTop" items="${listBookPayTop}">
                         <div class="col-md-12">
                             <div class="card h-60">
-                                <a href="/products/product-detail?id=${bookPayTop.idBook}">
+                                <a href="${pageContext.request.contextPath}/products/product-detail?id=${bookPayTop.idBook}">
                                     <c:if test="${bookPayTop.discount != 0}">
                                         <span class="card_sale active_sale">-${bookPayTop.discount}%</span>
                                     </c:if>
-                                    <img src="${bookPayTop.image}"
+                                    <img src="${pageContext.request.contextPath}/${bookPayTop.image}"
                                          class="card-img-top" alt="...">
                                     <div class="card-body">
                                         <h5 class="card-title title_book">${bookPayTop.name}</h5>
@@ -215,11 +216,11 @@
 <div id="section3" style="margin-top: 24px;">
     <div class="container">
         <div class="category">
-            <a class="category_left" href="/productList?type=allBookNew">
+            <a class="category_left" href="${pageContext.request.contextPath}/productList?type=allBookNew">
                 Sách mới phát hành
                 <span class="category_arrow"></span>
             </a>
-            <a class="category_right" href="/productList?type=allBookNew">Xem tất cả</a>
+            <a class="category_right" href="${pageContext.request.contextPath}/productList?type=allBookNew">Xem tất cả</a>
         </div>
         <div class="category_carousel" style="height: 402px">
             <div class="container">
@@ -227,11 +228,11 @@
                     <c:forEach var="bookNew" items="${listBookMoiPhatHanh}">
                         <div class="col-md-12">
                             <div class="card h-60">
-                                <a href="/products/product-detail?id=${bookNew.idBook}">
+                                <a href="${pageContext.request.contextPath}/products/product-detail?id=${bookNew.idBook}">
                                     <c:if test="${bookNew.discount != 0}">
                                         <span class="card_sale active_sale">-${bookNew.discount}%</span>
                                     </c:if>
-                                    <img src="${bookNew.image}"
+                                    <img src="${pageContext.request.contextPath}/${bookNew.image}"
                                          class="card-img-top" alt="...">
                                     <div class="card-body">
                                         <h5 class="card-title title_book">${bookNew.name}</h5>
@@ -308,11 +309,11 @@
 <div id="section4" style="margin-top: 24px;">
     <div class="container">
         <div class="category">
-            <a class="category_left" href="/productList?type=allUpcoming">
+            <a class="category_left" href="${pageContext.request.contextPath}productList?type=allUpcoming">
                 Sách sắp phát hành
                 <span class="category_arrow"></span>
             </a>
-            <a class="category_right" href="/productList?type=allUpcoming">Xem tất cả</a>
+            <a class="category_right" href="${pageContext.request.contextPath}/productList?type=allUpcoming">Xem tất cả</a>
         </div>
         <div class="category_carousel" style="height: 402px">
             <div class="container">
@@ -320,12 +321,12 @@
                     <c:forEach var="bookSap" items="${listBookSachPhatHanh}">
                         <div class="col-md-12">
                             <div class="card h-60">
-                                <a href="/products/product-detail?id=${bookSap.idBook}">
+                                <a href="${pageContext.request.contextPath}/products/product-detail?id=${bookSap.idBook}">
                                     <c:if test="${bookSap.discount != 0}">
                                         <span class="card_sale active_sale">-${bookSap.discount}%</span>
                                     </c:if>
 
-                                    <img src="${bookSap.image}"
+                                    <img src="${pageContext.request.contextPath}/${bookSap.image}"
                                          class="card-img-top" alt="...">
                                     <div class="card-body">
                                         <h5 class="card-title title_book">${bookSap.name}</h5>
@@ -415,7 +416,7 @@
                         <div class="col-md-12">
                             <div class="card h-60 card_author">
                                 <a href="/author?id=${author.idAuthor}">
-                                    <img src="${author.img}"
+                                    <img src="${pageContext.request.contextPath}/${author.img}"
                                          class="card-img-top img_author" alt="...">
                                     <div class="card-body">
                                         <h5 class="card-title title_author">${author.name}</h5>
@@ -499,7 +500,7 @@
     });
 
 </script>
-<script src="/templates/scripts/header.js"></script>
+<script src="${pageContext.request.contextPath}/templates/scripts/header.js"></script>
 </body>
 
 </html>

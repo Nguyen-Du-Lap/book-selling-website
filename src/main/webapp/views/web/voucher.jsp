@@ -26,9 +26,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"
           integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="/templates/styles/Header.css">
-    <link rel="stylesheet" href="/templates/styles/Transport.css">
-    <link rel="stylesheet" href="/templates/styles/Footer.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/templates/styles/Header.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/templates/styles/Transport.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/templates/styles/Footer.css">
     <title>Phương thức vận chuyển</title>
 </head>
 
@@ -40,7 +40,7 @@
     <div class="container">
         <nav id="breadcrumbbar">
             <ul class="breadcrumb">
-                <li class="breadcrumb-item"><a class="chang_font" href="/home">Trang chủ</a></li>
+                <li class="breadcrumb-item"><a class="chang_font" href="${pageContext.request.contextPath}/home">Trang chủ</a></li>
                 <li class="breadcrumb-item active"><a>Phương thức vận chuyển</a></li>
             </ul>
         </nav>
@@ -55,7 +55,7 @@
                         ${voucher.name}
                     </div>
                     <span style="padding: 0 6px">${voucher.diktat}</span>
-                    <a href="/saveVoucher?id=${voucher.idVoucher}" style="background-color: #ed4d2b; padding: 16px 24px; border-radius: 5px; color: #fff">Lưu</a>
+                    <a href="${pageContext.request.contextPath}/saveVoucher?id=${voucher.idVoucher}" style="background-color: #ed4d2b; padding: 16px 24px; border-radius: 5px; color: #fff">Lưu</a>
 
                 </div>
             </c:forEach>
@@ -79,7 +79,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
         crossorigin="anonymous"></script>
-<script src="/templates/scripts/header.js"></script>
+<script src="${pageContext.request.contextPath}/templates/scripts/header.js"></script>
 <script>
     function goBack() {
         history.back();

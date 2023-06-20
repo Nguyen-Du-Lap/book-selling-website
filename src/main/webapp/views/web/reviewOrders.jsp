@@ -85,16 +85,16 @@
         <div class="list_ctrl">
           <ul>
             <li class="first">
-              <a id="account" title="Thông tin tài khoản" href="/account?action=account">Thông tin tài
+              <a id="account" title="Thông tin tài khoản" href="${pageContext.request.contextPath}/account?action=account">Thông tin tài
                 khoản</a></li>
             <li class="first">
-              <a id="changePassword" title="Đổi mật khẩu" href="/account?action=changePassword">Đổi
+              <a id="changePassword" title="Đổi mật khẩu" href="${pageContext.request.contextPath}/account?action=changePassword">Đổi
                 mật khẩu</a></li>
             <li class="first active">
-              <a id="reviewOrders" title="Xem lại đơn hàng" href="/account?action=reviewOrders">Xem
+              <a id="reviewOrders" title="Xem lại đơn hàng" href="${pageContext.request.contextPath}/account?action=reviewOrders">Xem
                 lại đơn hàng</a></li>
             <li class="first">
-              <a id="logout" title="Đăng xuất" href="/logout?action=logout">Đăng xuất</a>
+              <a id="logout" title="Đăng xuất" href="${pageContext.request.contextPath}/logout?action=logout">Đăng xuất</a>
             </li>
           </ul>
         </div>
@@ -142,7 +142,7 @@
                 <tbody>
                 <c:forEach var="cartD" items="${listBillDeliverByIdOrder}">
                   <tr>
-                    <td><a href="/orderDetail?id=${cartD.getId()}">${cartD.getId()}</a></td>
+                    <td><a href="${pageContext.request.contextPath}/orderDetail?id=${cartD.getId()}">${cartD.getId()}</a></td>
                     <td>
                       <c:forEach var="billD" items="${cartD.getBills()}">
                         <p>${billD.name}<br><br></p>
@@ -150,11 +150,11 @@
                     </td>
                     <td>
                       <c:forEach var="billD" items="${cartD.getBills()}">
-                        <img style="height: 50px" src="${billD.image}"><br><br>
+                        <img style="height: 50px" src=${pageContext.request.contextPath}/"${billD.image}"><br><br>
                       </c:forEach>
                     </td>
-                    <td><a class="btn_blue" href="/cancelOrder?id=${cartD.id}">Hủy đơn</a></td>
-                    <td><a class="btn_blue" href="/orderDetail?id=${cartD.id}">Chi tiết</a></td>
+                    <td><a class="btn_blue" href="${pageContext.request.contextPath}/cancelOrder?id=${cartD.id}">Hủy đơn</a></td>
+                    <td><a class="btn_blue" href="${pageContext.request.contextPath}/orderDetail?id=${cartD.id}">Chi tiết</a></td>
                   </tr>
                 </c:forEach>
 
@@ -179,7 +179,7 @@
               <tbody>
               <c:forEach var="cartW" items="${listBillWarByIdOrder}">
                 <tr>
-                  <td><a href="/orderDetail?id=${cartW.getId()}">${cartW.getId()}</a></td>
+                  <td><a href="${pageContext.request.contextPath}/orderDetail?id=${cartW.getId()}">${cartW.getId()}</a></td>
                   <td>
                     <c:forEach var="billW" items="${cartW.getBills()}">
                       <p>${billW.name}<br><br></p>
@@ -187,11 +187,11 @@
                   </td>
                   <td>
                     <c:forEach var="billW" items="${cartW.getBills()}">
-                      <img style="height: 50px" src="${billW.image}"><br><br>
+                      <img style="height: 50px" src="${pageContext.request.contextPath}/${billW.image}"><br><br>
                     </c:forEach>
                   </td>
-                  <td><a class="btn_blue" href="/cancelOrder?id=${cartW.id}">Hủy đơn</a></td>
-                  <td><a class="btn_blue" href="/orderDetail?id=${cartW.id}">Chi tiết</a></td>
+                  <td><a class="btn_blue" href="${pageContext.request.contextPath}/cancelOrder?id=${cartW.id}">Hủy đơn</a></td>
+                  <td><a class="btn_blue" href="${pageContext.request.contextPath}/orderDetail?id=${cartW.id}">Chi tiết</a></td>
                 </tr>
               </c:forEach>
 
@@ -213,7 +213,7 @@
                 <tbody>
                 <c:forEach var="cartL" items="${listBillDelivByIdOrder}">
                   <tr>
-                    <td><a href="/orderDetail?id=${cartL.getId()}">${cartL.getId()}</a></td>
+                    <td><a href="${pageContext.request.contextPath}/orderDetail?id=${cartL.getId()}">${cartL.getId()}</a></td>
                     <td>
                       <c:forEach var="billL" items="${cartL.getBills()}">
                         <p>${billL.name}<br><br></p>
@@ -221,10 +221,10 @@
                     </td>
                     <td>
                       <c:forEach var="billL" items="${cartL.getBills()}">
-                        <img style="height: 50px" src="${billL.image}"><br><br>
+                        <img style="height: 50px" src="${pageContext.request.contextPath}/${billL.image}"><br><br>
                       </c:forEach>
                     </td>
-                    <td><a class="btn_blue" href="/orderDetail?id=${cartL.id}">Chi tiết</a></td>
+                    <td><a class="btn_blue" href="${pageContext.request.contextPath}/orderDetail?id=${cartL.id}">Chi tiết</a></td>
                   </tr>
                 </c:forEach>
 
@@ -245,7 +245,7 @@
                 <tbody>
                 <c:forEach var="cartR" items="${listBillRateByIdOrder}">
                   <tr>
-                    <td><a href="/orderDetail?id=${cartR.getId()}">${cartR.getId()}</a></td>
+                    <td><a href="${pageContext.request.contextPath}/orderDetail?id=${cartR.getId()}">${cartR.getId()}</a></td>
                     <td>
                       <c:forEach var="billR" items="${cartR.getBills()}">
                         <p>${billR.name}<br><br></p>
@@ -253,15 +253,15 @@
                     </td>
                     <td>
                       <c:forEach var="billR" items="${cartR.getBills()}">
-                        <img style="height: 50px" src="${billR.image}"><br><br>
+                        <img style="height: 50px" src="${pageContext.request.contextPath}/${billR.image}"><br><br>
                       </c:forEach>
                     </td>
                     <td>
                       <c:forEach var="billR" items="${cartR.getBills()}">
-                        <a class="btn_blue" href="/rate?id=${cartR.getId()}&idBook=${billR.idBook}">Đánh giá</a><br><br>
+                        <a class="btn_blue" href="${pageContext.request.contextPath}/rate?id=${cartR.getId()}&idBook=${billR.idBook}">Đánh giá</a><br><br>
                       </c:forEach>
                     </td>
-                    <td><a class="btn_blue" href="/orderDetail?id=${cartR.getId()}">Chi tiết</a></td>
+                    <td><a class="btn_blue" href="${pageContext.request.contextPath}/orderDetail?id=${cartR.getId()}">Chi tiết</a></td>
                   </tr>
                 </c:forEach>
 
@@ -283,7 +283,7 @@
                 <tbody>
                 <c:forEach var="cartH" items="${listBillByIdOrder}">
                   <tr>
-                    <td><a href="/orderDetail?id=${cartH.getId()}">${cartH.getId()}</a></td>
+                    <td><a href="${pageContext.request.contextPath}/orderDetail?id=${cartH.getId()}">${cartH.getId()}</a></td>
                     <td>
                       <c:forEach var="billH" items="${cartH.getBills()}">
                         <p>${billH.name}<br><br></p>
@@ -291,7 +291,7 @@
                     </td>
                     <td>
                       <c:forEach var="billH" items="${cartH.getBills()}">
-                        <img style="height: 50px" src="${billH.image}"><br><br>
+                        <img style="height: 50px" src="${pageContext.request.contextPath}/${billH.image}"><br><br>
                       </c:forEach>
                     </td>
                     <td>
@@ -306,7 +306,7 @@
                     </td>
                     <td>
                       <c:forEach var="billH" items="${cartH.getBills()}">
-                        <a class="btn_blue" href="/products/product-detail?id=${billH.idBook}">Mua lại</a><br><br>
+                        <a class="btn_blue" href="${pageContext.request.contextPath}/products/product-detail?id=${billH.idBook}">Mua lại</a><br><br>
                       </c:forEach>
                     </td>
                   </tr>
@@ -336,8 +336,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
         crossorigin="anonymous"></script>
-<script src="/templates/scripts/.js"></script>
-<script src="/templates/scripts/header.js"></script>
+<script src="${pageContext.request.contextPath}/templates/scripts/.js"></script>
+<script src="${pageContext.request.contextPath}/templates/scripts/header.js"></script>
 <script>
   function openCity(evt, cityName) {
     var i, tabcontent, tablinks;

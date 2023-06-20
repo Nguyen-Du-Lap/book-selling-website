@@ -13,9 +13,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
-    <link rel="stylesheet" href="<c:url value='/templates/styles/Header.css'/> " />
-    <link rel="stylesheet" href="<c:url value='/templates/styles/AccountPage.css'/> " />
-    <link rel="stylesheet" href="<c:url value='/templates/styles/Footer.css'/> " />
+    <link rel="stylesheet" href="<c:url value='${pageContext.request.contextPath}/templates/styles/Header.css'/> " />
+    <link rel="stylesheet" href="<c:url value='${pageContext.request.contextPath}/templates/styles/AccountPage.css'/> " />
+    <link rel="stylesheet" href="<c:url value='${pageContext.request.contextPath}/templates/styles/Footer.css'/> " />
 </head>
 
 <body>
@@ -92,7 +92,7 @@
 
                         <tr>
                             <td>${item.nameSach}</td>
-                            <td><img style="height: 50px" src="${item.image}"></td>
+                            <td><img style="height: 50px" src="${pageContext.request.contextPath}/${item.image}"></td>
                             <td>${item.quantity}</td>
                             <td>${item.totalPrice}</td>
                         </tr>
@@ -105,7 +105,7 @@
     </div>
 </div>
 <%@include file="/common/web/footer.jsp"%>
-<script src="/templates/scripts/header.js"></script>
+<script src="${pageContext.request.contextPath}/templates/scripts/header.js"></script>
 </body>
 
 </html>

@@ -13,9 +13,9 @@
           href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700&display=swap"
           rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
-  <link rel="stylesheet" href="/templates/styles/Login.css">
-  <link rel="stylesheet" href="/templates/styles/Header.css">
-  <link rel="stylesheet" href="/templates/styles/Footer.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/templates/styles/Login.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/templates/styles/Header.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/templates/styles/Footer.css">
   <style>
     ._4z_d ._4z_f {
       font-size: 16px!important;
@@ -38,7 +38,7 @@
     </div>
   </c:if>
   <%--  <form action="/login?action=login" class="form_login" id="form_login" method="post">--%>
-  <form action="/login?action=login" class="form_login"  method="post">
+  <form action="${pageContext.request.contextPath}/login?action=login" class="form_login"  method="post">
     <div class="input ">
       <label>Email</label>
       <input type="text" name="email" placeholder="Nhập vào email" id="email" onchange="emailOnChange(this.value)">
@@ -64,13 +64,13 @@
       </div>
     </fb:login-button>
 
-    <a href="https://accounts.google.com/o/oauth2/auth?scope=email%20profile%20openid &redirect_uri=http://localhost:8080/login-google&response_type=code
+    <a href="https://accounts.google.com/o/oauth2/auth?scope=email%20profile%20openid &redirect_uri=http://localhost:8080/book_selling_website/login-google&response_type=code
     &client_id=190006557334-854148cd78ttffl1gh6fdtfkjpo5fi52.apps.googleusercontent.com&approval_prompt=force" class="social-button" id="google-login">
       <span>Đăng nhập bằng Google</span>
       <i class="fa-brands fa-google-plus-g" style="margin-left: 5px;"></i>
     </a>
     <p style="margin-top: 50px; margin-bottom: 20px; padding-bottom: 20px; color: #aaaaaa; text-align: center;">
-      Bạn chưa có tài khoản? <a href="/signup" class="signUp-link">Đăng ký ngay</a></p>
+      Bạn chưa có tài khoản? <a href="${pageContext.request.contextPath}/signup" class="signUp-link">Đăng ký ngay</a></p>
   </form>
 </div>
 <!-----end login---->

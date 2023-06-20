@@ -53,18 +53,11 @@ public class EmailUtil {
         String password = "pjsolwceicgzrlzp";
 
         try {
-
-            // your host email smtp server details
-
             Properties pr = new Properties();
             pr.put("mail.smtp.host", "smtp.gmail.com");
             pr.put("mail.smtp.port", "587");
             pr.put("mail.smtp.auth", "true");
             pr.put("mail.smtp.starttls.enable", "true");
-//            pr.put("mail.smtp.socketFactory.port", "587");
-//            pr.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-
-            //get session to authenticate the host email address and password
             Session session = Session.getInstance(pr, new Authenticator() {
                 @Override
                 protected PasswordAuthentication getPasswordAuthentication() {

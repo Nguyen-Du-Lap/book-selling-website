@@ -34,12 +34,11 @@ public class SignupController extends HttpServlet {
         //String idUser = request.getParameter("id_user");
         if (!email.equals("") && !pass.equals("") && !re_pass.equals("") && !fname.equals("") && !lname.equals("")) {
             if (!pass.equals(re_pass)) {
-                response.sendRedirect("/login");
+                response.sendRedirect(request.getContextPath()+"/login");
             } else {
                 CustomerDAO customerDAO = new CustomerDAO();
                 CustomerModel account = customerDAO.checkAccountExist(email);
                 if (account == null) {
-                    // đc signup
                     EmailUtil sm = new EmailUtil();
                     String code = sm.getRandom();
                     CustomerModel user = new CustomerModel(email, pass, fname, lname, phone, address, code, System.currentTimeMillis() / 1000 / 60);

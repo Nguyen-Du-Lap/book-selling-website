@@ -24,9 +24,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"
         integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="/templates/styles/Header.css">
-  <link rel="stylesheet" href="/templates/styles/Author.css">
-  <link rel="stylesheet" href="/templates/styles/Footer.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/templates/styles/Header.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/templates/styles/Author.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/templates/styles/Footer.css">
   <title>Tác giả</title>
 </head>
 
@@ -49,7 +49,7 @@
       <h1>Tác giả</h1>
       <div class="content_author">
         <div class="img_author">
-          <img src="/templates/images/author/nguyennhatanh-compressed.jpg" alt="Nguyễn Nhật Ánh">
+          <img src="${pageContext.request.contextPath}/templates/images/author/nguyennhatanh-compressed.jpg" alt="Nguyễn Nhật Ánh">
         </div>
         <div class="author_info">
           <p>Nguyễn Nhật Ánh sinh ngày 7 tháng 5 năm 1955 tại tỉnh Quảng Nam.  Ông được coi là một trong những nhà văn thành công nhất viết sách cho tuổi thơ, tuồi mới lớn với hơn 100 tác phẩm các thể loại.</p>
@@ -82,7 +82,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
         crossorigin="anonymous"></script>
-<script src="/templates/scripts/header.js"></script>
+<script src="${pageContext.request.contextPath}/templates/scripts/header.js"></script>
 
 </body>
 

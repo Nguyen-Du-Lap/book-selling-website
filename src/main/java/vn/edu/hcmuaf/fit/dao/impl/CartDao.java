@@ -40,21 +40,19 @@ public class CartDao {
         }
         return 1;
     }
-    public void insertCart(int id, int idUser, String timeShip, double feeShip, double totalPrice, String infoShip) {
+    public void insertCart(int idUser, String timeShip, double feeShip, double totalPrice, String infoShip) {
         Connection connection = JDBCConnector.getConnection();
         PreparedStatement statement = null;
 
         if (connection != null) {
             try {
-                String sql = "INSERT INTO carts VALUES (?, ?, ?, ?, ?, ?,null)";
+                String sql = "INSERT INTO carts( id_user, timeShip, fee_ship, total_price, info_ship, create_time) VALUES ( ?, ?, ?, ?, ?,null)";
                 statement = connection.prepareStatement(sql);
-
-                statement.setInt(1, id);
-                statement.setInt(2, idUser);
-                statement.setString(3, timeShip);
-                statement.setDouble(4, feeShip);
-                statement.setDouble(5, totalPrice);
-                statement.setString(6, infoShip);
+                statement.setInt(1, idUser);
+                statement.setString(2, timeShip);
+                statement.setDouble(3, feeShip);
+                statement.setDouble(4, totalPrice);
+                statement.setString(5, infoShip);
 
                 statement.executeUpdate();
                 System.out.println("CartModel inserted successfully.");

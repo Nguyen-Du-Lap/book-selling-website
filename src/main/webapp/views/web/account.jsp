@@ -36,16 +36,16 @@
         <div class="list_ctrl">
           <ul>
             <li class="first active">
-              <a id="account" title="Thông tin tài khoản" href="/account?action=account">Thông tin tài
+              <a id="account" title="Thông tin tài khoản" href="${pageContext.request.contextPath}/account?action=account">Thông tin tài
                 khoản</a></li>
             <li class="first">
-              <a id="changePassword" title="Đổi mật khẩu" href="/account?action=changePassword">Đổi
+              <a id="changePassword" title="Đổi mật khẩu" href="${pageContext.request.contextPath}/account?action=changePassword">Đổi
                 mật khẩu</a></li>
             <li class="first">
-              <a id="reviewOrders" title="Xem lại đơn hàng" href="/account?action=reviewOrders">Xem
+              <a id="reviewOrders" title="Xem lại đơn hàng" href="${pageContext.request.contextPath}/account?action=reviewOrders">Xem
                 lại đơn hàng</a></li>
             <li class="first">
-              <a id="logout" title="Đăng xuất" href="/logout?action=logout">Đăng xuất</a>
+              <a id="logout" title="Đăng xuất" href="${pageContext.request.contextPath}/logout?action=logout">Đăng xuất</a>
             </li>
           </ul>
         </div>

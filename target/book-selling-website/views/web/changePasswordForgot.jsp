@@ -17,9 +17,9 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
-  <link rel="stylesheet" href="<c:url value='/templates/styles/Header.css'/> " />
-  <link rel="stylesheet" href="<c:url value='/templates/styles/AccountPage.css'/> " />
-  <link rel="stylesheet" href="<c:url value='/templates/styles/Footer.css'/> " />
+  <link rel="stylesheet" href="<c:url value='${pageContext.request.contextPath}/templates/styles/Header.css'/> " />
+  <link rel="stylesheet" href="<c:url value='${pageContext.request.contextPath}/templates/styles/AccountPage.css'/> " />
+  <link rel="stylesheet" href="<c:url value='${pageContext.request.contextPath}/templates/styles/Footer.css'/> " />
 </head>
 <body>
 <!-- -----------phần header----------------  -->
@@ -42,7 +42,7 @@
                 ${message}
             </div>
           </c:if>
-          <form id="form" action="/changePasswordForgot" method="post">
+          <form id="form" action="${pageContext.request.contextPath}/changePasswordForgot" method="post">
             <div class="input">
               <label for="acc_newPass">
                 <span class="req">*</span>Mật khẩu mới:
@@ -79,7 +79,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
         crossorigin="anonymous"></script>
-<script src="/templates/scripts/changePassword1.js"></script>
-<script src="/templates/scripts/header.js"></script>
+<script src="${pageContext.request.contextPath}/templates/scripts/changePassword1.js"></script>
+<script src="${pageContext.request.contextPath}/templates/scripts/header.js"></script>
 </body>
 </html>
