@@ -2,6 +2,9 @@
 var citis = document.getElementById("city");
 var districts = document.getElementById("district");
 var wards = document.getElementById("ward");
+var baseUrl =   window.location.pathname+"Fee";
+console.log(baseUrl)
+
 var Parameter = {
   url: "https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json", 
   method: "GET", 
@@ -52,9 +55,10 @@ function renderCity(data) {
 
 
     function deliveryFee(obj, abj) {
+
     const giaTri = obj+"/"+abj;
     $.ajax({
-    url: "/orderFee",
+    url: baseUrl,
     type: "get",
     data: {
     exits: giaTri
@@ -75,7 +79,7 @@ function renderCity(data) {
   function deliveryFeeTotal(obj, abj) {
     const giaTri = obj+"/"+abj;
     $.ajax({
-      url: "/orderFee",
+      url: baseUrl,
       type: "post",
       data: {
         exits: giaTri
@@ -83,7 +87,7 @@ function renderCity(data) {
       success: function (data) {
         const part12 = data.replace(/\r?\n|\r/g, '');
         const row1 = document.getElementById("sum_order");
-        row1.innerText = part12;
+        row1.innerText = part12+"đ";
 
       }
     })

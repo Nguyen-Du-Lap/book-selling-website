@@ -29,7 +29,7 @@ public class OrderBuyNowControlller extends HttpServlet {
 
             cart.addProduct(product, qnt);
             request.getSession().setAttribute("cart", cart);
-            response.sendRedirect("/orderAddVoucher?list_id="+productId);
+            response.sendRedirect(request.getContextPath()+"/orderAddVoucher?list_id="+productId);
         }
     }
 

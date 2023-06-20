@@ -24,9 +24,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"
         integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="/templates/styles/Header.css">
-  <link rel="stylesheet" href="/templates/styles/GuideOrder.css">
-  <link rel="stylesheet" href="/templates/styles/Footer.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/templates/styles/Header.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/templates/styles/GuideOrder.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/templates/styles/Footer.css">
   <title>Hướng dẫn mua hàng</title>
 </head>
 
@@ -38,7 +38,7 @@
   <div class="container">
     <nav id="breadcrumbbar">
       <ul class="breadcrumb">
-        <li class="breadcrumb-item"><a class="chang_font" href="/home">Trang chủ</a></li>
+        <li class="breadcrumb-item"><a class="chang_font" href="${pageContext.request.contextPath}/home">Trang chủ</a></li>
         <li class="breadcrumb-item active"><a href="">Hướng dẫn mua hàng</a></li>
       </ul>
     </nav>
@@ -59,22 +59,22 @@
         <p><br><span style="font-size:16px">Bước 1: Bấm vào nút “Thêm vào giỏ hàng” để đưa sản phẩm vào giỏ
                             hàng sau khi đã lựa chọn sản phẩm mình muốn mua</span></p>
         <p style="text-align: center; width: 700px;"><img style="width:100%"
-                src="/templates/images/huongdandathang/huong-dan-dat-hang-1.png"></p>
+                src="${pageContext.request.contextPath}/templates/images/huongdandathang/huong-dan-dat-hang-1.png"></p>
         <p> </p>
         <p><br><span style="font-size:16px">Bước 2: Có thể nhấm vào mua sản phẩm trực tiếp ở đây bỏ qua bước 3</span></p>
         <p style="text-align: center;width: 700px;"><img style="width:100%"
-                src="/templates/images/huongdandathang/huong-dan-dat-hang-2.png"></p>
+                src="${pageContext.request.contextPath}/templates/images/huongdandathang/huong-dan-dat-hang-2.png"></p>
         <p><br><span style="font-size:16px">Bước 3: Vào giỏ hàng để tiếp tục bấm vào mua hàng</span></p>
         <p style="text-align: center;width: 700px;"><img style="width:100%"
-                src="/templates/images/huongdandathang/huong-dan-dat-hang-3.png"></p>
+                src="${pageContext.request.contextPath}/templates/images/huongdandathang/huong-dan-dat-hang-3.png"></p>
         <p><span style="font-size:16px">Bước 4: Điền thông tin nhận hàng của bạn và chọn hình thức "Giao
                             hàng" hay "Nhận hàng tại cửa hàng"</span></p>
         <p style="text-align: center;width: 700px;"><img style="width:100%"
-                src="/templates/images/huongdandathang/huong-dan-dat-hang-4.png"></p>
+                src="${pageContext.request.contextPath}/templates/images/huongdandathang/huong-dan-dat-hang-4.png"></p>
         <p><span style="font-size:16px">Bước 5: Lựa chọn Phương thức vận chuyển và Phương thức thanh
                             toán</span></p>
         <p style="text-align: center;width: 700px;"><img style="width:100%"
-                src="/templates/images/huongdandathang/huong-dan-dat-hang-5.png"></p>
+                src="${pageContext.request.contextPath}/templates/images/huongdandathang/huong-dan-dat-hang-5.png"></p>
         <p><span style="font-size:16px">Bước 6: Nhấp "Đặt hàng"</span></p>
         <p><br><span style="font-size:16px">Đơn hàng của bạn đã hoàn tất và được chuyển tới chúng tôi. Chúng
                             tôi&nbsp;sẽ xử lý và liên lạc lại với bạn để thực hiện giao dịch.</span></p>
@@ -100,7 +100,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
         crossorigin="anonymous"></script>
-<script src="/templates/scripts/header.js"></script>
+<script src="${pageContext.request.contextPath}/templates/scripts/header.js"></script>
 
 </body>
 

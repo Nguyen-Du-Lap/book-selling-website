@@ -8,7 +8,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
   <meta charset="UTF-8">
@@ -31,6 +31,7 @@
   <title>Cart</title>
 </head>
 
+
 <body>
 <!-- -----------phần header----------------  -->
 <%@include file="/common/web/header.jsp"%>
@@ -45,8 +46,8 @@
     </c:if>
     <c:if test="${!sessionScope.containsKey('cart') || sessionScope.cart.map.size() == 0}">
       <div class="no-data text-center my-5 in-cart">
-        <img src="/templates/images/empty_cart.jpg" alt="No data">
-        <a style="font-size: 24px; font-weight: 600;" href="/home" id="btn-cart-buy">Mua ngay</a>
+        <img src="${pageContext.request.contextPath}/templates/images/empty_cart.jpg" alt="No data">
+        <a style="font-size: 24px; font-weight: 600;" href="${pageContext.request.contextPath}/home" id="btn-cart-buy">Mua ngay</a>
       </div>
     </c:if>
 
@@ -70,7 +71,7 @@
                 </label>
               </td>
               <td class="container_img">
-                <div class="col_img"><img src="${item.value.product.image}" alt=""></div>
+                <div class="col_img"><img src="${pageContext.request.contextPath}/${item.value.product.image}" alt=""></div>
                 <div class="col-container_content">
                   <a data-product-name="${item.value.product.name}"></a>
                   <h2 class="title">${item.value.product.name}</h2>
@@ -109,7 +110,7 @@
           <span class="sum_money">${sessionScope.cart.totalPrice}đ</span>
         </div>
         <div class="order">ĐẶT HÀNG</div>
-        <a href="/home"><div class="add_product">CHỌN THÊM SẢN PHẨM</div></a>
+        <a href="${pageContext.request.contextPath}/home"><div class="add_product">CHỌN THÊM SẢN PHẨM</div></a>
       </div>
     </c:if>
 
@@ -131,18 +132,18 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
         crossorigin="anonymous"></script>
-<script src="/templates/scripts/header.js"></script>
+<script src="${pageContext.request.contextPath}/templates/scripts/header.js"></script>
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
   $('.minus .btn-number').on('click', function () {
     const pId = $(this).closest('tr').attr('data-product-id')
-    window.location.href = '${context}/add-to-cart?product_id=' + pId + '&action=remove'
+    window.location.href = '${pageContext.request.contextPath}/add-to-cart?product_id=' + pId + '&action=remove'
   })
 
   $('.plus .btn-number').on('click', function () {
     const pId = $(this).closest('tr').attr('data-product-id')
-    window.location.href = '${context}/add-to-cart?product_id=' + pId + '&action=add'
+    window.location.href = '${pageContext.request.contextPath}/add-to-cart?product_id=' + pId + '&action=add'
   })
 
   $('.action a').on('click', function () {
@@ -155,7 +156,7 @@
     }).then((willDelete) => {
       if (willDelete) {
         const pId = $(this).closest('tr').attr('data-product-id')
-        window.location.href = '${context}/add-to-cart?product_id=' + pId + '&action=delete'
+        window.location.href = '${pageContext.request.contextPath}/add-to-cart?product_id=' + pId + '&action=delete'
       } else {
         return false
       }
@@ -180,7 +181,7 @@
   });
 
   $('.order').on('click', function () {
-    window.location.href = '${context}/orderAddVoucher?list_id=' + enabledSettings
+    window.location.href = '${pageContext.request.contextPath}/orderAddVoucher?list_id=' + enabledSettings
   })
 </script>
 

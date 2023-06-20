@@ -67,7 +67,7 @@
         </c:forEach>
       </c:if>
     </div>
-    <a href="/voucher" style="margin-top: 24px">
+    <a href="${pageContext.request.contextPath}/voucher" style="margin-top: 24px">
       <h2>Thêm voucher</h2>
     </a>
     <button class="btn_bt" id="next"
@@ -100,7 +100,7 @@
             </div>
 
           </div>
-          <a href="/cart">
+          <a href="${pageContext.request.contextPath}/cart">
             <input class="btn_bt" id="bt-update_order"  type="button" value="CHỈNH SỬA ĐƠN HÀNG">
           </a>
         </div>
@@ -134,9 +134,9 @@
   $('#next').on('click', function () {
     let idVoucher = $("input[name='idDiscount']:checked").val();
     if (typeof(idVoucher) != "undefined"){
-      window.location.href = '${context}/order?idVoucher='+idVoucher
+      window.location.href = '${pageContext.request.contextPath}/order?idVoucher='+idVoucher
     }else {
-      window.location.href = '${context}/order?idVoucher='+1000000
+      window.location.href = '${pageContext.request.contextPath}/order?idVoucher='+1000000
     }
   })
 </script>

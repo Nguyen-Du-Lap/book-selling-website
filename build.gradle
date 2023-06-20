@@ -1,0 +1,104 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id "org.hidetake.ssh" version "2.11.2"
+    id 'war'
+}
+
+apply plugin: 'org.hidetake.ssh'
+
+remotes {
+    host {
+        host = '192.168.1.100'
+        user = 'root'
+        password = '1234'
+    }
+}
+
+ssh.settings {
+    knownHosts = allowAnyHosts
+}
+
+task docker_app_start {
+    doLast {
+        println 'begin docker_app_start'
+        ssh.run {
+            session(remotes.host) {
+                execute 'docker stop tomcat9', ignoreError: true
+                execute 'docker run -it --rm -d ' +
+                        '--name tomcat9 ' +
+                        '-v /usr/deploy:/usr/local/tomcat/webapps/ ' +
+                        '-p 80:8080 ' +
+                        '-e CONTEXT_PATH="/" ' +
+                        'tomcat:9.0&'
+            }
+        }
+    }
+}
+
+task docker_upload_file_to_server {
+    doLast {
+        println 'begin docker_upload_file_to_server'
+        ssh.run {
+            session(remotes.host) {
+                remove '/usr/deploy/book-selling-website.war'
+                remove '/usr/deploy/book-selling-website/'
+                put from: "${project.projectDir}/build/libs/book-selling-website-1.0-SNAPSHOT.war",
+                        into: "/usr/deploy/book-selling-website.war"
+            }
+        }
+    }
+}
+
+task docker_deploy {
+    docker_deploy.dependsOn docker_app_start
+    docker_deploy.dependsOn docker_upload_file_to_server
+    docker_deploy.dependsOn build
+    tasks.getByName('docker_app_start').mustRunAfter docker_upload_file_to_server
+}
+
+repositories {
+    mavenLocal()
+    maven {
+        url = uri('https://repo.maven.apache.org/maven2/')
+    }
+}
+
+dependencies {
+    api 'jstl:jstl:1.2'
+    api 'mysql:mysql-connector-java:8.0.27'
+    api 'org.jboss.weld.servlet:weld-servlet:2.2.5.Final'
+    api 'javax.mail:mail:1.5.0-b01'
+    api 'com.sun.mail:javax.mail:1.5.3'
+    api 'commons-beanutils:commons-beanutils:1.9.4'
+    api 'com.sun.mail:jakarta.mail:2.0.1'
+    api 'commons-logging:commons-logging:1.2'
+    api 'org.apache.httpcomponents:fluent-hc:4.5.5'
+    api 'com.google.code.gson:gson:2.10.1'
+    api 'org.apache.httpcomponents.client5:httpclient5:5.2.1'
+    api 'org.apache.httpcomponents.core5:httpcore5:5.2.1'
+    api 'org.eclipse.angus:angus-mail:2.0.1'
+    api 'org.jdbi:jdbi3-core:3.37.1'
+    api 'org.apache.httpcomponents:httpclient:4.5.14'
+    api 'org.json:json:20230227'
+    api 'com.googlecode.json-simple:json-simple:1.1'
+    api 'org.apache.poi:poi-ooxml:4.1.0'
+    api 'org.apache.pdfbox:pdfbox:2.0.28'
+    implementation 'com.itextpdf:itext7-core:7.1.16'
+    api 'com.itextpdf:html2pdf:3.0.2'
+    testImplementation 'junit:junit:3.8.1'
+    api 'javax.servlet:javax.servlet-api:3.1.0'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+description = 'book-selling-website Maven Webapp'
+java.sourceCompatibility = JavaVersion.VERSION_1_8
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from(components.java)
+        }
+    }
+}

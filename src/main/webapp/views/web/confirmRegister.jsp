@@ -17,9 +17,9 @@ To change this template use File | Settings | File Templates.
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
           integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
-    <link rel="stylesheet" href="/templates/styles/Login.css">
-    <link rel="stylesheet" href="/templates/styles/Header.css">
-    <link rel="stylesheet" href="/templates/styles/Footer.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/templates/styles/Login.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/templates/styles/Header.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/templates/styles/Footer.css">
 
 </head>
 
@@ -31,7 +31,7 @@ To change this template use File | Settings | File Templates.
 <div class="signUp">
     <div class="signUp-title">Đăng ký</div>
 
-    <form action="/confirmOTP" class="form_signUp" id="form_signUp" method="post">
+    <form action="${pageContext.request.contextPath}/confirmOTP" class="form_signUp" id="form_signUp" method="post">
         <div class="input ">
             <label>Mã OPT có hiệu lực 5 phút</label>
             <input type="text" placeholder="Nhập mã opt" id="email" name="code">
@@ -61,8 +61,8 @@ To change this template use File | Settings | File Templates.
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
         crossorigin="anonymous"></script>
-<script src="/templates/scripts/signUp.js"></script>
-<script src="/templates/scripts/header.js"></script>
+<script src="${pageContext.request.contextPath}/templates/scripts/signUp.js"></script>
+<script src="${pageContext.request.contextPath}/templates/scripts/header.js"></script>
 </body>
 
 </html>

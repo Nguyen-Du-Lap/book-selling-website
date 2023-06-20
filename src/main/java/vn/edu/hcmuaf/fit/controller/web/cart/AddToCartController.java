@@ -58,7 +58,7 @@ public class AddToCartController extends HttpServlet {
 
             request.getSession().setAttribute("cart", cart);
             cart.setId(cartDao.setID());
-            response.sendRedirect("cart");
+            response.sendRedirect(request.getContextPath()+"/cart");
         }
     }
 

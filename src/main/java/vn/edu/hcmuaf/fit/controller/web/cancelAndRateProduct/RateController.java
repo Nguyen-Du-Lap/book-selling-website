@@ -56,14 +56,16 @@ public class RateController extends HttpServlet {
                 log.insert();
                 message = "Đánh giá thành công";
                 messageType = "success";
+//                new MessageParameterUntil("Hủy đơn hàng thành công", "success", "/views/web/reviewOrders.jsp", request, response).send();
 
             }else {
                 message = "Đánh giá thất bại";
                 messageType = "danger";
             }
-            request.getSession().setAttribute("message", message);
-            request.getSession().setAttribute("alert", messageType);
-            response.sendRedirect("account?action=reviewOrders");
+            request.setAttribute("message", message);
+            request.setAttribute("alert", messageType);
+
+            response.sendRedirect(request.getContextPath()+"/account?action=reviewOrders");
         }
 
 
