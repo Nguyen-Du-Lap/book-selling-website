@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Main CSS-->
   <!--  <link rel="stylesheet" href="../css/style.css">-->
-  <link rel="stylesheet" type="text/css" href="/templates/admin/doc/css/main.css">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/templates/admin/doc/css/main.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
   <!-- or -->
   <!--  <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">-->
@@ -86,7 +86,7 @@
             <c:forEach var="bill" items="${listBill}">
               <tr>
                 <td width="10"><input type="checkbox" name="check1" value="1"></td>
-                <td><a href="/findDetail?id=${bill.idOrder}">${bill.idOrder}</a></td>
+                <td><a href="${pageContext.request.contextPath}/findDetail?id=${bill.idOrder}">${bill.idOrder}</a></td>
                 <td>${bill.nameUser}</td>
                 <td>${bill.address}</td>
                 <td>${bill.totalProduct}</td>
@@ -94,9 +94,9 @@
                 <td>${bill.paymethod}</td>
                 <td><span class="badge bg-success">${bill.statusBill}</span></td>
                 <td>
-                  <a href="/confirmBill?id=${bill.idOrder}">
+                  <a href="${pageContext.request.contextPath}/confirmBill?id=${bill.idOrder}">
                     <button class="btn btn-primary btn-sm edit" type="button" title="Xác nhận"><i class="fa fa-check"></i></button>
-                  </a> <br> <a href="/removerBill?id=${bill.idOrder}">
+                  </a> <br> <a href="${pageContext.request.contextPath}/removerBill?id=${bill.idOrder}">
                   <button class="btn btn-primary btn-sm edit" type="button" title="Xóa bỏ"><i class="fa fa-remove"></i></button>
                 </a>
                 </td>
@@ -174,19 +174,19 @@ MODAL
 -->
 
 <!-- Essential javascripts for application to work-->
-<script src="/templates/admin/doc/js/jquery-3.2.1.min.js"></script>
-<script src="/templates/admin/doc/js/popper.min.js"></script>
-<script src="/templates/admin/doc/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/templates/admin/doc/js/jquery-3.2.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/templates/admin/doc/js/popper.min.js"></script>
+<script src="${pageContext.request.contextPath}/templates/admin/doc/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="src/jquery.table2excel.js"></script>
-<script src="/templates/admin/doc/js/main.js"></script>
+<script src="${pageContext.request.contextPath}/templates/admin/doc/js/main.js"></script>
 <!-- The javascript plugin to display page loading on top-->
-<script src="/templates/admin/doc/js/plugins/pace.min.js"></script>
+<script src="${pageContext.request.contextPath}/templates/admin/doc/js/plugins/pace.min.js"></script>
 <!-- Page specific javascripts-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 <!-- Data table plugin-->
-<script type="text/javascript" src="/templates/admin/doc/js/plugins/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="/templates/admin/doc/js/plugins/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/templates/admin/doc/js/plugins/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/templates/admin/doc/js/plugins/dataTables.bootstrap.min.js"></script>
 <script type="text/javascript">$('#sampleTable').DataTable();</script>
 <script>
   function deleteRow(r) {
