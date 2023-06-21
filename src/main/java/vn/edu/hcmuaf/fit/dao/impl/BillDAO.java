@@ -587,16 +587,15 @@ public class BillDAO implements IBillDAO {
     public List<Bill> findAllBillByIdCartRate(int id) {
         List<Bill> list = new ArrayList<Bill>();
         String sql = "SELECT b.id_order, s.name, b.totalBill, b.quantity, b.id_user, b.id_book, b.address, b.shipping_info, b.payment_method, b.pack,\n" +
-                "                c.create_time, c.timeShip, b.idCart\n" +
-                "FROM bill b\n" +
-                "JOIN carts c ON b.idCart = c.id\n" +
-                "JOIN book s ON s.id_book = b.id_book\n" +
-                "WHERE NOT EXISTS (\n" +
-                "  SELECT 1\n" +
-                "  FROM rate r\n" +
-                "  WHERE b.id_user = r.id_user AND b.id_book = r.id_book \n" +
-                ") AND  b.idCart = ?\n" +
-                "\n";
+                " c.create_time, c.timeShip, b.idCart\n" +
+                "                FROM bill b\n" +
+                "                JOIN carts c ON b.idCart = c.id\n" +
+                "                JOIN book s ON s.id_book = b.id_book\n" +
+                "                WHERE NOT EXISTS (\n" +
+                "               SELECT 1\n" +
+                "                  FROM rate r\n" +
+                "                WHERE b.id_user = r.id_user AND b.id_book = r.id_book AND b.idCart = r.id_order )\n" +
+                "                AND  b.idCart = ?";
         Connection connection = JDBCConnector.getConnection();
         PreparedStatement statement = null;
         ResultSet resultSet = null;

@@ -23,6 +23,9 @@ public class AccountController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
+
+        request.removeAttribute("message");
+        request.removeAttribute("alert");
         CustomerModel cus = (CustomerModel) SessionUtil.getInstance().getValue(request, "USERMODEL");
         if(cus == null) {
             response.sendRedirect(request.getContextPath()+"/login?action=login");

@@ -1,10 +1,12 @@
 package vn.edu.hcmuaf.fit.utils;
 
 import jakarta.mail.*;
+import jakarta.mail.Session;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
 import vn.edu.hcmuaf.fit.model.CustomerModel;
 import vn.edu.hcmuaf.fit.model.EmailModel;
+
 
 
 import java.util.Properties;
@@ -50,7 +52,7 @@ public class EmailUtil {
 
         String toEmail = user.getEmail();
         String fromEmail = "sosinhsv1b@gmail.com";
-        String password = "pjsolwceicgzrlzp";
+        String password = "xvekrylvsrcrbhqi";
 
         try {
             Properties pr = new Properties();
@@ -94,7 +96,7 @@ public class EmailUtil {
 
         String toEmail = email;
         String fromEmail = "sosinhsv1b@gmail.com";
-        String password = "pjsolwceicgzrlzp";
+        String password = "xvekrylvsrcrbhqi";
 
         try {
 
@@ -139,5 +141,13 @@ public class EmailUtil {
         }
 
         return test;
+    }
+
+    public static void main(String[] args) {
+        EmailUtil util = new EmailUtil();
+        CustomerModel cus = new CustomerModel();
+        cus.setEmail("4tiensau@gmail.com");
+        util.getRandom();
+        util.sendEmail(cus);
     }
 }

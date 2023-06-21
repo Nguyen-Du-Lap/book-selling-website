@@ -32,7 +32,7 @@ public class CancelProductController extends HttpServlet {
             request.setAttribute("listBillDeliverByIdOrder", listDonHang(cus,1));
             request.setAttribute("listBillWarByIdOrder",  listDonHang(cus,1));
             request.setAttribute("listBillDelivByIdOrder",  listDonHang(cus,2));
-            request.setAttribute("listBillRateByIdOrder",  listDonHang(cus,3));
+            request.setAttribute("listBillRateByIdOrder",  cartModelsChuaRate(cus,3));
             request.setAttribute("listBillByIdOrder", listDonHang(cus,3));
             CartDao dao = new CartDao();
             dao.updateCart(idInt, 4);
@@ -58,6 +58,20 @@ public class CancelProductController extends HttpServlet {
         List<CartModel> dangChoList = new ArrayList<>();
         for (int i =0;i<listModel.size();i++) {
             if(listModel.get(i).getInShip() == info) {
+                dangChoList.add(listModel.get(i));
+            }
+        }
+        return  dangChoList;
+    }
+    public List<CartModel> cartModelsChuaRate(CustomerModel cus, int info) {
+        CartDao cartDao = new CartDao();
+        List<CartModel> listModel = cartDao.getAllCartByIdUser(cus.getIdUser());
+        for(int i =0 ;i < listModel.size();i++) {
+            listModel.get(i).setBills(new BillDAO().findAllBillByIdCartRate( listModel.get(i).getId()));
+        }
+        List<CartModel> dangChoList = new ArrayList<>();
+        for (int i =0;i<listModel.size();i++) {
+            if(listModel.get(i).getInShip() == info && listModel.get(i).getBills().size() >0) {
                 dangChoList.add(listModel.get(i));
             }
         }
