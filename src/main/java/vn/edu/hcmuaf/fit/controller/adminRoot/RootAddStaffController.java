@@ -45,7 +45,7 @@ public class RootAddStaffController extends HttpServlet {
         String addess = request.getParameter("addess");
 
         if(lastName == null||firstName == null||email == null||password == null||numberPhone == null||addess == null|| lastName.isEmpty() ||firstName.isEmpty() ||email.isEmpty() ||password.isEmpty() ||numberPhone.isEmpty() || addess.isEmpty()) {
-            response.sendRedirect("/admin-root-add-staff?message=Them that bai&alert=danger");
+            response.sendRedirect(request.getContextPath()+"/admin-root-add-staff?message=Them that bai&alert=danger");
         } else {
             if(dao.findByUsername(email) != null) {
                 response.sendRedirect(request.getContextPath()+"/admin-root-add-staff?message=Email đã tồn tại bai&alert=danger");

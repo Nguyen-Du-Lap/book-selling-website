@@ -46,9 +46,9 @@ public class UpdateCustomerController extends HttpServlet {
             if(i >= 1) {
                 Log log = new Log(Log.WARNING,ip,"Chỉnh sửa thông tin người dùng",cus.getIdUser(),"Tài khoản được chỉnh sửa: " + idUser,1);
                 log.insert();
-                response.sendRedirect("/admin-table-customer?message=Upload success&alert=success");
+                response.sendRedirect(request.getContextPath() +"/admin-table-customer?message=Upload success&alert=success");
             }else {
-                response.sendRedirect("/admin-table-customer?message=Upload error&alert=error");
+                response.sendRedirect(request.getContextPath() +"/admin-table-customer?message=Upload error&alert=error");
             }
         } catch (Exception e) {
             request.getRequestDispatcher("views/admin/table-data-customer.jsp").forward(request, response);

@@ -44,7 +44,7 @@ public class ManagementContactFindController extends HttpServlet {
             new ContactDao().updateContact(contactModel.getId(), content);
             Log log = new Log(Log.INFO,ip,"Quản lí contact",cus.getIdUser(),"Nhân viên phản hồi khách hàng",1);
             log.insert();
-            response.sendRedirect("admin-management-contact");
+            response.sendRedirect(request.getContextPath() +"/admin-management-contact");
         } else {
             request.getSession().setAttribute("message", "Vui lòng nhập đầy đủ thông tin");
             request.getSession().setAttribute("alert", "success");

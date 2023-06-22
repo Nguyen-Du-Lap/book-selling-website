@@ -53,7 +53,7 @@
             </c:if>
           </div>
 
-          <form action="/admin-add-slide" enctype="multipart/form-data" method="post" class="row">
+          <form action="${pageContext.request.contextPath}/admin-add-slide" enctype="multipart/form-data" method="post" class="row">
             <div class="form-group col-md-3">
               <label class="control-label">Tên slide</label>
               <input name="name" class="form-control" type="text">
