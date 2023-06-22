@@ -16,8 +16,9 @@ public class RateDAO implements IRateDAO {
     public List<RateModel> listRate(int idBook) {
         List<RateModel> results = new ArrayList<>();
         String sql = "SELECT rate.id_user, rate.id_book, rate.id_order, rate.start_rate ,rate.`comment`, rate.rate_time, customer.first_name\n" +
-                "FROM rate JOIN customer ON rate.id_user = customer.id_user\n" +
-                "WHERE rate.id_book = ? LIMIT 10 and rate.status =1";
+                "                FROM rate JOIN customer ON rate.id_user = customer.id_user\n" +
+                "                WHERE rate.id_book = ?  and rate.status =1\n" +
+                "                LIMIT 10";
         Connection connection = JDBCConnector.getConnection();
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -28,7 +29,7 @@ public class RateDAO implements IRateDAO {
                 resultSet = statement.executeQuery();
                 while (resultSet.next()) {
                     RateModel rateModel = new RateModel();
-                    rateModel.setIdOrder(resultSet.getInt(1));
+                    rateModel.setIdUser(resultSet.getInt(1));
                     rateModel.setIdBook(resultSet.getInt(2));
                     rateModel.setIdOrder(resultSet.getInt(3));
                     rateModel.setStartRate(resultSet.getInt(4));

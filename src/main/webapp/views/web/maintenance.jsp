@@ -182,7 +182,7 @@
     </div>
     <h1 class="second-four">4</h1>
     <p class="wrong-para">Hệ thống đang bảo trì!</p>
-    <a style="position: absolute; top: 86%; left: 50%; transform: translate(-84%, -50%);" href="/login?action=login"><p>Đăng nhập</p></a>
+    <a style="position: absolute; top: 86%; left: 50%; transform: translate(-84%, -50%);" href="${pageContext.request.contextPath}/login?action=login"><p>Đăng nhập</p></a>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>

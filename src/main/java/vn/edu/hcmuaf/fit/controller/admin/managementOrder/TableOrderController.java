@@ -22,6 +22,7 @@ public class TableOrderController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // title dung de active aside
+        request.setCharacterEncoding("UTF-8");
         request.setAttribute("title", "Danh Sách Đơn Hàng");
 
         request.setAttribute("listBill",listDonHang());

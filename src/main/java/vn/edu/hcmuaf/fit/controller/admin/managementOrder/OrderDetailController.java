@@ -1,5 +1,6 @@
 package vn.edu.hcmuaf.fit.controller.admin.managementOrder;
 
+import jdk.tools.jmod.Main;
 import vn.edu.hcmuaf.fit.dao.impl.BillDAO;
 import vn.edu.hcmuaf.fit.dao.impl.CartDao;
 import vn.edu.hcmuaf.fit.dao.impl.CustomerDAO;
@@ -20,14 +21,14 @@ public class OrderDetailController extends HttpServlet {
     CustomerDAO customerDAO = new CustomerDAO();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        request.setCharacterEncoding("UTF-8");
         String id = request.getParameter("id");
         int idInt = Integer.parseInt(id);
         CartModel cartModel = cartDao.getCartById(idInt);
         System.out.println(billDAO.find1BillByIdCart(cartModel.getId()).toString());
         request.setAttribute("CUSTOMER", customerDAO.findById(cartModel.getIdUser())) ;
         request.setAttribute("cart", listDonHang(idInt));
-        request.setAttribute("LISTBILL",  cartDao.getAllDetailCart(cartModel.getIdUser(),idInt));
+       request.setAttribute("LISTBILL",  cartDao.getAllDetailCart(cartModel.getIdUser(),idInt));
         request.getRequestDispatcher("/views/admin/confirm-order-detail.jsp").forward(request, response);
     }
 
@@ -38,9 +39,10 @@ public class OrderDetailController extends HttpServlet {
     public CartModel listDonHang( int id) {
         CartDao cartDao = new CartDao();
         CartModel listModel = cartDao.getCartById(id);
-        listModel.setBills(new BillDAO().findAllBillByIdCart( listModel.getId()));
+        listModel.setBills(new BillDAO().findAllBillByIdCart( id));
 
 
         return listModel;
     }
+
 }

@@ -110,15 +110,20 @@
                                     </tr>
                                     <tr>
                                         <td>Đóng gói:</td>
-                                        <td>${cart.bills.get(0).pack}</td>
+                                        <td>${cart.bills.get(0).getPack()}</td>
                                     </tr>
                                     <tr>
                                         <td>Phương thức thanh toán:</td>
-                                        <td>${cart.bills.get(0).paymentMethod}</td>
+                                        <c:if test="${cart.bills.get(0).paymentMethod == 0}">
+                                            <td>Tiền mặt</td>
+                                        </c:if>
+                                        <c:if test="${cart.bills.get(0).paymentMethod != 0}">
+                                            <td>Chuyển khoản</td>
+                                        </c:if>
                                     </tr>
                                     <tr>
                                         <td>Ghi chú:</td>
-                                        <td>${cart.bills.get(0).info}</td>
+                                        <td>${cart.bills.get(0).getInfo()}</td>
                                     </tr>
                                     <tr>
                                         <td>Tổng giá trị:</td>
@@ -131,12 +136,12 @@
                                     </tr>
                                     <tr>
                                         <td>Đăng kí giao hàng:</td>
-                                        <c:if test="${cart.getInFoShipString() == 'Chờ xử lý'}">
+                                        <c:if test="${cart.inShip == 1}">
                                             <td><button type="button" class="btn btn-danger">
                                                 <a style="color: #FFFFFF" href="${pageContext.request.contextPath}/admin-register-order?id=${cart.id}&variable=${CUSTOMER.idUser}">Đăng kí đơn hàng</a>
                                             </button></td>
                                         </c:if>
-                                        <c:if test="${cart.getInFoShipString() != 'Chờ xử lý'}">
+                                        <c:if test="${cart.inShip != 'Chờ xử lý'}">
                                             <td>Đã đăng kí vận chuyển</td>
                                         </c:if>
                                     </tr>

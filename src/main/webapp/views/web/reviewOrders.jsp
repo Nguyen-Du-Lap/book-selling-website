@@ -276,7 +276,6 @@
                   <th scope="col">Tên sản phẩm</th>
                   <th scope="col">Ảnh</th>
                   <th scope="col">Số lượng</th>
-                  <th scope="col">Tổng tiền</th>
                   <th scope="col">Tình trạng</th>
                 </tr>
                 </thead>
@@ -297,11 +296,6 @@
                     <td>
                       <c:forEach var="billH" items="${cartH.getBills()}">
                         <p>${billH.quantity}<br><br></p>
-                      </c:forEach>
-                    </td>
-                    <td>
-                      <c:forEach var="billH" items="${cartH.getBills()}">
-                        <p>${billH.totalPrice}<br><br></p>
                       </c:forEach>
                     </td>
                     <td>

@@ -150,7 +150,7 @@ public class FeeGHNUtils {
 				response.append(inputLine);
 			}
 			in.close();
-
+			System.out.println(response.toString());
 			// Parse the JSON response to get the cost and time
 			JSONObject jsonObject = new JSONObject(response.toString());
 			JSONArray dataArray = jsonObject.getJSONArray("data");
@@ -162,6 +162,7 @@ public class FeeGHNUtils {
 			return result;
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 		}
 		return result;
 
@@ -289,4 +290,8 @@ public class FeeGHNUtils {
 		return null;
 	}
 
+	public static void main(String[] args) {
+		System.out.println(DistrictGHNUtils.getDistrictId("Quận Tân Phú"));
+
+	}
 }

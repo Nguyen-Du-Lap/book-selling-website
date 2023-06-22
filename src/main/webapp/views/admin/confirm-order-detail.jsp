@@ -114,7 +114,12 @@
                                     </tr>
                                     <tr>
                                         <td>Phương thức thanh toán:</td>
-                                        <td>${cart.bills.get(0).paymentMethod}</td>
+                                        <c:if test="${cart.bills.get(0).paymentMethod == 0}">
+                                            <td>Tiền mặt</td>
+                                        </c:if>
+                                        <c:if test="${cart.bills.get(0).paymentMethod != 0}">
+                                            <td>Chuyển khoản</td>
+                                        </c:if>
                                     </tr>
                                     <tr>
                                         <td>Ghi chú:</td>
@@ -127,16 +132,24 @@
                                     </tr>
                                     <tr>
                                         <td>Tình trạng:</td>
-                                        <td>${cart.getInFoShipString()}</td>
+                                        <c:if test="${cart.inShip == 1}">
+                                            <td>Chờ xử lí</td>
+                                        </c:if>
+                                        <c:if test="${cart.inShip ==2}">
+                                            <td>Đã đăng kí vận chuyển</td>
+                                        </c:if>
+                                        <c:if test="${cart.inShip ==3}">
+                                            <td>Đã giao</td>
+                                        </c:if>
                                     </tr>
                                     <tr>
                                         <td>Đăng kí giao hàng:</td>
-                                        <c:if test="${cart.getInFoShipString() == 'Chờ xử lý'}">
+                                        <c:if test="${cart.inShip == 1}">
                                             <td><button type="button" class="btn btn-danger">
                                                 <a style="color: #FFFFFF" href="${pageContext.request.contextPath}/admin-register-order?id=${cart.id}&variable=${CUSTOMER.idUser}">Đăng kí đơn hàng</a>
                                             </button></td>
                                         </c:if>
-                                        <c:if test="${cart.getInFoShipString() != 'Chờ xử lý'}">
+                                        <c:if test="${cart.inShip != 1}">
                                             <td>Đã đăng kí vận chuyển</td>
                                         </c:if>
                                     </tr>
@@ -160,7 +173,7 @@
                                     <c:forEach var="item" items="${LISTBILL}">
                                         <tr>
                                             <td>${item.nameSach}</td>
-                                            <td><img style="height: 50px" src="${item.image}"></td>
+                                            <td><img style="height: 50px" src="${pageContext.request.contextPath}/${item.image}"></td>
                                             <td>${item.quantity}</td>
                                             <td>${item.totalPrice}</td>
                                         </tr>

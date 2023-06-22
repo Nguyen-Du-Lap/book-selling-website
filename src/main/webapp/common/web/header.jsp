@@ -43,7 +43,7 @@
                                     <i class="fa-brands fa-facebook-f"></i>
                                     <span style="font-size: 13px;">Tài khoản Facebook</span>
                                 </a>
-                                <a href="<c:url value="/login?action=login"/> " class="account--item_center"><span>Đăng nhập</span></a>
+                                <a href="${pageContext.request.contextPath}/login?action=login " class="account--item_center"><span>Đăng nhập</span></a>
                                 <div class="account--item_bottom">
                                     <span>Khách hàng mới?</span>
                                     <a class="register" href="${pageContext.request.contextPath}/signup">Tạo tài khoản</a>

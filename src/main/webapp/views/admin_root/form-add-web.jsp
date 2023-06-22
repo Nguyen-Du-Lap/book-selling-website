@@ -51,7 +51,7 @@
                         </c:if>
                     </div>
 
-                    <form action="/admin-root-add-management-web"   method="post" class="row">
+                    <form action="${pageContext.request.contextPath}/admin-root-add-management-web"   method="post" class="row">
                         <div class="form-group col-md-3">
                             <label class="control-label">Tên công ty sở hữu</label>
                             <input name="name" class="form-control" type="text">

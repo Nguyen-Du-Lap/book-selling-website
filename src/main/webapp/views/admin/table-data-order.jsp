@@ -88,7 +88,13 @@
                 <td>${cart.idUser}</td>
                 <td>${cart.bills.get(0).address}</td>
                 <td>${cart.getTotalPriceFromCart()}</td>
-                <td>${cart.bills.get(0).paymentMethod}</td>
+                <c:if test="${cart.bills.get(0).paymentMethod == 0}">
+                  <td>Tiền mặt</td>
+                </c:if>
+                <c:if test="${cart.bills.get(0).paymentMethod != 0}">
+                  <td>Chuyển khoản</td>
+                </c:if>
+
                 <c:if test="${cart.inShip == 1}">
                   <td><span class="badge bg-danger">Chờ xử lí</span></td>
                 </c:if>

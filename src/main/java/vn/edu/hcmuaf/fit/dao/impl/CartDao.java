@@ -46,7 +46,7 @@ public class CartDao {
 
         if (connection != null) {
             try {
-                String sql = "INSERT INTO carts(id, idUser, timeShip, feeShip, totalPrice, infoShip, create_time) VALUES ( ?,?, ?, ?, ?, ?,null)";
+                String sql = "INSERT INTO carts(id, idUser, timeShip, feeShip, totalPrice, infoShip) VALUES ( ?,?, ?, ?, ?, ?)";
                 statement = connection.prepareStatement(sql);
                 statement.setInt(1, id);
                 statement.setInt(2, idUser);
@@ -114,15 +114,16 @@ public class CartDao {
     public List<CartDetailModel> getAllDetailCart(int id, int idCart) {
         List<CartDetailModel> result = new ArrayList<>();
 
-        String sql = "SELECT b.idCart ,bk.name, b.quantity, imb.image, b.quantity* bk.price AS tongtien\n" +
-                "FROM bill b\n" +
-                "JOIN carts e ON b.idCart = e.id\n" +
-                "JOIN book bk ON b.id_book = bk.id_book\n" +
-                "JOIN (\n" +
-                "  SELECT id_book, image\n" +
-                "  FROM image_book\n" +
-                "  GROUP BY id_book\n" +
-                ") imb ON bk.id_book = imb.id_book WHERE b.id_user =? and b.idCart = ?  ";
+        String sql = "SELECT b.idCart ,bk.name, sum(b.quantity), imb.image, sum(bk.price) AS tongtien\n" +
+                "                FROM bill b\n" +
+                "                JOIN carts e ON b.idCart = e.id\n" +
+                "                JOIN book bk ON b.id_book = bk.id_book\n" +
+                "                JOIN (\n" +
+                "                  SELECT id_book, image\n" +
+                "                  FROM image_book\n" +
+                "                  GROUP BY id_book, image\n" +
+                "                ) imb ON bk.id_book = imb.id_book WHERE b.id_user =? and b.idCart = ?\n" +
+                "                GROUP BY b.idCart ,bk.name, b.quantity, imb.image, b.quantity* bk.price";
         Connection connection = JDBCConnector.getConnection();
         PreparedStatement statement = null;
         ResultSet resultSet = null;

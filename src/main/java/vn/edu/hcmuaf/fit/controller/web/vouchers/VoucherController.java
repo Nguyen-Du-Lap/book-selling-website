@@ -18,7 +18,7 @@ public class VoucherController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         CustomerModel cus = (CustomerModel) SessionUtil.getInstance().getValue(request, "USERMODEL");
         if(cus == null) {
-            response.sendRedirect("/login?action=login");
+            response.sendRedirect(request.getContextPath()+"/login?action=login");
         }else {
             request.setAttribute("listVoucher", iVoucherDAO.findAllVoucherById(cus.getIdUser()));
             request.getRequestDispatcher("/views/web/voucher.jsp").forward(request,response);

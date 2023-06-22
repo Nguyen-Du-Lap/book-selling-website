@@ -101,10 +101,10 @@
                 <td>${slide.createTime}</td>
                 <td><span class="badge bg-success">${slide.status}</span></td>
                 <td>
-                  <a href="/findSlideHinden?id=${slide.idPr}">
+                  <a href="${pageContext.request.contextPath}/findSlideHinden?id=${slide.idPr}">
                     <button class="btn btn-primary btn-sm edit" type="button" title="Ẩn"><i class="fa fa-remove"></i></button>
                   </a> |
-                  <a href="/findSlideAvtivity?id=${slide.idPr}">
+                  <a href="${pageContext.request.contextPath}/findSlideAvtivity?id=${slide.idPr}">
                     <button class="btn btn-primary btn-sm edit" type="button" title="Hiện"><i class="fa fa-edit"></i></button>
                   </a>
                 </td>
