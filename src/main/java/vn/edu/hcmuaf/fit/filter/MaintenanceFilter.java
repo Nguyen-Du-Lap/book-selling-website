@@ -12,9 +12,9 @@ public class MaintenanceFilter implements Filter {
     List<String> listUrl = new ArrayList();
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        listUrl.add("/admin-root");
-        listUrl.add("/admin");
-        listUrl.add("/login");
+        listUrl.add("/book-selling-website/admin-root");
+        listUrl.add("/book-selling-website/admin");
+        listUrl.add("/book-selling-website/login");
     }
 
     @Override

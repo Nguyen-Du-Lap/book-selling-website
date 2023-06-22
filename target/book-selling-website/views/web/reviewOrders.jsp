@@ -150,7 +150,7 @@
                     </td>
                     <td>
                       <c:forEach var="billD" items="${cartD.getBills()}">
-                        <img style="height: 50px" src=${pageContext.request.contextPath}/"${billD.image}"><br><br>
+                        <img style="height: 50px" src="${pageContext.request.contextPath}/${billD.image}"><br><br>
                       </c:forEach>
                     </td>
                     <td><a class="btn_blue" href="${pageContext.request.contextPath}/cancelOrder?id=${cartD.id}">Hủy đơn</a></td>

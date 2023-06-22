@@ -50,7 +50,7 @@
                         </c:if>
                     </div>
 
-                    <form action="/findContact"  method="post" class="row">
+                    <form action="${pageContext.request.contextPath}/findContact"  method="post" class="row">
                         <div class="form-group col-md-3">
                             <label class="control-label">Người dùng</label>
                             <p class="form-control">${contact.fullName}</p>

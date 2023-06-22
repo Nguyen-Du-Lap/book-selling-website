@@ -193,7 +193,7 @@ MODAL CHỨC VỤ
      data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <form method="post" action="/admin-add-publisher-company">
+            <form method="post" action="${pageContext.request.contextPath}/admin-add-publisher-company">
             <div class="modal-body">
                 <div class="row">
                     <div class="form-group col-md-12">

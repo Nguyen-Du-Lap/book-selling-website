@@ -13,7 +13,7 @@
         <div class="top-header">
             <div class="container top-header-content">
                 <a class="logo" href="${pageContext.request.contextPath}/home">DORAEMON</a>
-                <form action="/products/search" method="post">
+                <form action="${pageContext.request.contextPath}/products/search" method="post">
                     <div class="top-header_search">
                         <input type="text" name="key" placeholder="Tìm kiếm">
                         <button style="border: none"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -43,7 +43,7 @@
                                     <i class="fa-brands fa-facebook-f"></i>
                                     <span style="font-size: 13px;">Tài khoản Facebook</span>
                                 </a>
-                                <a href="<c:url value="/login?action=login"/> " class="account--item_center"><span>Đăng nhập</span></a>
+                                <a href="${pageContext.request.contextPath}/login?action=login " class="account--item_center"><span>Đăng nhập</span></a>
                                 <div class="account--item_bottom">
                                     <span>Khách hàng mới?</span>
                                     <a class="register" href="${pageContext.request.contextPath}/signup">Tạo tài khoản</a>

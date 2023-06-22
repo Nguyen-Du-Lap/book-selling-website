@@ -327,7 +327,7 @@
                         swal("Bật thành công!", {
                             icon: "success",
                         });
-                        window.location.href = '/admin-root-enable-maintenance'
+                        window.location.href = '${pageContext.request.contextPath}/admin-root-enable-maintenance'
                     } else {
                         swal("Đã hủy yêu cầu!");
                     }
@@ -346,7 +346,7 @@
                         swal("Thành công!", {
                             icon: "success",
                         });
-                        window.location.href = '/admin-root-enable-maintenance'
+                        window.location.href = '${pageContext.request.contextPath}/admin-root-enable-maintenance'
                     } else {
                         swal("Đã hủy yêu cầu!");
                     }

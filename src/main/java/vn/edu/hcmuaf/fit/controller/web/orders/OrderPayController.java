@@ -66,7 +66,7 @@ public class OrderPayController extends HttpServlet {
         informationDeliverModel.setIdOrder(dao.setID());
         InformationDeliverDao informationDeliverDao = new InformationDeliverDao();
         informationDeliverDao.insertInfomationDeliver(informationDeliverModel);
-        dao.insertCart( cart.getIdUser(),cart.getTimeShip(),cart.getShip(), cart.getTotalPriceShipVoucher(),"1" );
+        dao.insertCart(dao.setID(), cart.getIdUser(),cart.getTimeShip(),cart.getShip(), cart.getTotalPriceShipVoucher(),"1" );
         billService.removeProductInCart(listIdRemove, request);
         response.sendRedirect(request.getContextPath()+"/order/reviewOrder?orderSuccess=1");
     }

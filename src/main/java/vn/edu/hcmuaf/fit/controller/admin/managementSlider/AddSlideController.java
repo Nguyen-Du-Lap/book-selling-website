@@ -58,17 +58,17 @@ public class AddSlideController extends HttpServlet {
                     iSliderManagementService.addImage(request,response,name,part1,starTime,finsishTime);
                     Log log = new Log(Log.INFO,ip,"Quản lý slide",cus.getIdUser(),"Thêm slide thành công",1);
                     log.insert();
-                    response.sendRedirect("/admin-add-slide?message=Them thanh cong&alert=success");
+                    response.sendRedirect(request.getContextPath()+"/admin-add-slide?message=Them thanh cong&alert=success");
                 }
             }else {
-                response.sendRedirect("/admin-add-slide?message=Them that bai&alert=danger");
+                response.sendRedirect(request.getContextPath()+"/admin-add-slide?message=Them that bai&alert=danger");
             }
 
 
 
         }catch (Exception e) {
             e.printStackTrace();
-            response.sendRedirect("/admin-add-slide?message=Vui long nhap thong tin can thiet&alert=warning");
+            response.sendRedirect(request.getContextPath()+"/admin-add-slide?message=Vui long nhap thong tin can thiet&alert=warning");
         }
 
     }

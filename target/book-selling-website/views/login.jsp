@@ -54,7 +54,7 @@
       <i class="fa-solid fa-circle-xmark"></i>
       <small>Error</small>
     </div>
-    <a href="/forgotPassword" class="forgotPassword-link">Quên mật khẩu?</a>
+    <a href="${pageContext.request.contextPath}/forgotPassword" class="forgotPassword-link">Quên mật khẩu?</a>
     <input type="hidden" name="action" value="login" >
     <button type="submit" class="btn-login">Đăng nhập</button>
     <fb:login-button class="social-button" id="facebook-login"  scope="public_profile,email" onlogin="checkLoginState();">
@@ -64,11 +64,11 @@
       </div>
     </fb:login-button>
 
-    <a href="https://accounts.google.com/o/oauth2/auth?scope=email%20profile%20openid &redirect_uri=http://localhost:8080/book_selling_website/login-google&response_type=code
-    &client_id=190006557334-854148cd78ttffl1gh6fdtfkjpo5fi52.apps.googleusercontent.com&approval_prompt=force" class="social-button" id="google-login">
+    <a href="https://accounts.google.com/o/oauth2/auth?scope=email%20profile%20openid&redirect_uri=http://localhost:8080/book_selling_website/login-google&response_type=code&client_id=190006557334-854148cd78ttffl1gh6fdtfkjpo5fi52.apps.googleusercontent.com&approval_prompt=force" class="social-button" id="google-login">
       <span>Đăng nhập bằng Google</span>
       <i class="fa-brands fa-google-plus-g" style="margin-left: 5px;"></i>
     </a>
+
     <p style="margin-top: 50px; margin-bottom: 20px; padding-bottom: 20px; color: #aaaaaa; text-align: center;">
       Bạn chưa có tài khoản? <a href="${pageContext.request.contextPath}/signup" class="signUp-link">Đăng ký ngay</a></p>
   </form>

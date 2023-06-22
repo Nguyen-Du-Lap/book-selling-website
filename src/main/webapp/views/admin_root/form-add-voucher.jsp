@@ -52,7 +52,7 @@
                         </c:if>
                     </div>
 
-                    <form action="/admin-root-add-voucher" method="post" class="row">
+                    <form action="${pageContext.request.contextPath}/admin-root-add-voucher" method="post" class="row">
 
                         <div class="form-group col-md-3">
                             <label class="control-label">Tên khuyến mãi</label>

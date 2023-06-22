@@ -59,9 +59,9 @@ public class UpdateProductController extends HttpServlet {
             if(i >= 1) {
                 Log log = new Log(Log.WARNING,ip,"Quản lý sản phẩm",cus.getIdUser(),"Thay đổi thông tin sản phẩm",1);
                 log.insert();
-                response.sendRedirect("/admin-table-product?message=Upload success&alert=success");
+                response.sendRedirect(request.getContextPath()+"/admin-table-product?message=Upload success&alert=success");
             }else {
-                response.sendRedirect("/admin-table-product?message=Upload success&alert=success");
+                response.sendRedirect(request.getContextPath()+"/admin-table-product?message=Upload success&alert=success");
             }
         }catch (Exception e) {
             request.getRequestDispatcher("/views/admin/table-data-product.jsp").forward(request, response);

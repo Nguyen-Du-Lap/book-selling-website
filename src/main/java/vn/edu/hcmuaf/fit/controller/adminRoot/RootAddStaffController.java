@@ -48,13 +48,13 @@ public class RootAddStaffController extends HttpServlet {
             response.sendRedirect("/admin-root-add-staff?message=Them that bai&alert=danger");
         } else {
             if(dao.findByUsername(email) != null) {
-                response.sendRedirect("/admin-root-add-staff?message=Email đã tồn tại bai&alert=danger");
+                response.sendRedirect(request.getContextPath()+"/admin-root-add-staff?message=Email đã tồn tại bai&alert=danger");
             } else {
                 String pass = MD5Utils.encrypt(password);
                 Log log = new Log(Log.INFO,ip,"Quản lý nhân viên",cus.getIdUser(),"Thêm nhân viên",1);
                 log.insert();
                 dao.signupMod(email,pass,firstName,lastName,numberPhone,addess);
-                response.sendRedirect("/admin-root-add-staff?message=Them thanh cong&alert=success");
+                response.sendRedirect(request.getContextPath()+"/admin-root-add-staff?message=Them thanh cong&alert=success");
             }
         }
 

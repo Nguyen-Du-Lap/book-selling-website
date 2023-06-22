@@ -90,12 +90,12 @@
                 <tbody>
                 <c:forEach var="item" items="${cartReviewDetail}">
 
-                        <tr>
-                            <td>${item.nameSach}</td>
-                            <td><img style="height: 50px" src="${pageContext.request.contextPath}/${item.image}"></td>
-                            <td>${item.quantity}</td>
-                            <td>${item.totalPrice}</td>
-                        </tr>
+                    <tr>
+                        <td>${item.nameSach}</td>
+                        <td><img style="height: 50px" src="${pageContext.request.contextPath}/${item.image}"></td>
+                        <td>${item.quantity}</td>
+                        <td>${item.totalPrice}</td>
+                    </tr>
 
                 </c:forEach>
                 </tbody>

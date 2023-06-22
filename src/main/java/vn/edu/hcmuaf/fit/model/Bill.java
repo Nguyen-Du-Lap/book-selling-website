@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Bill {
     private int idOrder;
@@ -139,9 +140,9 @@ public class Bill {
         this.name = name;
     }
 
-    public String getPaymentMethod() {
+    public int getPaymentMethod() {
 
-        return paymentMethod == 0 ? "tiền mặt" : "online";
+        return paymentMethod ;
     }
 
     public void setPaymentMethod(int paymentMethod) {
@@ -266,18 +267,7 @@ public class Bill {
     }
     public static void main(String[] args) {
         CartDao cartDao = new CartDao();
-        ArrayList<CartModel> listModel = cartDao.getAllCartByIdUser(40);
-        for(int i =0 ;i < listModel.size();i++) {
-            listModel.get(i).setBills(new BillDAO().findAllBillByIdCart( listModel.get(i).getId()));
-
-        }
-        System.out.println(listModel.size());
-        ArrayList<CartModel> dangChoList = new ArrayList<>();
-        for (int i =0;i<listModel.size();i++) {
-            if(listModel.get(i).getInShip() == 1) {
-                dangChoList.add(listModel.get(i));
-            }
-        }
-        System.out.println(dangChoList.get(1).getIdUser());
+        List<Bill> bill = new BillDAO().findAllBillByIdCart(7);
+        System.out.println(bill.get(0).toString());
     }
 }

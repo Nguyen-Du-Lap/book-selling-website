@@ -23,17 +23,6 @@ public class ReviewOrderController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         CustomerModel cus = (CustomerModel) SessionUtil.getInstance().getValue(request, "USERMODEL");
         String orderSuccess = request.getParameter("orderSuccess");
-        List<CartModel> listModel = cartDao.getAllCartByIdUser(cus.getIdUser());
-        for(int i =0 ;i < listModel.size();i++) {
-            listModel.get(i).setBills(new BillDAO().findAllBillByIdCart( listModel.get(i).getId()));
-        }
-        List<CartModel> dangChoList = new ArrayList<>();
-        for (int i =0;i<listModel.size();i++) {
-            if(listModel.get(i).getInShip() == 1) {
-                dangChoList.add(listModel.get(i));
-            }
-        }
-
         request.setAttribute("listBillDeliverByIdOrder", listDonHang(cus,1));
         request.setAttribute("listBillWarByIdOrder",  listDonHang(cus,1));
         request.setAttribute("listBillDelivByIdOrder",  listDonHang(cus,2));

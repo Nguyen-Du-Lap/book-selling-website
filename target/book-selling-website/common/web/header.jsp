@@ -13,7 +13,7 @@
         <div class="top-header">
             <div class="container top-header-content">
                 <a class="logo" href="${pageContext.request.contextPath}/home">DORAEMON</a>
-                <form action="/products/search" method="post">
+                <form action="${pageContext.request.contextPath}/products/search" method="post">
                     <div class="top-header_search">
                         <input type="text" name="key" placeholder="Tìm kiếm">
                         <button style="border: none"><i class="fa-solid fa-magnifying-glass"></i></button>
