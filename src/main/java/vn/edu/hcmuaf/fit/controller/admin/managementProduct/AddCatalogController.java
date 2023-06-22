@@ -44,14 +44,14 @@ public class AddCatalogController extends HttpServlet {
         String ip= myIP.getHostAddress();
         if(catalog != null) {
             if(iBookManagementService.insertCatalog(catalog)) {
-                response.sendRedirect("/admin-add-san-pham?message=Add success&alert=success");
+                response.sendRedirect(request.getContextPath() + "/admin-add-san-pham?message=Add success&alert=success");
                 Log log = new Log(Log.INFO,ip,"Quản lý sản phẩm",cus.getIdUser(),"Thêm mục lục sản phẩm",1);
                 log.insert();
             }else {
-                response.sendRedirect("/admin-add-san-pham?message=Add error&alert=danger");
+                response.sendRedirect(request.getContextPath() + "/admin-add-san-pham?message=Add error&alert=danger");
             }
         }else  {
-            response.sendRedirect("/admin-add-san-pham?message=Add error&alert=danger");
+            response.sendRedirect(request.getContextPath() +"/admin-add-san-pham?message=Add error&alert=danger");
 
         }
     }

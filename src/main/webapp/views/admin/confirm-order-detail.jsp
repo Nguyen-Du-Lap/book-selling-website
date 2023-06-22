@@ -44,7 +44,7 @@
                             <a class="btn btn-excel btn-sm" href="" title="In"><i class="fas fa-file-excel"></i> Xuất Excel</a>
                         </div>
                         <div class="col-sm-2">
-                            <a href="${pageContext.request.contextPath}/exportFIlePDFOrder?id=${BILLDETAIL.idCart}" class="btn btn-delete btn-sm pdf-file" type="button" title="In"><i
+                            <a href="${pageContext.request.contextPath}/exportFIlePDFOrder?id=${cart.id}" class="btn btn-delete btn-sm pdf-file" type="button" title="In"><i
                                     class="fas fa-file-pdf"></i> Xuất PDF</a>
                         </div>
                         <div class="col-sm-6">

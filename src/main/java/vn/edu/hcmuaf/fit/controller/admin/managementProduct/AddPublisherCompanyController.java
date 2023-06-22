@@ -47,12 +47,12 @@ public class AddPublisherCompanyController extends HttpServlet {
            if(iBookManagementService.insertPublisherCompany(publisherCompany)) {
                Log log = new Log(Log.INFO,ip,"Quản lý sản phẩm",cus.getIdUser(),"Thêm công ty xuất bản",1);
                log.insert();
-               response.sendRedirect("/admin-add-san-pham?message=Add success&alert=success");
+               response.sendRedirect(request.getContextPath() +"/admin-add-san-pham?message=Add success&alert=success");
            }else {
-               response.sendRedirect("/admin-add-san-pham?message=Add error&alert=danger");
+               response.sendRedirect(request.getContextPath() +"/admin-add-san-pham?message=Add error&alert=danger");
            }
         }else  {
-            response.sendRedirect("/admin-add-san-pham?message=Add error&alert=danger");
+            response.sendRedirect(request.getContextPath() +"/admin-add-san-pham?message=Add error&alert=danger");
 
         }
     }

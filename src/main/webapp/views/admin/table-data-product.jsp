@@ -98,7 +98,7 @@
                 <td width="10"><input type="checkbox" name="check1" value="1"></td>
                 <td>${product.id}</td>
                 <td>${product.name}</td>
-                <td><img src="${product.image}" alt="" width="100px;"></td>
+                <td><img src="${pageContext.request.contextPath}/${product.image}" alt="" width="100px;"></td>
                 <td>${product.quantity}</td>
                 <td><span class="badge bg-success">${product.status}</span></td>
                 <td>${product.category}</td>

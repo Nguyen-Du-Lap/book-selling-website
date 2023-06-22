@@ -95,16 +95,16 @@ public class AddProductController extends HttpServlet {
                             if(part4 != null) iBookManagementService.addImage(request, response, part4, id);
                             Log log = new Log(Log.INFO,ip,"Quản lý sản phẩm",cus.getIdUser(),"Thêm sản phẩm",1);
                             log.insert();
-                            response.sendRedirect("/admin-add-san-pham?message=Them thanh cong&alert=success");
+                            response.sendRedirect(request.getContextPath() +"/admin-add-san-pham?message=Them thanh cong&alert=success");
                         }else {
-                            response.sendRedirect("/admin-add-san-pham?message=Them that bai&alert=danger");
+                            response.sendRedirect(request.getContextPath() +"/admin-add-san-pham?message=Them that bai&alert=danger");
                         }
                     }else  {
-                        response.sendRedirect("/admin-add-san-pham?message=Ten sach da ton tai&alert=danger");
+                        response.sendRedirect(request.getContextPath() +"/admin-add-san-pham?message=Ten sach da ton tai&alert=danger");
                     }
 
             }else {
-                response.sendRedirect("/admin-add-san-pham?message=Vui long nhap thong tin can thiet&alert=warning");
+                response.sendRedirect(request.getContextPath() +"/admin-add-san-pham?message=Vui long nhap thong tin can thiet&alert=warning");
             }
         }catch (Exception e) {
             e.printStackTrace();
