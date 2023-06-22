@@ -80,7 +80,7 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th scope="col">Mã đơn hàng</th>
+
                     <th scope="col">Tên sản phẩm</th>
                     <th scope="col">Ảnh</th>
                     <th scope="col">Số lượng</th>
@@ -91,9 +91,8 @@
                 <c:forEach var="item" items="${cartReviewDetail}">
 
                         <tr>
-                            <th scope="1">${item.id}</th>
                             <td>${item.nameSach}</td>
-                            <td><img style="height: 50px" src="${item.image}"></td>
+                            <td><img style="height: 50px" src="${pageContext.request.contextPath}/${item.image}"></td>
                             <td>${item.quantity}</td>
                             <td>${item.totalPrice}</td>
                         </tr>
@@ -106,7 +105,7 @@
     </div>
 </div>
 <%@include file="/common/web/footer.jsp"%>
-<script src="/templates/scripts/header.js"></script>
+<script src="${pageContext.request.contextPath}/templates/scripts/header.js"></script>
 </body>
 
 </html>

@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-lg-3 col-sm-6">
                     <div class="dichvu d-flex align-items-center">
-                        <img src="/templates/images/footers/iconphone.png" alt="icon-books" style="border-radius: 100%;">
+                        <img src="${pageContext.request.contextPath}/templates/images/footers/iconphone.png" alt="icon-books" style="border-radius: 100%;">
                         <div class="noidung">
                             <h6 class="tieude font-weight-bold">HƠN 10000 LOẠI SÁCH </h6>
                             <p class="detail">Tuyển chọn bởi Doraemon</p>
@@ -15,7 +15,7 @@
                 </div>
                 <div class="col-lg-3 col-sm-6">
                     <div class="dichvu d-flex align-items-center">
-                        <img src="/templates/images/footers/icon-ship.png" alt="icon-ship">
+                        <img src="${pageContext.request.contextPath}/templates/images/footers/icon-ship.png" alt="icon-ship">
                         <div class="noidung">
                             <h6 class="tieude font-weight-bold">MIỄN PHÍ GIAO HÀNG</h6>
                             <p class="detail">Từ 150.000đ ở TP.HCM</p>
@@ -25,7 +25,7 @@
                 </div>
                 <div class="col-lg-3 col-sm-6">
                     <div class="dichvu d-flex align-items-center">
-                        <img src="/templates/images/footers/icon-gift.png" alt="icon-gift">
+                        <img src="${pageContext.request.contextPath}/templates/images/footers/icon-gift.png" alt="icon-gift">
                         <div class="noidung">
                             <h6 class="tieude font-weight-bold">QUÀ TẶNG MIỄN PHÍ</h6>
                             <p class="detail">Tặng kèm bìa bao sách</p>
@@ -35,7 +35,7 @@
                 </div>
                 <div class="col-lg-3 col-sm-6">
                     <div class="dichvu d-flex align-items-center">
-                        <img src="/templates/images/footers/icon-return.png" alt="icon-return">
+                        <img src="${pageContext.request.contextPath}/templates/images/footers/icon-return.png" alt="icon-return">
                         <div class="noidung">
                             <h6 class="tieude font-weight-bold">ĐỔI TRẢ NHANH CHÓNG</h6>
                             <p class="detail">Hàng bị lỗi được đổi trả nhanh chóng</p>
@@ -50,10 +50,10 @@
             <div class="col-md-3 col-xs-6">
                 <div class="gioithieu">
                     <h6 class="header text-uppercase font-weight-bold">Về Doraemon</h6>
-                    <a href="/pages?page=about">Giới thiệu về Doraemon</a>
+                    <a href="${pageContext.request.contextPath}/pages?page=about">Giới thiệu về Doraemon</a>
                     <a href="#">Tuyển dụng</a>
-                    <a href="/pages?page=termsOfUse">Điều khoản sử dụng</a>
-                    <a href="/pages?page=privacyPolicy">Chính sách bảo mật</a>
+                    <a href="${pageContext.request.contextPath}/pages?page=termsOfUse">Điều khoản sử dụng</a>
+                    <a href="${pageContext.request.contextPath}/pages?page=privacyPolicy">Chính sách bảo mật</a>
                     <div class="fb-like" data-href="https://www.facebook.com/DealBook-110745443947730/"
                          data-width="300px" data-layout="button" data-action="like" data-size="small"
                          data-share="true"></div>
@@ -62,28 +62,28 @@
             <div class="col-md-3 col-xs-6">
                 <div class="hotrokh">
                     <h6 class="header text-uppercase font-weight-bold">HỖ TRỢ KHÁCH HÀNG</h6>
-                    <a href="/pages?page=guideOrder">Hướng dẫn đặt hàng</a>
-                    <a href="/pages?page=paymentMethod">Phương thức thanh toán</a>
-                    <a href="/pages?page=transport">Phương thức vận chuyển</a>
-                    <a href="/pages?page=returnPolicy">Chính sách đổi trả</a>
+                    <a href="${pageContext.request.contextPath}/pages?page=guideOrder">Hướng dẫn đặt hàng</a>
+                    <a href="${pageContext.request.contextPath}/pages?page=paymentMethod">Phương thức thanh toán</a>
+                    <a href="${pageContext.request.contextPath}/pages?page=transport">Phương thức vận chuyển</a>
+                    <a href="${pageContext.request.contextPath}/pages?page=returnPolicy">Chính sách đổi trả</a>
                 </div>
             </div>
             <div class="col-md-3 col-xs-6">
                 <div class="lienket">
                     <h6 class="header text-uppercase font-weight-bold">HỢP TÁC VÀ LIÊN KẾT</h6>
-                    <a href="/pages?page=contact">Liên hệ chúng tôi</a>
-                    <img src="/templates/images/footers/dang-ky-bo-cong-thuong.png" alt="dang-ky-bo-cong-thuong">
+                    <a href="${pageContext.request.contextPath}/pages?page=contact">Liên hệ chúng tôi</a>
+                    <img src="${pageContext.request.contextPath}/templates/images/footers/dang-ky-bo-cong-thuong.png" alt="dang-ky-bo-cong-thuong">
                 </div>
             </div>
             <div class="col-md-3 col-xs-6">
                 <div class="ptthanhtoan">
                     <h6 class="header text-uppercase font-weight-bold">Phương thức thanh toán</h6>
-                    <img src="/templates/images/footers/visa-payment.jpg" alt="visa-payment">
-                    <img src="/templates/images/footers/master-card-payment.jpg" alt="master-card-payment">
-                    <img src="/templates/images/footers/jcb-payment.jpg" alt="jcb-payment">
-                    <img src="/templates/images/footers/atm-payment.jpg" alt="atm-payment">
-                    <img src="/templates/images/footers/cod-payment.jpg" alt="cod-payment">
-                    <img src="/templates/images/footers/payoo-payment.jpg" alt="payoo-payment">
+                    <img src="${pageContext.request.contextPath}/templates/images/footers/visa-payment.jpg" alt="visa-payment">
+                    <img src="${pageContext.request.contextPath}/templates/images/footers/master-card-payment.jpg" alt="master-card-payment">
+                    <img src="${pageContext.request.contextPath}/templates/images/footers/jcb-payment.jpg" alt="jcb-payment">
+                    <img src="${pageContext.request.contextPath}/templates/images/footers/atm-payment.jpg" alt="atm-payment">
+                    <img src="${pageContext.request.contextPath}/templates/images/footers/cod-payment.jpg" alt="cod-payment">
+                    <img src="${pageContext.request.contextPath}/templates/images/footers/payoo-payment.jpg" alt="payoo-payment">
                 </div>
             </div>
         </div>

@@ -1,10 +1,15 @@
 package vn.edu.hcmuaf.fit.model;
 
+import vn.edu.hcmuaf.fit.dao.impl.BillDAO;
+import vn.edu.hcmuaf.fit.dao.impl.CartDao;
+
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Bill {
     private int idOrder;
@@ -135,9 +140,9 @@ public class Bill {
         this.name = name;
     }
 
-    public String getPaymentMethod() {
+    public int getPaymentMethod() {
 
-        return paymentMethod == 0 ? "tiền mặt" : "online";
+        return paymentMethod ;
     }
 
     public void setPaymentMethod(int paymentMethod) {
@@ -259,5 +264,10 @@ public class Bill {
             case 4: return "Đã hủy";
             default: return "error";
         }
+    }
+    public static void main(String[] args) {
+        CartDao cartDao = new CartDao();
+        List<Bill> bill = new BillDAO().findAllBillByIdCart(7);
+        System.out.println(bill.get(0).toString());
     }
 }

@@ -294,8 +294,8 @@ public class BillDAO implements IBillDAO {
     @Override
     public int rateBook(int idUser, int idBook, int idOrder, int start, String comment) {
         Connection connection = JDBCConnector.getConnection();
-        String sql = new String("INSERT INTO rate(id_user, id_book, id_order, start_rate, comment) " +
-                "VALUES(?,?,?,?,?)");
+        String sql = new String("INSERT INTO rate(id_user, id_book, id_order, start_rate, comment, status) " +
+                "VALUES(?,?,?,?,?, 1)");
 
         PreparedStatement statement = null;
         if(connection != null) {
@@ -537,12 +537,67 @@ public class BillDAO implements IBillDAO {
     }
 
     public List<Bill> findAllBillByIdCart(int id) {
-        List<Bill> list = new ArrayList<Bill>();
+        List<Bill> list = new ArrayList<>();
         String sql = "SELECT b.id_order, s.name, b.totalBill, b.quantity, b.id_user, b.id_book, b.address, b.shipping_info, b.payment_method, b.pack,\n" +
-                "c.create_time, c.timeShip, b.idCart\n" +
+                "c.create_time, c.timeShip, b.idCart, b.info, b.phone\n" +
                 "FROM bill b JOIN book s \n" +
                 "ON b.id_book = s.id_book JOIN carts c ON b.idCart = c.id\n" +
                 "WHERE b.idCart = ?";
+        Connection connection = JDBCConnector.getConnection();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        if(connection != null) {
+            try {
+                statement = connection.prepareStatement(sql);
+                statement.setInt(1, id);
+                resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    Bill bill = new Bill();
+
+                    bill.setIdOrder(resultSet.getInt(1));
+                    bill.setName(resultSet.getString(2));
+                    bill.setTotalPrice(resultSet.getInt(3));
+                    bill.setQuantity(resultSet.getInt(4));
+                    bill.setIdUser(resultSet.getInt(5));
+                    bill.setIdBook(resultSet.getInt(6));
+                    bill.setImage(findImageById(resultSet.getInt(6)));
+                    bill.setAddress(resultSet.getString(7));
+                    bill.setShippingInfo(resultSet.getInt(8));
+                    bill.setShip_time(resultSet.getTimestamp(11));
+                    bill.setShip_time_predict(resultSet.getString(12));
+                    bill.setIdCart(resultSet.getInt(13));
+                    bill.setInfo(resultSet.getString(14));
+                    bill.setPhone(resultSet.getString(15));
+                    list.add(bill);
+                }
+
+                return list;
+            } catch (SQLException e) {
+                return null;
+            } finally {
+                try {
+                    if(connection != null) connection.close();
+                    if(statement != null) statement.close();
+                    if(resultSet != null) resultSet.close();
+                } catch (SQLException e) {
+                    return null;
+                }
+            }
+        }
+        return null;
+    }
+    public List<Bill> findAllBillByIdCartRate(int id) {
+        List<Bill> list = new ArrayList<Bill>();
+        String sql = "SELECT b.id_order, s.name, b.totalBill, b.quantity, b.id_user, b.id_book, b.address, b.shipping_info, b.payment_method, b.pack,\n" +
+                " c.create_time, c.timeShip, b.idCart\n" +
+                "                FROM bill b\n" +
+                "                JOIN carts c ON b.idCart = c.id\n" +
+                "                JOIN book s ON s.id_book = b.id_book\n" +
+                "                WHERE NOT EXISTS (\n" +
+                "               SELECT 1\n" +
+                "                  FROM rate r\n" +
+                "                WHERE b.id_user = r.id_user AND b.id_book = r.id_book AND b.idCart = r.id_order )\n" +
+                "                AND  b.idCart = ?";
         Connection connection = JDBCConnector.getConnection();
         PreparedStatement statement = null;
         ResultSet resultSet = null;

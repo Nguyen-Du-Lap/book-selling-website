@@ -39,8 +39,9 @@ public class RegisterOrderController extends HttpServlet {
             int idCusInt = Integer.parseInt(idCus);
             InformationDeliverDao daoInFo = new InformationDeliverDao();
             InformationDeliverModel info = daoInFo.getById(idInt);
-            daoInFo.updateToken(idInt,FeeGHNUtils.registerShip(info.getX()+"", info.getY()+"", info.getZ()+"", info.getW()+"",1463,21808,info.getDistrictTo(), info.getWarTo()));
+            daoInFo.updateToken(idInt,FeeGHNUtils.registerShipForDeliver(info.getX()+"", info.getY()+"", info.getZ()+"", info.getW()+"",1463,21808,info.getDistrictTo(), info.getWarTo()));
             iBillManagementService.confirmBill(id);
+            new CartDao().updateCart(idInt,2);
             Log log = new Log(Log.ALER,ip,"Đăng kí đơn hàng",cus.getIdUser(),"Đăng kí đơn hàng vận chuyển: " + id,1);
             log.insert();
             request.setAttribute("message", "Đăng kí đơn hàng thành công: " + id);

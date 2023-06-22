@@ -8,7 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Main CSS-->
-    <link rel="stylesheet" type="text/css" href="/templates/admin/doc/css/main.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/templates/admin/doc/css/main.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <!-- or -->
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
@@ -44,7 +44,7 @@
                             <a class="btn btn-excel btn-sm" href="" title="In"><i class="fas fa-file-excel"></i> Xuất Excel</a>
                         </div>
                         <div class="col-sm-2">
-                            <a href="/exportFIlePDFOrder?id=${BILLDETAIL.idCart}" class="btn btn-delete btn-sm pdf-file" type="button" title="In"><i
+                            <a href="${pageContext.request.contextPath}/exportFIlePDFOrder?id=${cart.id}" class="btn btn-delete btn-sm pdf-file" type="button" title="In"><i
                                     class="fas fa-file-pdf"></i> Xuất PDF</a>
                         </div>
                         <div class="col-sm-6">
@@ -79,11 +79,11 @@
                                     </tr>
                                     <tr>
                                         <td>Địa chỉ:</td>
-                                        <td>${BILLDETAIL.address}</td>
+                                        <td>${cart.bills.get(0).address}</td>
                                     </tr>
                                     <tr>
                                         <td>Số điện thoại:</td>
-                                        <td>${CUSTOMER.phone}</td>
+                                        <td>${cart.bills.get(0).phone}</td>
                                     </tr>
                                     <tr>
                                         <td>Email:</td>
@@ -98,45 +98,58 @@
                                     <tbody>
                                     <tr>
                                         <td>Mã đơn hàng:</td>
-                                        <td>${BILLDETAIL.idCart}</td>
+                                        <td>${cart.id}</td>
                                     </tr>
                                     <tr>
                                         <td>Ngày đặt hàng:</td>
-                                        <td>${BILLDETAIL.ship_time}</td>
+                                        <td>${cart.createTime}</td>
                                     </tr>
                                     <tr>
-                                        <td>Ngày giao đến:</td>
-                                        <td>${BILLDETAIL.getShip_time_predict()}</td>
+                                        <td>Ngày dự kiến giao đến:</td>
+                                        <td>${cart.timeShip}</td>
                                     </tr>
                                     <tr>
                                         <td>Đóng gói:</td>
-                                        <td>${BILLDETAIL.pack}</td>
+                                        <td>${cart.bills.get(0).pack}</td>
                                     </tr>
                                     <tr>
                                         <td>Phương thức thanh toán:</td>
-                                        <td>${BILLDETAIL.paymentMethod}</td>
+                                        <c:if test="${cart.bills.get(0).paymentMethod == 0}">
+                                            <td>Tiền mặt</td>
+                                        </c:if>
+                                        <c:if test="${cart.bills.get(0).paymentMethod != 0}">
+                                            <td>Chuyển khoản</td>
+                                        </c:if>
                                     </tr>
                                     <tr>
                                         <td>Ghi chú:</td>
-                                        <td>${BILLDETAIL.info}</td>
+                                        <td>${cart.bills.get(0).info}</td>
                                     </tr>
                                     <tr>
                                         <td>Tổng giá trị:</td>
-                                        <td>${BILLDETAIL.totalPrice} VNĐ
+                                        <td>${cart.getTotalPriceFromCart()} VNĐ
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Tình trạng:</td>
-                                        <td>${BILLDETAIL.shippingInfo}</td>
+                                        <c:if test="${cart.inShip == 1}">
+                                            <td>Chờ xử lí</td>
+                                        </c:if>
+                                        <c:if test="${cart.inShip ==2}">
+                                            <td>Đã đăng kí vận chuyển</td>
+                                        </c:if>
+                                        <c:if test="${cart.inShip ==3}">
+                                            <td>Đã giao</td>
+                                        </c:if>
                                     </tr>
                                     <tr>
                                         <td>Đăng kí giao hàng:</td>
-                                        <c:if test="${BILLDETAIL.shippingInfo == 'Chờ xử lý'}">
+                                        <c:if test="${cart.inShip == 1}">
                                             <td><button type="button" class="btn btn-danger">
-                                                <a style="color: #FFFFFF" href="/admin-register-order?id=${BILLDETAIL.idCart}&variable=${CUSTOMER.idUser}">Đăng kí đơn hàng</a>
+                                                <a style="color: #FFFFFF" href="${pageContext.request.contextPath}/admin-register-order?id=${cart.id}&variable=${CUSTOMER.idUser}">Đăng kí đơn hàng</a>
                                             </button></td>
                                         </c:if>
-                                        <c:if test="${BILLDETAIL.shippingInfo != 'Chờ xử lý'}">
+                                        <c:if test="${cart.inShip != 1}">
                                             <td>Đã đăng kí vận chuyển</td>
                                         </c:if>
                                     </tr>
@@ -150,7 +163,6 @@
                                 <table class="table">
                                     <thead>
                                     <tr>
-                                        <th scope="col">Mã đơn hàng</th>
                                         <th scope="col">Tên sản phẩm</th>
                                         <th scope="col">Ảnh</th>
                                         <th scope="col">Số lượng</th>
@@ -158,13 +170,12 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach var="BILL" items="${LISTBILL}">
+                                    <c:forEach var="item" items="${LISTBILL}">
                                         <tr>
-                                            <th scope="1">${BILL.idOrder}</th>
-                                            <td>${BILL.name}</td>
-                                            <td><img style="height: 50px" src="${BILL.image}"></td>
-                                            <td>${BILL.quantity}</td>
-                                            <td>${BILL.totalPrice}</td>
+                                            <td>${item.nameSach}</td>
+                                            <td><img style="height: 50px" src="${pageContext.request.contextPath}/${item.image}"></td>
+                                            <td>${item.quantity}</td>
+                                            <td>${item.totalPrice}</td>
                                         </tr>
                                     </c:forEach>
                                     </tbody>
@@ -235,7 +246,7 @@
                 <BR>
                 <BR>
                 <button href="/ad" class="btn btn-save" type="button">Lưu lại</button>
-                <a class="btn btn-cancel" data-dismiss="modal" href="/admin-table-product">Hủy bỏ</a>
+                <a class="btn btn-cancel" data-dismiss="modal" href="${pageContext.request.contextPath}/admin-table-product">Hủy bỏ</a>
                 <BR>
             </div>
             <div class="modal-footer">
@@ -248,20 +259,20 @@ MODAL
 -->
 
 <!-- Essential javascripts for application to work-->
-<script src="/templates/admin/doc/js/jquery-3.2.1.min.js"></script>
-<script src="/templates/admin/doc/js/popper.min.js"></script>
-<script src="/templates/admin/doc/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/templates/admin/doc/js/jquery-3.2.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/templates/admin/doc/js/popper.min.js"></script>
+<script src="${pageContext.request.contextPath}/templates/admin/doc/js/bootstrap.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="src/jquery.table2excel.js"></script>
-<script src="/templates/admin/doc/js/main.js"></script>
+<script src="${pageContext.request.contextPath}/templates/admin/doc/js/main.js"></script>
 <!-- The javascript plugin to display page loading on top-->
-<script src="/templates/admin/doc/js/plugins/pace.min.js"></script>
+<script src="${pageContext.request.contextPath}/templates/admin/doc/js/plugins/pace.min.js"></script>
 <!-- Page specific javascripts-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 <!-- Data table plugin-->
-<script type="text/javascript" src="/templates/admin/doc/js/plugins/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="/templates/admin/doc/js/plugins/dataTables.bootstrap.min.js"></script>
-<script src="/templates/scripts/crud.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/templates/admin/doc/js/plugins/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/templates/admin/doc/js/plugins/dataTables.bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/templates/scripts/crud.js"></script>
 <script type="text/javascript">
     $('#sampleTable').DataTable();
     //Thời Gian

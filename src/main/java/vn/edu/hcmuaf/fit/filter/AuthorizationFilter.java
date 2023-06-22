@@ -24,7 +24,7 @@ public class AuthorizationFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         String url = request.getRequestURI();
         CustomerModel cus = (CustomerModel) SessionUtil.getInstance().getValue(request, "USERMODEL");
-        if(url.startsWith("/admin-root")) {
+        if(url.startsWith(request.getContextPath()+"/admin-root")) {
             if(cus != null) {
                 if(cus.getRole().equalsIgnoreCase("admin")) {
                     filterChain.doFilter(servletRequest, servletResponse);
@@ -38,7 +38,7 @@ public class AuthorizationFilter implements Filter {
                 request.setAttribute("alert", "danger");
                 request.getRequestDispatcher("/views/login.jsp").forward(request, response);
             }
-        }else if(url.startsWith("/admin")) {
+        }else if(url.startsWith(request.getContextPath()+"/admin")) {
             if(cus != null) {
                 if(cus.getRole().equalsIgnoreCase("mod") || cus.getRole().equalsIgnoreCase("admin")) {
                     filterChain.doFilter(servletRequest, servletResponse);

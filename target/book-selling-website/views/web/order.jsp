@@ -43,7 +43,7 @@
   <div class="container_left">
     <div class="cross"></div>
     <h2 class="header_center">THÔNG TIN ĐƠN HÀNG</h2>
-    <form id="submit_form" action="order/pay" method="post">
+    <form id="submit_form" action="${pageContext.request.contextPath}/order/pay" method="post">
       <div class="form-group input">
         <label for="name">Họ và tên: <span class="obligatory">(*)</span></label>
         <input type="text" class="form-control" id="name" placeholder="Họ và tên" value="${customer.firstName} ${customer.lastName}" onchange="nameOnChange(this.value)" disabled>
@@ -177,8 +177,13 @@
               <p class="ml" id="date_transport"> </p>
             </div>
             <div class="wrap mt">
-              <span class="sum_order">Thanh toán:</span>
-              <div class="ml" style="font-weight: 600; color: rgb(217, 11, 11);" id="sum_order"> </div>
+              <span class="sum_transport">Giảm giá:</span>
+              <p class="ml" id="voucher">${sessionScope.cartOrder.voucher} đ </p>
+            </div>
+            <div class="wrap mt">
+              <span class="sum_transport">Thanh toán:</span>
+              <span class="ml" style="font-weight: 600; color: rgb(217, 11, 11);" id="sum_order"> </span>
+              
             </div>
           </div>
           <input id="bt-update_order" type="button" value="CHỈNH SỬA ĐƠN HÀNG">
@@ -207,13 +212,13 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
         crossorigin="anonymous"></script>
-<script src="/templates/scripts/header.js"></script>
+<script src="${pageContext.request.contextPath}/templates/scripts/header.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
-<script src="/templates/scripts/order.js"></script>
+<script src="${pageContext.request.contextPath}/templates/scripts/order.js"></script>
 <script>
   $('.id_voucher').on('click', function () {
     const pId = $(this).val()
-    window.location.href = '${context}/order?id=' + pId
+    window.location.href = '${pageContext.request.contextPath}/order?id=' + pId
   })
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>

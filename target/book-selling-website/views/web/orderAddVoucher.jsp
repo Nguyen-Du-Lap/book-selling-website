@@ -67,7 +67,7 @@
         </c:forEach>
       </c:if>
     </div>
-    <a href="/voucher" style="margin-top: 24px">
+    <a href="${pageContext.request.contextPath}/voucher" style="margin-top: 24px">
       <h2>Thêm voucher</h2>
     </a>
     <button class="btn_bt" id="next"
@@ -98,16 +98,9 @@
               <span class="sum_price">Tổng tiền:</span>
               <div class="ml" id="sum_price"> ${sessionScope.cartOrder.totalPrice} đ</div>
             </div>
-            <div class="wrap mt">
-              <span class="sum_transport">Phí vận chuyển:</span>
-              <div class="ml" id="sum_transport"> ${sessionScope.cartOrder.ship} đ</div>
-            </div>
-            <div class="wrap mt">
-              <span class="sum_order">Thanh toán:</span>
-              <div class="ml" style="font-weight: 600; color: rgb(217, 11, 11);" id="sum_order"> ${sessionScope.cartOrder.totalPriceShip} đ</div>
-            </div>
+
           </div>
-          <a href="/cart">
+          <a href="${pageContext.request.contextPath}/cart">
             <input class="btn_bt" id="bt-update_order"  type="button" value="CHỈNH SỬA ĐƠN HÀNG">
           </a>
         </div>
@@ -141,9 +134,9 @@
   $('#next').on('click', function () {
     let idVoucher = $("input[name='idDiscount']:checked").val();
     if (typeof(idVoucher) != "undefined"){
-      window.location.href = '${context}/order?idVoucher='+idVoucher
+      window.location.href = '${pageContext.request.contextPath}/order?idVoucher='+idVoucher
     }else {
-      window.location.href = '${context}/order?idVoucher='+1000000
+      window.location.href = '${pageContext.request.contextPath}/order?idVoucher='+1000000
     }
   })
 </script>

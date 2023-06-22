@@ -6,6 +6,7 @@ import vn.edu.hcmuaf.fit.dao.IProductDAO;
 import vn.edu.hcmuaf.fit.dao.impl.BillDAO;
 import vn.edu.hcmuaf.fit.dao.impl.ProductDAO;
 import vn.edu.hcmuaf.fit.model.CustomerModel;
+import vn.edu.hcmuaf.fit.utils.MessageParameterUntil;
 import vn.edu.hcmuaf.fit.utils.SessionUtil;
 
 import javax.servlet.*;
@@ -14,6 +15,7 @@ import javax.servlet.annotation.*;
 import java.awt.image.ImageProducer;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.net.InetAddress;
 
 
 @WebServlet(name = "rate", value = "/rate")
@@ -38,22 +40,34 @@ public class RateController extends HttpServlet {
         String comment = request.getParameter("comment");
         String idBill = request.getParameter("idBill");
         String idBook = request.getParameter("idBook");
-        String numberStar = request.getParameterValues("numberStar")[0];
+        String numberStar =  request.getParameter("numberStar");
         int number = Integer.parseInt(numberStar);
-        BufferedReader reader = request.getReader();
         CustomerModel cus = (CustomerModel) SessionUtil.getInstance().getValue(request, "USERMODEL");
+        InetAddress myIP=InetAddress.getLocalHost();
+        String ip= myIP.getHostAddress();
         if(comment != null && idBill != null && idBook != null) {
             int idBookInt = Integer.parseInt(idBook);
             int idOrderInt = Integer.parseInt(idBill);
             int rate = iBillDAO.rateBook(cus.getIdUser(), idBookInt, idOrderInt, number, comment);
+            String message;
+            String messageType;
             if(rate >=1) {
-                request.setAttribute("message", "Đánh giá thành công");
-                request.setAttribute("alert", "success");
+                Log log = new Log(Log.INFO,ip,"Đánh giá sản phẩm",cus.getIdUser(),"Đánh giá sản phẩm: "+ idBook,1);
+                log.insert();
+                message = "Đánh giá thành công";
+                messageType = "success";
+//                new MessageParameterUntil("Hủy đơn hàng thành công", "success", "/views/web/reviewOrders.jsp", request, response).send();
+
             }else {
-                request.setAttribute("message", "Đánh giá thất bại");
-                request.setAttribute("alert", "danger");
+                message = "Đánh giá thất bại";
+                messageType = "danger";
             }
+            request.setAttribute("message", message);
+            request.setAttribute("alert", messageType);
+
+            response.sendRedirect(request.getContextPath()+"/account?action=reviewOrders");
         }
-        request.getRequestDispatcher("views/web/reviewOrders.jsp").forward(request, response);
+
+
     }
 }

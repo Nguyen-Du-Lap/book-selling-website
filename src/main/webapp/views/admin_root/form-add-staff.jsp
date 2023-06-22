@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Main CSS-->
-    <link rel="stylesheet" type="text/css" href="/templates/admin/doc/css/main.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/templates/admin/doc/css/main.css">
     <!-- Font-icon css-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <!-- or -->
@@ -29,8 +29,8 @@
 <body class="app sidebar-mini rtl">
 
 <!-- Navbar-->
-<%@include file="/common/admin/header.jsp" %>
-<%@include file="/common/admin/aside.jsp" %>
+<%@include file="/common/admin_root/header.jsp"%>
+<%@include file="/common/admin_root/aside.jsp"%>>
 <main class="app-content">
     <div class="app-title">
         <ul class="app-breadcrumb breadcrumb">
@@ -52,7 +52,8 @@
                         </c:if>
                     </div>
 
-                    <form action="/admin-root-add-staff" method="post" class="row">
+                    <form action="${pageContext.request.contextPath}/admin-root-add-staff" method="post" class="row">
+
                         <div class="form-group col-md-3">
                             <label class="control-label">Họ</label>
                             <input name="nameLast" class="form-control" type="text">
@@ -80,7 +81,7 @@
                         </div>
                         <div class="form-group col-md-9">
                             <button class="btn btn-save" type="submit">Lưu lại</button>
-                            <a class="btn btn-cancel" href="/admin-root-management-user">Hủy bỏ</a>
+                            <a class="btn btn-cancel" href="${pageContext.request.contextPath}/admin-root-management-user">Hủy bỏ</a>
                         </div>
                     </form>
                 </div>
@@ -91,11 +92,11 @@
 
 
 
-<script src="/templates/admin/doc/js/jquery-3.2.1.min.js"></script>
-<script src="/templates/admin/doc/js/popper.min.js"></script>
-<script src="/templates/admin/doc/js/bootstrap.min.js"></script>
-<script src="/templates/admin/doc/js/main.js"></script>
-<script src="/templates/admin/doc/js/plugins/pace.min.js"></script>
+<script src="${pageContext.request.contextPath}/templates/admin/doc/js/jquery-3.2.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/templates/admin/doc/js/popper.min.js"></script>
+<script src="${pageContext.request.contextPath}/templates/admin/doc/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/templates/admin/doc/js/main.js"></script>
+<script src="${pageContext.request.contextPath}/templates/admin/doc/js/plugins/pace.min.js"></script>
 <script>
     const inpFile = document.getElementById("inpFile");
     const loadFile = document.getElementById("loadFile");

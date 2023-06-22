@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Main CSS-->
-    <link rel="stylesheet" type="text/css" href="/templates/admin/doc/css/main.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/templates/admin/doc/css/main.css">
     <!-- Font-icon css-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <!-- or -->
@@ -69,7 +69,7 @@
                         </c:if>
                     </div>
 
-                    <form action="/admin-add-san-pham" enctype="multipart/form-data" method="post" class="row">
+                    <form action="${pageContext.request.contextPath}/admin-add-san-pham" enctype="multipart/form-data" method="post" class="row">
                         <div class="form-group col-md-3">
                             <label class="control-label">Tên sản phẩm</label>
                             <input name="name" class="form-control" type="text">
@@ -176,7 +176,7 @@
 
                         <div>
                             <button class="btn btn-save" type="submit">Lưu lại</button>
-                            <a class="btn btn-cancel" href="/admin-table-product">Hủy bỏ</a>
+                            <a class="btn btn-cancel" href="${pageContext.request.contextPath}/admin-table-product">Hủy bỏ</a>
                         </div>
                     </form>
                 </div>
@@ -193,7 +193,7 @@ MODAL CHỨC VỤ
      data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <form method="post" action="/admin-add-publisher-company">
+            <form method="post" action="${pageContext.request.contextPath}/admin-add-publisher-company">
             <div class="modal-body">
                 <div class="row">
                     <div class="form-group col-md-12">
@@ -354,11 +354,11 @@ MODAL
 -->
 
 
-<script src="/templates/admin/doc/js/jquery-3.2.1.min.js"></script>
-<script src="/templates/admin/doc/js/popper.min.js"></script>
-<script src="/templates/admin/doc/js/bootstrap.min.js"></script>
-<script src="/templates/admin/doc/js/main.js"></script>
-<script src="/templates/admin/doc/js/plugins/pace.min.js"></script>
+<script src="${pageContext.request.contextPath}/templates/admin/doc/js/jquery-3.2.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/templates/admin/doc/js/popper.min.js"></script>
+<script src="${pageContext.request.contextPath}/templates/admin/doc/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/templates/admin/doc/js/main.js"></script>
+<script src="${pageContext.request.contextPath}/templates/admin/doc/js/plugins/pace.min.js"></script>
 <script>
     const inpFile = document.getElementById("inpFile");
     const loadFile = document.getElementById("loadFile");

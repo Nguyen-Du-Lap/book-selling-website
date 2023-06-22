@@ -54,9 +54,9 @@ public class UpdateOrderController extends HttpServlet {
             log.insert();
             if(i >= 1) {
 
-                response.sendRedirect("/admin-table-order?message=Upload success&alert=success");
+                response.sendRedirect(request.getContextPath() +"/admin-table-order?message=Upload success&alert=success");
             }else {
-                response.sendRedirect("/admin-table-order?message=Upload success&alert=success");
+                response.sendRedirect(request.getContextPath() +"/admin-table-order?message=Upload success&alert=success");
             }
         }catch (Exception e) {
             request.getRequestDispatcher("/views/admin/table-data-order.jsp").forward(request, response);

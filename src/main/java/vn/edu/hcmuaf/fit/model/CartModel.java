@@ -20,6 +20,9 @@ public class CartModel implements Serializable {
     private List<Bill> bills;
 
 
+    public CartModel() {
+    }
+
     public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }

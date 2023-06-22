@@ -103,8 +103,8 @@
     <div id="header">
         <div class="top-header">
             <div class="container top-header-content">
-                <a class="logo" href="/home">DORAEMON</a>
-                <form action="/products/search" method="post">
+                <a class="logo" href="${pageContext.request.contextPath}/home">DORAEMON</a>
+                <form action="${pageContext.request.contextPath}/products/search" method="post">
                     <div class="top-header_search">
                         <input type="text" name="key" placeholder="Tìm kiếm">
                         <button style="border: none"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -120,7 +120,7 @@
                         <div class="top-header_cart--item">
                             <h4 class="cart--item_title">Giỏ hàng</h4>
                             <hr>
-                            <a href="/cart" class="cart--item_link">
+                            <a href="${pageContext.request.contextPath}/cart" class="cart--item_link">
                                 <span>Xem giỏ hàng <i class="fa-solid fa-caret-right"></i></span>
                             </a>
                         </div>
@@ -134,10 +134,10 @@
                                     <i class="fa-brands fa-facebook-f"></i>
                                     <span style="font-size: 13px;">Tài khoản Facebook</span>
                                 </a>
-                                <a href="<c:url value="/login?action=login"/> " class="account--item_center"><span>Đăng nhập</span></a>
+                                <a href="<c:url value="${pageContext.request.contextPath}/login?action=login"/> " class="account--item_center"><span>Đăng nhập</span></a>
                                 <div class="account--item_bottom">
                                     <span>Khách hàng mới?</span>
-                                    <a class="register" href="/signup">Tạo tài khoản</a>
+                                    <a class="register" href="${pageContext.request.contextPath}/signup">Tạo tài khoản</a>
                                 </div>
                             </div>
                         </div>
@@ -183,16 +183,16 @@
                                         <i class="fa-solid fa-chevron-right"></i>
                                     </span>
                                 <ul class="type_hot-child">
-                                    <li><a href="/products?hot=1">
+                                    <li><a href="${pageContext.request.contextPath}/products?hot=1">
                                         <p>Sách bán chạy</p>
                                     </a></li>
-                                    <li><a href="/products?hot=2">
+                                    <li><a href="${pageContext.request.contextPath}/products?hot=2">
                                         <p>Sách mới</p>
                                     </a></li>
-                                    <li><a href="/products?hot=3">
+                                    <li><a href="${pageContext.request.contextPath}/products?hot=3">
                                         <p>Sắp phát hành</p>
                                     </a></li>
-                                    <li><a href="/products?hot=4">
+                                    <li><a href="${pageContext.request.contextPath}/products?hot=4">
                                         <p>Sách giảm giá</p>
                                     </a></li>
                                 </ul>
@@ -202,7 +202,7 @@
                                 List<CatalogModel> listCatalog = catalogDAO.findAll();
                             %>
                             <c:forEach var="catalog" items="<%=listCatalog%>">
-                                <li class="type_products-item"><a href="/products/catalogs?id=<c:out value ="${catalog.idCatalog}"/>">
+                                <li class="type_products-item"><a href="${pageContext.request.contextPath}/products/catalogs?id=<c:out value ="${catalog.idCatalog}"/>">
                                     <span><c:out value ="${catalog.name}"/></span></a>
                                 </li>
                             </c:forEach>
@@ -219,7 +219,7 @@
                                         List<PublisherCompanyModel> listPublisherCompany = iPublisherCompany.findAll();
                                     %>
                                     <c:forEach var="publisherCompany" items="<%=listPublisherCompany%>">
-                                        <li><a href="/products/publisherCompanys?id=<c:out value ="${publisherCompany.idPc}"/>">
+                                        <li><a href="${pageContext.request.contextPath}/products/publisherCompanys?id=<c:out value ="${publisherCompany.idPc}"/>">
                                             <p><c:out value ="${publisherCompany.name}"/></p>
                                         </a></li>
                                     </c:forEach>
@@ -232,7 +232,7 @@
                     </nav>
                 </div>
                 <div class="f_right" style="float: right; display: flex">
-                    <a style="background-color: #ed4d2b; padding: 5px; color: #FFFFFF;border-radius: 5px"  href="/voucher">Săn mã giảm giá</a>
+                    <a style="background-color: #ed4d2b; padding: 5px; color: #FFFFFF;border-radius: 5px"  href="${pageContext.request.contextPath}/voucher">Săn mã giảm giá</a>
                     <a href="" class="hotline d-flex">
                         <i class="fa-solid fa-phone"></i>
                         <h4>Hotline: </h4>
@@ -252,8 +252,8 @@
             <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
-            <a href="/login?action=login">Đăng ký</a>
-            <a href="/login?action=login">Đăng nhập</a>
+            <a href="${pageContext.request.contextPath}/login?action=login">Đăng ký</a>
+            <a href="${pageContext.request.contextPath}/login?action=login">Đăng nhập</a>
         </div>
         <button class="dropdown-btn">Nổi bật
             <i class="fa fa-caret-down"></i>
@@ -281,7 +281,7 @@
 <nav id="breadcrumbbar">
     <div class="container">
         <ul class="breadcrumb">
-            <li class="breadcrumb-item"><a class="chang_font" href="/home">Trang chủ</a></li>
+            <li class="breadcrumb-item"><a class="chang_font" href="${pageContext.request.contextPath}/home">Trang chủ</a></li>
             <c:if test="${not empty title}">
                 <li class="breadcrumb-item active"><a>${title}</a></li>
             </c:if>
@@ -371,11 +371,11 @@
 
                                     <div class="col-lg-3 col-md-4 col-xs-6 item victo-hugo  ${book.nameAuthor} ${book.price} c${book.getIdCP()} ${book.getIdP()}">
                                         <div class="card" >
-                                            <a href="/products/product-detail?id=${book.idBook}" class="motsanpham"
+                                            <a href="${pageContext.request.contextPath}/products/product-detail?id=${book.idBook}" class="motsanpham"
                                                data-toggle="tooltip" data-placement="bottom"
                                                title="${book.name}">
                                                 <img class="card-img-top anh"
-                                                     src="${book.image}"
+                                                     src="${pageContext.request.contextPath}/${book.image}"
                                                      alt="${book.name}">
                                                 <div class="card-body noidungsp mt-3">
                                                     <h6 class="card-title ten">${book.name} </h6>
@@ -465,10 +465,10 @@
                             <div class="pages">
                                 <c:forEach var="i" begin="1" end="${totalPage}">
                                     <c:if test="${i == currentPage}">
-                                        <a href="/products?page=${i}" class="page activePage">${i}</a>
+                                        <a href="${pageContext.request.contextPath}/products?page=${i}" class="page activePage">${i}</a>
                                     </c:if>
                                     <c:if test="${i != currentPage}">
-                                        <a href="/products?page=${i}" class="page">${i}</a>
+                                        <a href="${pageContext.request.contextPath}/products?page=${i}" class="page">${i}</a>
                                     </c:if>
                                 </c:forEach>
                                 <p>${test} </p>
@@ -621,8 +621,8 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script src="/templates/twbsPagination/jquery.twbsPagination.js"></script>
-<script src="/templates/scripts/header.js"></script>
-<script src="/templates/scripts/product_type.js"></script>
+<script src="${pageContext.request.contextPath}/templates/scripts/header.js"></script>
+<script src="${pageContext.request.contextPath}/templates/scripts/product_type.js"></script>
 
 </body>
 </html>

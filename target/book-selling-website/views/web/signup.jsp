@@ -18,9 +18,9 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
-  <link rel="stylesheet" href="/templates/styles/Login.css">
-  <link rel="stylesheet" href="/templates/styles/Header.css">
-  <link rel="stylesheet" href="/templates/styles/Footer.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/templates/styles/Login.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/templates/styles/Header.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/templates/styles/Footer.css">
 
 </head>
 
@@ -36,7 +36,7 @@
         ${message}
     </div>
   </c:if>
-  <form action="/signup" class="form_signUp" id="form_signUp" method="post">
+  <form action="${pageContext.request.contextPath}/signup" class="form_signUp" id="form_signUp" method="post">
     <div class="info-title">*Thông tin đăng nhập:</div>
     <div class="input ">
       <label>Email</label>
@@ -95,7 +95,7 @@
     <p style="margin-top: 30px; padding-bottom: 20px; color: #aaaaaa; text-align: center; font-size: 14px;">
       Bằng việc đăng kí, bạn đã đồng ý với <a href="#" class="red-link">Điều khoản dịch vụ</a> & <a href="#" class="red-link">
       Chính sách bảo mật</a> của chúng tôi</p>
-    <p style="margin-top: 20px; margin-bottom: 20px; color: #aaaaaa; text-align: center;">Bạn đã có tài khoản? <a href="/login?action=login" class="login-link">Đăng nhập</a></p>
+    <p style="margin-top: 20px; margin-bottom: 20px; color: #aaaaaa; text-align: center;">Bạn đã có tài khoản? <a href="${pageContext.request.contextPath}/login?action=login" class="login-link">Đăng nhập</a></p>
 
   </form>
 </div>
@@ -113,8 +113,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
         crossorigin="anonymous"></script>
-<script src="/templates/scripts/signUp.js"></script>
-<script src="/templates/scripts/header.js"></script>
+<script src="${pageContext.request.contextPath}/templates/scripts/signUp.js"></script>
+<script src="${pageContext.request.contextPath}/templates/scripts/header.js"></script>
 </body>
 
 </html>

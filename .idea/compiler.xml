@@ -10,5 +10,8 @@
         <module name="DoAnTHW8" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel target="1.8">
+      <module name="2 - Copy" target="16" />
+    </bytecodeTargetLevel>
   </component>
 </project>

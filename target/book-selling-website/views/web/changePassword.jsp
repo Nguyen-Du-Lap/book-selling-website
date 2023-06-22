@@ -36,16 +36,16 @@
         <div class="list_ctrl">
           <ul>
             <li class="first">
-              <a id="account" title="Thông tin tài khoản" href="/account?action=account">Thông tin tài
+              <a id="account" title="Thông tin tài khoản" href="${pageContext.request.contextPath}/account?action=account">Thông tin tài
                 khoản</a></li>
             <li class="first active">
-              <a id="changePassword" title="Đổi mật khẩu" href="/account?action=changePassword">Đổi
+              <a id="changePassword" title="Đổi mật khẩu" href="${pageContext.request.contextPath}/account?action=changePassword">Đổi
                 mật khẩu</a></li>
             <li class="first">
-              <a id="reviewOrders" title="Xem lại đơn hàng" href="/account?action=reviewOrders">Xem
+              <a id="reviewOrders" title="Xem lại đơn hàng" href="${pageContext.request.contextPath}/account?action=reviewOrders">Xem
                 lại đơn hàng</a></li>
             <li class="first">
-              <a id="logout" title="Đăng xuất" href="/logout?action=logout">Đăng xuất</a>
+              <a id="logout" title="Đăng xuất" href="${pageContext.request.contextPath}/logout?action=logout">Đăng xuất</a>
             </li>
           </ul>
         </div>
@@ -61,7 +61,7 @@
                 ${message}
             </div>
           </c:if>
-          <form id="form" action="/changePassword" method="post">
+          <form id="form" action="${pageContext.request.contextPath}/changePassword" method="post">
             <div class="input">
               <label for="acc_oldPass">
                 <span class="req">*</span>Mật khẩu cũ:
@@ -105,7 +105,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
         crossorigin="anonymous"></script>
-<script src="/templates/scripts/changePassword1.js"></script>
-<script src="/templates/scripts/header.js"></script>
+<script src="${pageContext.request.contextPath}/templates/scripts/changePassword1.js"></script>
+<script src="${pageContext.request.contextPath}/templates/scripts/header.js"></script>
 </body>
 </html>

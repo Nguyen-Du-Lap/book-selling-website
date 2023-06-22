@@ -3,6 +3,8 @@ package vn.edu.hcmuaf.fit.controller.web.cancelAndRateProduct;
 import vn.edu.hcmuaf.fit.bean.Log;
 import vn.edu.hcmuaf.fit.dao.IBillDAO;
 import vn.edu.hcmuaf.fit.dao.impl.BillDAO;
+import vn.edu.hcmuaf.fit.dao.impl.CartDao;
+import vn.edu.hcmuaf.fit.model.CartModel;
 import vn.edu.hcmuaf.fit.model.CustomerModel;
 import vn.edu.hcmuaf.fit.utils.MessageParameterUntil;
 import vn.edu.hcmuaf.fit.utils.SessionUtil;
@@ -12,6 +14,8 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.net.InetAddress;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(name = "cancelOrder", value = "/cancelOrder")
 public class CancelProductController extends HttpServlet {
@@ -25,11 +29,13 @@ public class CancelProductController extends HttpServlet {
         InetAddress myIP=InetAddress.getLocalHost();
         String ip= myIP.getHostAddress();
         if(result > 0) {
-            request.setAttribute("listBillDeliverByIdOrder", iBillDAO.findBillDeliverByIdOrder(cus.getIdUser()));
-            request.setAttribute("listBillWarByIdOrder", iBillDAO.findBillWarByIdOrder(cus.getIdUser()));
-            request.setAttribute("listBillDelivByIdOrder", iBillDAO.findBillDelivByIdOrder(cus.getIdUser()));
-            request.setAttribute("listBillRateByIdOrder", iBillDAO.findBillRateByIdOrder(cus.getIdUser()));
-            request.setAttribute("listBillByIdOrder", iBillDAO.findBillByIdOrder(cus.getIdUser()));
+            request.setAttribute("listBillDeliverByIdOrder", listDonHang(cus,1));
+            request.setAttribute("listBillWarByIdOrder",  listDonHang(cus,1));
+            request.setAttribute("listBillDelivByIdOrder",  listDonHang(cus,2));
+            request.setAttribute("listBillRateByIdOrder",  cartModelsChuaRate(cus,3));
+            request.setAttribute("listBillByIdOrder", listDonHang(cus,3));
+            CartDao dao = new CartDao();
+            dao.updateCart(idInt, 4);
             Log log = new Log(Log.ALER,ip,"Cancel Product", cus.getIdUser(),"Customer cancel product: "+ id,1);
             log.insert();
             new MessageParameterUntil("Hủy đơn hàng thành công", "success", "/views/web/reviewOrders.jsp", request, response).send();
@@ -42,5 +48,33 @@ public class CancelProductController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+    }
+    public List<CartModel> listDonHang(CustomerModel cus, int info) {
+        CartDao cartDao = new CartDao();
+        List<CartModel> listModel = cartDao.getAllCartByIdUser(cus.getIdUser());
+        for(int i =0 ;i < listModel.size();i++) {
+            listModel.get(i).setBills(new BillDAO().findAllBillByIdCart( listModel.get(i).getId()));
+        }
+        List<CartModel> dangChoList = new ArrayList<>();
+        for (int i =0;i<listModel.size();i++) {
+            if(listModel.get(i).getInShip() == info) {
+                dangChoList.add(listModel.get(i));
+            }
+        }
+        return  dangChoList;
+    }
+    public List<CartModel> cartModelsChuaRate(CustomerModel cus, int info) {
+        CartDao cartDao = new CartDao();
+        List<CartModel> listModel = cartDao.getAllCartByIdUser(cus.getIdUser());
+        for(int i =0 ;i < listModel.size();i++) {
+            listModel.get(i).setBills(new BillDAO().findAllBillByIdCartRate( listModel.get(i).getId()));
+        }
+        List<CartModel> dangChoList = new ArrayList<>();
+        for (int i =0;i<listModel.size();i++) {
+            if(listModel.get(i).getInShip() == info && listModel.get(i).getBills().size() >0) {
+                dangChoList.add(listModel.get(i));
+            }
+        }
+        return  dangChoList;
     }
 }

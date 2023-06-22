@@ -15,9 +15,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${bookModel.name}</title>
-  <link rel="stylesheet" href="css/bootstrap.css">
-  <link rel="stylesheet" href="css/bootstrap-grid.css">
-  <link rel="stylesheet" href="css/bootstrap-reboot.css">
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/bootstrap-grid.css">
+  <link rel="stylesheet" href="/css/bootstrap-reboot.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
   <link
@@ -46,7 +46,7 @@
   <div class="container">
     <nav id="breadcrumbbar">
       <ul class="breadcrumb">
-        <li class="breadcrumb-item"><a class="chang_font" href="/home">Trang chủ</a></li>
+        <li class="breadcrumb-item"><a class="chang_font" href="${pageContext.request.contextPath}/home">Trang chủ</a></li>
         <li class="breadcrumb-item"><a href="#">SACH Kinh Te</a></li>
         <li class="breadcrumb-item active">${bookModel.name}</li>
       </ul>
@@ -54,11 +54,11 @@
     <div class="product-content row">
       <div class="product-content-left">
         <div class="product-content-left-big-img">
-          <img src="${bookModel.image}" alt="">
+          <img src="${pageContext.request.contextPath}/${bookModel.image}" alt="">
         </div>
         <div class="product-content-left-small-img d-flex">
           <c:forEach var="img" items="${listImage}">
-            <img src="${img}" alt="" style="margin-top: 10px">
+            <img src="${pageContext.request.contextPath}/${img}" alt="" style="margin-top: 10px">
           </c:forEach>
         </div>
       </div>
@@ -128,7 +128,7 @@
           <h6 class="header font-weight-bold">Khuyến mãi & Ưu đãi tại Doraemon:</h6>
           <ul>
             <li><b>Miễn phí giao hàng </b>cho đơn hàng từ 150.000đ ở TP.HCM và 300.000đ ở
-              Tỉnh/Thành khác <a href="/home">>> Chi tiết</a></li>
+              Tỉnh/Thành khác <a href="${pageContext.request.contextPath}/home">>> Chi tiết</a></li>
             <li><b>Combo sách hot - CHÁY HÀNG </b><a href="home.html">>>Xem ngay</a></li>
             <li>Tặng kèm bìa bao sách</li>
             <li>Miễn phí 5 stickers</li>
@@ -384,9 +384,9 @@
         crossorigin="anonymous"></script>
 <script src="js/bootstrap.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script src="/templates/scripts/product_type.js"></script>
+<script src="${pageContext.request.contextPath}/templates/scripts/product_type.js"></script>
 
-<script src="/templates/scripts/product.js"></script>
+<script src="${pageContext.request.contextPath}/templates/scripts/product.js"></script>
 <script>
   $('.add-to-cart a').on('click', function () {
     const remainQuantity = Number(${quantityRemain}), quantity = $('.quantity .input-quantity').val()
@@ -400,7 +400,7 @@
       })
     } else {
       window.location.href =
-              '${context}/add-to-cart?product_id=${bookModel.idBook}' + '&action=add' + '&quantity=' + quantity
+              '${pageContext.request.contextPath}/add-to-cart?product_id=${bookModel.idBook}' + '&action=add' + '&quantity=' + quantity
     }
 
     return false
@@ -418,7 +418,7 @@
       })
     } else {
       window.location.href =
-              '${context}/orderBuyNowControlller?product_id=${bookModel.idBook}' + '&quantity=' + quantity
+              '${pageContext.request.contextPath}/orderBuyNowControlller?product_id=${bookModel.idBook}' + '&quantity=' + quantity
     }
 
     return false
